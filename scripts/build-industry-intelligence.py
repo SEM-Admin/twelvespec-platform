@@ -270,6 +270,8 @@ text += ['## Applying the findings to existing modules','',table(['Decision','Ac
  ['AI, 3D, CAD, autonomous procurement and full ERP functions','Retain Coming Soon.','A future scoped activation decision is required.']]),'',
  '## Measure business outcomes','',
  'Record inquiry-to-issued-quote time, active owner/delegated minutes, proof revision count, exceptions by cause, first-pass technical acceptance, on-time quantity completion, remake cost, repeat ordering and actual direct gross profit per owner hour. Keep elapsed waiting time separate from hands-on work. Establish baselines before setting savings claims. Reports must aggregate the full scoped dataset rather than a capped UI list.','',
+ '## Supplier data, blank images and templates','',
+ 'The [supplier access assessment](SUPPLIER_DATA_ACCESS.md) records available API/feed/download routes, source-specific template limits, permitted crawling and the remaining connector/credential work. It distinguishes documented offerings from authenticated integration verification.','',
  '## Remaining evidence','',
  'For any physical product, obtain exact source part/variant, material, surface, eligible method, approved geometry, output profile, rights and route acceptance. Commercial readiness additionally needs current complete cost, destination/freight, availability, terms and approvals. Paid services, credentials, licensing, legal/financial commitments and new deployments retain their separate authorization gates.','',
  'The original [gap plan](../GAP_CLOSURE_PLAN.md) and [acceptance map](../planning/requirements-to-work.json) remain open. No new production integration, catalog publication, manufacturer claim, membership or certification has been activated.']
