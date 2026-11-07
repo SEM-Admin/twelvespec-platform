@@ -20,6 +20,7 @@ jobs:
       - run: npm run check:spec
       - run: npm run check:plan
       - run: npm run check:research
+      - run: npm run check:industry
       - run: npm run setup
       - run: npm run typecheck
       - run: npm test

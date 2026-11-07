@@ -88,10 +88,12 @@ describe('A12–A17 persisted customer configuration and Creative Studio',()=>{
   const asset=await upload(),{project,version}=await newDesign(asset.id);
   const proof=await creative(customer,'request_proof',{id:project.id});
   await creative(customer,'approve_proof',{id:proof.id,versionHash:proof.data.versionHash,specificationHash:proof.data.specificationHash});
-  const preflight=await creative(customer,'run_preflight',{id:project.id});
+  const preflight=await creative(customer,'run_preflight',{id:project.id,profile:{verified:true,minimumDpi:1,bleedMm:0},productionReadiness:'PASSED'});
   expect(preflight.version_id).toBe(version.id);expect(preflight.status).toBe('BLOCKED');
   expect(preflight.data.errors).toContain('EFFECTIVE_DPI');expect(preflight.data.errors).toContain('PRODUCTION_EXPERT_VALIDATION');expect(preflight.data.ready).toBe(false);
   expect(Number(preflight.data.effectiveDpi)).toBeLessThan(1);
+  expect(preflight.data.requirements).toEqual({minimumDpi:null,bleedMm:null,source:'NO_VERIFIED_PROVIDER_PROFILE'});
+  expect((preflight.data.checks as Input[]).find(c=>c.code==='EFFECTIVE_DPI')).toMatchObject({passed:false,state:'UNVERIFIED'});
   const current=await transaction(customer,tx=>get(tx,customer,'design_projects',project.id));expect(current.status).toBe('APPROVED');expect(current.data.productionReadiness).toBe('BLOCKED');
   await expect(creative(owner,'release_production_asset',{id:project.id})).rejects.toMatchObject({code:'PRODUCTION_VALIDATION_NOT_CONFIGURED'});
  });

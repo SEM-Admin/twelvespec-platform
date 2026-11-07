@@ -18,6 +18,8 @@ The existing Next.js/TypeScript/PostgreSQL architecture remains. Development sta
 
 The recorded baseline is **139 unit/security/PostgreSQL tests across 27 files**, with **nine earlier browser journeys** and a subsequent cap proof regression. Those are historical observed runs, not a claim that all 95 scenarios pass. This documentation-only audit does not re-run or promote that baseline to full V1 acceptance. Its new execution evidence is in [audit-reproductions.json](planning/audit-reproductions.json) and the plan integrity checks.
 
+Later local progress, **November 6, 2026 (America/Chicago)**: the [industry supplement](industry-research/README.md) extends the research and records a partial GAP-018 correction. Preliminary preflight retains effective raster resolution, removes universal manufacturing DPI/bleed assumptions, and labels missing producer evidence UNVERIFIED. The updated local suite passes 143 tests and nine browser journeys. Production readiness remains BLOCKED; profiles, qualified release and production exports are still open. This later run does not close any original A/T/E scenario or deploy the correction to the hosted previews.
+
 ## Findings that set the order of work
 
 Three isolated reproductions require no database or external account:

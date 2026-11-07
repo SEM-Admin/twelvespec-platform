@@ -6,6 +6,8 @@ The controlling handoff is preserved under `specification/master-v1`. See the [m
 
 The [17-company feature research](docs/business-research/README.md) translates public product patterns into 35 original TwelveSpec designs, 104 proposed behavior tests and a logical data model. It includes a filterable offline viewer, a downloadable workbook and mappings to the existing code and gap plan. These are implementation designs; research does not establish feature or integration acceptance.
 
+The [industry supplement](docs/industry-research/README.md) adds PPAI, PRINTING United Alliance and specialist sources across 16 relevant business domains. It links data, workflow and exception requirements to all 19 active modules. Preliminary artwork checks now distinguish measured values from unverified producer requirements; production approval remains blocked pending a verified profile and review path.
+
 Run locally with Node.js 24:
 
 ```sh

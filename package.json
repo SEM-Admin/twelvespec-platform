@@ -24,7 +24,9 @@
     "check:plan": "node scripts/check-gap-plan.mjs",
     "research:build": "python3 scripts/build-platform-research.py",
     "check:research": "python3 scripts/check-platform-research.py",
-    "check:research:browser": "node scripts/check-research-viewer.mjs"
+    "check:research:browser": "node scripts/check-research-viewer.mjs",
+    "research:industry": "python3 scripts/build-industry-intelligence.py",
+    "check:industry": "python3 scripts/check-industry-intelligence.py"
   },
   "dependencies": {
     "better-auth": "1.7.18",

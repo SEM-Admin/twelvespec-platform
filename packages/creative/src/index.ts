@@ -58,14 +58,14 @@ export async function readPrivateAsset(tx:Tx,a:Actor,id:unknown,original=false):
  return {bytes,mimeType:original?String(row.data.mimeType):'image/png',fileName:row.title};
 }
 
-export type PreflightResult={ready:boolean;productionReadiness:'BLOCKED';checks:{code:string;passed:boolean;detail:string}[];errors:string[];effectiveDpi:number|null;method:string;previewOnly:true};
+export type PreflightResult={ready:false;productionReadiness:'BLOCKED';assessment:'PRELIMINARY_NOT_ROUTE_VALIDATED';checks:{code:string;passed:boolean;state:'PASS'|'FAIL'|'UNVERIFIED';detail:string}[];errors:string[];effectiveDpi:number|null;requirements:{minimumDpi:null;bleedMm:null;source:'NO_VERIFIED_PROVIDER_PROFILE'};method:string;previewOnly:true};
 export function preflightDesign(document:DesignDocument,assets:Input[]):PreflightResult {
  const checks:PreflightResult['checks']=[],method=document.method.toLowerCase();
- const minimumDpi=method.includes('sign')||method.includes('large')?150:300;
  let effectiveDpi:number|null=null;
- const add=(code:string,passed:boolean,detail:string)=>checks.push({code,passed,detail});
- add('PHYSICAL_SIZE',document.physicalWidthMm>0&&document.physicalHeightMm>0,'Dimensions recorded in millimetres.');
- add('METHOD_PROFILE_VERIFIED',false,'Supplier-specific production file profile, approved location and physical print-zone tolerances require verification.');
+ const add=(code:string,passed:boolean|null,detail:string)=>checks.push({code,passed:passed===true,state:passed===null?'UNVERIFIED':passed?'PASS':'FAIL',detail});
+ add('PHYSICAL_SIZE',document.physicalWidthMm>0&&document.physicalHeightMm>0,'Design canvas dimensions recorded in millimetres; this is not verified supplier imprint geometry.');
+ add('METHOD_PROFILE_VERIFIED',null,'The exact supplier, variant, material, location and effective production profile have not been verified.');
+ add('IMPRINT_GEOMETRY_VERIFIED',null,'A design canvas or suggested preset does not establish the approved physical print area.');
  add('LAYERS_PRESENT',document.layers.length>0,'At least one design layer is required.');
  const imageLayers=document.layers.filter(l=>l.type==='image');
  for(const layer of imageLayers){
@@ -73,21 +73,25 @@ export function preflightDesign(document:DesignDocument,assets:Input[]):Prefligh
   if(!asset){add('ASSET_MISSING',false,`Image layer ${layer.id} has no authorized asset.`);continue;}
   const widthInches=(layer.width/1000*document.placement.widthMm)/25.4;
   const heightInches=(layer.height/1000*document.placement.heightMm)/25.4;
-  const dpi=Math.min(Number(asset.widthPx??0)/Math.max(widthInches,0.001),Number(asset.heightPx??0)/Math.max(heightInches,0.001));
-  effectiveDpi=effectiveDpi===null?dpi:Math.min(effectiveDpi,dpi);
-  add('EFFECTIVE_DPI',dpi>=minimumDpi,`Layer ${layer.id}: ${Math.round(dpi)} DPI; ${minimumDpi} required for this method.`);
+  const widthPx=Number(asset.widthPx),heightPx=Number(asset.heightPx);
+  const dimensionsKnown=Number.isFinite(widthPx)&&widthPx>0&&Number.isFinite(heightPx)&&heightPx>0;
+  if(dimensionsKnown){
+   const dpi=Math.min(widthPx/widthInches,heightPx/heightInches);
+   effectiveDpi=effectiveDpi===null?dpi:Math.min(effectiveDpi,dpi);
+   add('EFFECTIVE_DPI',null,`Layer ${layer.id}: ${Math.round(dpi)} DPI measured at the declared design placement. The required resolution is unverified for the exact provider, method and material.`);
+  }else add('EFFECTIVE_DPI',null,`Layer ${layer.id}: reliable raster dimensions are unavailable; no effective resolution or production threshold can be established.`);
   add('ASSET_RIGHTS',asset.rightsConfirmed===true,'Recorded uploader usage assertion; production licensing review is separate.');
   add('MALWARE_SCAN',asset.scanStatus==='CLEAN','Production requires an independent malware scan.');
-  add('COLOR_PROFILE_VERIFIED',false,'Actual production color profile and spot identifiers require independent validation.');
-  add('TRANSPARENCY_OVERPRINT',false,'Transparency flattening and overprint behavior require the approved method-specific output profile.');
+  add('COLOR_PROFILE_VERIFIED',null,'Actual production color profile and spot identifiers require independent validation.');
+  add('TRANSPARENCY_OVERPRINT',null,'Transparency flattening and overprint behavior require the approved method-specific output profile.');
  }
- if(document.layers.some(l=>l.type==='text'))add('FONT_EMBEDDING',false,'Preview text has no verified embedded or outlined production font.');
- if(method.includes('cut')||method.includes('decal'))add('CUT_CONTOUR',false,'No verified cut contour or tooling specification is attached.');
- if(method.includes('embroid'))add('DIGITIZATION',false,'Approved method-specific stitch file/digitization evidence is absent.');
- if(method.includes('offset')||method==='print'||method.includes('digital_print'))add('BLEED',document.placement.bleedMm>=3,'This demo print profile requires at least 3 mm bleed; actual supplier profile must be verified.');
- add('LICENSE_REVIEW',false,'An authorized operator must verify product, artwork and font licenses.');
- add('PRODUCTION_EXPERT_VALIDATION',false,'No independent production validation service is configured. Visual approval alone cannot release artwork.');
- return {ready:false,productionReadiness:'BLOCKED',checks,errors:[...new Set(checks.filter(c=>!c.passed).map(c=>c.code))],effectiveDpi,method:document.method,previewOnly:true};
+ if(document.layers.some(l=>l.type==='text'))add('FONT_EMBEDDING',null,'Preview text has no verified embedded or outlined production font.');
+ if(method.includes('cut')||method.includes('decal'))add('CUT_CONTOUR',null,'No verified cut contour or tooling specification is attached.');
+ if(method.includes('embroid'))add('DIGITIZATION',null,'Approved method-specific stitch file/digitization evidence is absent.');
+ add('BLEED',null,`The design declares ${document.placement.bleedMm} mm bleed. The required bleed or an explicit not-applicable determination needs the exact provider profile; zero and unknown are distinct.`);
+ add('LICENSE_REVIEW',null,'An authorized operator must verify product, artwork and font licenses.');
+ add('PRODUCTION_EXPERT_VALIDATION',null,'No independent production validation service is configured. Visual approval alone cannot release artwork.');
+ return {ready:false,productionReadiness:'BLOCKED',assessment:'PRELIMINARY_NOT_ROUTE_VALIDATED',checks,errors:[...new Set(checks.filter(c=>!c.passed).map(c=>c.code))],effectiveDpi,requirements:{minimumDpi:null,bleedMm:null,source:'NO_VERIFIED_PROVIDER_PROFILE'},method:document.method,previewOnly:true};
 }
 
 async function currentVersion(tx:Tx,a:Actor,project:Row):Promise<Row>{owned(a,project);if(!project.data.currentVersionId)fail('DESIGN_VERSION_REQUIRED');return get(tx,a,'design_versions',project.data.currentVersionId);}

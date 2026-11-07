@@ -1183,6 +1183,15 @@
         "apps/os/components/studio.tsx"
       ],
       "observed": "preflightDesign always returns BLOCKED and release_production_asset always fails; decorated production cannot complete through supported user commands.",
+      "partialProgress": [
+        {
+          "date": "2026-11-06",
+          "timezone": "America/Chicago",
+          "change": "Preliminary preflight now reports PASS, FAIL and UNVERIFIED, preserves measured raster resolution and leaves producer DPI/bleed requirements null without an authoritative profile.",
+          "verification": "143 automated local tests and nine local browser journeys pass; four new domain cases and persisted forged-profile rejection are included.",
+          "remaining": "Versioned provider profiles, exact product/configuration binding, qualified technical review and validated production output remain open. Production readiness stays BLOCKED; no deployment occurred."
+        }
+      ],
       "implementation": [
         "Add versioned provider/method profiles and checks against actual files and zones",
         "Add an authorized manual prepress review of a scanned, immutable production derivative with evidence and reason",

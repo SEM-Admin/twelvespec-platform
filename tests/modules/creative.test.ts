@@ -25,11 +25,13 @@ describe('A14/A16/A17 Creative Studio contracts',()=>{
   const design=validateDesign(base),assets=[{id:'asset-id',widthPx:1000,heightPx:1000,rightsConfirmed:true,scanStatus:'NOT_CONFIGURED'}];
   const result=preflightDesign(design,assets);
   expect(result.effectiveDpi).toBeCloseTo(100);
+  expect(result.checks.find(c=>c.code==='EFFECTIVE_DPI')?.state).toBe('UNVERIFIED');
+  expect(result.requirements.minimumDpi).toBeNull();
   expect(result.errors).toContain('EFFECTIVE_DPI');expect(result.ready).toBe(false);expect(result.productionReadiness).toBe('BLOCKED');
  });
  it('high resolution never substitutes for licensing/color/production validation',()=>{
   const result=preflightDesign(validateDesign(base),[{id:'asset-id',widthPx:6000,heightPx:6000,rightsConfirmed:true,scanStatus:'CLEAN'}]);
-  expect(result.errors).not.toContain('EFFECTIVE_DPI');expect(result.errors).not.toContain('MALWARE_SCAN');
+  expect(result.effectiveDpi).toBeCloseTo(600);expect(result.errors).toContain('EFFECTIVE_DPI');expect(result.errors).not.toContain('MALWARE_SCAN');
   expect(result.errors).toContain('COLOR_PROFILE_VERIFIED');expect(result.errors).toContain('LICENSE_REVIEW');expect(result.errors).toContain('PRODUCTION_EXPERT_VALIDATION');expect(result.ready).toBe(false);
  });
  it('text, embroidery and inadequate bleed have separate method-specific blockers',()=>{
@@ -40,5 +42,36 @@ describe('A14/A16/A17 Creative Studio contracts',()=>{
  it('public metadata projection excludes local private object paths',()=>{
   const row={id:'x',title:'Logo.png',status:'QUARANTINED',data:{objectKey:'private/original',previewObjectKey:'private/preview',mimeType:'image/png',widthPx:100,heightPx:100,contentHash:'hash',scanStatus:'NOT_CONFIGURED',rightsConfirmed:true}} as unknown as Row;
   const json=JSON.stringify(publicAsset(row));expect(json).not.toContain('objectKey');expect(json).not.toContain('private/original');expect(json).toContain('NOT_CONFIGURED');
+ });
+ it('does not invent universal resolution thresholds from the method name',()=>{
+  const assets=[{id:'asset-id',widthPx:2000,heightPx:2000,rightsConfirmed:true,scanStatus:'CLEAN'}];
+  for(const method of ['digital_print','large_format','sign','dtf','embroidery']){
+   const result=preflightDesign(validateDesign({...base,method}),assets);
+   expect(result.effectiveDpi).toBeCloseTo(200);expect(result.requirements.minimumDpi).toBeNull();
+   expect(result.checks.find(c=>c.code==='EFFECTIVE_DPI')).toMatchObject({passed:false,state:'UNVERIFIED'});
+   expect(result.assessment).toBe('PRELIMINARY_NOT_ROUTE_VALIDATED');expect(result.ready).toBe(false);
+  }
+ });
+ it('keeps absent, zero and positive declared bleed separate from a verified requirement',()=>{
+  for(const bleedMm of [undefined,0,3,6]){
+   const result=preflightDesign(validateDesign({...base,placement:{...base.placement,bleedMm}}),[]);
+   expect(result.requirements.bleedMm).toBeNull();expect(result.errors).toContain('BLEED');
+   expect(result.checks.find(c=>c.code==='BLEED')).toMatchObject({passed:false,state:'UNVERIFIED'});
+   expect(result.productionReadiness).toBe('BLOCKED');
+  }
+ });
+ it('missing or invalid image metadata never becomes zero, NaN or a passed resolution check',()=>{
+  for(const dimensions of [{},{widthPx:0,heightPx:100},{widthPx:'unknown',heightPx:100},{widthPx:Infinity,heightPx:100}]){
+   const result=preflightDesign(validateDesign(base),[{id:'asset-id',...dimensions,rightsConfirmed:true,scanStatus:'CLEAN'}]);
+   expect(result.effectiveDpi).toBeNull();expect(result.checks.find(c=>c.code==='EFFECTIVE_DPI')?.state).toBe('UNVERIFIED');
+   expect(JSON.stringify(result)).not.toContain('NaN');expect(result.ready).toBe(false);
+  }
+ });
+ it('distinguishes a failed structural check from unknown manufacturing evidence',()=>{
+  const result=preflightDesign(validateDesign({...base,layers:[]}),[]);
+  expect(result.checks.find(c=>c.code==='LAYERS_PRESENT')).toMatchObject({passed:false,state:'FAIL'});
+  expect(result.checks.find(c=>c.code==='IMPRINT_GEOMETRY_VERIFIED')).toMatchObject({passed:false,state:'UNVERIFIED'});
+  expect(result.checks.find(c=>c.code==='PHYSICAL_SIZE')).toMatchObject({passed:true,state:'PASS'});
+  expect(result.ready).toBe(false);
  });
 });
