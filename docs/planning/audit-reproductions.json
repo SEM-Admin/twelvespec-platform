@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-11-07T02:38:06.723Z",
+  "environment": "PURE_FUNCTIONS_ONLY_NO_DATABASE_OR_PROVIDER_CALLS",
+  "findings": [
+    {
+      "id": "precision",
+      "inputUnitCost": "0.0250",
+      "quantity": 1000,
+      "observedUnitCost": "0.03",
+      "observedExtendedCost": "30.00",
+      "correctUnroundedExtension": "25.00"
+    },
+    {
+      "id": "cart-policy-context",
+      "inputKeys": [
+        "productId",
+        "variantId",
+        "quantity",
+        "method",
+        "location",
+        "storeId",
+        "brandKitId",
+        "bundleConfigurationId"
+      ],
+      "normalizedKeys": [
+        "productId",
+        "variantId",
+        "quantity",
+        "method",
+        "location"
+      ],
+      "lostFields": [
+        "storeId",
+        "brandKitId",
+        "bundleConfigurationId"
+      ]
+    },
+    {
+      "id": "manager-marketing-approval",
+      "actual": "PERMISSION_DENIED",
+      "handlerPermitsManager": true
+    }
+  ]
+}

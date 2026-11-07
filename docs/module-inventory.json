@@ -29,7 +29,7 @@
     "id": "foundation.screen.Workspace selector",
     "module": "foundation",
     "requirement": "Workspace selector",
-    "source": "modules/foundation.md",
+    "source": "specification/master-v1/modules/foundation.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/foundation.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -38,7 +38,7 @@
     "id": "foundation.screen.Users & roles",
     "module": "foundation",
     "requirement": "Users & roles",
-    "source": "modules/foundation.md",
+    "source": "specification/master-v1/modules/foundation.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/foundation.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -47,7 +47,7 @@
     "id": "foundation.screen.Venture/legal seller",
     "module": "foundation",
     "requirement": "Venture/legal seller",
-    "source": "modules/foundation.md",
+    "source": "specification/master-v1/modules/foundation.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/foundation.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -56,7 +56,7 @@
     "id": "foundation.screen.Audit",
     "module": "foundation",
     "requirement": "Audit",
-    "source": "modules/foundation.md",
+    "source": "specification/master-v1/modules/foundation.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/foundation.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -65,7 +65,7 @@
     "id": "foundation.screen.Module registry",
     "module": "foundation",
     "requirement": "Module registry",
-    "source": "modules/foundation.md",
+    "source": "specification/master-v1/modules/foundation.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/foundation.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -74,8 +74,8 @@
     "id": "foundation.command.create",
     "module": "foundation",
     "requirement": "create",
-    "source": "modules/foundation.md",
-    "code": "packages/packages/foundation/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
     "test": "tests/modules/foundation.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -83,8 +83,8 @@
     "id": "foundation.command.update",
     "module": "foundation",
     "requirement": "update",
-    "source": "modules/foundation.md",
-    "code": "packages/packages/foundation/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
     "test": "tests/modules/foundation.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -92,8 +92,8 @@
     "id": "foundation.command.review",
     "module": "foundation",
     "requirement": "review",
-    "source": "modules/foundation.md",
-    "code": "packages/packages/foundation/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
     "test": "tests/modules/foundation.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -101,8 +101,8 @@
     "id": "foundation.command.approve",
     "module": "foundation",
     "requirement": "approve",
-    "source": "modules/foundation.md",
-    "code": "packages/packages/foundation/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
     "test": "tests/modules/foundation.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -110,8 +110,8 @@
     "id": "foundation.command.archive",
     "module": "foundation",
     "requirement": "archive",
-    "source": "modules/foundation.md",
-    "code": "packages/packages/foundation/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
     "test": "tests/modules/foundation.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -145,7 +145,7 @@
     "id": "today.screen.Needs attention",
     "module": "today",
     "requirement": "Needs attention",
-    "source": "modules/today.md",
+    "source": "specification/master-v1/modules/today.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/today.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -154,7 +154,7 @@
     "id": "today.screen.Revenue/GP snapshot",
     "module": "today",
     "requirement": "Revenue/GP snapshot",
-    "source": "modules/today.md",
+    "source": "specification/master-v1/modules/today.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/today.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -163,7 +163,7 @@
     "id": "today.screen.Waiting for others",
     "module": "today",
     "requirement": "Waiting for others",
-    "source": "modules/today.md",
+    "source": "specification/master-v1/modules/today.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/today.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -172,7 +172,7 @@
     "id": "today.screen.Tasks",
     "module": "today",
     "requirement": "Tasks",
-    "source": "modules/today.md",
+    "source": "specification/master-v1/modules/today.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/today.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -181,7 +181,7 @@
     "id": "today.screen.Owner hours",
     "module": "today",
     "requirement": "Owner hours",
-    "source": "modules/today.md",
+    "source": "specification/master-v1/modules/today.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/today.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -190,8 +190,8 @@
     "id": "today.command.create",
     "module": "today",
     "requirement": "create",
-    "source": "modules/today.md",
-    "code": "packages/packages/today/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
     "test": "tests/modules/today.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -199,8 +199,8 @@
     "id": "today.command.update",
     "module": "today",
     "requirement": "update",
-    "source": "modules/today.md",
-    "code": "packages/packages/today/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
     "test": "tests/modules/today.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -208,8 +208,8 @@
     "id": "today.command.review",
     "module": "today",
     "requirement": "review",
-    "source": "modules/today.md",
-    "code": "packages/packages/today/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
     "test": "tests/modules/today.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -217,8 +217,8 @@
     "id": "today.command.approve",
     "module": "today",
     "requirement": "approve",
-    "source": "modules/today.md",
-    "code": "packages/packages/today/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
     "test": "tests/modules/today.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -226,8 +226,8 @@
     "id": "today.command.archive",
     "module": "today",
     "requirement": "archive",
-    "source": "modules/today.md",
-    "code": "packages/packages/today/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
     "test": "tests/modules/today.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -261,7 +261,7 @@
     "id": "crm.screen.Accounts",
     "module": "crm",
     "requirement": "Accounts",
-    "source": "modules/crm.md",
+    "source": "specification/master-v1/modules/crm.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/crm.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -270,7 +270,7 @@
     "id": "crm.screen.Contacts",
     "module": "crm",
     "requirement": "Contacts",
-    "source": "modules/crm.md",
+    "source": "specification/master-v1/modules/crm.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/crm.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -279,7 +279,7 @@
     "id": "crm.screen.Pipeline board",
     "module": "crm",
     "requirement": "Pipeline board",
-    "source": "modules/crm.md",
+    "source": "specification/master-v1/modules/crm.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/crm.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -288,7 +288,7 @@
     "id": "crm.screen.Activity timeline",
     "module": "crm",
     "requirement": "Activity timeline",
-    "source": "modules/crm.md",
+    "source": "specification/master-v1/modules/crm.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/crm.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -297,7 +297,7 @@
     "id": "crm.screen.Lead import",
     "module": "crm",
     "requirement": "Lead import",
-    "source": "modules/crm.md",
+    "source": "specification/master-v1/modules/crm.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/crm.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -306,8 +306,8 @@
     "id": "crm.command.create",
     "module": "crm",
     "requirement": "create",
-    "source": "modules/crm.md",
-    "code": "packages/packages/crm/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
     "test": "tests/modules/crm.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -315,8 +315,8 @@
     "id": "crm.command.update",
     "module": "crm",
     "requirement": "update",
-    "source": "modules/crm.md",
-    "code": "packages/packages/crm/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
     "test": "tests/modules/crm.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -324,8 +324,8 @@
     "id": "crm.command.review",
     "module": "crm",
     "requirement": "review",
-    "source": "modules/crm.md",
-    "code": "packages/packages/crm/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
     "test": "tests/modules/crm.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -333,8 +333,8 @@
     "id": "crm.command.approve",
     "module": "crm",
     "requirement": "approve",
-    "source": "modules/crm.md",
-    "code": "packages/packages/crm/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
     "test": "tests/modules/crm.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -342,8 +342,8 @@
     "id": "crm.command.archive",
     "module": "crm",
     "requirement": "archive",
-    "source": "modules/crm.md",
-    "code": "packages/packages/crm/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
     "test": "tests/modules/crm.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -377,7 +377,7 @@
     "id": "catalog.screen.Products grid",
     "module": "catalog",
     "requirement": "Products grid",
-    "source": "modules/catalog.md",
+    "source": "specification/master-v1/modules/catalog.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/catalog.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -386,7 +386,7 @@
     "id": "catalog.screen.Bulk spreadsheet editor",
     "module": "catalog",
     "requirement": "Bulk spreadsheet editor",
-    "source": "modules/catalog.md",
+    "source": "specification/master-v1/modules/catalog.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/catalog.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -395,7 +395,7 @@
     "id": "catalog.screen.Variants",
     "module": "catalog",
     "requirement": "Variants",
-    "source": "modules/catalog.md",
+    "source": "specification/master-v1/modules/catalog.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/catalog.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -404,7 +404,7 @@
     "id": "catalog.screen.Collections",
     "module": "catalog",
     "requirement": "Collections",
-    "source": "modules/catalog.md",
+    "source": "specification/master-v1/modules/catalog.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/catalog.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -413,7 +413,7 @@
     "id": "catalog.screen.Publish review",
     "module": "catalog",
     "requirement": "Publish review",
-    "source": "modules/catalog.md",
+    "source": "specification/master-v1/modules/catalog.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/catalog.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -422,8 +422,8 @@
     "id": "catalog.command.match_product",
     "module": "catalog",
     "requirement": "match_product",
-    "source": "modules/catalog.md",
-    "code": "packages/packages/catalog/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
     "test": "tests/modules/catalog.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -431,8 +431,8 @@
     "id": "catalog.command.bulk_change",
     "module": "catalog",
     "requirement": "bulk_change",
-    "source": "modules/catalog.md",
-    "code": "packages/packages/catalog/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
     "test": "tests/modules/catalog.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -440,8 +440,8 @@
     "id": "catalog.command.stage_revision",
     "module": "catalog",
     "requirement": "stage_revision",
-    "source": "modules/catalog.md",
-    "code": "packages/packages/catalog/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
     "test": "tests/modules/catalog.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -449,8 +449,8 @@
     "id": "catalog.command.publish",
     "module": "catalog",
     "requirement": "publish",
-    "source": "modules/catalog.md",
-    "code": "packages/packages/catalog/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
     "test": "tests/modules/catalog.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -458,8 +458,8 @@
     "id": "catalog.command.pause",
     "module": "catalog",
     "requirement": "pause",
-    "source": "modules/catalog.md",
-    "code": "packages/packages/catalog/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
     "test": "tests/modules/catalog.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -496,7 +496,7 @@
     "id": "supplier.screen.Connection cards",
     "module": "supplier",
     "requirement": "Connection cards",
-    "source": "modules/supplier.md",
+    "source": "specification/master-v1/modules/supplier.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/supplier.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -505,7 +505,7 @@
     "id": "supplier.screen.Add connection wizard",
     "module": "supplier",
     "requirement": "Add connection wizard",
-    "source": "modules/supplier.md",
+    "source": "specification/master-v1/modules/supplier.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/supplier.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -514,7 +514,7 @@
     "id": "supplier.screen.Credentials form",
     "module": "supplier",
     "requirement": "Credentials form",
-    "source": "modules/supplier.md",
+    "source": "specification/master-v1/modules/supplier.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/supplier.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -523,7 +523,7 @@
     "id": "supplier.screen.Service capabilities",
     "module": "supplier",
     "requirement": "Service capabilities",
-    "source": "modules/supplier.md",
+    "source": "specification/master-v1/modules/supplier.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/supplier.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -532,7 +532,7 @@
     "id": "supplier.screen.Import mappings",
     "module": "supplier",
     "requirement": "Import mappings",
-    "source": "modules/supplier.md",
+    "source": "specification/master-v1/modules/supplier.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/supplier.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -541,7 +541,7 @@
     "id": "supplier.screen.Sync history",
     "module": "supplier",
     "requirement": "Sync history",
-    "source": "modules/supplier.md",
+    "source": "specification/master-v1/modules/supplier.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/supplier.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -550,8 +550,8 @@
     "id": "supplier.command.save_secret",
     "module": "supplier",
     "requirement": "save_secret",
-    "source": "modules/supplier.md",
-    "code": "packages/packages/supplier/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
     "test": "tests/modules/supplier.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -559,8 +559,8 @@
     "id": "supplier.command.test_connection",
     "module": "supplier",
     "requirement": "test_connection",
-    "source": "modules/supplier.md",
-    "code": "packages/packages/supplier/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
     "test": "tests/modules/supplier.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -568,8 +568,8 @@
     "id": "supplier.command.discover_capabilities",
     "module": "supplier",
     "requirement": "discover_capabilities",
-    "source": "modules/supplier.md",
-    "code": "packages/packages/supplier/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
     "test": "tests/modules/supplier.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -577,8 +577,8 @@
     "id": "supplier.command.stage_file",
     "module": "supplier",
     "requirement": "stage_file",
-    "source": "modules/supplier.md",
-    "code": "packages/packages/supplier/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
     "test": "tests/modules/supplier.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -586,8 +586,8 @@
     "id": "supplier.command.preview_mapping",
     "module": "supplier",
     "requirement": "preview_mapping",
-    "source": "modules/supplier.md",
-    "code": "packages/packages/supplier/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
     "test": "tests/modules/supplier.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -595,8 +595,8 @@
     "id": "supplier.command.commit_import",
     "module": "supplier",
     "requirement": "commit_import",
-    "source": "modules/supplier.md",
-    "code": "packages/packages/supplier/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
     "test": "tests/modules/supplier.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -604,8 +604,8 @@
     "id": "supplier.command.schedule_sync",
     "module": "supplier",
     "requirement": "schedule_sync",
-    "source": "modules/supplier.md",
-    "code": "packages/packages/supplier/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
     "test": "tests/modules/supplier.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -638,7 +638,7 @@
     "id": "configuration.screen.Product family rules",
     "module": "configuration",
     "requirement": "Product family rules",
-    "source": "modules/configuration.md",
+    "source": "specification/master-v1/modules/configuration.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/configuration.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -647,7 +647,7 @@
     "id": "configuration.screen.Options matrix",
     "module": "configuration",
     "requirement": "Options matrix",
-    "source": "modules/configuration.md",
+    "source": "specification/master-v1/modules/configuration.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/configuration.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -656,7 +656,7 @@
     "id": "configuration.screen.Print zone editor",
     "module": "configuration",
     "requirement": "Print zone editor",
-    "source": "modules/configuration.md",
+    "source": "specification/master-v1/modules/configuration.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/configuration.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -665,7 +665,7 @@
     "id": "configuration.screen.Constraints simulator",
     "module": "configuration",
     "requirement": "Constraints simulator",
-    "source": "modules/configuration.md",
+    "source": "specification/master-v1/modules/configuration.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/configuration.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -674,8 +674,8 @@
     "id": "configuration.command.create",
     "module": "configuration",
     "requirement": "create",
-    "source": "modules/configuration.md",
-    "code": "packages/packages/configuration/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
     "test": "tests/modules/configuration.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -683,8 +683,8 @@
     "id": "configuration.command.update",
     "module": "configuration",
     "requirement": "update",
-    "source": "modules/configuration.md",
-    "code": "packages/packages/configuration/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
     "test": "tests/modules/configuration.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -692,8 +692,8 @@
     "id": "configuration.command.review",
     "module": "configuration",
     "requirement": "review",
-    "source": "modules/configuration.md",
-    "code": "packages/packages/configuration/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
     "test": "tests/modules/configuration.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -701,8 +701,8 @@
     "id": "configuration.command.approve",
     "module": "configuration",
     "requirement": "approve",
-    "source": "modules/configuration.md",
-    "code": "packages/packages/configuration/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
     "test": "tests/modules/configuration.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -710,8 +710,8 @@
     "id": "configuration.command.archive",
     "module": "configuration",
     "requirement": "archive",
-    "source": "modules/configuration.md",
-    "code": "packages/packages/configuration/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
     "test": "tests/modules/configuration.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -746,7 +746,7 @@
     "id": "creative.screen.Customer designer",
     "module": "creative",
     "requirement": "Customer designer",
-    "source": "modules/creative.md",
+    "source": "specification/master-v1/modules/creative.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/creative.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -755,7 +755,7 @@
     "id": "creative.screen.Admin artwork",
     "module": "creative",
     "requirement": "Admin artwork",
-    "source": "modules/creative.md",
+    "source": "specification/master-v1/modules/creative.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/creative.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -764,7 +764,7 @@
     "id": "creative.screen.Brand kits",
     "module": "creative",
     "requirement": "Brand kits",
-    "source": "modules/creative.md",
+    "source": "specification/master-v1/modules/creative.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/creative.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -773,7 +773,7 @@
     "id": "creative.screen.Proof center",
     "module": "creative",
     "requirement": "Proof center",
-    "source": "modules/creative.md",
+    "source": "specification/master-v1/modules/creative.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/creative.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -782,7 +782,7 @@
     "id": "creative.screen.Prepress queue",
     "module": "creative",
     "requirement": "Prepress queue",
-    "source": "modules/creative.md",
+    "source": "specification/master-v1/modules/creative.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/creative.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -791,8 +791,8 @@
     "id": "creative.command.upload_asset",
     "module": "creative",
     "requirement": "upload_asset",
-    "source": "modules/creative.md",
-    "code": "packages/packages/creative/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
     "test": "tests/modules/creative.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -800,8 +800,8 @@
     "id": "creative.command.save_design_version",
     "module": "creative",
     "requirement": "save_design_version",
-    "source": "modules/creative.md",
-    "code": "packages/packages/creative/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
     "test": "tests/modules/creative.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -809,8 +809,8 @@
     "id": "creative.command.render_mockup",
     "module": "creative",
     "requirement": "render_mockup",
-    "source": "modules/creative.md",
-    "code": "packages/packages/creative/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
     "test": "tests/modules/creative.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -818,8 +818,8 @@
     "id": "creative.command.request_proof",
     "module": "creative",
     "requirement": "request_proof",
-    "source": "modules/creative.md",
-    "code": "packages/packages/creative/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
     "test": "tests/modules/creative.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -827,8 +827,8 @@
     "id": "creative.command.approve_proof",
     "module": "creative",
     "requirement": "approve_proof",
-    "source": "modules/creative.md",
-    "code": "packages/packages/creative/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
     "test": "tests/modules/creative.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -836,8 +836,8 @@
     "id": "creative.command.run_preflight",
     "module": "creative",
     "requirement": "run_preflight",
-    "source": "modules/creative.md",
-    "code": "packages/packages/creative/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
     "test": "tests/modules/creative.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -870,7 +870,7 @@
     "id": "estimating.screen.Estimate builder",
     "module": "estimating",
     "requirement": "Estimate builder",
-    "source": "modules/estimating.md",
+    "source": "specification/master-v1/modules/estimating.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/estimating.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -879,7 +879,7 @@
     "id": "estimating.screen.Cost components",
     "module": "estimating",
     "requirement": "Cost components",
-    "source": "modules/estimating.md",
+    "source": "specification/master-v1/modules/estimating.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/estimating.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -888,7 +888,7 @@
     "id": "estimating.screen.Margin approvals",
     "module": "estimating",
     "requirement": "Margin approvals",
-    "source": "modules/estimating.md",
+    "source": "specification/master-v1/modules/estimating.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/estimating.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -897,7 +897,7 @@
     "id": "estimating.screen.Version history",
     "module": "estimating",
     "requirement": "Version history",
-    "source": "modules/estimating.md",
+    "source": "specification/master-v1/modules/estimating.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/estimating.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -906,8 +906,8 @@
     "id": "estimating.command.create",
     "module": "estimating",
     "requirement": "create",
-    "source": "modules/estimating.md",
-    "code": "packages/packages/estimating/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
     "test": "tests/modules/estimating.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -915,8 +915,8 @@
     "id": "estimating.command.update",
     "module": "estimating",
     "requirement": "update",
-    "source": "modules/estimating.md",
-    "code": "packages/packages/estimating/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
     "test": "tests/modules/estimating.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -924,8 +924,8 @@
     "id": "estimating.command.review",
     "module": "estimating",
     "requirement": "review",
-    "source": "modules/estimating.md",
-    "code": "packages/packages/estimating/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
     "test": "tests/modules/estimating.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -933,8 +933,8 @@
     "id": "estimating.command.approve",
     "module": "estimating",
     "requirement": "approve",
-    "source": "modules/estimating.md",
-    "code": "packages/packages/estimating/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
     "test": "tests/modules/estimating.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -942,8 +942,8 @@
     "id": "estimating.command.archive",
     "module": "estimating",
     "requirement": "archive",
-    "source": "modules/estimating.md",
-    "code": "packages/packages/estimating/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
     "test": "tests/modules/estimating.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -977,7 +977,7 @@
     "id": "commerce.screen.Search listing",
     "module": "commerce",
     "requirement": "Search listing",
-    "source": "modules/commerce.md",
+    "source": "specification/master-v1/modules/commerce.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/commerce.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -986,7 +986,7 @@
     "id": "commerce.screen.Product detail",
     "module": "commerce",
     "requirement": "Product detail",
-    "source": "modules/commerce.md",
+    "source": "specification/master-v1/modules/commerce.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/commerce.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -995,7 +995,7 @@
     "id": "commerce.screen.Customer designer",
     "module": "commerce",
     "requirement": "Customer designer",
-    "source": "modules/commerce.md",
+    "source": "specification/master-v1/modules/commerce.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/commerce.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1004,7 +1004,7 @@
     "id": "commerce.screen.Quote cart",
     "module": "commerce",
     "requirement": "Quote cart",
-    "source": "modules/commerce.md",
+    "source": "specification/master-v1/modules/commerce.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/commerce.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1013,7 +1013,7 @@
     "id": "commerce.screen.Account/orders",
     "module": "commerce",
     "requirement": "Account/orders",
-    "source": "modules/commerce.md",
+    "source": "specification/master-v1/modules/commerce.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/commerce.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1022,8 +1022,8 @@
     "id": "commerce.command.create",
     "module": "commerce",
     "requirement": "create",
-    "source": "modules/commerce.md",
-    "code": "packages/packages/commerce/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
     "test": "tests/modules/commerce.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1031,8 +1031,8 @@
     "id": "commerce.command.update",
     "module": "commerce",
     "requirement": "update",
-    "source": "modules/commerce.md",
-    "code": "packages/packages/commerce/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
     "test": "tests/modules/commerce.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1040,8 +1040,8 @@
     "id": "commerce.command.review",
     "module": "commerce",
     "requirement": "review",
-    "source": "modules/commerce.md",
-    "code": "packages/packages/commerce/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
     "test": "tests/modules/commerce.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1049,8 +1049,8 @@
     "id": "commerce.command.approve",
     "module": "commerce",
     "requirement": "approve",
-    "source": "modules/commerce.md",
-    "code": "packages/packages/commerce/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
     "test": "tests/modules/commerce.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1058,8 +1058,8 @@
     "id": "commerce.command.archive",
     "module": "commerce",
     "requirement": "archive",
-    "source": "modules/commerce.md",
-    "code": "packages/packages/commerce/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
     "test": "tests/modules/commerce.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1092,7 +1092,7 @@
     "id": "stores.screen.Store list",
     "module": "stores",
     "requirement": "Store list",
-    "source": "modules/stores.md",
+    "source": "specification/master-v1/modules/stores.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/stores.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1101,7 +1101,7 @@
     "id": "stores.screen.Program type config",
     "module": "stores",
     "requirement": "Program type config",
-    "source": "modules/stores.md",
+    "source": "specification/master-v1/modules/stores.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/stores.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1110,7 +1110,7 @@
     "id": "stores.screen.Products and budgets",
     "module": "stores",
     "requirement": "Products and budgets",
-    "source": "modules/stores.md",
+    "source": "specification/master-v1/modules/stores.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/stores.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1119,7 +1119,7 @@
     "id": "stores.screen.Member management",
     "module": "stores",
     "requirement": "Member management",
-    "source": "modules/stores.md",
+    "source": "specification/master-v1/modules/stores.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/stores.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1128,8 +1128,8 @@
     "id": "stores.command.create",
     "module": "stores",
     "requirement": "create",
-    "source": "modules/stores.md",
-    "code": "packages/packages/stores/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
     "test": "tests/modules/stores.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1137,8 +1137,8 @@
     "id": "stores.command.update",
     "module": "stores",
     "requirement": "update",
-    "source": "modules/stores.md",
-    "code": "packages/packages/stores/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
     "test": "tests/modules/stores.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1146,8 +1146,8 @@
     "id": "stores.command.review",
     "module": "stores",
     "requirement": "review",
-    "source": "modules/stores.md",
-    "code": "packages/packages/stores/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
     "test": "tests/modules/stores.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1155,8 +1155,8 @@
     "id": "stores.command.approve",
     "module": "stores",
     "requirement": "approve",
-    "source": "modules/stores.md",
-    "code": "packages/packages/stores/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
     "test": "tests/modules/stores.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1164,8 +1164,8 @@
     "id": "stores.command.archive",
     "module": "stores",
     "requirement": "archive",
-    "source": "modules/stores.md",
-    "code": "packages/packages/stores/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
     "test": "tests/modules/stores.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1198,7 +1198,7 @@
     "id": "byob.screen.Bundle builder",
     "module": "byob",
     "requirement": "Bundle builder",
-    "source": "modules/byob.md",
+    "source": "specification/master-v1/modules/byob.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/byob.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1207,7 +1207,7 @@
     "id": "byob.screen.Component selector",
     "module": "byob",
     "requirement": "Component selector",
-    "source": "modules/byob.md",
+    "source": "specification/master-v1/modules/byob.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/byob.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1216,7 +1216,7 @@
     "id": "byob.screen.Kit pricing",
     "module": "byob",
     "requirement": "Kit pricing",
-    "source": "modules/byob.md",
+    "source": "specification/master-v1/modules/byob.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/byob.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1225,7 +1225,7 @@
     "id": "byob.screen.Assembly rules",
     "module": "byob",
     "requirement": "Assembly rules",
-    "source": "modules/byob.md",
+    "source": "specification/master-v1/modules/byob.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/byob.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1234,8 +1234,8 @@
     "id": "byob.command.create",
     "module": "byob",
     "requirement": "create",
-    "source": "modules/byob.md",
-    "code": "packages/packages/byob/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
     "test": "tests/modules/byob.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1243,8 +1243,8 @@
     "id": "byob.command.update",
     "module": "byob",
     "requirement": "update",
-    "source": "modules/byob.md",
-    "code": "packages/packages/byob/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
     "test": "tests/modules/byob.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1252,8 +1252,8 @@
     "id": "byob.command.review",
     "module": "byob",
     "requirement": "review",
-    "source": "modules/byob.md",
-    "code": "packages/packages/byob/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
     "test": "tests/modules/byob.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1261,8 +1261,8 @@
     "id": "byob.command.approve",
     "module": "byob",
     "requirement": "approve",
-    "source": "modules/byob.md",
-    "code": "packages/packages/byob/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
     "test": "tests/modules/byob.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1270,8 +1270,8 @@
     "id": "byob.command.archive",
     "module": "byob",
     "requirement": "archive",
-    "source": "modules/byob.md",
-    "code": "packages/packages/byob/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
     "test": "tests/modules/byob.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1304,7 +1304,7 @@
     "id": "sales.screen.RFQ inbox",
     "module": "sales",
     "requirement": "RFQ inbox",
-    "source": "modules/sales.md",
+    "source": "specification/master-v1/modules/sales.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/sales.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1313,7 +1313,7 @@
     "id": "sales.screen.Quote editor",
     "module": "sales",
     "requirement": "Quote editor",
-    "source": "modules/sales.md",
+    "source": "specification/master-v1/modules/sales.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/sales.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1322,7 +1322,7 @@
     "id": "sales.screen.Approvals",
     "module": "sales",
     "requirement": "Approvals",
-    "source": "modules/sales.md",
+    "source": "specification/master-v1/modules/sales.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/sales.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1331,7 +1331,7 @@
     "id": "sales.screen.Order acceptance",
     "module": "sales",
     "requirement": "Order acceptance",
-    "source": "modules/sales.md",
+    "source": "specification/master-v1/modules/sales.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/sales.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1340,8 +1340,8 @@
     "id": "sales.command.create",
     "module": "sales",
     "requirement": "create",
-    "source": "modules/sales.md",
-    "code": "packages/packages/sales/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
     "test": "tests/modules/sales.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1349,8 +1349,8 @@
     "id": "sales.command.update",
     "module": "sales",
     "requirement": "update",
-    "source": "modules/sales.md",
-    "code": "packages/packages/sales/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
     "test": "tests/modules/sales.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1358,8 +1358,8 @@
     "id": "sales.command.review",
     "module": "sales",
     "requirement": "review",
-    "source": "modules/sales.md",
-    "code": "packages/packages/sales/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
     "test": "tests/modules/sales.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1367,8 +1367,8 @@
     "id": "sales.command.approve",
     "module": "sales",
     "requirement": "approve",
-    "source": "modules/sales.md",
-    "code": "packages/packages/sales/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
     "test": "tests/modules/sales.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1376,8 +1376,8 @@
     "id": "sales.command.archive",
     "module": "sales",
     "requirement": "archive",
-    "source": "modules/sales.md",
-    "code": "packages/packages/sales/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
     "test": "tests/modules/sales.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1409,7 +1409,7 @@
     "id": "orders.screen.Order cockpit",
     "module": "orders",
     "requirement": "Order cockpit",
-    "source": "modules/orders.md",
+    "source": "specification/master-v1/modules/orders.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/orders.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1418,7 +1418,7 @@
     "id": "orders.screen.Job ticket",
     "module": "orders",
     "requirement": "Job ticket",
-    "source": "modules/orders.md",
+    "source": "specification/master-v1/modules/orders.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/orders.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1427,7 +1427,7 @@
     "id": "orders.screen.Operation timeline",
     "module": "orders",
     "requirement": "Operation timeline",
-    "source": "modules/orders.md",
+    "source": "specification/master-v1/modules/orders.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/orders.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1436,7 +1436,7 @@
     "id": "orders.screen.QC checklist",
     "module": "orders",
     "requirement": "QC checklist",
-    "source": "modules/orders.md",
+    "source": "specification/master-v1/modules/orders.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/orders.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1445,8 +1445,8 @@
     "id": "orders.command.accept_order",
     "module": "orders",
     "requirement": "accept_order",
-    "source": "modules/orders.md",
-    "code": "packages/packages/orders/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
     "test": "tests/modules/orders.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1454,8 +1454,8 @@
     "id": "orders.command.allocate_jobs",
     "module": "orders",
     "requirement": "allocate_jobs",
-    "source": "modules/orders.md",
-    "code": "packages/packages/orders/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
     "test": "tests/modules/orders.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1463,8 +1463,8 @@
     "id": "orders.command.record_qc",
     "module": "orders",
     "requirement": "record_qc",
-    "source": "modules/orders.md",
-    "code": "packages/packages/orders/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
     "test": "tests/modules/orders.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1472,8 +1472,8 @@
     "id": "orders.command.close_job",
     "module": "orders",
     "requirement": "close_job",
-    "source": "modules/orders.md",
-    "code": "packages/packages/orders/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
     "test": "tests/modules/orders.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1505,7 +1505,7 @@
     "id": "procurement.screen.Source comparison",
     "module": "procurement",
     "requirement": "Source comparison",
-    "source": "modules/procurement.md",
+    "source": "specification/master-v1/modules/procurement.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/procurement.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1514,7 +1514,7 @@
     "id": "procurement.screen.PO drafts",
     "module": "procurement",
     "requirement": "PO drafts",
-    "source": "modules/procurement.md",
+    "source": "specification/master-v1/modules/procurement.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/procurement.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1523,7 +1523,7 @@
     "id": "procurement.screen.Approvals",
     "module": "procurement",
     "requirement": "Approvals",
-    "source": "modules/procurement.md",
+    "source": "specification/master-v1/modules/procurement.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/procurement.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1532,7 +1532,7 @@
     "id": "procurement.screen.PO status",
     "module": "procurement",
     "requirement": "PO status",
-    "source": "modules/procurement.md",
+    "source": "specification/master-v1/modules/procurement.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/procurement.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1541,8 +1541,8 @@
     "id": "procurement.command.prepare_po",
     "module": "procurement",
     "requirement": "prepare_po",
-    "source": "modules/procurement.md",
-    "code": "packages/packages/procurement/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
     "test": "tests/modules/procurement.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1550,8 +1550,8 @@
     "id": "procurement.command.approve_po",
     "module": "procurement",
     "requirement": "approve_po",
-    "source": "modules/procurement.md",
-    "code": "packages/packages/procurement/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
     "test": "tests/modules/procurement.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1559,8 +1559,8 @@
     "id": "procurement.command.submit_po",
     "module": "procurement",
     "requirement": "submit_po",
-    "source": "modules/procurement.md",
-    "code": "packages/packages/procurement/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
     "test": "tests/modules/procurement.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1568,8 +1568,8 @@
     "id": "procurement.command.reconcile_outcome",
     "module": "procurement",
     "requirement": "reconcile_outcome",
-    "source": "modules/procurement.md",
-    "code": "packages/packages/procurement/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
     "test": "tests/modules/procurement.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1602,7 +1602,7 @@
     "id": "fulfillment.screen.Routing plan",
     "module": "fulfillment",
     "requirement": "Routing plan",
-    "source": "modules/fulfillment.md",
+    "source": "specification/master-v1/modules/fulfillment.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1611,7 +1611,7 @@
     "id": "fulfillment.screen.Shipments",
     "module": "fulfillment",
     "requirement": "Shipments",
-    "source": "modules/fulfillment.md",
+    "source": "specification/master-v1/modules/fulfillment.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1620,7 +1620,7 @@
     "id": "fulfillment.screen.Tracking",
     "module": "fulfillment",
     "requirement": "Tracking",
-    "source": "modules/fulfillment.md",
+    "source": "specification/master-v1/modules/fulfillment.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1629,7 +1629,7 @@
     "id": "fulfillment.screen.Returns/remakes",
     "module": "fulfillment",
     "requirement": "Returns/remakes",
-    "source": "modules/fulfillment.md",
+    "source": "specification/master-v1/modules/fulfillment.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1638,8 +1638,8 @@
     "id": "fulfillment.command.create",
     "module": "fulfillment",
     "requirement": "create",
-    "source": "modules/fulfillment.md",
-    "code": "packages/packages/fulfillment/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1647,8 +1647,8 @@
     "id": "fulfillment.command.update",
     "module": "fulfillment",
     "requirement": "update",
-    "source": "modules/fulfillment.md",
-    "code": "packages/packages/fulfillment/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1656,8 +1656,8 @@
     "id": "fulfillment.command.review",
     "module": "fulfillment",
     "requirement": "review",
-    "source": "modules/fulfillment.md",
-    "code": "packages/packages/fulfillment/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1665,8 +1665,8 @@
     "id": "fulfillment.command.approve",
     "module": "fulfillment",
     "requirement": "approve",
-    "source": "modules/fulfillment.md",
-    "code": "packages/packages/fulfillment/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1674,8 +1674,8 @@
     "id": "fulfillment.command.archive",
     "module": "fulfillment",
     "requirement": "archive",
-    "source": "modules/fulfillment.md",
-    "code": "packages/packages/fulfillment/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
     "test": "tests/modules/fulfillment.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1708,7 +1708,7 @@
     "id": "finance.screen.Cost ledger refs",
     "module": "finance",
     "requirement": "Cost ledger refs",
-    "source": "modules/finance.md",
+    "source": "specification/master-v1/modules/finance.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/finance.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1717,7 +1717,7 @@
     "id": "finance.screen.Expected vs actual",
     "module": "finance",
     "requirement": "Expected vs actual",
-    "source": "modules/finance.md",
+    "source": "specification/master-v1/modules/finance.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/finance.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1726,7 +1726,7 @@
     "id": "finance.screen.Invoices/payments refs",
     "module": "finance",
     "requirement": "Invoices/payments refs",
-    "source": "modules/finance.md",
+    "source": "specification/master-v1/modules/finance.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/finance.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1735,7 +1735,7 @@
     "id": "finance.screen.Profit dashboard",
     "module": "finance",
     "requirement": "Profit dashboard",
-    "source": "modules/finance.md",
+    "source": "specification/master-v1/modules/finance.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/finance.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1744,8 +1744,8 @@
     "id": "finance.command.create",
     "module": "finance",
     "requirement": "create",
-    "source": "modules/finance.md",
-    "code": "packages/packages/finance/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
     "test": "tests/modules/finance.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1753,8 +1753,8 @@
     "id": "finance.command.update",
     "module": "finance",
     "requirement": "update",
-    "source": "modules/finance.md",
-    "code": "packages/packages/finance/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
     "test": "tests/modules/finance.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1762,8 +1762,8 @@
     "id": "finance.command.review",
     "module": "finance",
     "requirement": "review",
-    "source": "modules/finance.md",
-    "code": "packages/packages/finance/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
     "test": "tests/modules/finance.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1771,8 +1771,8 @@
     "id": "finance.command.approve",
     "module": "finance",
     "requirement": "approve",
-    "source": "modules/finance.md",
-    "code": "packages/packages/finance/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
     "test": "tests/modules/finance.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1780,8 +1780,8 @@
     "id": "finance.command.archive",
     "module": "finance",
     "requirement": "archive",
-    "source": "modules/finance.md",
-    "code": "packages/packages/finance/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
     "test": "tests/modules/finance.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1814,7 +1814,7 @@
     "id": "marketing.screen.Campaigns",
     "module": "marketing",
     "requirement": "Campaigns",
-    "source": "modules/marketing.md",
+    "source": "specification/master-v1/modules/marketing.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/marketing.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1823,7 +1823,7 @@
     "id": "marketing.screen.Content library",
     "module": "marketing",
     "requirement": "Content library",
-    "source": "modules/marketing.md",
+    "source": "specification/master-v1/modules/marketing.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/marketing.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1832,7 +1832,7 @@
     "id": "marketing.screen.Approval workflow",
     "module": "marketing",
     "requirement": "Approval workflow",
-    "source": "modules/marketing.md",
+    "source": "specification/master-v1/modules/marketing.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/marketing.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1841,7 +1841,7 @@
     "id": "marketing.screen.Attribution",
     "module": "marketing",
     "requirement": "Attribution",
-    "source": "modules/marketing.md",
+    "source": "specification/master-v1/modules/marketing.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/marketing.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1850,8 +1850,8 @@
     "id": "marketing.command.create",
     "module": "marketing",
     "requirement": "create",
-    "source": "modules/marketing.md",
-    "code": "packages/packages/marketing/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
     "test": "tests/modules/marketing.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1859,8 +1859,8 @@
     "id": "marketing.command.update",
     "module": "marketing",
     "requirement": "update",
-    "source": "modules/marketing.md",
-    "code": "packages/packages/marketing/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
     "test": "tests/modules/marketing.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1868,8 +1868,8 @@
     "id": "marketing.command.review",
     "module": "marketing",
     "requirement": "review",
-    "source": "modules/marketing.md",
-    "code": "packages/packages/marketing/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
     "test": "tests/modules/marketing.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1877,8 +1877,8 @@
     "id": "marketing.command.approve",
     "module": "marketing",
     "requirement": "approve",
-    "source": "modules/marketing.md",
-    "code": "packages/packages/marketing/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
     "test": "tests/modules/marketing.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1886,8 +1886,8 @@
     "id": "marketing.command.archive",
     "module": "marketing",
     "requirement": "archive",
-    "source": "modules/marketing.md",
-    "code": "packages/packages/marketing/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
     "test": "tests/modules/marketing.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1918,7 +1918,7 @@
     "id": "workflow.screen.Rule builder",
     "module": "workflow",
     "requirement": "Rule builder",
-    "source": "modules/workflow.md",
+    "source": "specification/master-v1/modules/workflow.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/workflow.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1927,7 +1927,7 @@
     "id": "workflow.screen.Dry-run simulator",
     "module": "workflow",
     "requirement": "Dry-run simulator",
-    "source": "modules/workflow.md",
+    "source": "specification/master-v1/modules/workflow.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/workflow.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1936,7 +1936,7 @@
     "id": "workflow.screen.Event log",
     "module": "workflow",
     "requirement": "Event log",
-    "source": "modules/workflow.md",
+    "source": "specification/master-v1/modules/workflow.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/workflow.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1945,7 +1945,7 @@
     "id": "workflow.screen.Exception queue",
     "module": "workflow",
     "requirement": "Exception queue",
-    "source": "modules/workflow.md",
+    "source": "specification/master-v1/modules/workflow.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/workflow.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -1954,8 +1954,8 @@
     "id": "workflow.command.simulate_rule",
     "module": "workflow",
     "requirement": "simulate_rule",
-    "source": "modules/workflow.md",
-    "code": "packages/packages/workflow/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "packages/workflows/src/index.ts",
     "test": "tests/modules/workflow.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1963,8 +1963,8 @@
     "id": "workflow.command.publish_rule",
     "module": "workflow",
     "requirement": "publish_rule",
-    "source": "modules/workflow.md",
-    "code": "packages/packages/workflow/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "packages/workflows/src/index.ts",
     "test": "tests/modules/workflow.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -1972,8 +1972,8 @@
     "id": "workflow.command.process_event",
     "module": "workflow",
     "requirement": "process_event",
-    "source": "modules/workflow.md",
-    "code": "packages/packages/workflow/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "packages/workflows/src/index.ts",
     "test": "tests/modules/workflow.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -2006,7 +2006,7 @@
     "id": "analytics.screen.KPI definitions",
     "module": "analytics",
     "requirement": "KPI definitions",
-    "source": "modules/analytics.md",
+    "source": "specification/master-v1/modules/analytics.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/analytics.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -2015,7 +2015,7 @@
     "id": "analytics.screen.Report builder",
     "module": "analytics",
     "requirement": "Report builder",
-    "source": "modules/analytics.md",
+    "source": "specification/master-v1/modules/analytics.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/analytics.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -2024,7 +2024,7 @@
     "id": "analytics.screen.Data freshness",
     "module": "analytics",
     "requirement": "Data freshness",
-    "source": "modules/analytics.md",
+    "source": "specification/master-v1/modules/analytics.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/analytics.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -2033,7 +2033,7 @@
     "id": "analytics.screen.Exports",
     "module": "analytics",
     "requirement": "Exports",
-    "source": "modules/analytics.md",
+    "source": "specification/master-v1/modules/analytics.md",
     "code": "apps/os/app/[module]/page.tsx",
     "test": "tests/modules/analytics.test.ts",
     "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
@@ -2042,8 +2042,8 @@
     "id": "analytics.command.create",
     "module": "analytics",
     "requirement": "create",
-    "source": "modules/analytics.md",
-    "code": "packages/packages/analytics/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
     "test": "tests/modules/analytics.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -2051,8 +2051,8 @@
     "id": "analytics.command.update",
     "module": "analytics",
     "requirement": "update",
-    "source": "modules/analytics.md",
-    "code": "packages/packages/analytics/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
     "test": "tests/modules/analytics.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -2060,8 +2060,8 @@
     "id": "analytics.command.review",
     "module": "analytics",
     "requirement": "review",
-    "source": "modules/analytics.md",
-    "code": "packages/packages/analytics/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
     "test": "tests/modules/analytics.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -2069,8 +2069,8 @@
     "id": "analytics.command.approve",
     "module": "analytics",
     "requirement": "approve",
-    "source": "modules/analytics.md",
-    "code": "packages/packages/analytics/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
     "test": "tests/modules/analytics.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -2078,8 +2078,8 @@
     "id": "analytics.command.archive",
     "module": "analytics",
     "requirement": "archive",
-    "source": "modules/analytics.md",
-    "code": "packages/packages/analytics/src/index.ts/src/index.ts",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
     "test": "tests/modules/analytics.test.ts",
     "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
   },
@@ -2101,72 +2101,72 @@
       "approve",
       "archive"
     ],
-    "service": "packages/contracts/src/modules.json",
+    "service": "packages/contracts/src/index.ts",
     "ui": "apps/os/app/[module]/page.tsx",
-    "test": "tests/modules/future.test.ts",
-    "implementation": "COMING_SOON_BACKEND_BLOCKED_UI_UNVERIFIED"
+    "test": "tests/security/isolation.test.ts",
+    "implementation": "COMING_SOON_BACKEND_REJECTS_MUTATIONS"
   },
   {
     "id": "future.screen.Coming Soon index",
     "module": "future",
     "requirement": "Coming Soon index",
-    "source": "modules/future.md",
+    "source": "specification/master-v1/modules/future.md",
     "code": "apps/os/app/[module]/page.tsx",
-    "test": "tests/modules/future.test.ts",
-    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+    "test": "tests/security/isolation.test.ts",
+    "status": "COMING_SOON_SCREEN_NOT_ACTIVE_FEATURE"
   },
   {
     "id": "future.screen.Roadmap",
     "module": "future",
     "requirement": "Roadmap",
-    "source": "modules/future.md",
+    "source": "specification/master-v1/modules/future.md",
     "code": "apps/os/app/[module]/page.tsx",
-    "test": "tests/modules/future.test.ts",
-    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+    "test": "tests/security/isolation.test.ts",
+    "status": "COMING_SOON_SCREEN_NOT_ACTIVE_FEATURE"
   },
   {
     "id": "future.command.create",
     "module": "future",
     "requirement": "create",
-    "source": "modules/future.md",
-    "code": "packages/packages/future/src/index.ts/src/index.ts",
-    "test": "tests/modules/future.test.ts",
-    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
   },
   {
     "id": "future.command.update",
     "module": "future",
     "requirement": "update",
-    "source": "modules/future.md",
-    "code": "packages/packages/future/src/index.ts/src/index.ts",
-    "test": "tests/modules/future.test.ts",
-    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
   },
   {
     "id": "future.command.review",
     "module": "future",
     "requirement": "review",
-    "source": "modules/future.md",
-    "code": "packages/packages/future/src/index.ts/src/index.ts",
-    "test": "tests/modules/future.test.ts",
-    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
   },
   {
     "id": "future.command.approve",
     "module": "future",
     "requirement": "approve",
-    "source": "modules/future.md",
-    "code": "packages/packages/future/src/index.ts/src/index.ts",
-    "test": "tests/modules/future.test.ts",
-    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
   },
   {
     "id": "future.command.archive",
     "module": "future",
     "requirement": "archive",
-    "source": "modules/future.md",
-    "code": "packages/packages/future/src/index.ts/src/index.ts",
-    "test": "tests/modules/future.test.ts",
-    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
   }
 ]

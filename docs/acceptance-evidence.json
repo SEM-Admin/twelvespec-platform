@@ -5,7 +5,7 @@
     "comingSoon": 1
   },
   "environment": "LOCAL_SYNTHETIC",
-  "claim": "Source/test inventory only. Database/browser/restore/live results are pending; this is not a completion claim.",
+  "claim": "Historical test/source inventory. Current execution observations are in docs/VERIFICATION_STATUS.md. Full 95-scenario planning and unclosed assertions are in docs/planning/requirements-to-work.json. No full V1 acceptance is implied.",
   "scenarios": [
     {
       "id": "A01",
@@ -1405,5 +1405,7 @@
       "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
       "note": "A consolidated owner journey with measured clicks/time remains a manual acceptance requirement."
     }
-  ]
+  ],
+  "currentPlan": "docs/GAP_CLOSURE_PLAN.md",
+  "fullScenarioMap": "docs/planning/requirements-to-work.json"
 }

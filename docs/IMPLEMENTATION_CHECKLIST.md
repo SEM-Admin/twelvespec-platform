@@ -1,5 +1,11 @@
 # Visible implementation checklist
 
+The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GAP_AUDIT.md) and [complete coverage matrix](planning/COVERAGE_MATRIX.md) govern the remaining active V1 work. Research/planning completion does not mean implementation completion.
+
+- [x] Research 30 primary sources and audit all 20 module contracts.
+- [x] Map 205 inventory entries and all 95 A/T/E acceptance scenarios; reproduce pricing, program-context and approval-role defects.
+- [ ] Execute GAP-002–040 with commit-specific tests and explicit external activation gates.
+
 - [x] Locate greenfield repository and supplied handoff.
 - [x] Inventory all 85 supplied files and all 20 registered modules.
 - [x] Create requirements-to-code-to-test matrix before implementation.
@@ -18,5 +24,5 @@
 - [ ] Gate C: CRM, estimates/quotes, orders, jobs, POs, fulfillment.
 - [ ] Gate D: finance, stores, BYOB, marketing, automation, analytics.
 - [ ] Gate E: file imports, native SOAP fixture contracts, licensed ASI interface.
-- [ ] Gate F: integrated A01–A40 plus inherited T01–T30 evidence.
+- [ ] Gate F: integrated A01–A40, inherited T01–T30 and E01–E25 evidence.
 - [ ] Production activation (credentials, licensing, security, legal/finance and deployment approval).

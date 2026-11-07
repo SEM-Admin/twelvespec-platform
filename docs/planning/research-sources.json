@@ -1,0 +1,302 @@
+[
+  {
+    "id": "R01",
+    "title": "S&S PromoStandards service directory",
+    "url": "https://promostandards.ssactivewear.com/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Product, media, inventory, pricing, PO, order status, shipment notification and invoice have independent service/version endpoints.",
+    "engineeringDecision": "Version and verify each capability separately; do not treat one Product Data fixture as the full integration.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R02",
+    "title": "ASI developer API families",
+    "url": "https://developers.asicentral.com/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "ASI lists Smart Link, ESP Updates and Connect as separate API families; detailed access is authenticated.",
+    "engineeringDecision": "Keep entitlement and schema requirements distinct. No ESP+ website scraping or invented wire contract.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R03",
+    "title": "ASI SmartLink product description",
+    "url": "https://asicentral.com/smart-link-page/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "ASI describes SmartLink as an API for custom commerce powered by ESP+. This page supplies no account-specific protocol or redistribution agreement.",
+    "engineeringDecision": "Implement the licensed interface after authorized schemas and contract terms arrive; public marketing copy is insufficient for activation.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R04",
+    "title": "Supabase Postgres SSL enforcement",
+    "url": "https://supabase.com/docs/guides/platform/ssl-enforcement",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Verified hostname and CA validation require the database CA certificate available in project Database settings. Changing server enforcement can restart the database.",
+    "engineeringDecision": "Obtain the approved project certificate; keep TLS verification on. Do not change server enforcement to repair a client trust-chain error.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R05",
+    "title": "Cloudflare Containers filesystem lifecycle",
+    "url": "https://developers.cloudflare.com/containers/faq/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Container disks are ephemeral by default. Sleeping and restarting uses a fresh image filesystem; snapshots are point-in-time, not continuous database durability.",
+    "engineeringDecision": "Keep PostgreSQL authoritative outside the container and store artwork separately. Do not mount PostgreSQL data on an object-store FUSE filesystem.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R06",
+    "title": "Cloudflare R2 bucket exposure",
+    "url": "https://developers.cloudflare.com/r2/buckets/public-buckets/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "R2 buckets require explicit action to become public. A public r2.dev route remains an alternative route even when a custom-domain Access policy exists.",
+    "engineeringDecision": "Use a dedicated private bucket with public routes disabled and an authorized application asset endpoint. Provisioning remains a separate approval gate.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R07",
+    "title": "Supabase Vault",
+    "url": "https://supabase.com/docs/guides/database/vault",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Vault encrypts stored secrets and exposes decrypted values through a SQL view; that view must be protected by SQL privileges.",
+    "engineeringDecision": "Prefer a scoped server-only secret broker over broad access to decrypted_secrets. Test ACLs, rotation and restore before accepting real supplier secrets.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R08",
+    "title": "Cloudflare Secrets Store access control",
+    "url": "https://developers.cloudflare.com/secrets-store/access-control/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Secret metadata read access differs from consumption/binding permission. Binding a secret needs Edit permission and an appropriate consuming-service scope.",
+    "engineeringDecision": "Use platform secrets for deployment bootstrap; avoid granting an ordinary supplier setup form account-wide secret administration.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R09",
+    "title": "Supabase backup coverage",
+    "url": "https://supabase.com/docs/guides/platform/backups",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Database backups exclude Storage API object bytes; custom role passwords also require restoration handling.",
+    "engineeringDecision": "Restore database records, object bytes, secret access and role credentials together in an isolated drill. A successful local database dump alone is insufficient.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R10",
+    "title": "PostgreSQL row security",
+    "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "RLS policies apply in addition to grants; owners and bypass roles need special attention, and permissive policies combine with OR.",
+    "engineeringDecision": "Test the actual restricted runtime role for every exposed resource and operation, including composite relationships and security-definer functions.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R11",
+    "title": "PostgreSQL concurrency control",
+    "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Read Committed does not serialize competing business decisions. Serializable transactions can require retries.",
+    "engineeringDecision": "Lock budget and credit aggregates, enforce unique business keys, and retry only database-safe conflicts. Never blindly replay an ambiguous provider write.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R12",
+    "title": "PostgreSQL exact numeric types",
+    "url": "https://www.postgresql.org/docs/current/datatype-numeric.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Numeric supports exact decimal operations; floating-point types are inexact. Declared numeric scales can round stored values.",
+    "engineeringDecision": "Retain supplier unit precision through extension; round at declared money boundaries and test tier edges, allocation residuals and aggregate totals.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R13",
+    "title": "OWASP secrets lifecycle",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Secret controls include least privilege, revocation, rotation and preventing plaintext logging.",
+    "engineeringDecision": "Replacement-only admin forms, opaque references, worker-only resolution, redacted diagnostics and rotation evidence are required.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R14",
+    "title": "OWASP file upload defenses",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "File defenses combine type checks, limits, isolated storage and appropriate scanning or content reconstruction.",
+    "engineeringDecision": "Add persistent quarantine, scanner results and safe derivatives. Do not mark a magic-byte match as production-safe artwork.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R15",
+    "title": "OWASP SSRF defenses",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Destination allowlisting must be combined with resolved-address and connection-time protections; domain checks alone do not stop rebinding.",
+    "engineeringDecision": "Retain pinned public DNS, TLS validation, response bounds and redirect rejection for supported profiles, including retries and media ingestion.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R16",
+    "title": "OWASP XML entity controls",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "DTD/entity resolution and external resource loading require explicit hardening, including validation and transformation paths.",
+    "engineeringDecision": "Expand nested XML mapping with bounded selectors and namespaces without allowing external entities, XInclude or remote schema fetches.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R17",
+    "title": "OWASP spreadsheet formula injection",
+    "url": "https://community.owasp.org/attacks/CSV_Injection",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Spreadsheet applications can interpret exported user values as formulas. Escaping behavior varies, including save/reopen behavior and locale variants.",
+    "engineeringDecision": "Centralize export handling and test control characters, delimiters, Unicode and supported spreadsheet behavior; do not claim universal safety from a prefix regex.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R18",
+    "title": "CIP4 job and process separation",
+    "url": "https://www.cip4.org/print-automation/jdf",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "JDF/XJDF concepts distinguish product intent, process resources and operational feedback to an MIS.",
+    "engineeringDecision": "Model separate materials, decorator operations, QC and actual costs. Use this as design guidance; a machine JDF adapter is not added to V1 scope.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R19",
+    "title": "Ghent Workgroup printing PDF guidance",
+    "url": "https://gwg.org/solutions/printing-pdfs/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Print-file quality depends on issues such as fonts, color spaces, transparency and applicable specifications.",
+    "engineeringDecision": "Separate visual approval from method-specific production-file review, with verified evidence for a released derivative.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R20",
+    "title": "Ghent Workgroup sign/display profile",
+    "url": "https://gwg.org/download/sign-display-specification/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "PUBLIC_LISTING_REVIEWED_FULL_PROFILE_ACCESS_BLOCKED",
+    "finding": "Large-format digital workflows have a dedicated specification rather than one universal PDF profile.",
+    "engineeringDecision": "Store a versioned method/provider profile for zones, bleed, resolution and output requirements. Fixed generic DPI/bleed rules are not universal.",
+    "accessNote": "The public description identifies the sign/display profile; the download redirects to GWG login. No full profile or numeric production thresholds were reviewed."
+  },
+  {
+    "id": "R21",
+    "title": "Stripe webhook delivery semantics",
+    "url": "https://docs.stripe.com/webhooks",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Events can be repeated and delivered out of order; endpoint verification and event identifiers matter.",
+    "engineeringDecision": "Use provider-specific signature validation, durable inbox records and current-object reconciliation. Stripe is a researched example, not an activated processor.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R22",
+    "title": "QuickBooks webhook recovery",
+    "url": "https://static.developer.intuit.com/output_html/qbo/docs/develop/webhooks/best-practices.html",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Intuit recommends prompt asynchronous acknowledgment and CDC recovery for missed changes; events can arrive out of sequence.",
+    "engineeringDecision": "Keep the external ledger authoritative, map company/realm and provider IDs, and reconcile references without duplicate ledger writes.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R23",
+    "title": "QuickBooks sandbox credentials",
+    "url": "https://developer.intuit.com/app/developer/qbo/docs/get-started/get-client-id-and-client-secret",
+    "reviewedOn": "2026-11-07",
+    "evidence": "PRIMARY_INDEXED_EXCERPT_RENDERED_BODY_UNAVAILABLE",
+    "finding": "Intuit distinguishes sandbox and live credentials.",
+    "engineeringDecision": "Require a dedicated authorized sandbox company and OAuth scopes before calling an accounting integration verified.",
+    "accessNote": "The indexed official documentation describes separate sandbox/live credentials; the rendered page returned an application shell. Verify account-specific setup in the authorized portal."
+  },
+  {
+    "id": "R24",
+    "title": "EasyPost tracking versus label purchase",
+    "url": "https://docs.easypost.com/guides/tracking-guide",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Existing carrier tracking can be registered without buying another shipping label; label purchase also creates tracking.",
+    "engineeringDecision": "Represent supplier tracking and merchant-purchased labels as separate operations and guard duplicate postage purchases. No carrier account was accessed.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R25",
+    "title": "Printful variant and artwork API",
+    "url": "https://developers.printful.com/docs/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Printful documents individual variant identities, print-file requirements, mockup tasks and cost estimates.",
+    "engineeringDecision": "The POD adapter must bind exact variant, placement, file and quote evidence. This research does not select a provider or prove a customer entitlement.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R26",
+    "title": "FTC commercial email guidance",
+    "url": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Commercial email has sender identification and opt-out obligations; message purpose affects classification.",
+    "engineeringDecision": "Keep a suppression ledger and approved sender templates; require jurisdiction and legal review before sending. V1 test environments never send real campaigns.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R27",
+    "title": "WCAG 2.2",
+    "url": "https://www.w3.org/TR/WCAG22/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "Accessibility criteria are testable across devices and cover more than an automated scan alone can establish.",
+    "engineeringDecision": "Test keyboard, focus, labels, contrast and error recovery across all 86 screens, with manual assistive-technology review for the owner journeys.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R28",
+    "title": "NIST digital identity revision 4",
+    "url": "https://pages.nist.gov/800-63-4/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "The current identity series addresses identity proofing, authenticator management and federation as distinct concerns.",
+    "engineeringDecision": "Design production staff authentication and recovery explicitly; owner-email OTP plus a shared demo password is only the current preview arrangement.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R29",
+    "title": "GS1 GTIN validation guidance",
+    "url": "https://support.gs1.org/support/solutions/articles/43000734070/",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "GTIN validation and Verified by GS1 address identity checks beyond accepting a numeric string.",
+    "engineeringDecision": "Separate syntax/check-digit validity from verified identity; require brand/manufacturer evidence and manual resolution of ambiguous matches.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  },
+  {
+    "id": "R30",
+    "title": "Supabase CLI v3 breaking changes",
+    "url": "https://supabase.com/changelog/supabase-cli-v3",
+    "reviewedOn": "2026-11-07",
+    "evidence": "DOCUMENTED_PRIMARY_SOURCE_NOT_INTEGRATION_VERIFICATION",
+    "finding": "CLI v3 changed target selection, confirmation behavior and removed/deprecated commands.",
+    "engineeringDecision": "Pin the CLI when introduced and discover commands with help. Verify local versus approved development targets explicitly; do not upgrade migration tooling incidentally.",
+    "accessNote": "Primary documentation text reviewed; account-specific access is not established."
+  }
+]

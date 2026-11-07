@@ -1,5 +1,7 @@
 # Requirements → code → tests
 
+Current gap closure coverage: [205 inventory entries and 95 acceptance scenarios](planning/requirements-to-work.json), [readable module/scenario matrix](planning/COVERAGE_MATRIX.md), and [research-backed implementation plan](GAP_CLOSURE_PLAN.md). Existing source/test mappings below do not establish acceptance.
+
 Controlling source: `specification/master-v1`. Inventory created before application implementation. The initial inventory was recorded before implementation. Current source and verification statuses are in `module-inventory.json` and `ACCEPTANCE_EVIDENCE.md`; no acceptance claim is implied. Scope is 20 modules: 19 active V1 plus one Coming Soon registry.
 
 | Module | Navigation | Planned service | Planned UI | Test | Future (disabled) |
@@ -23,7 +25,7 @@ Controlling source: `specification/master-v1`. Inventory created before applicat
 | marketing: Marketing and content management | Business | packages/marketing | /marketing | tests/modules/marketing.test.ts | advanced omnichannel AI |
 | workflow: Automation and notifications | Business | packages/workflows | /workflow | tests/modules/workflow.test.ts | self-editing autonomous agents |
 | analytics: Reporting and data quality | Business | packages/analytics | /analytics | tests/modules/analytics.test.ts | predictive forecasting |
-| future: Reserved module slots | Business | packages/future | /future | tests/modules/future.test.ts | 3D, digitization, manufacturing engineering, external SaaS |
+| future: Reserved module slots | Business | packages/contracts + packages/kernel (denial) | /future | tests/security/isolation.test.ts | 3D, digitization, manufacturing engineering, external SaaS |
 
 ## Cross-module acceptance
 
@@ -83,3 +85,5 @@ No acceptance claim unless each scenario has a test file, fixture, last result, 
 A09 maps `scripts/seed-illustration.ts`, the three `apps/shop/public/products/TS-0003-*.svg` images and `infra/cloudflare/gateway.mjs` to `tests/e2e/shop.spec.ts` (Clay cap selection, immutable save, matching proof image and approval) and `tests/cloudflare/preview.test.ts` (asset Access enforcement and runtime fallback). `scripts/cloudflare-verify.mjs` checks all three cap images over HTTPS, the saved proof, storefront cart/RFQ and Commerce OS CRM. The illustrations remain synthetic; supplier image licensing and manufacturing preflight are separate activation gates.
 
 Changing color after a project has already been saved still needs project/variant rebinding and exact proof-version lookup regression coverage. This is an open creative acceptance item, not established by the new-project cap test.
+
+The new scope checker validates the complete planning map through `npm run check:plan`. This checks source paths, module/requirement/scenario coverage, acyclic work dependencies and future-action denials in the plan; it does not execute or accept future application test targets.

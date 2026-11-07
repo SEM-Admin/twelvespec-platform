@@ -1,3 +1,5 @@
+> The complete remaining scope, including inherited E01–E25, is mapped in [the gap closure plan](GAP_CLOSURE_PLAN.md) and [coverage matrix](planning/COVERAGE_MATRIX.md). This older report remains historical evidence; matching a filename does not close a scenario.
+
 > Current execution results are recorded in [VERIFICATION_STATUS.md](VERIFICATION_STATUS.md). The scenario mapping below is the earlier gate inventory; its original run-status labels are superseded by that report. Broader acceptance gates remain open.
 
 # Acceptance evidence and remaining gates
