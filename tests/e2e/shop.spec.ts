@@ -1,0 +1,28 @@
+import axe from 'axe-core';
+import {test,expect,type Page} from '@playwright/test';
+const SHOP='http://localhost:3000';
+async function login(page:Page){await page.goto(SHOP,{waitUntil:'networkidle'});await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'Sign in',exact:true}).click();await expect(page.getByRole('dialog')).toBeHidden();}
+
+test('shop uses published products, actual color images, persistent cart and RFQ',async({page})=>{
+ await login(page);const response=await page.request.get(`${SHOP}/api/shop`);expect(response.ok()).toBeTruthy();const {products}=await response.json();expect(products.length).toBeGreaterThanOrEqual(40);const product=products.find((p:{title:string})=>p.title==='Everyday Cotton Tee')??products.find((p:{variants:{color:string}[]})=>p.variants.some(v=>v.color==='Clay'))??products[0];
+ await page.goto(`${SHOP}/products/${product.id}`,{waitUntil:'networkidle'});const variant=product.variants.find((v:{color:string})=>v.color==='Clay')??product.variants[0];await page.getByRole('button',{name:`Select ${variant.color}`,exact:true}).click();await expect(page.locator('.color-label')).toContainText(variant.color);if(variant.image)await expect(page.locator('.detail-gallery>.product-visual img')).toHaveAttribute('src',variant.image);
+ await page.getByRole('button',{name:/Add to quote cart/}).click();await expect(page.getByRole('status').filter({hasText:/added to your saved quote cart/})).toBeVisible();await page.goto(`${SHOP}/cart`,{waitUntil:'networkidle'});await expect(page.locator('.cart-items')).toContainText(product.title);await page.reload({waitUntil:'networkidle'});await expect(page.locator('.cart-items')).toContainText(product.title);
+ await page.getByRole('button',{name:/Submit quote request/}).click();await expect(page).toHaveURL(`${SHOP}/account`);const account=await page.request.get(`${SHOP}/api/shop/account`);const {tables}=await account.json();expect(tables.requests.some((r:{data:{lines:{productId:string;variantId:string}[]}})=>r.data.lines.some(l=>l.productId===product.id&&l.variantId===variant.id))).toBeTruthy();
+ const text=JSON.stringify(tables);expect(text).not.toMatch(/"(?:wholesaleUnitCost|landedCost|sourceEvidence|credential|secretReference)"/);
+});
+
+test('private designer saves immutable revision and visual proof approval',async({page})=>{
+ await login(page);const {products}=await (await page.request.get(`${SHOP}/api/shop`)).json();const p=products.find((v:{title:string})=>v.title==='Everyday Cotton Tee')??products[0];await page.goto(`${SHOP}/create/${p.id}`,{waitUntil:'networkidle'});await page.getByLabel('Your message').fill('BROWSER PROOF TEST');await page.getByRole('button',{name:'Save & request proof',exact:true}).click();await expect(page.getByRole('status').filter({hasText:/Proof requested for this exact design version/})).toBeVisible();
+ await page.goto(`${SHOP}/account`,{waitUntil:'networkidle'});await page.getByRole('button',{name:/Proof approvals/}).click();const card=page.locator('.account-card').filter({has:page.getByRole('button',{name:'Approve this proof',exact:true})}).first();await expect(card.locator('.proof-preview')).toBeVisible();await card.getByRole('checkbox').check();await card.getByRole('button',{name:'Approve this proof',exact:true}).click();await expect(page.getByRole('status').filter({hasText:/exact proof revision has been visually approved/})).toBeVisible();const {tables}=await (await page.request.get(`${SHOP}/api/shop/account`)).json();expect(tables.proofs.some((r:{status:string;data:{productionReadiness:string}})=>r.status==='APPROVED'&&r.data.productionReadiness==='BLOCKED')).toBeTruthy();
+});
+
+test('mobile keyboard search and disabled future directory remain usable',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto(SHOP,{waitUntil:'networkidle'});await page.getByRole('searchbox',{name:'Search products'}).fill('tee');await page.getByRole('searchbox',{name:'Search products'}).press('Enter');await expect(page.locator('.product-count')).toContainText('for “tee”');await page.getByRole('button',{name:'Toggle navigation'}).click();await expect(page.getByRole('navigation',{name:'Main navigation'})).toBeVisible();await page.goto(`${SHOP}/coming-soon`,{waitUntil:'networkidle'});await expect(page.getByRole('heading',{name:'On the drawing board.'})).toBeVisible();expect(await page.locator('.coming-card').count()).toBe(20);await expect(page.locator('.coming-card button')).toHaveCount(0);
+});
+
+
+test('storefront and product detail meet automated WCAG A/AA checks',async({page})=>{
+ await page.goto(SHOP,{waitUntil:'networkidle'});await expect(page.getByRole('heading',{name:/Your brand/})).toBeVisible();const catalog=await audit(page);expect(catalog.violations).toEqual([]);const {products}=await (await page.request.get(`${SHOP}/api/shop`)).json();const p=products.find((v:{title:string})=>v.title==='Everyday Cotton Tee')??products[0];await page.goto(`${SHOP}/products/${p.id}`,{waitUntil:'networkidle'});const detail=await audit(page);expect(detail.violations).toEqual([]);
+});
+
+async function audit(page:Page){await page.addScriptTag({content:axe.source});return page.evaluate(async()=>{const browserWindow=window as unknown as {axe:typeof axe};return browserWindow.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}});});}

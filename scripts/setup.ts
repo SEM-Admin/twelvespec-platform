@@ -1,0 +1,6 @@
+import {spawn} from 'node:child_process';import {openSync} from 'node:fs';import {resolve} from 'node:path';import {Client} from 'pg';import {createEnv,loadEnv} from './env';
+createEnv();const root=loadEnv();
+async function ready(){const c=new Client({connectionString:process.env.DATABASE_URL});try{await c.connect();await c.end();return true}catch{return false}}
+async function run(script:string){await new Promise<void>((res,rej)=>{const p=spawn(process.execPath,['--import','tsx',script],{cwd:root,env:process.env,stdio:'inherit'});p.on('exit',code=>code===0?res():rej(new Error(`${script} failed`)));});}
+async function main(){if(!await ready()){const fd=openSync(resolve(root,'.local/postgres.log'),'a',0o600);const pg=spawn(process.execPath,['--import','tsx','scripts/postgres.ts'],{cwd:root,env:process.env,detached:true,stdio:['ignore',fd,fd]});pg.unref();for(let i=0;i<100&&!await ready();i++)await new Promise(r=>setTimeout(r,300));if(!await ready())throw new Error('Local database unavailable; inspect .local/postgres.log');}await run('scripts/migrate.ts');await run('scripts/seed.ts');console.log('Ready. Run npm run dev. Shop http://localhost:3000 · Commerce OS http://localhost:3001. Synthetic data only.');}
+main().catch(e=>{console.error(e.message);process.exit(1)});

@@ -1,0 +1,1 @@
+<?xml version="1.0"?><p:products xmlns:p="urn:twelvespec:fixture"><p:product><p:sku>XML-001</p:sku><p:name>Example tote</p:name><p:brand>Example Brand</p:brand><p:mpn>TOTE-001</p:mpn><p:color>Natural</p:color><p:size>One size</p:size><p:currency>USD</p:currency><p:cost>4.25</p:cost><p:moq>24</p:moq><p:freight>12</p:freight></p:product></p:products>

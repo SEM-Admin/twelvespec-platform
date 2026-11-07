@@ -1,0 +1,9 @@
+import {describe,it,expect} from 'vitest';
+import {validateRule,evaluateRule,assertNoCycles,validateAction,simulateRule} from '../../packages/workflows/src/index';
+describe('Typed automation rule contracts',()=>{
+ it('evaluates bounded declared conditions deterministically',()=>{const ast=validateRule({op:'and',items:[{op:'gte',field:'quantity',value:12},{op:'in',field:'method',value:['SCREEN_PRINT','EMBROIDERY']}]});expect(evaluateRule(ast,{quantity:24,method:'SCREEN_PRINT'})).toBe(true);expect(evaluateRule(ast,{quantity:'24',method:'SCREEN_PRINT'})).toBe(false);});
+ it('detects contradictory equalities and dependency cycles',()=>{expect(()=>validateRule({op:'and',items:[{op:'eq',field:'status',value:'A'},{op:'eq',field:'status',value:'B'}]})).toThrow('RULE_CONTRADICTION');expect(()=>assertNoCycles({a:['b'],b:['a']})).toThrow('AUTOMATION_CYCLE');expect(()=>assertNoCycles({a:['b'],b:[]})).not.toThrow();});
+ it('rejects arbitrary expressions, undeclared fields and executable actions',()=>{expect(()=>validateRule({op:'eval',expression:'process.env'})).toThrow();expect(()=>validateRule({op:'eq',field:'secret',value:'x'})).toThrow();for(const type of ['send_email','submit_po','eval','charge_payment'])expect(()=>validateAction({type,title:'Unsafe'})).toThrow('AUTOMATION_ACTION_BLOCKED');});
+ it('enforces maximum nesting and node counts',()=>{let rule:unknown={op:'eq',field:'status',value:'READY'};for(let n=0;n<18;n++)rule={op:'not',item:rule};expect(()=>validateRule(rule)).toThrow('RULE_LIMIT_EXCEEDED');});
+ it('dry-run shows intended effects without database writes or external calls',()=>{expect(simulateRule({op:'eq',field:'status',value:'READY'},{type:'draft_notification',title:'Draft only'},{status:'READY'})).toMatchObject({matches:true,wouldPerform:[{type:'draft_notification',externalEffect:false}],sideEffects:0});});
+});

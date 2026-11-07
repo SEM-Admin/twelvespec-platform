@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: TwelveSpec Commerce OS API — Initial Integration Surface
+  version: 0.1.0
+  description: Target contract, not a claim of deployed API endpoints. Server authorization required on every operation.
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+paths:
+  /integrations/providers:
+    get:
+      operationId: listProviders
+      responses:
+        '200':
+          description: Provider registry; never returns credentials.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Provider'}
+  /integrations/connections:
+    get:
+      operationId: listConnections
+      responses:
+        '200':
+          description: Metadata only
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Connection'}
+    post:
+      operationId: createConnection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [providerId, environment, displayName]
+              properties:
+                providerId: {type: string}
+                environment: {enum: [mock, sandbox, production]}
+                displayName: {type: string}
+                secretSubmissionToken: {type: string, description: Opaque short-lived server-only secret handoff token; not returned on reads}
+      responses:
+        '201':
+          description: Saved connection metadata
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Connection'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /integrations/connections/{id}/test:
+    post:
+      operationId: testConnection
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Read-only test results by service
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Capability'}
+  /imports/preview:
+    post:
+      operationId: previewImport
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file: {type: string, format: binary}
+                mappingProfileId: {type: string}
+      responses:
+        '200':
+          description: Staged import result; no products published
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  batchId: {type: string, format: uuid}
+                  accepted: {type: integer}
+                  rejected: {type: integer}
+  /imports/{batchId}/publish:
+    post:
+      operationId: publishImport
+      parameters:
+        - in: path
+          name: batchId
+          required: true
+          schema: {type: string, format: uuid}
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, minLength: 16}
+      responses:
+        '200':
+          description: Explicit approved publish result
+        '409':
+          description: Conflict or eligibility failure
+components:
+  securitySchemes:
+    bearerAuth: {type: http, scheme: bearer}
+  responses:
+    Forbidden: {description: Unauthorized to administer connection}
+  schemas:
+    Provider:
+      type: object
+      required: [id, label, protocol]
+      properties:
+        id: {type: string}
+        label: {type: string}
+        protocol: {type: string}
+    Connection:
+      type: object
+      required: [id, providerId, environment, displayName, status]
+      properties:
+        id: {type: string, format: uuid}
+        providerId: {type: string}
+        environment: {enum: [mock, sandbox, production]}
+        displayName: {type: string}
+        status: {type: string}
+        hasCredential: {type: boolean}
+    Capability:
+      type: object
+      required: [capability, state, evidenceSource]
+      properties:
+        capability: {type: string}
+        state: {enum: [available, unsupported, credential_required, license_required, failed, unverified]}
+        serviceVersion: {type: string}
+        evidenceSource: {enum: [mock, official_docs, vendor_sandbox, live_test]}

@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: TwelveSpec Cross-Module API Contract
+  version: 1.0.0-draft
+  description: Specification only. Do not deploy without implementation and full authorization review.
+servers:
+  - url: https://preview.example.invalid/api/v1
+security:
+  - sessionAuth: []
+paths:
+  /integrations/connections:
+    get:
+      operationId: listConnections
+      responses:
+        '200': {description: Redacted connection summaries, content: {application/json: {schema: {type: array, items: {$ref: '#/components/schemas/ConnectionSummary'}}}}}
+    post:
+      operationId: createConnection
+      requestBody: {required: true, content: {application/json: {schema: {$ref: '#/components/schemas/NewConnection'}}}}
+      responses:
+        '201': {description: Connection shell created; credentials not yet active}
+  /integrations/connections/{id}/credentials:
+    put:
+      operationId: replaceCredentials
+      parameters: [{in: path, name: id, required: true, schema: {type: string, format: uuid}}]
+      requestBody: {required: true, content: {application/json: {schema: {type: object, additionalProperties: false, required: [secret], properties: {secret: {type: string, writeOnly: true, minLength: 1}}}}}}
+      responses:
+        '204': {description: Stored opaque reference; no secret returned}
+        '403': {description: Integration admin permission required}
+  /integrations/connections/{id}/verify:
+    post:
+      operationId: verifyCapabilities
+      parameters: [{in: path, name: id, required: true, schema: {type: string, format: uuid}}]
+      responses:
+        '202': {description: Read-only verification queued}
+  /catalog/imports:
+    post:
+      operationId: createImport
+      requestBody: {required: true, content: {multipart/form-data: {schema: {type: object, required: [file], properties: {file: {type: string, format: binary}, mappingProfileId: {type: string, format: uuid}}}}}}
+      responses:
+        '202': {description: File accepted for staging, not published}
+  /catalog/imports/{id}/commit:
+    post:
+      operationId: commitStagedImport
+      parameters: [{in: path, name: id, required: true, schema: {type: string, format: uuid}}]
+      responses:
+        '202': {description: Idempotent approved import revision queued}
+  /quotes/{id}/issue:
+    post:
+      operationId: issueQuote
+      parameters: [{in: path, name: id, required: true, schema: {type: string, format: uuid}}]
+      responses:
+        '200': {description: Issued immutable quote revision}
+        '409': {description: Approval, pricing or preflight gate failed}
+  /orders/{id}/supplier-purchase-orders:
+    post:
+      operationId: stagePurchaseOrder
+      parameters: [{in: path, name: id, required: true, schema: {type: string, format: uuid}}, {in: header, name: Idempotency-Key, required: true, schema: {type: string}}]
+      responses:
+        '202': {description: Authorized staged request created; does not imply supplier acknowledgment}
+components:
+  securitySchemes:
+    sessionAuth: {type: http, scheme: bearer}
+  schemas:
+    ConnectionSummary:
+      type: object
+      required: [id, providerType, displayName, status]
+      properties: {id: {type: string, format: uuid}, providerType: {type: string}, displayName: {type: string}, status: {type: string}, maskedHint: {type: string}}
+      additionalProperties: false
+    NewConnection:
+      type: object
+      required: [providerType, displayName, environment]
+      properties: {providerType: {type: string}, displayName: {type: string}, environment: {type: string, enum: [mock, sandbox, live]}}
+      additionalProperties: false

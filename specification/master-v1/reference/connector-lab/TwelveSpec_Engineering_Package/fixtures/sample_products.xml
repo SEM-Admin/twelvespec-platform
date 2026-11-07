@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<products>
+ <product><sku>SIGN-101</sku><name>Coroplast Yard Sign</name><cost>4.75</cost><color>White</color><brand>Example Print</brand></product>
+ <product><sku>MUG-201</sku><name>Ceramic Mug</name><cost>3.80</cost><color>Black</color></product>
+</products>

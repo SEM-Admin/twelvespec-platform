@@ -1,0 +1,4 @@
+import {readFileSync,readdirSync} from 'node:fs';import {resolve} from 'node:path';import {loadEnv} from './env';
+loadEnv();
+async function main(){const {pool}=await import('../packages/kernel/src');const tx=await pool().connect();try{await tx.query('create table if not exists _migrations(name text primary key,applied_at timestamptz not null default now())');for(const file of readdirSync(resolve(process.env.TWELVESPEC_ROOT!,'database/migrations')).filter(x=>x.endsWith('.sql')).sort()){if((await tx.query('select 1 from _migrations where name=$1',[file])).rowCount)continue;await tx.query('BEGIN');try{await tx.query(readFileSync(resolve(process.env.TWELVESPEC_ROOT!,'database/migrations',file),'utf8'));await tx.query('insert into _migrations(name)values($1)',[file]);await tx.query('COMMIT');console.log('Applied',file);}catch(e){await tx.query('ROLLBACK');throw e;}}}finally{tx.release();await pool().end();}}
+main().catch(e=>{console.error(e.message);process.exit(1)});

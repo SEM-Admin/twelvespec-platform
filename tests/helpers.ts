@@ -1,0 +1,3 @@
+import {loadEnv} from '../scripts/env';loadEnv();
+import {pool,DEMO,type Actor} from '../packages/kernel/src';
+export async function actors():Promise<{owner:Actor;customer:Actor;otherOwner:Actor}>{const r=await pool().query('select u.id,u.email,m.tenant_id,m.workspace_id,m.role from "user" u join memberships m on m.user_id=u.id');function find(role:string,ws:string){const x=r.rows.find(x=>x.role===role&&x.workspace_id===ws);if(!x)throw new Error('Run npm run setup first');return {userId:x.id,email:x.email,tenantId:x.tenant_id,workspaceId:x.workspace_id,role:x.role} as Actor;}return {owner:find('owner',DEMO.workspace),customer:find('customer',DEMO.workspace),otherOwner:find('owner',DEMO.otherWorkspace)};}

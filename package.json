@@ -1,0 +1,51 @@
+{
+  "name": "twelvespec-platform",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "setup": "node --import tsx scripts/setup.ts",
+    "db:start": "node --import tsx scripts/postgres.ts",
+    "db:migrate": "node --import tsx scripts/migrate.ts",
+    "db:seed": "node --import tsx scripts/seed.ts",
+    "dev": "node --import tsx scripts/dev.ts",
+    "dev:os": "npm run dev --workspace=@twelvespec/os",
+    "dev:shop": "npm run dev --workspace=@twelvespec/shop",
+    "worker": "node --import tsx apps/worker/src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx scripts/test.ts",
+    "test:e2e": "playwright test",
+    "build": "node --import tsx scripts/build.ts",
+    "check:spec": "python3 scripts/check_spec.py",
+    "test:unit": "vitest run tests/modules --exclude tests/modules/orders.test.ts"
+  },
+  "dependencies": {
+    "better-auth": "1.7.18",
+    "csv-parse": "7.0.3",
+    "decimal.js": "10.6.0",
+    "fast-xml-parser": "5.12.0",
+    "lucide-react": "0.468.0",
+    "next": "16.4.5",
+    "pg": "8.16.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "sharp": "0.35.5",
+    "soap": "1.6.3",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.0",
+    "@playwright/test": "1.58.2",
+    "@types/node": "24.10.1",
+    "@types/pg": "8.15.6",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "embedded-postgres": "18.6.0-beta.19",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

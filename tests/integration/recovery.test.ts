@@ -1,0 +1,2 @@
+import {it,expect} from 'vitest';import {loadEnv} from '../../scripts/env';import {localRestoreDrill} from '../../packages/kernel/src/backup';
+it('A39 restores a consistent synthetic backup into a fresh PostgreSQL database with scoped constraints',async()=>{const root=loadEnv();const result=await localRestoreDrill(root,process.env.DATABASE_URL!);expect(result.verification).toBe('LOCAL_SYNTHETIC_RESTORE_VERIFIED');expect(result.tables).toBeGreaterThan(80);expect(result.foreignKeysValidated).toBeGreaterThan(100);expect(result.productionBackupVerified).toBe(false);},60000);

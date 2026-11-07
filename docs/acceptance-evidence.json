@@ -1,0 +1,1409 @@
+{
+  "scope": {
+    "modules": 20,
+    "active": 19,
+    "comingSoon": 1
+  },
+  "environment": "LOCAL_SYNTHETIC",
+  "claim": "Source/test inventory only. Database/browser/restore/live results are pending; this is not a completion claim.",
+  "scenarios": [
+    {
+      "id": "A01",
+      "journey": "First launch, synthetic seed",
+      "assertion": "Shop and OS authenticate, 40 products, modules and Coming Soon nav render",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "apps/shop",
+        "apps/os",
+        "scripts/setup.ts",
+        "scripts/seed.ts"
+      ],
+      "tests": [
+        {
+          "path": "tests/helpers.ts",
+          "exists": true
+        }
+      ],
+      "verification": "NOT_RUN_BROWSER",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Fresh database/apps/authentication setup and browser launch need integrated execution."
+    },
+    {
+      "id": "A02",
+      "journey": "Tenant boundaries",
+      "assertion": "Workspace A cannot read B contacts or assets even by guessed UUID",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "database/migrations/001_initial.sql",
+        "packages/kernel"
+      ],
+      "tests": [
+        {
+          "path": "tests/integration/creative.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/business.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Cross-tenant/role cases exist; no database execution claimed in this report."
+    },
+    {
+      "id": "A03",
+      "journey": "Add simulated supplier",
+      "assertion": "Masked credential metadata; no secret in API/browser/log",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/supplier",
+        "packages/providers"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/supplier.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Local AES-GCM development vault only; managed KMS/rotation remains an activation requirement."
+    },
+    {
+      "id": "A04",
+      "journey": "Invalid SOAP supplier auth",
+      "assertion": "Service marked BLOCKED, other service statuses unaffected",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/providers",
+        "packages/supplier"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/supplier.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "MOCK_CONTRACT_ONLY",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Rejected-service fixture is simulated; no authenticated supplier auth test observed."
+    },
+    {
+      "id": "A05",
+      "journey": "Import valid CSV",
+      "assertion": "Staged rows, mapping version, variant candidates; no auto publish",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/supplier/src/imports.ts"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/supplier.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "CSV parser/staging/mapping/review/commit implemented; persisted assertions await run."
+    },
+    {
+      "id": "A06",
+      "journey": "Import XML with DTD",
+      "assertion": "Rejected before entity resolution, no outbound fetch",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/supplier/src/imports.ts"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/supplier.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "DTD/entity rejection implemented before source writes; network/security execution awaits run."
+    },
+    {
+      "id": "A07",
+      "journey": "Malformed/duplicate source",
+      "assertion": "Reject or dedupe, keep raw evidence and issues",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/supplier/src/imports.ts"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/supplier.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Malformed/duplicate staging cases exist; no silent source overwrite."
+    },
+    {
+      "id": "A08",
+      "journey": "Supplier human edit conflict",
+      "assertion": "Curated title preserved; merge review created",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/supplier",
+        "packages/catalog"
+      ],
+      "tests": [
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Curated ownership and merge-review persistence cases await run."
+    },
+    {
+      "id": "A09",
+      "journey": "Product color swatch",
+      "assertion": "Visible circle corresponds to selected actual variant image, accessible label",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/catalog",
+        "apps/shop/components/product-visual.tsx"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/catalog.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "NO_BROWSER_EVIDENCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Allowlisted exact variant image/swatch projection covered in source; keyboard/UI selection needs browser evidence."
+    },
+    {
+      "id": "A10",
+      "journey": "Bulk publish 100 SKUs",
+      "assertion": "Preview counts, authorization, revision and rollback manifest",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/catalog"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/catalog.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "100-product preview, approval, revision and rollback test written."
+    },
+    {
+      "id": "A11",
+      "journey": "Missing cost/freight",
+      "assertion": "Item quote-only; no unverified checkout price",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/pricing",
+        "packages/production"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/estimating.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/pricing.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "UNIT_CONTRACT_SOURCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Unknown freight/currency/cost gates implemented; runtime checkout/UI needs integrated proof."
+    },
+    {
+      "id": "A12",
+      "journey": "MOQ and quantity tiers",
+      "assertion": "Server rejects invalid quantity, accurate price tier recalculation",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/configuration",
+        "packages/pricing"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/configuration.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/pricing.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/creative.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "MOQ, integer quantity, tier and server validation fixtures exist."
+    },
+    {
+      "id": "A13",
+      "journey": "Dependent decoration options",
+      "assertion": "Method/location incompatible choices disabled and server rejects bypass",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/configuration"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/configuration.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/creative.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Dependent method/location and published rule bypass tests written; disabled UI affordances need browser evidence."
+    },
+    {
+      "id": "A14",
+      "journey": "Customer uploads logo",
+      "assertion": "Private original asset, versioned design, no exposed signed URL leak",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/creative",
+        "packages/server"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/creative.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/creative.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Private raster originals and scoped preview endpoint implemented; malware scanner intentionally NOT_CONFIGURED."
+    },
+    {
+      "id": "A15",
+      "journey": "Batch mockups",
+      "assertion": "One preset to eligible products, queued images, image/variant linkage",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/creative",
+        "apps/worker"
+      ],
+      "tests": [
+        {
+          "path": "tests/integration/creative.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Real synthetic raster render and exact variant/version linkage tested in source; large batch performance still unverified."
+    },
+    {
+      "id": "A16",
+      "journey": "Preflight failed DPI",
+      "assertion": "Proof not production-ready; vendor dispatch blocked",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/creative",
+        "packages/production"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/creative.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/production.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/creative.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "BLOCKED_PRODUCTION_RELEASE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Low-DPI detection implemented; production expert/prepress verification absent and release remains blocked."
+    },
+    {
+      "id": "A17",
+      "journey": "Revised art after approval",
+      "assertion": "Prior approval invalidated for changed revision",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/creative"
+      ],
+      "tests": [
+        {
+          "path": "tests/integration/creative.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Design revision supersedes exact proof hash/approval; persisted test awaits run."
+    },
+    {
+      "id": "A18",
+      "journey": "RFQ to issued quote",
+      "assertion": "Source cost snapshot frozen and approval checks enforced",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/sales",
+        "packages/production"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/sales.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Mixed RFQ/quote frozen source evidence workflow written; no live quote transmission."
+    },
+    {
+      "id": "A19",
+      "journey": "Price below margin floor",
+      "assertion": "Approval required, audit who/why, no auto issue",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/pricing",
+        "packages/sales"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/pricing.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Margin floor and named reason/approval gates present; complete persisted evidence awaits run."
+    },
+    {
+      "id": "A20",
+      "journey": "Accepted quote to order",
+      "assertion": "Immutable lines, legal seller and art revision frozen",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/sales",
+        "packages/production"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/sales.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Accepted order snapshot/seller/terms flow written with immutable records."
+    },
+    {
+      "id": "A21",
+      "journey": "Mixed hats+brochures+tent",
+      "assertion": "One customer order, distinct jobs, provider POs and shipments",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/orders",
+        "packages/procurement",
+        "packages/fulfillment"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Mixed order workflow creates distinct local jobs/POs/allocations; external outputs simulated."
+    },
+    {
+      "id": "A22",
+      "journey": "Supplier PO timeout",
+      "assertion": "UNKNOWN_OUTCOME; no duplicate submission until reconciliation",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/procurement",
+        "packages/production"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/procurement.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "MOCK_CONTRACT_ONLY",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "UNKNOWN_OUTCOME blocks blind retries; supplier writes never activated."
+    },
+    {
+      "id": "A23",
+      "journey": "Partial shipment",
+      "assertion": "Customer sees partial fulfillment; tracking mapped to correct lines",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/fulfillment"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/fulfillment.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Partial quantity projection and shipment/order linkage fixtures present."
+    },
+    {
+      "id": "A24",
+      "journey": "Outsourced decorated apparel",
+      "assertion": "Separate blank, decorator costs, operations and QC events",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/production",
+        "packages/creative"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/estimating.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/production.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "PARTIAL_CONTRACT_EVIDENCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Distinct outsourced labor/cost and QC gates exist; fully decorated ready-to-manufacture acceptance remains blocked by actual prepress requirements."
+    },
+    {
+      "id": "A25",
+      "journey": "POD sandbox fulfillment",
+      "assertion": "Provider event reflected; simulated tracking not called live",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/providers",
+        "packages/production"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "BLOCKED_EXTERNAL_SANDBOX",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Mock routing/status only. No authenticated POD sandbox event is verified."
+    },
+    {
+      "id": "A26",
+      "journey": "Company store limits",
+      "assertion": "Wrong buyer/budget/brand kit blocked on server",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/stores"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/stores.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/business.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Buyer, budget, brand and assigned-product checks enforced server-side; persisted tests await run."
+    },
+    {
+      "id": "A27",
+      "journey": "School fundraiser",
+      "assertion": "Correct campaign allocations and cutoff date with test clock",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/stores"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/stores.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/business.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Explicit-clock cutoff/allocation cases written; fundraiser settlement deliberately blocked."
+    },
+    {
+      "id": "A28",
+      "journey": "BYOB kit",
+      "assertion": "Each component mapped to correct source, plus kitting cost",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/byob"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/byob.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/business.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Component private source choices, per-SKU totals and separate packaging/assembly implemented; customer cost projection remains private/quote-first."
+    },
+    {
+      "id": "A29",
+      "journey": "Finance reference",
+      "assertion": "External webhook dedupe, no duplicate payment settlement",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/finance",
+        "packages/server"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/finance.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "MOCK_CONTRACT_ONLY",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Signed/deduplicated local mock references only; no actual processor settlement or ledger sync."
+    },
+    {
+      "id": "A30",
+      "journey": "Profit closeout",
+      "assertion": "Actual versus estimated landed cost, profit/owner hour report",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/finance",
+        "packages/analytics",
+        "packages/today"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/pricing.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/business.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Profit arithmetic and persisted time/report lineage cases written; no financial settlement claims."
+    },
+    {
+      "id": "A31",
+      "journey": "CRM and marketing",
+      "assertion": "Contact permission, campaign publishing approval and attribution",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/crm",
+        "packages/marketing"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/crm.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/marketing.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/business.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Affirmative consent, local publication approval/replay and no-send checks written."
+    },
+    {
+      "id": "A32",
+      "journey": "Automation dry-run",
+      "assertion": "Event/filter/action simulation shows intended effects, no side effects",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/workflows"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/workflow.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/business.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Dry-run count invariance, safe AST/cycle checks and idempotent task effect cases written."
+    },
+    {
+      "id": "A33",
+      "journey": "Unknown adapter",
+      "assertion": "UI shows unsupported capability; permits file/manual fallback",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/providers",
+        "packages/supplier"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/supplier.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "BLOCKED_UNSUPPORTED_APIS",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Unsupported proprietary APIs and ASI without authorized schemas remain blocked; file fallback supported."
+    },
+    {
+      "id": "A34",
+      "journey": "SSRF attempt",
+      "assertion": "Disallowed private host and redirect rejected",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/providers"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/supplier.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "UNIT_CONTRACT_SOURCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "HTTPS allowlist/private DNS/redirect rejection implemented; real egress hardening review still required."
+    },
+    {
+      "id": "A35",
+      "journey": "Webhook replay",
+      "assertion": "Signed event accepted once; invalid/replayed ignored and logged",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/finance",
+        "packages/server"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/finance.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/modules/orders.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "MOCK_CONTRACT_ONLY",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Signature/age/payload and local replay cases; vendor-specific webhooks unverified."
+    },
+    {
+      "id": "A36",
+      "journey": "Coming Soon",
+      "assertion": "All deferred routes visible only as truthful, disabled placeholders",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/contracts",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/foundation.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "NO_BROWSER_EVIDENCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Registry/backend activation gate implemented. All placeholder route buttons still need browser audit."
+    },
+    {
+      "id": "A37",
+      "journey": "Keyboard/mobile UX",
+      "assertion": "Search/filter/configurator usable with keyboard and mobile viewport",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "apps/shop",
+        "apps/os"
+      ],
+      "tests": [],
+      "verification": "MISSING_BROWSER_TEST_EVIDENCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Keyboard/mobile/axe test execution has not been observed. Required for acceptance."
+    },
+    {
+      "id": "A38",
+      "journey": "Failed provider sync",
+      "assertion": "Stale status displays, storefront retains last safe published revision",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "packages/catalog",
+        "packages/supplier"
+      ],
+      "tests": [
+        {
+          "path": "tests/modules/catalog.test.ts",
+          "exists": true
+        },
+        {
+          "path": "tests/integration/imports.test.ts",
+          "exists": true
+        }
+      ],
+      "verification": "DB_TEST_WRITTEN_NOT_RUN",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Last-safe public snapshot and failed sync retention cases written."
+    },
+    {
+      "id": "A39",
+      "journey": "Restore drill",
+      "assertion": "Backup restored into fresh staging environment; tenant counts match",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "database",
+        "scripts"
+      ],
+      "tests": [],
+      "verification": "MISSING_RESTORE_EVIDENCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "A fresh restore with tenant count comparison has not been observed. Do not mark complete."
+    },
+    {
+      "id": "A40",
+      "journey": "Fresh install",
+      "assertion": "One documented setup creates usable demo without existing vendor account",
+      "source": "specification/master-v1/docs/06_ACCEPTANCE_SUITES.md",
+      "code": [
+        "scripts/setup.ts",
+        "scripts/migrate.ts",
+        "scripts/seed.ts",
+        "scripts/dev.ts"
+      ],
+      "tests": [],
+      "verification": "MISSING_FRESH_INSTALL_EVIDENCE",
+      "lastDatabaseResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "lastBrowserResult": "NOT_RUN_BY_THIS_REPORT_AUTHOR",
+      "note": "Fresh-checkout setup and launch verification still required; no vendor account needed for local mode."
+    }
+  ],
+  "inherited": [
+    {
+      "id": "T01",
+      "journey": "Synthetic fresh install",
+      "assertion": "migrations, seeds, secure mock login, reproducible scripts",
+      "mapsTo": [
+        "A01",
+        "A40"
+      ],
+      "tests": [
+        "tests/helpers.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T02",
+      "journey": "Public product discovery",
+      "assertion": "color circles, facets, brand, size, mobile/desktop, canonical dedupe",
+      "mapsTo": [
+        "A09",
+        "A37"
+      ],
+      "tests": [
+        "tests/modules/catalog.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T03",
+      "journey": "Product configuration",
+      "assertion": "valid combinations, invalid option conflicts, typed rules, quantity breaks",
+      "mapsTo": [
+        "A11",
+        "A12",
+        "A13"
+      ],
+      "tests": [
+        "tests/integration/creative.test.ts",
+        "tests/modules/configuration.test.ts",
+        "tests/modules/estimating.test.ts",
+        "tests/modules/pricing.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T04",
+      "journey": "Customer brand assets",
+      "assertion": "import/upload, private scope, design revision save/reload",
+      "mapsTo": [
+        "A14",
+        "A17"
+      ],
+      "tests": [
+        "tests/integration/creative.test.ts",
+        "tests/modules/creative.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T05",
+      "journey": "Art previews",
+      "assertion": "zone accuracy, physical units, render queue, versioned mockups, no supplier assets leaked",
+      "mapsTo": [
+        "A15",
+        "A16"
+      ],
+      "tests": [
+        "tests/integration/creative.test.ts",
+        "tests/modules/creative.test.ts",
+        "tests/modules/production.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T06",
+      "journey": "Admin template bulk",
+      "assertion": "assign rule to 100 compatible products, conflict queue, revert nonbinding updates",
+      "mapsTo": [
+        "A10",
+        "A15"
+      ],
+      "tests": [
+        "tests/integration/creative.test.ts",
+        "tests/integration/imports.test.ts",
+        "tests/modules/catalog.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T07",
+      "journey": "CSV supplier import",
+      "assertion": "10k variants stage/diff/dedupe, scoped vendor evidence, curated copy preserved",
+      "mapsTo": [
+        "A05",
+        "A07",
+        "A08"
+      ],
+      "tests": [
+        "tests/integration/imports.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T08",
+      "journey": "Native PromoStandards contract",
+      "assertion": "service/version per supplier; malformed XML, empty stock, partial price, timeouts",
+      "mapsTo": [
+        "A04",
+        "A06",
+        "A34"
+      ],
+      "tests": [
+        "tests/integration/imports.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T09",
+      "journey": "Source resolution",
+      "assertion": "same manufacturer SKU across 3 suppliers -> 1 public product, 3 private offers",
+      "mapsTo": [
+        "A08",
+        "A33"
+      ],
+      "tests": [
+        "tests/integration/imports.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Exact identity/merge tests exist; one canonical product with three distinct offers still needs direct integrated proof."
+    },
+    {
+      "id": "T10",
+      "journey": "Estimate pricing",
+      "assertion": "tier+setup+decoration+freight, UNKNOWN cost blocks automated price",
+      "mapsTo": [
+        "A11",
+        "A19"
+      ],
+      "tests": [
+        "tests/modules/estimating.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/pricing.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T11",
+      "journey": "Quote revision",
+      "assertion": "issue immutable revision, revise with history, approve exact version",
+      "mapsTo": [
+        "A18",
+        "A19",
+        "A20"
+      ],
+      "tests": [
+        "tests/modules/orders.test.ts",
+        "tests/modules/pricing.test.ts",
+        "tests/modules/sales.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T12",
+      "journey": "Customer request to order",
+      "assertion": "real persisted config + design to quote/order with sandbox payment ref",
+      "mapsTo": [
+        "A18",
+        "A20",
+        "A29"
+      ],
+      "tests": [
+        "tests/modules/finance.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/sales.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T13",
+      "journey": "Mixed order",
+      "assertion": "hats + print + tent -> jobs, separate PO drafts, split shipments",
+      "mapsTo": [
+        "A21",
+        "A23"
+      ],
+      "tests": [
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T14",
+      "journey": "Supplier purchase authorization",
+      "assertion": "no submission before required approvals; ambiguous timeout deduped",
+      "mapsTo": [
+        "A22"
+      ],
+      "tests": [
+        "tests/modules/orders.test.ts",
+        "tests/modules/procurement.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T15",
+      "journey": "POD MOQ 1",
+      "assertion": "only verified product/variant/placement/supplier route checkout; else quote",
+      "mapsTo": [
+        "A11",
+        "A25"
+      ],
+      "tests": [
+        "tests/modules/estimating.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/pricing.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T16",
+      "journey": "Company store",
+      "assertion": "employee budget, approval and brand restriction, cross-store privacy",
+      "mapsTo": [
+        "A26"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T17",
+      "journey": "Fundraiser",
+      "assertion": "campaign window, allocations, closeout draft, no unverified payouts",
+      "mapsTo": [
+        "A27"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T18",
+      "journey": "BYOB bundle",
+      "assertion": "component quantity, minimums, pack/assembly, multi-provider freight",
+      "mapsTo": [
+        "A28"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/modules/byob.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T19",
+      "journey": "Job MIS",
+      "assertion": "ticket, proof, QC, failure/remake, external production event handling",
+      "mapsTo": [
+        "A16",
+        "A17",
+        "A21",
+        "A24"
+      ],
+      "tests": [
+        "tests/integration/creative.test.ts",
+        "tests/modules/creative.test.ts",
+        "tests/modules/estimating.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/production.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T20",
+      "journey": "Shipment",
+      "assertion": "provider tracking vs own label; no double labels, partial shipments",
+      "mapsTo": [
+        "A23",
+        "A25"
+      ],
+      "tests": [
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T21",
+      "journey": "Finance",
+      "assertion": "estimated/actual direct cost, gross margin, external invoice/payment references",
+      "mapsTo": [
+        "A29",
+        "A30"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/pricing.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T22",
+      "journey": "Marketing",
+      "assertion": "draft campaign, audience rights and consent, no send from test",
+      "mapsTo": [
+        "A31"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/modules/crm.test.ts",
+        "tests/modules/marketing.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T23",
+      "journey": "Automation",
+      "assertion": "dry run, approval gates, cycle detection, replay and idempotency",
+      "mapsTo": [
+        "A32"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/modules/workflow.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T24",
+      "journey": "Confidentiality",
+      "assertion": "SEO/API/source code/view/export cannot reveal supplier names/cost/IDs",
+      "mapsTo": [
+        "A03",
+        "A09",
+        "A14",
+        "A20"
+      ],
+      "tests": [
+        "tests/integration/creative.test.ts",
+        "tests/integration/imports.test.ts",
+        "tests/modules/catalog.test.ts",
+        "tests/modules/creative.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/sales.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T25",
+      "journey": "Security",
+      "assertion": "cross-tenant + role negative tests (data/files/artwork/costs/orders)",
+      "mapsTo": [
+        "A02",
+        "A26",
+        "A31"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/integration/creative.test.ts",
+        "tests/integration/imports.test.ts",
+        "tests/modules/crm.test.ts",
+        "tests/modules/marketing.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T26",
+      "journey": "Coming Soon",
+      "assertion": "routes visible with clear label; backend denies action; no false claims",
+      "mapsTo": [
+        "A36"
+      ],
+      "tests": [
+        "tests/modules/foundation.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T27",
+      "journey": "Resilience",
+      "assertion": "provider outage, replay, late events, retry budget, DLQ and exception queue",
+      "mapsTo": [
+        "A22",
+        "A32",
+        "A38"
+      ],
+      "tests": [
+        "tests/integration/business.test.ts",
+        "tests/integration/imports.test.ts",
+        "tests/modules/catalog.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/procurement.test.ts",
+        "tests/modules/workflow.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T28",
+      "journey": "Accessibility",
+      "assertion": "keyboard, screen reader labels, color contrast, responsive use",
+      "mapsTo": [
+        "A37"
+      ],
+      "tests": [],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "Mapped to the listed A scenarios; inherited assertions are not automatically satisfied by the narrower V1 cases."
+    },
+    {
+      "id": "T29",
+      "journey": "Scale",
+      "assertion": "search 100k variants, bulk update 100 records, async 500 render jobs",
+      "mapsTo": [
+        "A10",
+        "A15"
+      ],
+      "tests": [
+        "tests/integration/creative.test.ts",
+        "tests/integration/imports.test.ts",
+        "tests/modules/catalog.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "100k variant search, 100 bulk edits and 500 asynchronous renders need measured performance evidence. Existing 10k parser fixture and 100-product DB test are insufficient."
+    },
+    {
+      "id": "T30",
+      "journey": "Owner workflow",
+      "assertion": "no-code catalog edit, quote, proof, PO draft, closeout; measure clicks/time",
+      "mapsTo": [
+        "A01",
+        "A18",
+        "A21",
+        "A30"
+      ],
+      "tests": [
+        "tests/helpers.ts",
+        "tests/integration/business.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/pricing.test.ts",
+        "tests/modules/sales.test.ts"
+      ],
+      "verification": "INHERITED_ACCEPTANCE_NOT_YET_PASSED",
+      "note": "A consolidated owner journey with measured clicks/time remains a manual acceptance requirement."
+    }
+  ]
+}

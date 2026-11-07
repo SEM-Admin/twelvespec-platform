@@ -1,0 +1,90 @@
+{
+  "status": "DEPLOYED_BROWSER_VERIFIED_SUPABASE_CA_PENDING",
+  "accountId": "4ec2144c2d67567d5fed301d0db45ea8",
+  "resourcePrefix": "twelvespec-preview",
+  "frontendWorkers": [
+    {
+      "name": "twelvespec-preview-shop",
+      "application": "shop",
+      "workersDev": true,
+      "previewUrls": false,
+      "serviceBinding": "RUNTIME",
+      "accessRequired": true
+    },
+    {
+      "name": "twelvespec-preview-os",
+      "application": "os",
+      "workersDev": true,
+      "previewUrls": false,
+      "serviceBinding": "RUNTIME",
+      "accessRequired": true
+    }
+  ],
+  "runtimeWorker": {
+    "name": "twelvespec-preview-runtime",
+    "workersDev": false,
+    "previewUrls": false,
+    "durableObject": {
+      "className": "TwelveSpecPreview",
+      "storage": "sqlite",
+      "instanceName": "twelvespec-synthetic-v3"
+    },
+    "container": {
+      "imageBuildFile": "infra/cloudflare/Dockerfile",
+      "schedulingPolicy": "durable_object",
+      "instanceType": "standard-1",
+      "maxInstances": 1,
+      "idleTimeoutSeconds": 1800,
+      "internetAccess": false,
+      "applicationPorts": [
+        3000,
+        3001
+      ],
+      "databasePortPublic": false
+    }
+  },
+  "compatibilityDate": "2026-11-05",
+  "observability": {
+    "enabled": true,
+    "traces": {
+      "enabled": true
+    }
+  },
+  "access": {
+    "newOrganizationApprovalRequired": false,
+    "allowEmailSource": "Connected Cloudflare identity, supplied at deployment",
+    "applications": "Only the two new preview workers.dev hostnames",
+    "applicationLoginAlsoRequired": true
+  },
+  "secrets": [
+    "BETTER_AUTH_SECRET",
+    "ASSET_SIGNING_KEY",
+    "WEBHOOK_SIGNING_KEY",
+    "TWELVESPEC_DEMO_PASSWORD"
+  ],
+  "database": {
+    "engine": "PostgreSQL 18",
+    "scope": "New database in isolated preview container",
+    "seed": "40 products, 120 variants, 10 contacts; no copied data",
+    "durability": "Ephemeral. Reseeded after container shutdown/replacement; not a production database.",
+    "approvedSupabaseProject": "mtihnarlkprmyahbxlrl",
+    "persistentDatabaseEnabled": false,
+    "connectionBlocker": "SELF_SIGNED_CERT_IN_CHAIN; project database CA certificate required"
+  },
+  "billing": {
+    "workersPaidRequired": true,
+    "minimumMonthlyUsd": 5,
+    "usageChargesPossible": true,
+    "automaticPlanUpgrade": false,
+    "paidPlanApproved": true
+  },
+  "prohibitedChanges": [
+    "existing Workers, containers, Access policies, production DNS, domains, databases, suppliers, payments or customer data"
+  ],
+  "activationBlockers": [
+    "Trusted Supabase database CA certificate and persistent connection verification",
+    "Persistent private artwork and credential storage before live activation",
+    "Supplier credentials, ASI licensing and remaining V1 acceptance gates",
+    "Production deployment authorization"
+  ]
+}

@@ -1,0 +1,4 @@
+sku,name,brand,mpn,color,size,currency,cost,moq,freight,inventory
+EX-001-NAV-M,Performance polo,Example Brand,MODEL-001,Navy,M,USD,12.50,12,15.00,240
+EX-001-BLK-M,Performance polo,Example Brand,MODEL-001,Black,M,USD,12.50,12,15.00,0
+EX-002-RED,Event cup,Example Brand,MODEL-002,Red,One size,USD,,48,,

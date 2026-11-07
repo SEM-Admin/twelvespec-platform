@@ -1,0 +1,7 @@
+[
+  {"id":"promostandards-direct","protocol":"promostandards_soap","credentialMode":"supplier_specific","credentials":["account_id","username","password_or_api_key"],"discovery":"official_directory","capabilities":["catalog","variants","media","inventory","pricing_configuration","purchase_order","order_status","shipment","invoice"],"evidence":"official_specs_service_version_required","deployment":"not_implemented"},
+  {"id":"asi-smartlink","protocol":"asi_smartlink","credentialMode":"licensed_developer_api","credentials":["authorized_api_key_or_oauth_as_documented"],"capabilities":["catalog","media","supplier_search","decorator_search"],"evidence":"official_asi_smartlink_public_resources","deployment":"blocked_pending_license_and_api_docs"},
+  {"id":"csv-upload","protocol":"csv","credentialMode":"none","capabilities":["catalog_import"],"evidence":"local_tests","deployment":"working_in_local_lab"},
+  {"id":"xml-upload","protocol":"xml","credentialMode":"none","capabilities":["catalog_import"],"evidence":"local_tests","deployment":"working_in_local_lab"},
+  {"id":"generic-rest","protocol":"rest","credentialMode":"server_vault","credentials":["api_key_or_oauth"],"capabilities":["catalog"],"evidence":"adapter_contract_only","deployment":"not_implemented"}
+]

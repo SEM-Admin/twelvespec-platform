@@ -1,0 +1,87 @@
+{
+  "version": "1",
+  "provider_types": [
+    {
+      "type": "PROMOSTANDARDS_SOAP",
+      "features": [
+        "product_data",
+        "media",
+        "inventory",
+        "pricing_configuration",
+        "purchase_order",
+        "order_status",
+        "shipment_notification",
+        "invoice"
+      ],
+      "credentials": "supplier_specific",
+      "availability": "requires_supplier_credentials",
+      "auto_purchase": false
+    },
+    {
+      "type": "ASI_SMARTLINK",
+      "features": [
+        "catalog_search",
+        "product_details"
+      ],
+      "credentials": "separately_licensed_developer_entitlement",
+      "availability": "licensed_only",
+      "auto_purchase": false
+    },
+    {
+      "type": "GENERIC_REST",
+      "features": [
+        "catalog",
+        "price",
+        "inventory",
+        "fulfillment"
+      ],
+      "credentials": "provider_specific",
+      "availability": "adapter_required",
+      "auto_purchase": false
+    },
+    {
+      "type": "CSV",
+      "features": [
+        "import_products",
+        "import_variants",
+        "import_prices"
+      ],
+      "credentials": "none",
+      "availability": "immediate",
+      "auto_purchase": false
+    },
+    {
+      "type": "XML",
+      "features": [
+        "import_products",
+        "import_variants",
+        "import_prices"
+      ],
+      "credentials": "none",
+      "availability": "immediate",
+      "auto_purchase": false
+    },
+    {
+      "type": "POD",
+      "features": [
+        "quote",
+        "production",
+        "status",
+        "tracking"
+      ],
+      "credentials": "provider_specific",
+      "availability": "licensed_or_account",
+      "auto_purchase": false
+    }
+  ],
+  "capability_statuses": [
+    "NOT_CONFIGURED",
+    "MOCKED",
+    "SANDBOX_VERIFIED",
+    "LIVE_VERIFIED",
+    "BLOCKED"
+  ],
+  "prohibited_dependencies": [
+    "PSRESTful"
+  ]
+}
