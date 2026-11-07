@@ -24,6 +24,8 @@ Product evidence includes Shopify IDs, titles, vendor, product status and an opt
 
 All three operations passed the official schema validator for Admin GraphQL 2026-10. The implementation uses `featuredMedia` rather than deprecated image fields. The MediaImage permission list consists of alternatives; this connector requests only `read_products`, not order/customer/file/theme permissions. The current application passes 169 automated checks and all 11 local browser journeys. A successful fixture/schema test is not a real-store verification.
 
+The protected Cloudflare preview also passed a real HTTPS browser journey on November 7, 2026: save a merchant-specific channel, test mock capabilities, stage two private synthetic products, confirm neither is published, view them in the source library, and verify that real activation/publishing/order commands return HTTP 403. Temporary test Access policies/tokens were removed afterward and owner-only Access verified. No Shopify account API request was made.
+
 ## Remaining implementation and activation
 
 - Register an app and identify an authorized development store. No production store is inferred from an existing plugin connection.
