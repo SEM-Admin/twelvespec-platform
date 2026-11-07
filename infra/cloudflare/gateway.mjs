@@ -38,12 +38,17 @@ export async function gatewayFetch(request, env) {
     forwarded.headers.set('x-twelvespec-application', env.APPLICATION);
     forwarded.headers.set('x-forwarded-host', url.host);
     forwarded.headers.set('x-forwarded-proto', 'https');
-    const upstream = await env.RUNTIME.fetch(forwarded);
+    // Worker-first asset routing keeps synthetic image updates behind the same Access check.
+    // Unknown files and all application requests continue to the existing runtime.
+    const asset = env.ASSETS && ['GET', 'HEAD'].includes(request.method) && /^\/products\/TS-\d{4}-[0-2]\.svg$/.test(url.pathname)
+      ? await env.ASSETS.fetch(request) : undefined;
+    const upstream = asset && asset.status !== 404 ? asset : await env.RUNTIME.fetch(forwarded);
     const result = new Response(upstream.body, upstream);
     result.headers.set('X-TwelveSpec-Preview', 'synthetic');
     result.headers.set('X-Content-Type-Options', 'nosniff');
     result.headers.set('Referrer-Policy', 'same-origin');
     result.headers.set('X-Request-ID', requestId);
+    if (asset && asset.status !== 404) result.headers.set('Cache-Control', 'private, no-cache');
     if (url.pathname.startsWith('/api/')) result.headers.set('Cache-Control', 'private, no-store');
     return result;
   } catch {

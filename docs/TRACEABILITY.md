@@ -77,3 +77,9 @@ Each scenario has setup, action, observable UI result, authoritative DB and emit
 | A40 | Fresh install | One documented setup creates usable demo without existing vendor account |
 
 No acceptance claim unless each scenario has a test file, fixture, last result, environment and actionable failure report. This table is contractual specification, not a claim these automated tests all exist yet.
+
+## Current regression evidence: cap image and proof
+
+A09 maps `scripts/seed-illustration.ts`, the three `apps/shop/public/products/TS-0003-*.svg` images and `infra/cloudflare/gateway.mjs` to `tests/e2e/shop.spec.ts` (Clay cap selection, immutable save, matching proof image and approval) and `tests/cloudflare/preview.test.ts` (asset Access enforcement and runtime fallback). `scripts/cloudflare-verify.mjs` checks all three cap images over HTTPS, the saved proof, storefront cart/RFQ and Commerce OS CRM. The illustrations remain synthetic; supplier image licensing and manufacturing preflight are separate activation gates.
+
+Changing color after a project has already been saved still needs project/variant rebinding and exact proof-version lookup regression coverage. This is an open creative acceptance item, not established by the new-project cap test.

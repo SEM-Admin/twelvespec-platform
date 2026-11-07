@@ -9,7 +9,14 @@
       "workersDev": true,
       "previewUrls": false,
       "serviceBinding": "RUNTIME",
-      "accessRequired": true
+      "accessRequired": true,
+      "staticAssetBinding": "ASSETS",
+      "runWorkerFirst": true,
+      "staticAssetPaths": [
+        "/products/TS-0003-0.svg",
+        "/products/TS-0003-1.svg",
+        "/products/TS-0003-2.svg"
+      ]
     },
     {
       "name": "twelvespec-preview-os",
@@ -17,7 +24,14 @@
       "workersDev": true,
       "previewUrls": false,
       "serviceBinding": "RUNTIME",
-      "accessRequired": true
+      "accessRequired": true,
+      "staticAssetBinding": "ASSETS",
+      "runWorkerFirst": true,
+      "staticAssetPaths": [
+        "/products/TS-0003-0.svg",
+        "/products/TS-0003-1.svg",
+        "/products/TS-0003-2.svg"
+      ]
     }
   ],
   "runtimeWorker": {

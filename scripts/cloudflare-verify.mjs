@@ -6,6 +6,7 @@ process.stdin.resume();console.log('Ready for private HTTPS preview verification
 let raw='';for await(const c of process.stdin){raw+=c.toString();if(raw.includes('\n'))break;}
 process.stdin.pause();if(process.stdin.isTTY)process.stdin.setRawMode(false);
 const control=JSON.parse(raw.trim());raw='';
+if(![control.clientId,control.clientSecret,control.password].every(value=>typeof value==='string'&&value.length>20))throw new Error('Missing private verification credentials');
 const origins={shop:'https://twelvespec-preview-shop.samantha-4ec.workers.dev',os:'https://twelvespec-preview-os.samantha-4ec.workers.dev'};
 const allowed=new Set(Object.values(origins));
 const accessHeaders={'CF-Access-Client-Id':control.clientId,'CF-Access-Client-Secret':control.clientSecret};
@@ -32,13 +33,18 @@ try{
  await expect(page.getByRole('heading',{name:/Your brand/})).toBeVisible();
  await page.getByRole('button',{name:'Sign in',exact:true}).click();
  const login=page.getByRole('dialog');
- await login.getByLabel('Email',{exact:true}).fill('customer@demo.twelvespec.test');
+ await login.getByLabel('Email',{exact:true}).fill(control.customerEmail??'customer@demo.twelvespec.test');
  await login.getByLabel('Password',{exact:true}).fill(control.password);
  await login.getByRole('button',{name:'Sign in',exact:true}).click();
  await expect(login).toBeHidden();
  const shopData=await page.evaluate(async()=>{const r=await fetch('/api/shop');if(!r.ok)throw new Error('Catalog failed');return r.json();});
  if(shopData.products.length!==40)throw new Error('Expected a fresh synthetic catalog');
- const product=shopData.products.find(p=>p.title==='Everyday Cotton Tee')??shopData.products[0];
+ const product=shopData.products.find(p=>p.title==='Classic Camp Cap');
+ if(!product)throw new Error('Synthetic cap is missing');
+ for(const option of product.variants){
+  const asset=await page.evaluate(async image=>{const r=await fetch(image);return {status:r.status,type:r.headers.get('content-type'),body:await r.text()};},option.image);
+  if(asset.status!==200||!asset.type?.includes('image/svg+xml')||!asset.body.includes('data-product-kind="cap"')||!asset.body.includes(option.hex))throw new Error('Cap image or exact variant color is incorrect');
+ }
  await page.goto(origins.shop+'/products/'+product.id,{waitUntil:'networkidle'});
  const variant=product.variants.find(v=>v.color==='Clay')??product.variants[0];
  await page.getByRole('button',{name:'Select '+variant.color,exact:true}).click();
@@ -53,6 +59,20 @@ try{
  const verifiedRfq=await page.evaluate(async({productId,variantId})=>{const r=await fetch('/api/shop/account');if(!r.ok)throw new Error('Account read failed');const {tables}=await r.json();return tables.requests.find(row=>row.data.lines?.some(line=>line.productId===productId&&line.variantId===variantId))?.id;},{productId:product.id,variantId:variant.id});
  if(!verifiedRfq)throw new Error('Quote request was not persisted');
  console.log('Storefront browser sign-in, exact variant, persisted cart and quote request: PASS');
+ await page.goto(origins.shop+'/create/'+product.id,{waitUntil:'networkidle'});
+ await page.getByLabel('Product color').selectOption(variant.id);
+ await expect(page.locator('.design-canvas .product-visual img')).toHaveAttribute('src',variant.image);
+ const designLabel='CAP QA '+crypto.randomUUID().slice(0,8);
+ await page.getByLabel('Your message').fill(designLabel);
+ await page.getByRole('button',{name:'Save & request proof',exact:true}).click();
+ await expect(page.getByRole('status').filter({hasText:/Proof requested for this exact design version/})).toBeVisible();
+ await page.goto(origins.shop+'/account',{waitUntil:'networkidle'});
+ await page.getByRole('button',{name:/Proof approvals/}).click();
+ const proof=page.locator('.account-card').filter({hasText:designLabel});
+ await expect(proof.locator('.proof-preview .product-visual img')).toHaveAttribute('src',variant.image);
+ await expect(proof.locator('.proof-preview')).toBeVisible();
+ await page.screenshot({path:'.local/cloudflare/cap-proof-https.png',fullPage:true});
+ console.log('All cap color images, interactive designer and saved proof: PASS');
  mkdirSync('.local/cloudflare',{recursive:true,mode:0o700});
  await page.screenshot({path:'.local/cloudflare/storefront-https.png',fullPage:true});
  await page.goto(origins.os,{waitUntil:'networkidle',timeout:120000});
@@ -77,6 +97,6 @@ try{
  const verifiedContact=await page.evaluate(async name=>{const r=await fetch('/api/platform?module=crm');if(!r.ok)throw new Error('CRM read failed');const {tables}=await r.json();return tables.contacts.find(row=>row.title===name)?.id;},name);
  if(!verifiedContact)throw new Error('CRM contact was not persisted');
  console.log('Commerce OS browser sign-in and persisted CRM record: PASS');
- const result={verifiedAt:new Date().toISOString(),origins,accessProtection:'PASS',shop:'PASS',os:'PASS',syntheticProducts:shopData.products.length,persistedCart:true,persistedRfq:true,persistedAdminRecord:true,rfqId:verifiedRfq,contactId:verifiedContact};
+ const result={verifiedAt:new Date().toISOString(),origins,accessProtection:'PASS',shop:'PASS',os:'PASS',shopEmail:control.customerEmail??'customer@demo.twelvespec.test',syntheticProducts:shopData.products.length,persistedCart:true,persistedRfq:true,persistedAdminRecord:true,capProductId:product.id,capVariants:3,capDesigner:true,capSavedProof:true,rfqId:verifiedRfq,contactId:verifiedContact};
  writeFileSync('.local/cloudflare/https-verification.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));
 }catch(e){console.error('Preview verification failed: '+e.message);process.exitCode=1;}finally{await browser?.close();}

@@ -1,3 +1,4 @@
+import {illustration} from './seed-illustration';
 import {loadEnv} from './env';import {mkdirSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';
 loadEnv();process.env.SEED_AUTH='1';
 async function main(){
@@ -48,8 +49,5 @@ async function main(){
  const other={...owner,tenantId:DEMO.otherTenant,workspaceId:DEMO.otherWorkspace};await transaction(other,tx=>create(tx,other,'contacts',{title:'Isolation sentinel',status:'ACTIVE',data:{email:'never-visible@example.test'}}));
  console.log('Seeded 40 products with 120 exact color variants, private offers, 10 contacts, stores, bundle, tasks, and independent isolation tenant.');await pool().end();
 }
-function illustration(name:string,category:string,color:string){
- const shape=category==='APPAREL'?`<path d="M128 144 195 105h90l67 39-32 64-35-20v166H195V188l-35 20z" fill="${color}"/><path d="M216 107q24 42 48 0" fill="none" stroke="#fff" opacity=".35" stroke-width="6"/>`:category==='PROMO'?`<rect x="183" y="121" width="114" height="224" rx="32" fill="${color}"/><rect x="195" y="104" width="90" height="32" rx="10" fill="#303a3d"/><path d="M208 148v157" stroke="white" stroke-width="10" opacity=".15"/>`:category==='PRINT'?`<path d="m148 134 193-22 17 233-193 22z" fill="${color}"/><path d="m170 163 140-15m-138 38 140-15m-137 39 90-10" stroke="white" stroke-width="7" opacity=".7"/><rect x="190" y="235" width="111" height="70" rx="3" fill="white" opacity=".15"/>`:category==='SIGNAGE'?`<path d="M158 95h164v254H158z" fill="${color}"/><path d="M154 352h172m-143 12-18 26m135-26 18 26" stroke="#303a3d" stroke-width="10"/><path d="M187 157h105m-105 25h75" stroke="white" stroke-width="7" opacity=".6"/>`:`<path d="m89 192 151-99 151 99z" fill="${color}"/><path d="M109 191v168m262-168v168" stroke="#4b5654" stroke-width="9"/><path d="M114 193h252v125H114z" fill="${color}" opacity=".75"/>`;
- return `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="440" viewBox="0 0 480 440"><rect width="480" height="440" fill="#f1eee7"/><ellipse cx="240" cy="371" rx="133" ry="15" fill="#233548" opacity=".07"/>${shape}<text x="240" y="260" fill="white" font-family="Arial" font-size="20" text-anchor="middle" letter-spacing="4">YOUR BRAND</text><text x="240" y="419" fill="#68706a" font-family="Arial" font-size="11" text-anchor="middle">SYNTHETIC PRODUCT ILLUSTRATION</text></svg>`;
-}
+
 main().catch(e=>{console.error(e.message);process.exit(1)});
