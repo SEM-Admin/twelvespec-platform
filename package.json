@@ -29,6 +29,7 @@
     "check:industry": "python3 scripts/check-industry-intelligence.py"
   },
   "dependencies": {
+    "@shopify/admin-api-client": "2.0.1",
     "better-auth": "1.7.18",
     "csv-parse": "7.0.3",
     "decimal.js": "10.6.0",

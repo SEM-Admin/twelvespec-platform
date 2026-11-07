@@ -2,10 +2,12 @@ import Decimal from 'decimal.js';
 import { authorize,create,event,fail,get,hash,idempotent,list,number,text,update, type Actor,type Tx,type Input,type Row } from '../../kernel/src/index';
 import { LocalEncryptedVault,PROVIDERS,mockCapabilities,supplierHosts,validateEndpoint, type ProviderType } from '../../providers/src/index';
 import { parseImport,validateMapping,type ParsedRow,type NormalizedProduct } from './imports';
+import {shopifyDomain,shopifyDemoSources,SHOPIFY_API_VERSION,SHOPIFY_ACTIVATION_REQUIREMENTS} from '../../providers/src/shopify';
+import {stageCatalogSources} from '../../catalog/src/sources';
 export * from './imports';
 const object=(v:unknown):Input=>v&&typeof v==='object'&&!Array.isArray(v)?v as Input:{};
 const vault=new LocalEncryptedVault();
-export function connectionSummary(connection:Row){const d=connection.data;return {id:connection.id,title:connection.title,status:connection.status,revision:connection.revision,data:{providerType:d.providerType,environment:d.environment,maskedHint:d.maskedHint??null,endpointHost:d.endpointHost??null,verification:d.verification??'NOT_CONFIGURED',schedule:d.schedule??null,help:d.help??null,lastSyncAt:d.lastSyncAt??null,nextSyncAt:d.nextSyncAt??null,vaultMode:d.vaultMode??null,pricePolicy:d.pricePolicy??null}};}
+export function connectionSummary(connection:Row){const d=connection.data;return {id:connection.id,title:connection.title,status:connection.status,revision:connection.revision,data:{providerType:d.providerType,environment:d.environment,maskedHint:d.maskedHint??null,endpointHost:d.endpointHost??null,verification:d.verification??'NOT_CONFIGURED',schedule:d.schedule??null,help:d.help??null,lastSyncAt:d.lastSyncAt??null,nextSyncAt:d.nextSyncAt??null,vaultMode:d.vaultMode??null,pricePolicy:d.pricePolicy??null,...(d.providerType==='SHOPIFY'?{shopDomain:d.shopDomain,apiVersion:d.apiVersion,activationRequirements:SHOPIFY_ACTIVATION_REQUIREMENTS,writeEnabled:false}:{})}};}
 export function validatePricePolicy(value:unknown){
  const p=object(value),targetMargin=number(p.targetMargin??0.4,0,0.95),floorMargin=number(p.floorMargin??0.3,0,targetMargin);const currency=String(p.currency??'USD');if(!/^[A-Z]{3}$/.test(currency))fail('PRICE_POLICY_CURRENCY_INVALID',400);
  const amount=(key:string):string|null=>{if(p[key]===undefined||p[key]===null||p[key]==='')return null;try{const value=new Decimal(String(p[key]));if(!value.isFinite()||value.isNegative()||value.decimalPlaces()>4)throw new Error();return value.toFixed(4);}catch{return fail('PRICE_POLICY_COST_INVALID',400);}};
@@ -20,10 +22,27 @@ export async function handleSupplier(tx:Tx,a:Actor,action:string,input:Input):Pr
  if(action==='create_connection'||action==='create'){
   const providerType=text(input.providerType) as ProviderType;if(!(providerType in PROVIDERS))fail('ADAPTER_UNSUPPORTED_USE_FILE_IMPORT',400);
   const environment=input.environment??'mock';if(!['mock','sandbox'].includes(String(environment)))fail('LIVE_CONNECTION_ACTIVATION_BLOCKED',403);
+  if(providerType==='SHOPIFY'&&environment!=='mock')fail('SHOPIFY_INSTALLATION_REQUIRED',403);
   let endpointHost:string|null=null;if(input.endpointHost){const value=text(input.endpointHost);const endpoint=validateEndpoint(value.startsWith('https://')?value:`https://${value}`,supplierHosts());endpointHost=endpoint.hostname;}
-  const row=await create(tx,a,'connections',{title:text(input.displayName??input.title),status:'NOT_CONFIGURED',data:{providerType,environment,endpointHost,help:PROVIDERS[providerType].help,verification:'NOT_CONFIGURED',writeEnabled:false,pricePolicy:validatePricePolicy(input.pricePolicy)}});
+  if(providerType==='SHOPIFY')endpointHost=shopifyDomain(input.shopDomain);
+  const row=await create(tx,a,'connections',{title:text(input.displayName??input.title),status:'NOT_CONFIGURED',data:{providerType,environment,endpointHost,help:PROVIDERS[providerType].help,verification:'NOT_CONFIGURED',writeEnabled:false,...(providerType==='SHOPIFY'?{shopDomain:endpointHost,apiVersion:SHOPIFY_API_VERSION,scopes:['read_products'],direction:'READ_ONLY',liveActivation:'BLOCKED'}:{pricePolicy:validatePricePolicy(input.pricePolicy)})}});
   for(const capability of PROVIDERS[providerType].services)await create(tx,a,'capabilities',{title:capability,connection_id:row.id,status:'NOT_CONFIGURED',data:{capability,verification:'NOT_CONFIGURED',available:false}});
   await event(tx,a,'supplier.connection_created',row.id,{providerType,environment});return connectionSummary(row);
+ }
+ if(['shopify_demo_import','shopify_activate','shopify_publish','shopify_orders'].includes(action)){
+  const connection=await get(tx,a,'connections',input.id,true);
+  if(connection.data.providerType!=='SHOPIFY')fail('SHOPIFY_CONNECTION_REQUIRED',400);
+  if(action!=='shopify_demo_import')fail('SHOPIFY_INSTALLATION_REQUIRED',403);
+  if(a.role!=='owner')fail('PERMISSION_DENIED',403);
+  if(connection.status==='DISABLED'||connection.data.environment!=='mock')fail('SHOPIFY_CONNECTION_NOT_AVAILABLE',403);
+  const commandKey=text(input.idempotencyKey,200);
+  return idempotent(tx,a,'supplier.shopify_demo_import',commandKey,{connectionId:connection.id},async()=>{
+   const sources=shopifyDemoSources(String(connection.data.shopDomain));
+   const result=await stageCatalogSources(tx,a,{sources,idempotencyKey:`shopify-demo:${hash({connectionId:connection.id,commandKey})}`});
+   const run=await create(tx,a,'sync_runs',{title:`Shopify demo: ${connection.title}`,status:'COMPLETE',connection_id:connection.id,data:{verification:'MOCKED',created:result.created,unchanged:result.unchanged,autoPublished:0,apiVersion:SHOPIFY_API_VERSION,observedAt:new Date().toISOString()}});
+   await update(tx,a,'connections',connection.id,{data:{...connection.data,lastSyncAt:new Date().toISOString(),verification:'MOCKED'}});
+   await event(tx,a,'supplier.shopify_demo_staged',connection.id,{runId:run.id,...result,externalRequests:0});return {...result,verification:'MOCKED',externalRequests:0};
+  });
  }
  if(action==='save_secret'){
   const row=await get(tx,a,'connections',input.id,true);if(!PROVIDERS[row.data.providerType as ProviderType].credentials.length)fail('PROVIDER_REQUIRES_NO_CREDENTIAL',400);
@@ -58,7 +77,7 @@ export async function handleSupplier(tx:Tx,a:Actor,action:string,input:Input):Pr
   await event(tx,a,'supplier.capabilities_checked',row.id,{evidence:good?'MOCKED':'BLOCKED',available:good,total:capabilities.length});return {connection:connectionSummary(next),capabilities};
  }
  if(action==='configure_pricing'){
-  const connection=await get(tx,a,'connections',input.id,true),pricePolicy=validatePricePolicy(input.pricePolicy);const next=await update(tx,a,'connections',connection.id,{data:{...connection.data,pricePolicy}});await event(tx,a,'supplier.price_policy_configured',connection.id,{targetMargin:pricePolicy.targetMargin,floorMargin:pricePolicy.floorMargin,currency:pricePolicy.currency});return connectionSummary(next);
+  const connection=await get(tx,a,'connections',input.id,true);if(connection.data.providerType==='SHOPIFY')fail('SHOPIFY_RETAIL_PRICE_NOT_SUPPLIER_COST',400);const pricePolicy=validatePricePolicy(input.pricePolicy);const next=await update(tx,a,'connections',connection.id,{data:{...connection.data,pricePolicy}});await event(tx,a,'supplier.price_policy_configured',connection.id,{targetMargin:pricePolicy.targetMargin,floorMargin:pricePolicy.floorMargin,currency:pricePolicy.currency});return connectionSummary(next);
  }
  if(action==='save_mapping'){
   const mapping=validateMapping(input.mapping),pricePolicy=validatePricePolicy(input.pricePolicy),title=text(input.title??'Supplier product mapping');
@@ -122,11 +141,11 @@ export async function handleSupplier(tx:Tx,a:Actor,action:string,input:Input):Pr
   });
  }
  if(action==='schedule_sync'){
-  const connection=await get(tx,a,'connections',input.id,true),s=object(input.schedule);const schedule={catalogMinutes:number(s.catalogMinutes??1440,60,525600),priceMinutes:number(s.priceMinutes??60,15,525600),inventoryMinutes:number(s.inventoryMinutes??15,5,525600),statusMinutes:number(s.statusMinutes??15,5,525600)};
+  const connection=await get(tx,a,'connections',input.id,true);if(connection.data.providerType==='SHOPIFY')fail('SHOPIFY_INSTALLATION_REQUIRED',403);const s=object(input.schedule);const schedule={catalogMinutes:number(s.catalogMinutes??1440,60,525600),priceMinutes:number(s.priceMinutes??60,15,525600),inventoryMinutes:number(s.inventoryMinutes??15,5,525600),statusMinutes:number(s.statusMinutes??15,5,525600)};
   const nextSyncAt=new Date(Date.now()+Math.min(...Object.values(schedule))*60000).toISOString();const next=await update(tx,a,'connections',connection.id,{data:{...connection.data,schedule,nextSyncAt}});await event(tx,a,'supplier.sync_scheduled',connection.id,{schedule,nextSyncAt});return connectionSummary(next);
  }
  if(action==='sync_now'){
-  const connection=await get(tx,a,'connections',input.id,true);const failed=Boolean(input.simulateFailure)||connection.data.environment!=='mock'||connection.status==='DISABLED';
+  const connection=await get(tx,a,'connections',input.id,true);if(connection.data.providerType==='SHOPIFY')fail('SHOPIFY_USE_EXPLICIT_DEMO_IMPORT',400);const failed=Boolean(input.simulateFailure)||connection.data.environment!=='mock'||connection.status==='DISABLED';
   const run=await create(tx,a,'sync_runs',{title:`Sync ${connection.title}`,status:failed?'FAILED':'COMPLETE',connection_id:connection.id,data:{verification:failed?'BLOCKED':'MOCKED',observedAt:new Date().toISOString(),reason:failed?'Supplier unavailable or service profile not authorized. Last published catalog remains unchanged.':'Mock provider returned deterministic safe evidence. Nothing automatically published.',attempts:1,rawHash:failed?null:hash(`mock:${connection.id}`)}});
   await update(tx,a,'connections',connection.id,{data:{...connection.data,lastSyncAt:new Date().toISOString(),freshness:failed?'STALE':'MOCKED_CURRENT'}});
   if(failed)await create(tx,a,'exceptions',{title:'Supplier sync failed; published catalog retained',status:'OPEN',connection_id:connection.id,data:{severity:'HIGH',syncRunId:run.id,nextAction:'Review credentials, capability and approved endpoint; then run a read-only test.'}});

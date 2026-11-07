@@ -10,9 +10,10 @@ import { createClientAsync, HttpClient } from 'soap';
 import { fail, hash, type Input } from '../../kernel/src/index';
 
 export type Verification = 'NOT_CONFIGURED'|'MOCKED'|'SANDBOX_VERIFIED'|'LIVE_VERIFIED'|'BLOCKED';
-export type ProviderType = 'PROMOSTANDARDS_SOAP'|'ASI_SMARTLINK'|'GENERIC_REST'|'CSV'|'XML'|'POD'|'SHIPPING'|'ACCOUNTING';
+export type ProviderType = 'PROMOSTANDARDS_SOAP'|'ASI_SMARTLINK'|'GENERIC_REST'|'CSV'|'XML'|'POD'|'SHIPPING'|'ACCOUNTING'|'SHOPIFY';
 export type Capability = { capability:string; verification:Verification; available:boolean; version?:string; reason?:string; checkedAt?:string };
 export const PROVIDERS:Record<ProviderType,{title:string;credentials:string[];services:string[];enabled:boolean;help:string}> = {
+ SHOPIFY:{title:'Shopify sales channel',credentials:[],services:['shop_identity','catalog_read'],enabled:true,help:'Read-only connector development preview. Demo imports are synthetic and private. Merchant installation, expiring OAuth, durable tokens and development-store verification are required before connecting a real store. No order, payment, publishing or fulfillment writes.'},
  PROMOSTANDARDS_SOAP:{title:'Direct PromoStandards supplier',credentials:['accountNumber','username','password'],services:['product_data','media','inventory','pricing_configuration','purchase_order','order_status','shipment_notification','invoice'],enabled:true,help:'Supplier API credentials are separate from the supplier website login. Each service/version is verified independently.'},
  ASI_SMARTLINK:{title:'ASI SmartLink (authorized accounts)',credentials:['accountId','clientId','clientSecret'],services:['catalog_search','product_details'],enabled:true,help:'ESP+ website access does not authorize SmartLink APIs. A developer agreement, API entitlement, official schema and image rights are required. No ESP+ scraping.'},
  GENERIC_REST:{title:'Direct REST supplier',credentials:['apiKey'],services:['catalog','price','inventory','fulfillment'],enabled:true,help:'Only registered, versioned provider schemas are supported. Unknown APIs use CSV/XML or manual fulfillment.'},

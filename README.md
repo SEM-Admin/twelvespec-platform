@@ -10,6 +10,8 @@ The [industry supplement](docs/industry-research/README.md) adds PPAI, PRINTING 
 
 The [owned catalog and reviewed quote workflow](docs/OWNED_CATALOG_AND_RFQ.md) lets operators stage source-only supplier facts, curate their own products and exact variants, upload approved photos and review publication. Customers submit immutable product specifications and project briefs; operators cost and issue reviewed quotes without exposing internal costs or unissued prices. Known supplier candidates stay private until reviewed. Current supplier prices/stock and production activation remain separate requirements.
 
+The [Shopify connector foundation](docs/SHOPIFY_CONNECTOR.md) adds merchant-scoped development channels, private synthetic catalog imports and a versioned read-only Admin GraphQL adapter. Real merchant installation and sales actions remain blocked. The [selling readiness assessment](docs/SELLING_READINESS.md) records why this new build is not yet approved for paid production orders.
+
 Run locally with Node.js 24:
 
 ```sh
