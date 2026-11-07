@@ -1,0 +1,2776 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Logical fields required to implement the original feature designs; not a physical database claim.",
+  "researchDate": "2026-11-06",
+  "timezone": "America/Chicago",
+  "entities": [
+    {
+      "name": "scoped_record",
+      "module": "foundation",
+      "features": [
+        "F28",
+        "F32"
+      ],
+      "owner": "Kernel and database",
+      "lifecycle": "Every business record",
+      "fields": [
+        {
+          "id": "scoped_record.id",
+          "name": "id",
+          "proposedType": "uuid",
+          "definition": "Stable record identifier.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.tenant_id",
+          "name": "tenant_id",
+          "proposedType": "uuid",
+          "definition": "Tenant owning the business record; resolved from the authenticated session.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.workspace_id",
+          "name": "workspace_id",
+          "proposedType": "uuid",
+          "definition": "Workspace owning the record; included in composite foreign keys.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.revision",
+          "name": "revision",
+          "proposedType": "bigint",
+          "definition": "Monotonically increasing optimistic concurrency version.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.status",
+          "name": "status",
+          "proposedType": "enum",
+          "definition": "Entity-specific state, validated against allowed transitions.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.created_at",
+          "name": "created_at",
+          "proposedType": "timestamptz",
+          "definition": "Server creation instant; store UTC and display in the selected business timezone.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.updated_at",
+          "name": "updated_at",
+          "proposedType": "timestamptz",
+          "definition": "Server update instant; never a client-supplied authority.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.created_by",
+          "name": "created_by",
+          "proposedType": "uuid",
+          "definition": "Verified actor or scoped service identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.correlation_id",
+          "name": "correlation_id",
+          "proposedType": "uuid",
+          "definition": "Trace joining command, audit event, outbox and provider attempts.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "scoped_record.origin",
+          "name": "origin",
+          "proposedType": "enum",
+          "definition": "SYNTHETIC, MANUAL or documented external source; provenance is explicit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Apply these common fields to scoped domain records; never rely on a JSON workspace label for isolation.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "company_membership",
+      "module": "crm",
+      "features": [
+        "F09",
+        "F34"
+      ],
+      "owner": "CRM and identity",
+      "lifecycle": "Invite \u2192 active \u2192 revoked",
+      "fields": [
+        {
+          "id": "company_membership.company_id",
+          "name": "company_id",
+          "proposedType": "uuid",
+          "definition": "Canonical customer organization.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.contact_id",
+          "name": "contact_id",
+          "proposedType": "uuid",
+          "definition": "Person with account relationships; separate from authenticated login identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.user_id",
+          "name": "user_id",
+          "proposedType": "uuid nullable",
+          "definition": "Login identity if the person has accepted access.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.location_id",
+          "name": "location_id",
+          "proposedType": "uuid nullable",
+          "definition": "Company location grant; null means only explicitly defined company-wide access.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.role_id",
+          "name": "role_id",
+          "proposedType": "uuid",
+          "definition": "Scoped buyer role, independent of staff role.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.catalog_assignment_id",
+          "name": "catalog_assignment_id",
+          "proposedType": "uuid nullable",
+          "definition": "Catalog eligibility policy applicable to this membership.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.address_policy_id",
+          "name": "address_policy_id",
+          "proposedType": "uuid nullable",
+          "definition": "Allowed ship-to and bill-to policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.approval_limit",
+          "name": "approval_limit",
+          "proposedType": "numeric(18,4) nullable",
+          "definition": "Approved purchasing authority; unknown does not mean unlimited.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Currency for the authority limit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "company_membership.revoked_at",
+          "name": "revoked_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Immediate server authorization cutoff when revoked.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Unique active grant by company/contact/location/role; foreign keys include tenant/workspace and company ownership.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "crm_opportunity",
+      "module": "crm",
+      "features": [
+        "F08",
+        "F34"
+      ],
+      "owner": "CRM",
+      "lifecycle": "New \u2192 qualified \u2192 quoting \u2192 won/lost",
+      "fields": [
+        {
+          "id": "crm_opportunity.account_id",
+          "name": "account_id",
+          "proposedType": "uuid",
+          "definition": "Customer account owning the opportunity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.primary_contact_id",
+          "name": "primary_contact_id",
+          "proposedType": "uuid",
+          "definition": "Scoped contact linked to the account.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.owner_id",
+          "name": "owner_id",
+          "proposedType": "uuid",
+          "definition": "Accountable sales operator.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.source",
+          "name": "source",
+          "proposedType": "text",
+          "definition": "Attributable lead source without invented campaign performance.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.stage",
+          "name": "stage",
+          "proposedType": "enum",
+          "definition": "Versioned sales pipeline stage.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.expected_value",
+          "name": "expected_value",
+          "proposedType": "numeric(18,4) nullable",
+          "definition": "Sales estimate, not recognized revenue.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Currency of expected value.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.required_in_hand_date",
+          "name": "required_in_hand_date",
+          "proposedType": "date nullable",
+          "definition": "Customer requested arrival date, distinguished from a promise.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.next_action_at",
+          "name": "next_action_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Scheduled follow-through.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "crm_opportunity.closed_reason",
+          "name": "closed_reason",
+          "proposedType": "text nullable",
+          "definition": "Required on a lost or disqualified transition.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Moving to won links an accepted agreement; it does not establish payment or shipment.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "canonical_variant",
+      "module": "catalog",
+      "features": [
+        "F02",
+        "F03"
+      ],
+      "owner": "Catalog",
+      "lifecycle": "Draft \u2192 reviewed \u2192 published \u2192 archived",
+      "fields": [
+        {
+          "id": "canonical_variant.product_id",
+          "name": "product_id",
+          "proposedType": "uuid",
+          "definition": "Canonical product family.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.manufacturer_id",
+          "name": "manufacturer_id",
+          "proposedType": "uuid nullable",
+          "definition": "Documented manufacturer identity, unknown allowed pending review.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.brand_id",
+          "name": "brand_id",
+          "proposedType": "uuid nullable",
+          "definition": "Consumer/manufacturer brand, distinct from private supplier identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.manufacturer_part",
+          "name": "manufacturer_part",
+          "proposedType": "text nullable",
+          "definition": "Manufacturer style or part identifier with provenance.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.gtin",
+          "name": "gtin",
+          "proposedType": "text nullable",
+          "definition": "GTIN with syntax and identity verification recorded separately.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.color_id",
+          "name": "color_id",
+          "proposedType": "uuid",
+          "definition": "Normalized color with original source color retained separately.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.size_id",
+          "name": "size_id",
+          "proposedType": "uuid",
+          "definition": "Size or dimension identity; not inferred from product title.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.material_id",
+          "name": "material_id",
+          "proposedType": "uuid nullable",
+          "definition": "Material classification used by configuration rules.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.variant_revision",
+          "name": "variant_revision",
+          "proposedType": "bigint",
+          "definition": "Specific variant revision used in configurations.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "canonical_variant.publication_id",
+          "name": "publication_id",
+          "proposedType": "uuid nullable",
+          "definition": "Approved public projection revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "No automatic merge on title or unverified GTIN alone; ambiguous identity requires review.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "supplier_offer",
+      "module": "supplier",
+      "features": [
+        "F03",
+        "F16",
+        "F18"
+      ],
+      "owner": "Integration Center",
+      "lifecycle": "Mapped \u2192 reviewed \u2192 eligible \u2192 stale/disabled/rolled back",
+      "fields": [
+        {
+          "id": "supplier_offer.connection_id",
+          "name": "connection_id",
+          "proposedType": "uuid",
+          "definition": "Authorized source connection.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.external_product_id",
+          "name": "external_product_id",
+          "proposedType": "text",
+          "definition": "Provider-scoped product identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.external_part_id",
+          "name": "external_part_id",
+          "proposedType": "text",
+          "definition": "Provider-scoped exact purchasable part identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.canonical_variant_id",
+          "name": "canonical_variant_id",
+          "proposedType": "uuid",
+          "definition": "Reviewed mapping to a canonical variant.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.source_location_id",
+          "name": "source_location_id",
+          "proposedType": "text nullable",
+          "definition": "Warehouse or FOB identity if supplied.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.catalog_region",
+          "name": "catalog_region",
+          "proposedType": "text",
+          "definition": "Provider catalog geography; US/Canada remain distinct.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Currency in the supplied price evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.observed_at",
+          "name": "observed_at",
+          "proposedType": "timestamptz",
+          "definition": "When this source evidence was obtained.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.valid_until",
+          "name": "valid_until",
+          "proposedType": "timestamptz nullable",
+          "definition": "Declared or configured freshness deadline.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "supplier_offer.import_manifest_id",
+          "name": "import_manifest_id",
+          "proposedType": "uuid nullable",
+          "definition": "Originating import and rollback eligibility.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Unique provider identity includes connection; new commercial use requires an eligible, current offer.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "media_right",
+      "module": "catalog",
+      "features": [
+        "F03",
+        "F25"
+      ],
+      "owner": "Catalog publication",
+      "lifecycle": "Proposed \u2192 approved \u2192 expired/revoked",
+      "fields": [
+        {
+          "id": "media_right.asset_id",
+          "name": "asset_id",
+          "proposedType": "uuid",
+          "definition": "Stored image or derivative.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.owner_reference",
+          "name": "owner_reference",
+          "proposedType": "text",
+          "definition": "Documented asset rights owner or contract reference.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.source_url",
+          "name": "source_url",
+          "proposedType": "text nullable",
+          "definition": "Permitted original source, without embedded credentials.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.license_reference",
+          "name": "license_reference",
+          "proposedType": "text",
+          "definition": "Evidence supporting reuse; no assumed rights from public visibility.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.allowed_channels",
+          "name": "allowed_channels",
+          "proposedType": "text[]",
+          "definition": "Permitted storefront, company store or marketing channels.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.allowed_regions",
+          "name": "allowed_regions",
+          "proposedType": "text[]",
+          "definition": "Permitted customer regions.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.expires_at",
+          "name": "expires_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Rights expiry if applicable.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.approved_by",
+          "name": "approved_by",
+          "proposedType": "uuid",
+          "definition": "Authorized rights reviewer.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "media_right.public_projection_id",
+          "name": "public_projection_id",
+          "proposedType": "uuid nullable",
+          "definition": "Publication using this license.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Public asset delivery checks current rights and projection; private source details are not serialized.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "configuration_revision",
+      "module": "configuration",
+      "features": [
+        "F02",
+        "F31"
+      ],
+      "owner": "Product rules",
+      "lifecycle": "Draft \u2192 validated \u2192 frozen",
+      "fields": [
+        {
+          "id": "configuration_revision.variant_id",
+          "name": "variant_id",
+          "proposedType": "uuid",
+          "definition": "Exact canonical variant selected.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.family_revision_id",
+          "name": "family_revision_id",
+          "proposedType": "uuid",
+          "definition": "Published product rule family used to validate.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.quantity",
+          "name": "quantity",
+          "proposedType": "integer",
+          "definition": "Positive quantity respecting minimum and increment.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.method_id",
+          "name": "method_id",
+          "proposedType": "uuid",
+          "definition": "Supported decoration or print method.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.imprint_area_id",
+          "name": "imprint_area_id",
+          "proposedType": "uuid",
+          "definition": "Exact eligible product print location.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.dimensions_mm",
+          "name": "dimensions_mm",
+          "proposedType": "structured decimal",
+          "definition": "Named width/height/depth with explicit conversion evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.stock_id",
+          "name": "stock_id",
+          "proposedType": "uuid nullable",
+          "definition": "Paper/substrate option when applicable.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.finish_ids",
+          "name": "finish_ids",
+          "proposedType": "uuid[]",
+          "definition": "Approved finish selection, evaluated for compatibility.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.print_side_count",
+          "name": "print_side_count",
+          "proposedType": "integer",
+          "definition": "Required printed sides and file roles.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "configuration_revision.configuration_hash",
+          "name": "configuration_hash",
+          "proposedType": "text",
+          "definition": "Hash of all manufacturing-relevant inputs and revisions.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Persist relational option selections and normalized units; server recalculates compatibility, never trusts a client valid flag.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "design_binding",
+      "module": "creative",
+      "features": [
+        "F05",
+        "F06",
+        "F07"
+      ],
+      "owner": "Creative Studio",
+      "lifecycle": "Editable project \u2192 immutable design revision",
+      "fields": [
+        {
+          "id": "design_binding.project_id",
+          "name": "project_id",
+          "proposedType": "uuid",
+          "definition": "Shared customer/staff project identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.design_version_id",
+          "name": "design_version_id",
+          "proposedType": "uuid",
+          "definition": "Immutable saved layer/content revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.product_id",
+          "name": "product_id",
+          "proposedType": "uuid",
+          "definition": "Bound product family.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.variant_id",
+          "name": "variant_id",
+          "proposedType": "uuid",
+          "definition": "Bound exact color/size variant.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.configuration_id",
+          "name": "configuration_id",
+          "proposedType": "uuid",
+          "definition": "Validated method, quantity and location revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.template_revision_id",
+          "name": "template_revision_id",
+          "proposedType": "uuid nullable",
+          "definition": "Editable template version and locked-field policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.brand_kit_revision_id",
+          "name": "brand_kit_revision_id",
+          "proposedType": "uuid nullable",
+          "definition": "Company brand rules and licensed fonts/assets.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.document_hash",
+          "name": "document_hash",
+          "proposedType": "text",
+          "definition": "Hash of design content, insufficient by itself for approval reuse.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.layer_manifest",
+          "name": "layer_manifest",
+          "proposedType": "private structured record",
+          "definition": "Layer identities and transforms with original asset references.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "design_binding.rebind_reason",
+          "name": "rebind_reason",
+          "proposedType": "text nullable",
+          "definition": "Attributable reason for changing variant or manufacturing context.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Binding tuple must match proof and order snapshots; changes create a new revision and revoke affected approvals.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "artwork_artifact",
+      "module": "creative",
+      "features": [
+        "F05",
+        "F07",
+        "F31"
+      ],
+      "owner": "Private storage and Creative Studio",
+      "lifecycle": "Uploaded \u2192 scanned \u2192 reviewed \u2192 exportable",
+      "fields": [
+        {
+          "id": "artwork_artifact.storage_key",
+          "name": "storage_key",
+          "proposedType": "private text",
+          "definition": "Opaque private object key; not an unauthenticated public URL.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.content_hash",
+          "name": "content_hash",
+          "proposedType": "text",
+          "definition": "Integrity hash of exact bytes.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.mime_type",
+          "name": "mime_type",
+          "proposedType": "text",
+          "definition": "Server-verified type rather than trusting the file extension.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.byte_length",
+          "name": "byte_length",
+          "proposedType": "bigint",
+          "definition": "Enforced upload and processing size bound.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.file_role",
+          "name": "file_role",
+          "proposedType": "enum",
+          "definition": "Artwork front/back/mask/source/proof/production output as applicable.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.scan_status",
+          "name": "scan_status",
+          "proposedType": "enum",
+          "definition": "Pending, passed, failed or unavailable; unavailable never implies clean.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.design_version_id",
+          "name": "design_version_id",
+          "proposedType": "uuid",
+          "definition": "Exact revision represented by the artifact.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.render_job_id",
+          "name": "render_job_id",
+          "proposedType": "uuid nullable",
+          "definition": "Durable derivative-generation job.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.rights_reference",
+          "name": "rights_reference",
+          "proposedType": "uuid nullable",
+          "definition": "Brand, font or artwork permission evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "artwork_artifact.retention_policy_id",
+          "name": "retention_policy_id",
+          "proposedType": "uuid",
+          "definition": "Approved retention and deletion policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Serving an artifact checks tenant/resource grants and current artifact purpose; production files require completed method review.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "proof_decision",
+      "module": "creative",
+      "features": [
+        "F07"
+      ],
+      "owner": "Proofing",
+      "lifecycle": "Issued \u2192 approved/changes requested/superseded",
+      "fields": [
+        {
+          "id": "proof_decision.proof_revision_id",
+          "name": "proof_revision_id",
+          "proposedType": "uuid",
+          "definition": "Named immutable proof artifact revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.design_version_id",
+          "name": "design_version_id",
+          "proposedType": "uuid",
+          "definition": "Exact design revision under review.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.variant_id",
+          "name": "variant_id",
+          "proposedType": "uuid",
+          "definition": "Exact color/size variant under review.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.configuration_hash",
+          "name": "configuration_hash",
+          "proposedType": "text",
+          "definition": "Manufacturing inputs represented by the proof.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.proof_artifact_hash",
+          "name": "proof_artifact_hash",
+          "proposedType": "text",
+          "definition": "Hash of reviewed bytes.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.decision",
+          "name": "decision",
+          "proposedType": "enum",
+          "definition": "Approved or changes requested, not a generic boolean on a mutable project.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.decided_by",
+          "name": "decided_by",
+          "proposedType": "uuid",
+          "definition": "Authorized buyer or delegated approver.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.decided_at",
+          "name": "decided_at",
+          "proposedType": "timestamptz",
+          "definition": "Server decision timestamp.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.decision_note",
+          "name": "decision_note",
+          "proposedType": "text nullable",
+          "definition": "Requested changes or qualified acknowledgement.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "proof_decision.superseded_by",
+          "name": "superseded_by",
+          "proposedType": "uuid nullable",
+          "definition": "Replacement proof revision if inputs change.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Approval requires matching project/product/variant/design/configuration and active buyer authority; rejected stale proofs remain in history.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "preflight_review",
+      "module": "creative",
+      "features": [
+        "F07",
+        "F31",
+        "F35"
+      ],
+      "owner": "Qualified prepress operator",
+      "lifecycle": "Pending \u2192 blocked/passed \u2192 invalidated",
+      "fields": [
+        {
+          "id": "preflight_review.artifact_id",
+          "name": "artifact_id",
+          "proposedType": "uuid",
+          "definition": "Exact production artifact under review.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.manufacturing_revision_id",
+          "name": "manufacturing_revision_id",
+          "proposedType": "uuid",
+          "definition": "Method-specific specification revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.check_profile_version",
+          "name": "check_profile_version",
+          "proposedType": "text",
+          "definition": "Versioned review checklist for the selected method.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.check_code",
+          "name": "check_code",
+          "proposedType": "text",
+          "definition": "Examples: resolution, bleed, text outline, print area or digitization evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.result",
+          "name": "result",
+          "proposedType": "enum",
+          "definition": "Passed, failed, manual review required or not applicable with reason.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.reviewer_id",
+          "name": "reviewer_id",
+          "proposedType": "uuid nullable",
+          "definition": "Required for a manual check decision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.evidence_reference",
+          "name": "evidence_reference",
+          "proposedType": "text nullable",
+          "definition": "Private report or evidence supporting the decision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.reviewed_at",
+          "name": "reviewed_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Server completion time.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "preflight_review.invalidated_reason",
+          "name": "invalidated_reason",
+          "proposedType": "text nullable",
+          "definition": "Input or policy change revoking the result.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Aggregate pass requires all applicable checks; a manual result is permissioned and attributable, never an unconditional escape hatch.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "cost_evidence",
+      "module": "estimating",
+      "features": [
+        "F04",
+        "F18",
+        "F24"
+      ],
+      "owner": "Estimating",
+      "lifecycle": "Observed \u2192 validated \u2192 frozen/expired",
+      "fields": [
+        {
+          "id": "cost_evidence.offer_id",
+          "name": "offer_id",
+          "proposedType": "uuid",
+          "definition": "Exact eligible supplier offer.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.component_code",
+          "name": "component_code",
+          "proposedType": "enum",
+          "definition": "Blank, decoration, setup, prepress, packaging, labor, freight or other direct component.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.unit_cost",
+          "name": "unit_cost",
+          "proposedType": "numeric(20,8) nullable",
+          "definition": "Supplier precision retained; unknown remains null.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.quantity",
+          "name": "quantity",
+          "proposedType": "integer",
+          "definition": "Quantity to which the unit value applies.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.quantity_basis",
+          "name": "quantity_basis",
+          "proposedType": "enum",
+          "definition": "Per item, per setup, per shipment or per kit; prevents double extension.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.extended_cost",
+          "name": "extended_cost",
+          "proposedType": "numeric(20,8) nullable",
+          "definition": "Precise amount before commercial rounding.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Currency with explicit FX policy if conversion is authorized.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.price_break_minimum",
+          "name": "price_break_minimum",
+          "proposedType": "integer nullable",
+          "definition": "Applicable quantity tier threshold.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.source_quote_reference",
+          "name": "source_quote_reference",
+          "proposedType": "text nullable",
+          "definition": "External quote or rate identifier with expiry.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "cost_evidence.assumption_status",
+          "name": "assumption_status",
+          "proposedType": "enum",
+          "definition": "Verified evidence, explicit estimate or unknown.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Negative or non-finite values are rejected; all required components must be known for a firm price; do not round unit costs to cents first.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "agreement_line",
+      "module": "sales",
+      "features": [
+        "F04",
+        "F10",
+        "F13",
+        "F14",
+        "F15"
+      ],
+      "owner": "Sales agreement",
+      "lifecycle": "Draft \u2192 issued \u2192 accepted/expired \u2192 superseded",
+      "fields": [
+        {
+          "id": "agreement_line.agreement_revision_id",
+          "name": "agreement_revision_id",
+          "proposedType": "uuid",
+          "definition": "Immutable commercial revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.seller_id",
+          "name": "seller_id",
+          "proposedType": "uuid",
+          "definition": "Assigned legal seller rather than the first available seller record.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.configuration_id",
+          "name": "configuration_id",
+          "proposedType": "uuid",
+          "definition": "Frozen product/method/options snapshot.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.design_binding_id",
+          "name": "design_binding_id",
+          "proposedType": "uuid nullable",
+          "definition": "Exact design and relevant proof decision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.store_context_id",
+          "name": "store_context_id",
+          "proposedType": "uuid nullable",
+          "definition": "Program, company/location, brand-kit and allowance context.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.kit_configuration_id",
+          "name": "kit_configuration_id",
+          "proposedType": "uuid nullable",
+          "definition": "Frozen kit bill of materials and assembly rules.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.cost_snapshot_id",
+          "name": "cost_snapshot_id",
+          "proposedType": "uuid",
+          "definition": "Internal frozen source and landed cost evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.net_revenue",
+          "name": "net_revenue",
+          "proposedType": "numeric(18,4)",
+          "definition": "Customer amount excluding separately collected tax.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Commercial currency.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "agreement_line.valid_until",
+          "name": "valid_until",
+          "proposedType": "timestamptz",
+          "definition": "Acceptance expiry for this agreement revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Snapshot includes quantities, prices, terms and assumptions; customer projection excludes source identity, supplier costs and credentials.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "credit_and_payment_gate",
+      "module": "finance",
+      "features": [
+        "F14",
+        "F19",
+        "F24"
+      ],
+      "owner": "Finance approvals and provider evidence",
+      "lifecycle": "Pending \u2192 approved/verified \u2192 revoked/expired",
+      "fields": [
+        {
+          "id": "credit_and_payment_gate.account_id",
+          "name": "account_id",
+          "proposedType": "uuid",
+          "definition": "Account whose aggregate exposure is evaluated.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.credit_approval_id",
+          "name": "credit_approval_id",
+          "proposedType": "uuid nullable",
+          "definition": "Explicit qualifying credit decision, never inferred from order history alone.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.credit_limit",
+          "name": "credit_limit",
+          "proposedType": "numeric(18,4) nullable",
+          "definition": "Approved exposure ceiling.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.open_exposure",
+          "name": "open_exposure",
+          "proposedType": "numeric(18,4)",
+          "definition": "Recalculated relevant outstanding commitments.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.completed_order_count",
+          "name": "completed_order_count",
+          "proposedType": "integer",
+          "definition": "Defined qualifying order history used by prepaid policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.required_payment_amount",
+          "name": "required_payment_amount",
+          "proposedType": "numeric(18,4)",
+          "definition": "Required prepaid/deposit amount for the exact agreement.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.provider_event_id",
+          "name": "provider_event_id",
+          "proposedType": "text nullable",
+          "definition": "Verified payment event; globally unique within provider/account scope.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.payment_state",
+          "name": "payment_state",
+          "proposedType": "enum",
+          "definition": "Required, authorized, captured, refunded or disputed as supported.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.payout_reference",
+          "name": "payout_reference",
+          "proposedType": "text nullable",
+          "definition": "Processor settlement reference, distinct from customer payment.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "credit_and_payment_gate.supplier_charge_reference",
+          "name": "supplier_charge_reference",
+          "proposedType": "text nullable",
+          "definition": "Provider payable event, distinct from customer receipt.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Acceptance and exposure reservation must be atomic; a checkout redirect cannot satisfy the evidence gate.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "store_program",
+      "module": "stores",
+      "features": [
+        "F09",
+        "F10",
+        "F11",
+        "F12"
+      ],
+      "owner": "Company store administration",
+      "lifecycle": "Draft \u2192 reviewed \u2192 active \u2192 closed",
+      "fields": [
+        {
+          "id": "store_program.type",
+          "name": "type",
+          "proposedType": "enum",
+          "definition": "Company, school, event, pop-up, redemption or fundraiser reference program.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.company_id",
+          "name": "company_id",
+          "proposedType": "uuid",
+          "definition": "Customer organization controlling this program.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.catalog_revision_id",
+          "name": "catalog_revision_id",
+          "proposedType": "uuid",
+          "definition": "Permitted product assignments.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.brand_kit_revision_id",
+          "name": "brand_kit_revision_id",
+          "proposedType": "uuid nullable",
+          "definition": "Required artwork policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.starts_at",
+          "name": "starts_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Server-enforced opening boundary.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.closes_at",
+          "name": "closes_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Server-enforced closing boundary.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.business_timezone",
+          "name": "business_timezone",
+          "proposedType": "iana timezone",
+          "definition": "Timezone for displayed campaign deadlines and business calendars.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.approval_policy_id",
+          "name": "approval_policy_id",
+          "proposedType": "uuid",
+          "definition": "Versioned buyer/manager policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.funding_type",
+          "name": "funding_type",
+          "proposedType": "enum",
+          "definition": "Buyer payment, company allowance or redemption; settlement rules remain separate.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "store_program.settlement_status",
+          "name": "settlement_status",
+          "proposedType": "enum",
+          "definition": "Reference-only/blocked where complex settlement is unimplemented.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Program context is a first-class foreign key in commercial records; closing a program does not silently purchase or settle funds.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "budget_reservation",
+      "module": "stores",
+      "features": [
+        "F10",
+        "F12"
+      ],
+      "owner": "Store budget ledger",
+      "lifecycle": "Reserved \u2192 committed/released/expired",
+      "fields": [
+        {
+          "id": "budget_reservation.budget_id",
+          "name": "budget_id",
+          "proposedType": "uuid",
+          "definition": "Scoped budget with an approved limit and currency.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.buyer_membership_id",
+          "name": "buyer_membership_id",
+          "proposedType": "uuid",
+          "definition": "Eligible buyer and location grant.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.agreement_revision_id",
+          "name": "agreement_revision_id",
+          "proposedType": "uuid",
+          "definition": "Exact commitment being reserved.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.amount",
+          "name": "amount",
+          "proposedType": "numeric(18,4)",
+          "definition": "Reservation amount under the policy-defined tax/freight treatment.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Budget currency; no implicit conversion.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.idempotency_key",
+          "name": "idempotency_key",
+          "proposedType": "text",
+          "definition": "Stable key for this reservation request.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.expires_at",
+          "name": "expires_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Expiry tied to quote/program policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.approval_id",
+          "name": "approval_id",
+          "proposedType": "uuid nullable",
+          "definition": "Required scoped approval for the reservation.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.release_reason",
+          "name": "release_reason",
+          "proposedType": "enum nullable",
+          "definition": "Cancelled, expired, replaced or rejected.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "budget_reservation.committed_at",
+          "name": "committed_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Transition into spent/consumed usage per approved policy.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Lock the budget row and check limit minus spent minus reserved; commitment and release are each exactly-once transitions.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "kit_configuration",
+      "module": "byob",
+      "features": [
+        "F13"
+      ],
+      "owner": "Bundle builder and MIS",
+      "lifecycle": "Configured \u2192 priced \u2192 frozen \u2192 assembled",
+      "fields": [
+        {
+          "id": "kit_configuration.template_revision_id",
+          "name": "template_revision_id",
+          "proposedType": "uuid",
+          "definition": "Permitted kit template and component rules.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.component_variant_id",
+          "name": "component_variant_id",
+          "proposedType": "uuid",
+          "definition": "Exact component identity, one relational row per component.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.component_quantity",
+          "name": "component_quantity",
+          "proposedType": "integer",
+          "definition": "Required quantity per kit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.optional_group_id",
+          "name": "optional_group_id",
+          "proposedType": "uuid nullable",
+          "definition": "Mutually exclusive or optional group identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.packaging_spec_id",
+          "name": "packaging_spec_id",
+          "proposedType": "uuid",
+          "definition": "Box, filler, insert and other approved packaging.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.assembly_operation_id",
+          "name": "assembly_operation_id",
+          "proposedType": "uuid",
+          "definition": "Required assembly and labor specification.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.kit_quantity",
+          "name": "kit_quantity",
+          "proposedType": "integer",
+          "definition": "Ordered number of complete kits.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.inbound_destination_id",
+          "name": "inbound_destination_id",
+          "proposedType": "uuid",
+          "definition": "Assembly receiving location.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.component_cost_snapshot_id",
+          "name": "component_cost_snapshot_id",
+          "proposedType": "uuid",
+          "definition": "Exact cost basis, with freight legs separated.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "kit_configuration.assembly_qc_policy_id",
+          "name": "assembly_qc_policy_id",
+          "proposedType": "uuid",
+          "definition": "Completeness and quality checks before dispatch.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Commercial lines retain kit identity; component and packaging quantities extend from kit quantity and remain traceable to jobs.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "connection_profile",
+      "module": "supplier",
+      "features": [
+        "F16",
+        "F18",
+        "F19",
+        "F29"
+      ],
+      "owner": "Integration Center",
+      "lifecycle": "Draft \u2192 tested \u2192 approved \u2192 active/revoked",
+      "fields": [
+        {
+          "id": "connection_profile.provider_type",
+          "name": "provider_type",
+          "proposedType": "enum",
+          "definition": "Direct PromoStandards, reviewed REST, licensed ASI, CSV/XML, POD, shipping or accounting.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.profile_id",
+          "name": "profile_id",
+          "proposedType": "text",
+          "definition": "Registered adapter/schema identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.profile_version",
+          "name": "profile_version",
+          "proposedType": "text",
+          "definition": "Pinned reviewed provider contract version.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.environment",
+          "name": "environment",
+          "proposedType": "enum",
+          "definition": "Mock, sandbox or approved live.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.secret_handle",
+          "name": "secret_handle",
+          "proposedType": "opaque text",
+          "definition": "Server-only managed secret reference, never plaintext credentials.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.allowed_endpoint_id",
+          "name": "allowed_endpoint_id",
+          "proposedType": "uuid",
+          "definition": "Reviewed HTTPS host/service allowlist entry.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.entitlement_reference",
+          "name": "entitlement_reference",
+          "proposedType": "uuid nullable",
+          "definition": "Account/API/media license evidence required for activation.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.capability",
+          "name": "capability",
+          "proposedType": "enum",
+          "definition": "One independent product/media/stock/price/PO/status/shipment/invoice operation.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.verification",
+          "name": "verification",
+          "proposedType": "enum",
+          "definition": "NOT_CONFIGURED, MOCKED, SANDBOX_VERIFIED, LIVE_VERIFIED or BLOCKED.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "connection_profile.verified_at",
+          "name": "verified_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "When exact capability evidence was collected.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "A successful capability test changes only that operation; live purchase activation requires independent explicit authorization.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "mapping_and_sync",
+      "module": "supplier",
+      "features": [
+        "F16",
+        "F17",
+        "F18"
+      ],
+      "owner": "Import and synchronization service",
+      "lifecycle": "Draft mapping \u2192 preview \u2192 committed \u2192 scheduled",
+      "fields": [
+        {
+          "id": "mapping_and_sync.connection_id",
+          "name": "connection_id",
+          "proposedType": "uuid",
+          "definition": "Scoped source connection.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.mapping_revision",
+          "name": "mapping_revision",
+          "proposedType": "bigint",
+          "definition": "Immutable field and option mapping revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.source_field",
+          "name": "source_field",
+          "proposedType": "text",
+          "definition": "Source schema/file field name.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.canonical_field",
+          "name": "canonical_field",
+          "proposedType": "text",
+          "definition": "Allowlisted canonical target.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.transform_id",
+          "name": "transform_id",
+          "proposedType": "text nullable",
+          "definition": "Approved bounded transform, never arbitrary user-supplied execution.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.unit_and_currency_policy",
+          "name": "unit_and_currency_policy",
+          "proposedType": "structured record",
+          "definition": "Explicit conversions with unknown handling.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.operation",
+          "name": "operation",
+          "proposedType": "enum",
+          "definition": "Catalog, inventory, pricing or order status, each independent.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.cursor",
+          "name": "cursor",
+          "proposedType": "private structured value nullable",
+          "definition": "Provider-specific continuation/resume cursor.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.freshness_seconds",
+          "name": "freshness_seconds",
+          "proposedType": "integer",
+          "definition": "Configured maximum age for the operation\u2019s evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "mapping_and_sync.last_success_at",
+          "name": "last_success_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Last completed operation, not a global connection success timestamp.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Mapping preview performs no publication or supplier spend; independent cursors and retry state preserve partial progress.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "import_change",
+      "module": "supplier",
+      "features": [
+        "F17"
+      ],
+      "owner": "Staged import pipeline",
+      "lifecycle": "Staged \u2192 reviewed \u2192 committed \u2192 rolled back/conflict",
+      "fields": [
+        {
+          "id": "import_change.import_file_id",
+          "name": "import_file_id",
+          "proposedType": "uuid",
+          "definition": "Private input file with checksum and bounded size.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.mapping_revision_id",
+          "name": "mapping_revision_id",
+          "proposedType": "uuid",
+          "definition": "Mapping used for this exact preview.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.row_number",
+          "name": "row_number",
+          "proposedType": "integer",
+          "definition": "Attributable input location or XML path index.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.source_identity",
+          "name": "source_identity",
+          "proposedType": "text",
+          "definition": "Provider-scoped stable identity for matching.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.proposed_target_id",
+          "name": "proposed_target_id",
+          "proposedType": "uuid nullable",
+          "definition": "Existing or proposed canonical/source target.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.before_revision",
+          "name": "before_revision",
+          "proposedType": "bigint nullable",
+          "definition": "Expected target revision at commit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.field_diff",
+          "name": "field_diff",
+          "proposedType": "structured record",
+          "definition": "Reviewable before/after values with sensitive fields redacted.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.validation_errors",
+          "name": "validation_errors",
+          "proposedType": "structured list",
+          "definition": "Row/field-level actionable errors.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.committed_revision",
+          "name": "committed_revision",
+          "proposedType": "bigint nullable",
+          "definition": "Target revision produced by commit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "import_change.rollback_state",
+          "name": "rollback_state",
+          "proposedType": "enum",
+          "definition": "Not applied, reversible, rolled back or conflict requiring review.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Commit is idempotent and scoped; rollback requires the expected committed revision and never overwrites later edits.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "job_operation",
+      "module": "orders",
+      "features": [
+        "F20",
+        "F31",
+        "F35"
+      ],
+      "owner": "Print MIS",
+      "lifecycle": "Planned \u2192 ready \u2192 in progress \u2192 complete/blocked",
+      "fields": [
+        {
+          "id": "job_operation.order_line_id",
+          "name": "order_line_id",
+          "proposedType": "uuid",
+          "definition": "Frozen customer requirement being fulfilled.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.job_id",
+          "name": "job_id",
+          "proposedType": "uuid",
+          "definition": "Production/sourcing job containing this operation.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.operation_type",
+          "name": "operation_type",
+          "proposedType": "enum",
+          "definition": "Supply, decorate, print, assemble, inspect, pack or dispatch.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.predecessor_id",
+          "name": "predecessor_id",
+          "proposedType": "uuid nullable",
+          "definition": "Relational dependency; multiple dependencies use join rows.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.assigned_resource_id",
+          "name": "assigned_resource_id",
+          "proposedType": "uuid nullable",
+          "definition": "Qualified internal resource or reviewed external route.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.manufacturing_revision_id",
+          "name": "manufacturing_revision_id",
+          "proposedType": "uuid",
+          "definition": "Exact operation specifications and production file binding.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.required_quantity",
+          "name": "required_quantity",
+          "proposedType": "integer",
+          "definition": "Authorized quantity needed by the next operation.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.completed_quantity",
+          "name": "completed_quantity",
+          "proposedType": "integer",
+          "definition": "Accepted completed quantity, separate from rejected/waste quantity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.hold_reason",
+          "name": "hold_reason",
+          "proposedType": "enum nullable",
+          "definition": "Artwork, payment, supply, QC, scheduling or reconciliation cause.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "job_operation.actual_minutes",
+          "name": "actual_minutes",
+          "proposedType": "numeric(18,4) nullable",
+          "definition": "Recorded operator time, never fabricated as zero.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Dependency graph is acyclic; operations cannot consume more eligible quantity than received/completed predecessors.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "purchase_requirement",
+      "module": "procurement",
+      "features": [
+        "F20",
+        "F21"
+      ],
+      "owner": "MIS sourcing",
+      "lifecycle": "Unallocated \u2192 allocated \u2192 purchased \u2192 received/reconciled",
+      "fields": [
+        {
+          "id": "purchase_requirement.job_operation_id",
+          "name": "job_operation_id",
+          "proposedType": "uuid",
+          "definition": "Operation requiring this external purchase.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.source_offer_id",
+          "name": "source_offer_id",
+          "proposedType": "uuid",
+          "definition": "Selected eligible source evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.required_quantity",
+          "name": "required_quantity",
+          "proposedType": "integer",
+          "definition": "Quantity that must be bought for the authorized requirement.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.allocated_quantity",
+          "name": "allocated_quantity",
+          "proposedType": "integer",
+          "definition": "Quantity assigned to active PO lines.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.received_quantity",
+          "name": "received_quantity",
+          "proposedType": "integer",
+          "definition": "Accepted actual receipts against this requirement.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.agreement_hash",
+          "name": "agreement_hash",
+          "proposedType": "text",
+          "definition": "Frozen customer agreement relevant to the purchase.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.route_revision",
+          "name": "route_revision",
+          "proposedType": "bigint",
+          "definition": "Version of the approved sourcing route.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.cost_snapshot_id",
+          "name": "cost_snapshot_id",
+          "proposedType": "uuid",
+          "definition": "Expected supplier cost and currency.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_requirement.allocation_state",
+          "name": "allocation_state",
+          "proposedType": "enum",
+          "definition": "Unallocated, partially allocated, fully allocated or exception.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Lock the requirement when allocating; sum of active allocations cannot exceed required quantity without an explicit revised authorization.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "purchase_submission",
+      "module": "procurement",
+      "features": [
+        "F19",
+        "F21"
+      ],
+      "owner": "Purchasing and provider adapter",
+      "lifecycle": "Pending approval \u2192 authorized \u2192 submitting \u2192 acknowledged/rejected/unknown",
+      "fields": [
+        {
+          "id": "purchase_submission.po_revision_id",
+          "name": "po_revision_id",
+          "proposedType": "uuid",
+          "definition": "Exact immutable PO revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.requirement_id",
+          "name": "requirement_id",
+          "proposedType": "uuid",
+          "definition": "Referenced requirement through PO line allocation.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.connection_id",
+          "name": "connection_id",
+          "proposedType": "uuid",
+          "definition": "Approved purchasing connection.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.payload_hash",
+          "name": "payload_hash",
+          "proposedType": "text",
+          "definition": "Hash of supplier-visible payload and selected source.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.approved_amount",
+          "name": "approved_amount",
+          "proposedType": "numeric(18,4)",
+          "definition": "Spend ceiling for this exact submission.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Approved spend currency.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.approval_id",
+          "name": "approval_id",
+          "proposedType": "uuid",
+          "definition": "Authorized reviewer, scope, reason and expiry.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.idempotency_key",
+          "name": "idempotency_key",
+          "proposedType": "text",
+          "definition": "Durable request key retained across permissible retry.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.external_order_id",
+          "name": "external_order_id",
+          "proposedType": "text nullable",
+          "definition": "Supplier acknowledgment identity if known.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "purchase_submission.outcome_evidence",
+          "name": "outcome_evidence",
+          "proposedType": "private structured record",
+          "definition": "Redacted response or reconciliation evidence; uncertainty is explicit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Unique active requirement allocation and submission intent; post-write timeout freezes retry until reconciliation establishes outcome.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "shipment_allocation",
+      "module": "fulfillment",
+      "features": [
+        "F22",
+        "F35"
+      ],
+      "owner": "Fulfillment",
+      "lifecycle": "Planned \u2192 packed \u2192 dispatched \u2192 delivered/exception",
+      "fields": [
+        {
+          "id": "shipment_allocation.shipment_id",
+          "name": "shipment_id",
+          "proposedType": "uuid",
+          "definition": "Package/group shipment identity.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.order_line_id",
+          "name": "order_line_id",
+          "proposedType": "uuid",
+          "definition": "Customer line whose quantity ships.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.job_id",
+          "name": "job_id",
+          "proposedType": "uuid",
+          "definition": "Source job and completed quantity evidence.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.quantity",
+          "name": "quantity",
+          "proposedType": "integer",
+          "definition": "Positive fulfilled quantity attributed to this shipment.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.destination_snapshot_id",
+          "name": "destination_snapshot_id",
+          "proposedType": "uuid",
+          "definition": "Frozen authorized recipient/delivery address.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.origin_reference",
+          "name": "origin_reference",
+          "proposedType": "private text",
+          "definition": "Source fulfillment location; keep internal supplier details private.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.carrier_code",
+          "name": "carrier_code",
+          "proposedType": "text nullable",
+          "definition": "Actual carrier identifier when provided.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.tracking_number",
+          "name": "tracking_number",
+          "proposedType": "private text nullable",
+          "definition": "Tracking reference with customer-scoped visibility.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.blind_ship_policy_id",
+          "name": "blind_ship_policy_id",
+          "proposedType": "uuid nullable",
+          "definition": "Allowed packaging/return identity requirements.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "shipment_allocation.external_event_id",
+          "name": "external_event_id",
+          "proposedType": "text nullable",
+          "definition": "Deduplication identity for a provider tracking event.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Total active shipment quantities cannot exceed authorized fulfilled quantity; supplier tracking does not buy a second label.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "claim_resolution",
+      "module": "fulfillment",
+      "features": [
+        "F23",
+        "F24"
+      ],
+      "owner": "Customer service and finance",
+      "lifecycle": "Opened \u2192 reviewed \u2192 authorized \u2192 resolved",
+      "fields": [
+        {
+          "id": "claim_resolution.order_line_id",
+          "name": "order_line_id",
+          "proposedType": "uuid",
+          "definition": "Affected original commercial line.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.affected_quantity",
+          "name": "affected_quantity",
+          "proposedType": "integer",
+          "definition": "Claimed quantity within the delivered/purchased history.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.reason_code",
+          "name": "reason_code",
+          "proposedType": "enum",
+          "definition": "Damage, quality, art mismatch, shortage or other reviewed reason.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.evidence_asset_id",
+          "name": "evidence_asset_id",
+          "proposedType": "uuid nullable",
+          "definition": "Private supporting photos or documents.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.customer_resolution",
+          "name": "customer_resolution",
+          "proposedType": "enum",
+          "definition": "Replacement, partial refund, full refund, credit or declined.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.resolution_approval_id",
+          "name": "resolution_approval_id",
+          "proposedType": "uuid nullable",
+          "definition": "Required authority and monetary limit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.remake_order_id",
+          "name": "remake_order_id",
+          "proposedType": "uuid nullable",
+          "definition": "New authorized work linked to the original cause.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.refund_reference_id",
+          "name": "refund_reference_id",
+          "proposedType": "uuid nullable",
+          "definition": "Verified customer financial outcome.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "claim_resolution.supplier_recovery_id",
+          "name": "supplier_recovery_id",
+          "proposedType": "uuid nullable",
+          "definition": "Independent reimbursement/credit claim against a supplier.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Customer resolution does not imply supplier reimbursement; remakes and refunds are separate auditable workflows.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "actual_cost_reference",
+      "module": "finance",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "owner": "Finance reconciliation",
+      "lifecycle": "Recorded \u2192 matched/disputed \u2192 reconciled \u2192 closed",
+      "fields": [
+        {
+          "id": "actual_cost_reference.order_id",
+          "name": "order_id",
+          "proposedType": "uuid",
+          "definition": "Customer order receiving cost attribution.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.job_id",
+          "name": "job_id",
+          "proposedType": "uuid nullable",
+          "definition": "More precise operation/job cost attribution where known.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.component_code",
+          "name": "component_code",
+          "proposedType": "enum",
+          "definition": "Direct cost category consistent with the estimate model.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.amount",
+          "name": "amount",
+          "proposedType": "numeric(18,4)",
+          "definition": "Actual cost or credit with explicit sign convention.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.currency",
+          "name": "currency",
+          "proposedType": "char(3)",
+          "definition": "Original transaction currency.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.external_document_id",
+          "name": "external_document_id",
+          "proposedType": "text",
+          "definition": "Supplier invoice, shipping charge or accounting reference.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.external_line_id",
+          "name": "external_line_id",
+          "proposedType": "text nullable",
+          "definition": "Source document line to prevent duplicate matching.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.estimated_snapshot_id",
+          "name": "estimated_snapshot_id",
+          "proposedType": "uuid nullable",
+          "definition": "Frozen estimate used for variance analysis.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.reconciliation_state",
+          "name": "reconciliation_state",
+          "proposedType": "enum",
+          "definition": "Unmatched, partial, matched or disputed.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "actual_cost_reference.approved_adjustment_reason",
+          "name": "approved_adjustment_reason",
+          "proposedType": "text nullable",
+          "definition": "Reason for a reviewed variance or credit.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Deduplicate by provider/account/document/line; closeout distinguishes estimated vs actual direct profit and excludes sales tax revenue.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "automation_event",
+      "module": "workflow",
+      "features": [
+        "F26"
+      ],
+      "owner": "Kernel outbox and worker",
+      "lifecycle": "Committed event \u2192 delivered/retried/dead letter",
+      "fields": [
+        {
+          "id": "automation_event.event_id",
+          "name": "event_id",
+          "proposedType": "uuid",
+          "definition": "Stable event identity across delivery attempts.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.event_type",
+          "name": "event_type",
+          "proposedType": "text",
+          "definition": "Registered versioned domain event name.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.schema_version",
+          "name": "schema_version",
+          "proposedType": "integer",
+          "definition": "Payload schema version.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.aggregate_id",
+          "name": "aggregate_id",
+          "proposedType": "uuid",
+          "definition": "Business record producing the event.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.aggregate_revision",
+          "name": "aggregate_revision",
+          "proposedType": "bigint",
+          "definition": "Exact state revision that emitted the event.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.causation_id",
+          "name": "causation_id",
+          "proposedType": "uuid nullable",
+          "definition": "Command/event causing this event.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.occurred_at",
+          "name": "occurred_at",
+          "proposedType": "timestamptz",
+          "definition": "Committed domain occurrence time.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.payload",
+          "name": "payload",
+          "proposedType": "bounded structured record",
+          "definition": "Allowed data only; avoid secrets and unnecessary recipient data.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.automation_revision_id",
+          "name": "automation_revision_id",
+          "proposedType": "uuid nullable",
+          "definition": "Approved rule version consuming the event.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "automation_event.effect_key",
+          "name": "effect_key",
+          "proposedType": "text nullable",
+          "definition": "Stable scoped key preventing duplicate downstream effects.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Insert outbox and domain update in one transaction; worker retries never create an unapproved live side effect.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "operational_metric",
+      "module": "analytics",
+      "features": [
+        "F27"
+      ],
+      "owner": "Reporting query service",
+      "lifecycle": "Defined \u2192 computed \u2192 reconciled/exported",
+      "fields": [
+        {
+          "id": "operational_metric.metric_code",
+          "name": "metric_code",
+          "proposedType": "text",
+          "definition": "Stable business metric name.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.definition_revision",
+          "name": "definition_revision",
+          "proposedType": "integer",
+          "definition": "Versioned numerator, denominator and inclusion rules.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.period_start",
+          "name": "period_start",
+          "proposedType": "timestamptz",
+          "definition": "Inclusive time bucket start.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.period_end",
+          "name": "period_end",
+          "proposedType": "timestamptz",
+          "definition": "Exclusive time bucket end.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.business_timezone",
+          "name": "business_timezone",
+          "proposedType": "iana timezone",
+          "definition": "Timezone determining reporting boundaries.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.numerator",
+          "name": "numerator",
+          "proposedType": "numeric nullable",
+          "definition": "Computed whole-dataset numerator, null if unavailable.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.denominator",
+          "name": "denominator",
+          "proposedType": "numeric nullable",
+          "definition": "Computed denominator; zero yields a defined unavailable ratio.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.data_as_of",
+          "name": "data_as_of",
+          "proposedType": "timestamptz",
+          "definition": "Freshness cutoff for all included facts.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.source_query_hash",
+          "name": "source_query_hash",
+          "proposedType": "text",
+          "definition": "Reproducible scoped query/version reference.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "operational_metric.reconciliation_reference",
+          "name": "reconciliation_reference",
+          "proposedType": "uuid nullable",
+          "definition": "Evidence tying a report to authoritative records.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Use database aggregations over scoped data; pagination size never defines the business total.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "content_and_consent",
+      "module": "marketing",
+      "features": [
+        "F06",
+        "F25"
+      ],
+      "owner": "Marketing/CMS",
+      "lifecycle": "Draft \u2192 reviewed \u2192 published/withdrawn",
+      "fields": [
+        {
+          "id": "content_and_consent.content_revision_id",
+          "name": "content_revision_id",
+          "proposedType": "uuid",
+          "definition": "Immutable content revision under review.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.channel",
+          "name": "channel",
+          "proposedType": "enum",
+          "definition": "Storefront, company store or explicitly authorized messaging channel.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.audience_id",
+          "name": "audience_id",
+          "proposedType": "uuid nullable",
+          "definition": "Scoped intended audience.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.brand_kit_revision_id",
+          "name": "brand_kit_revision_id",
+          "proposedType": "uuid nullable",
+          "definition": "Brand rules applying to this content.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.rights_manifest_id",
+          "name": "rights_manifest_id",
+          "proposedType": "uuid",
+          "definition": "Approved licenses for all media and fonts.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.publication_approval_id",
+          "name": "publication_approval_id",
+          "proposedType": "uuid nullable",
+          "definition": "Authorized content reviewer and revision.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.publish_at",
+          "name": "publish_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Scheduled publication time.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.consent_reference",
+          "name": "consent_reference",
+          "proposedType": "uuid nullable",
+          "definition": "Documented permission for applicable external communications.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.suppressed_at",
+          "name": "suppressed_at",
+          "proposedType": "timestamptz nullable",
+          "definition": "Opt-out/suppression that imports cannot silently clear.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "content_and_consent.external_delivery_reference",
+          "name": "external_delivery_reference",
+          "proposedType": "text nullable",
+          "definition": "Actual delivery evidence, not a UI success message.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "CMS publishing and external sending have separate grants and activation gates; demo changes create drafts/local references only.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    },
+    {
+      "name": "capability_registry",
+      "module": "future",
+      "features": [
+        "F33"
+      ],
+      "owner": "Foundation module registry",
+      "lifecycle": "Reserved \u2192 research only; activation requires future scope approval",
+      "fields": [
+        {
+          "id": "capability_registry.capability_code",
+          "name": "capability_code",
+          "proposedType": "text",
+          "definition": "Stable feature identifier.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "capability_registry.module_code",
+          "name": "module_code",
+          "proposedType": "text",
+          "definition": "Owning module.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "capability_registry.availability",
+          "name": "availability",
+          "proposedType": "enum",
+          "definition": "ACTIVE_V1_SPEC or COMING_SOON.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "capability_registry.research_note",
+          "name": "research_note",
+          "proposedType": "text nullable",
+          "definition": "Public inspiration without working activation controls.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "capability_registry.activation_reason",
+          "name": "activation_reason",
+          "proposedType": "text nullable",
+          "definition": "Explicit reason an operation remains unavailable.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        },
+        {
+          "id": "capability_registry.server_command_policy",
+          "name": "server_command_policy",
+          "proposedType": "enum",
+          "definition": "Deny reserved commands even if manually requested.",
+          "requirement": "Required when this workflow is active unless the definition explicitly permits unknown.",
+          "valueStatus": "DEFINITION_ONLY_NO_OPERATIONAL_VALUES_COLLECTED"
+        }
+      ],
+      "constraint": "Coming Soon must be enforced server-side; collecting research does not change availability.",
+      "schemaStatus": "PROPOSED_LOGICAL_MODEL_NOT_APPLIED_MIGRATION"
+    }
+  ],
+  "fieldCount": 292,
+  "commonScopeRule": "All scoped records inherit scoped_record fields. Arrays denoting relationships require normalized join tables in physical migrations.",
+  "privacyRule": "No credentials, personal customer data, vendor catalog dump or operational finance values are included in this research packet."
+}

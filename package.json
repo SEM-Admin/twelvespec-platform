@@ -21,7 +21,10 @@
     "build": "node --import tsx scripts/build.ts",
     "check:spec": "python3 scripts/check_spec.py",
     "test:unit": "vitest run tests/modules --exclude tests/modules/orders.test.ts",
-    "check:plan": "node scripts/check-gap-plan.mjs"
+    "check:plan": "node scripts/check-gap-plan.mjs",
+    "research:build": "python3 scripts/build-platform-research.py",
+    "check:research": "python3 scripts/check-platform-research.py",
+    "check:research:browser": "node scripts/check-research-viewer.mjs"
   },
   "dependencies": {
     "better-auth": "1.7.18",

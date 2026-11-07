@@ -4,6 +4,8 @@ A greenfield Next.js, TypeScript and PostgreSQL implementation with separate cus
 
 The controlling handoff is preserved under `specification/master-v1`. See the [module inventory](docs/module-inventory.json), [requirements traceability](docs/TRACEABILITY.md), [implementation checklist](docs/IMPLEMENTATION_CHECKLIST.md) and [preview status](docs/DEVELOPMENT_PREVIEWS.md). The [researched gap closure plan](docs/GAP_CLOSURE_PLAN.md) maps every module and all 95 acceptance scenarios to the next implementation work. Active V1 acceptance remains open; Coming Soon modules stay disabled.
 
+The [17-company feature research](docs/business-research/README.md) translates public product patterns into 35 original TwelveSpec designs, 104 proposed behavior tests and a logical data model. It includes a filterable offline viewer, a downloadable workbook and mappings to the existing code and gap plan. These are implementation designs; research does not establish feature or integration acceptance.
+
 Run locally with Node.js 24:
 
 ```sh

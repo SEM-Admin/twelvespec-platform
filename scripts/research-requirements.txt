@@ -1,0 +1,2 @@
+# Optional documentation/workbook export tooling; not an application runtime dependency.
+XlsxWriter==3.2.9

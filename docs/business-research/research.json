@@ -1,0 +1,4537 @@
+{
+  "schemaVersion": 1,
+  "title": "TwelveSpec original software feature research",
+  "researchDate": "2026-11-06",
+  "timezone": "America/Chicago",
+  "baselineCommit": "51a1011",
+  "purpose": "Adapt publicly documented product behavior into original TwelveSpec workflows, data contracts and tests.",
+  "method": [
+    "Official vendor pages and documentation only for vendor claims.",
+    "Public evidence, original design and authenticated integration verification are separate.",
+    "No vendor source code, private systems, customer files or proprietary catalog data copied.",
+    "All feature packs are design work; the controlling handoff and Coming Soon boundaries remain authoritative."
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "company": "custom-ink",
+      "title": "Custom Ink: how it works",
+      "url": "https://www.customink.com/how-it-works",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S02",
+      "company": "custom-ink",
+      "title": "Collect sizes and payments with a group form",
+      "url": "https://www.customink.com/help_center/collecting-sizes-and-payment-with-gof",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S03",
+      "company": "pcna",
+      "title": "PCNA authorized distributor account application",
+      "url": "https://cloud.engage.pcna.com/account_application",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S04",
+      "company": "pcna",
+      "title": "PCNA print and promo marketing page",
+      "url": "https://cloud.engage.pcna.com/Print-Promo-Marketing",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "The sample offer explicitly says expired. Its earnings, margin and order-volume claims are excluded from financial assumptions.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S05",
+      "company": "pcna",
+      "title": "PCNA main site access limitation",
+      "url": "https://www.pcna.com/en-us",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "FETCH_BLOCKED_403",
+      "note": "No bypass attempted. Current API schemas, account pricing and service entitlements remain unverified.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S06",
+      "company": "sanmar",
+      "title": "SanMar electronic integration offerings",
+      "url": "https://www.sanmar.com/resources/electronicintegration/integrationofferings",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S07",
+      "company": "sanmar",
+      "title": "SanMar terms and conditions",
+      "url": "https://info.sanmar.com/termsandconditions",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S08",
+      "company": "imprint",
+      "title": "Imprint.com catalog and design assistance",
+      "url": "https://imprint.com/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S09",
+      "company": "imprint",
+      "title": "Imprint.com pricing factors",
+      "url": "https://imprint.com/help-center/faq-how-is-my-price-determined",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S10",
+      "company": "imprint",
+      "title": "Imprint.com proof eligibility",
+      "url": "https://imprint.com/help-center/will-i-get-a-proof-to-review-before-my-order-is-printed",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S11",
+      "company": "4imprint",
+      "title": "4imprint ordering, proof, payment and delivery FAQ",
+      "url": "https://www.4imprint.com/info/faq",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S12",
+      "company": "printify",
+      "title": "Printify API reference",
+      "url": "https://developers.printify.com/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "Documentation contains V1 APIs and a V2 catalog. Pin each operation independently; catalog versions are not interchangeable.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S13",
+      "company": "printify",
+      "title": "Printify Order Routing behavior",
+      "url": "https://help.printify.com/hc/en-us/articles/4483625090321-What-is-Order-Routing-and-how-does-it-work",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S14",
+      "company": "ordermygear",
+      "title": "OrderMyGear online store types and controls",
+      "url": "https://www.ordermygear.com/online-stores/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S15",
+      "company": "ordermygear",
+      "title": "OrderMyGear FAQs and fulfillment responsibility",
+      "url": "https://www.ordermygear.com/faqs/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S16",
+      "company": "printnow",
+      "title": "PrintNow Enterprise API introduction",
+      "url": "https://docs.printnow.com/docs/enterprise-api/introduction",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S17",
+      "company": "printnow",
+      "title": "PrintNow public integration overview",
+      "url": "https://printnow.com/web-to-print-api",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S18",
+      "company": "vistaprint",
+      "title": "VistaPrint downloadable design proofs",
+      "url": "https://www.vistaprint.com/customer-care/help-center/360052259371/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "Page reports updated October 12, 2026; PDF proof exclusions include calendars and photo books.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S19",
+      "company": "vistaprint",
+      "title": "VistaPrint order status and tracking",
+      "url": "https://www.vistaprint.com/customer-care/help-center/360050082651/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S20",
+      "company": "printful",
+      "title": "Printful API v1: catalog, orders and confirmation",
+      "url": "https://developers.printful.com/docs/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S21",
+      "company": "printful",
+      "title": "Printful API v2 Open Beta status",
+      "url": "https://help.printful.com/hc/en-us/articles/50262214313873-What-should-I-know-about-Printful-s-API-v2",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S22",
+      "company": "printful",
+      "title": "Printful fulfillment billing",
+      "url": "https://help.printful.com/hc/en-us/articles/50264607936785-How-does-the-Printful-billing-system-work",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S23",
+      "company": "shopify",
+      "title": "Shopify B2B feature availability by plan",
+      "url": "https://help.shopify.com/en/manual/b2b/getting-started/plan-features",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "Current page allows B2B on Basic/Grow/Advanced/Plus, with plan-specific limits. Do not repeat the older blanket Plus-only assertion.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S24",
+      "company": "shopify",
+      "title": "Shopify B2B development model",
+      "url": "https://shopify.dev/docs/apps/build/b2b",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "OFFICIAL_DOC_SEARCH_REVIEWED",
+      "note": "Read through connected Shopify documentation search. Company, company location and contact are distinct resources.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S25",
+      "company": "bigcommerce",
+      "title": "BigCommerce B2B integration overview",
+      "url": "https://docs.bigcommerce.com/developer/docs/b2b-edition/getting-started/overview",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S26",
+      "company": "bigcommerce",
+      "title": "BigCommerce B2B API families and context",
+      "url": "https://docs.bigcommerce.com/developer/docs/b2b-edition/getting-started/about-our-apis",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "Server-to-server authentication guidance differs from storefront user context; the page also contains legacy examples.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S27",
+      "company": "oracle",
+      "title": "NetSuite custom purchase approval workflows",
+      "url": "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N2396564.html",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S28",
+      "company": "oracle",
+      "title": "Fusion SCM: order line fulfillment task visibility",
+      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/order26b/26B-order-mgmt-wn-f43111.htm",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S29",
+      "company": "oracle",
+      "title": "Fusion SCM 26D removed and replaced features",
+      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/order26d/26D-order-mgmt-wn-t78045.htm",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "26D removes orchestration planning functionality. Use task visibility as a pattern, not a promise to reproduce a removed vendor scheduling feature.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S30",
+      "company": "smartpress",
+      "title": "Smartpress reseller program and blind shipping",
+      "url": "https://smartpress.com/pages/print-reseller-program",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S31",
+      "company": "smartpress",
+      "title": "Smartpress turnaround after proof approval",
+      "url": "https://smartpress.com/support/ordering-shipping/printing-turnaround-time",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S32",
+      "company": "sinalite",
+      "title": "SinaLite basic and full API integration options",
+      "url": "https://sinalite.com/en_us/api-signup",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_SEARCH_EXCERPT_ONLY_FETCH_403",
+      "note": "Official indexed page describes catalog/pricing and full order/artwork/status integration. Direct page fetch blocked; wire protocol and eligibility unverified.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S33",
+      "company": "sinalite",
+      "title": "SinaLite trade-only business model",
+      "url": "https://sinalite.com/en_us/aboutus-tradeonly",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_SEARCH_EXCERPT_ONLY_FETCH_403",
+      "note": "Direct page fetch blocked. Treat trade eligibility and packaging terms as requiring account confirmation.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S34",
+      "company": "sinalite",
+      "title": "SinaLite ordering and product specification guide",
+      "url": "https://sinalite.com/en_us/how-to-place-print-order",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_SEARCH_EXCERPT_REVIEWED",
+      "note": "Official indexed guide: account-based wholesale ordering and custom work. No wholesale price capture.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S35",
+      "company": "4over",
+      "title": "4over trade resources and API program",
+      "url": "https://blog.4over.com/5-ways-4over-helps-you-sell",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "A public program description establishes that a program is advertised; current technical access and commercial terms are not established.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S36",
+      "company": "4over",
+      "title": "4over turnaround times and proof dependencies",
+      "url": "https://4over.com/turnaround-times",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S37",
+      "company": "gotprint",
+      "title": "GotPrint broker program requirements and blind shipping",
+      "url": "https://www.gotprint.com/company/info/brokers.html",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "Observed eligibility includes US location, business documentation and five orders/month to maintain broker status; reconfirm before activation.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S38",
+      "company": "gotprint",
+      "title": "GotPrint API terms and licensing",
+      "url": "https://www.gotprint.com/company/terms/api.html",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "Published effective date December 28, 2021. Describes qualified clients, setup fees and restricted data rights. Not a current commercial quote or technical onboarding approval.",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    },
+    {
+      "id": "S39",
+      "company": "standards",
+      "title": "PromoStandards interoperability purpose",
+      "url": "https://promostandards.org/About-Us/",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "access": "PRIMARY_PAGE_REVIEWED",
+      "note": "",
+      "proves": "Publicly documented behavior only; no authenticated integration test."
+    }
+  ],
+  "companies": [
+    {
+      "id": "custom-ink",
+      "name": "Custom Ink",
+      "role": "Customer experience benchmark",
+      "publicFacts": "Browser design and artist review accompany ordering; group forms collect participant sizes and payments.",
+      "sources": [
+        "S01",
+        "S02"
+      ],
+      "featureLesson": "Reduce organizer effort while preserving a single accountable ordering workflow.",
+      "twelveSpecDesign": "Use one shared design project, an organizer view, a size/variant matrix and an explicit campaign close. Create a reviewed batch request at close; keep participant payment states separate from the production order.",
+      "boundary": "TwelveSpec must still bind every proof to the exact variant and obtain its own production authorization. Group fund settlement remains reserved.",
+      "unknown": "Internal design engine, artwork algorithms, group settlement implementation and private APIs were not inspected.",
+      "modules": [
+        "creative",
+        "configuration",
+        "stores",
+        "commerce",
+        "sales"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "pcna",
+      "name": "PCNA",
+      "role": "Promo supplier and sourcing workflow benchmark",
+      "publicFacts": "PCNA accepts authorized distributor applications and advertises decorated goods across apparel and hardgoods.",
+      "sources": [
+        "S03",
+        "S04"
+      ],
+      "featureLesson": "Represent an external source as a supplier offer with decoration and fulfillment capabilities, rather than replacing the canonical product.",
+      "twelveSpecDesign": "Store source product/part IDs, available methods, imprint areas, charge identifiers and fulfillment origins. Make account eligibility and service verification separate administrator steps.",
+      "boundary": "An expired marketing offer supplies no usable margin, order volume, current rush promise or entitlement.",
+      "unknown": "Main site fetch returned 403. Exact supported services, API profiles, negotiated costs and media rights require authorized documents.",
+      "modules": [
+        "supplier",
+        "catalog",
+        "estimating",
+        "procurement",
+        "fulfillment"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "sanmar",
+      "name": "SanMar",
+      "role": "Blank apparel supplier and data integration benchmark",
+      "publicFacts": "Public integration choices include PromoStandards, flat files and direct services; brand and marketplace restrictions are published.",
+      "sources": [
+        "S06",
+        "S07"
+      ],
+      "featureLesson": "Separate the blank garment, warehouse inventory and decorating operation; publication rights vary by channel.",
+      "twelveSpecDesign": "Model style/color/size variants, warehouse-level inventory snapshots and blank-to-decorator job routing. Add channel restrictions to the publication gate and mapping provenance to every imported field.",
+      "boundary": "Website access, API access, brand image permission and marketplace authorization are distinct.",
+      "unknown": "Account cost tiers, freight, exact service versions, inventory reservation and decorator agreements remain unverified.",
+      "modules": [
+        "catalog",
+        "supplier",
+        "configuration",
+        "orders",
+        "procurement"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "imprint",
+      "name": "Imprint.com",
+      "role": "Broad catalog and configuration benchmark",
+      "publicFacts": "Pricing depends on product, imprint colors, quantity and method; digital proofs are conditional rather than universal.",
+      "sources": [
+        "S08",
+        "S09",
+        "S10"
+      ],
+      "featureLesson": "A short guided configurator can expose complexity progressively and route exceptions to an assisted quote.",
+      "twelveSpecDesign": "Ask method-dependent questions, update quantity-break comparisons and show the cost assumptions behind an estimate. Keep visual preview, proof review and production preflight as separate states.",
+      "boundary": "Selected-product shipping/setup offers cannot become global TwelveSpec pricing rules. Preserve the handoff’s stronger proof requirements.",
+      "unknown": "No public technical API contract was established in the sampled sources; internal pricing and artwork processing are unknown.",
+      "modules": [
+        "catalog",
+        "configuration",
+        "creative",
+        "estimating",
+        "sales"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "4imprint",
+      "name": "4imprint",
+      "role": "Assisted sales and approval benchmark",
+      "publicFacts": "A representative supports ordering; proofs, post-approval production time and credit review are explicit parts of the published process.",
+      "sources": [
+        "S11"
+      ],
+      "featureLesson": "Pair customer self-service with an accountable rep and a clear queue for decisions.",
+      "twelveSpecDesign": "Attach an account owner, task timeline, proof decision and promised date to each quote/order. Track artwork waiting time separately from supplier production and carrier transit.",
+      "boundary": "Vendor credit and cancellation policies do not override TwelveSpec prepaid/approved Net 15 policy.",
+      "unknown": "No private CRM, sourcing agreements, unit economics or API implementation was inspected.",
+      "modules": [
+        "crm",
+        "sales",
+        "creative",
+        "orders",
+        "finance"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "printify",
+      "name": "Printify",
+      "role": "POD catalog, routing and fulfillment benchmark",
+      "publicFacts": "The documented catalog distinguishes blueprint, provider and variant; routing can choose exact or similar alternatives within settings.",
+      "sources": [
+        "S12",
+        "S13"
+      ],
+      "featureLesson": "A purchasable variant includes the fulfillment provider and print-area contract, with explicit substitution policy.",
+      "twelveSpecDesign": "Build a provider-neutral adapter and routing proposal. Before a source change, compare exact item, print geometry, region, landed cost and promised date; require renewed authorization for material changes.",
+      "boundary": "Autonomous supplier spend remains Coming Soon. A similar product is never an invisible replacement for an approved item.",
+      "unknown": "Provider-specific quality, charges, geography, token scopes and observed fulfillment performance require account testing.",
+      "modules": [
+        "supplier",
+        "catalog",
+        "configuration",
+        "procurement",
+        "fulfillment"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "ordermygear",
+      "name": "OrderMyGear",
+      "role": "Company and campaign store benchmark",
+      "publicFacts": "Company, pop-up, redemption and POD stores are advertised, with budgets and permissions; the operating dealer handles fulfillment and refunds.",
+      "sources": [
+        "S14",
+        "S15"
+      ],
+      "featureLesson": "Store programs are policy-driven purchasing contexts with different close, funding and fulfillment behavior.",
+      "twelveSpecDesign": "Create explicit program types, membership/eligibility, budgets, brand approvals and close dates. Carry store and allowance identity through cart, request, quote, order and cancellation.",
+      "boundary": "Points, fundraising allocations and real financial settlement must not be represented as interchangeable money.",
+      "unknown": "Plan entitlements, API schemas and customer-specific commercial rights remain unverified.",
+      "modules": [
+        "stores",
+        "commerce",
+        "byob",
+        "sales",
+        "fulfillment"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "printnow",
+      "name": "PrintNow",
+      "role": "Web-to-print and MIS integration benchmark",
+      "publicFacts": "Enterprise documentation separates REST resources, webhooks and cXML/procurement integration; order operations include print-file retrieval and shipping updates.",
+      "sources": [
+        "S16",
+        "S17"
+      ],
+      "featureLesson": "The editor, storefront, production files and order management need stable contracts rather than a visual-only connection.",
+      "twelveSpecDesign": "Use revisioned templates, durable render jobs, private artifacts and a job-ticket handoff that names exact files and specifications. Keep provider APIs behind the same adapter boundary.",
+      "boundary": "Current Product API descriptions are narrower than marketing language about a full print catalog. Packaging CAD and validated 3D remain future.",
+      "unknown": "Internal rendering technology, template file format, license rights and tenant-specific endpoint access are unknown.",
+      "modules": [
+        "creative",
+        "configuration",
+        "orders",
+        "supplier",
+        "workflow"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "vistaprint",
+      "name": "VistaPrint",
+      "role": "Print self-service and account experience benchmark",
+      "publicFacts": "The design studio offers downloadable PDF proofs with product exclusions; account order history exposes order status and tracking.",
+      "sources": [
+        "S18",
+        "S19"
+      ],
+      "featureLesson": "Give customers a portable review artifact and a clear path back to their saved work.",
+      "twelveSpecDesign": "Add a version-bound proof download, accessible project history and an order timeline. A reorder starts a repriced draft with current availability and a visible comparison to the original.",
+      "boundary": "A screen or PDF preview is not evidence that a file passes method-specific prepress.",
+      "unknown": "No private template format, production engine, partner API or rendering internals were inspected.",
+      "modules": [
+        "creative",
+        "commerce",
+        "sales",
+        "fulfillment"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "printful",
+      "name": "Printful",
+      "role": "POD order, asset and event integration benchmark",
+      "publicFacts": "API draft confirmation can trigger fulfillment charges; v2 is documented as Open Beta, and merchant and fulfillment billing are distinct.",
+      "sources": [
+        "S20",
+        "S21",
+        "S22"
+      ],
+      "featureLesson": "Separate an editable order draft from the financially consequential production submission.",
+      "twelveSpecDesign": "Use exact provider variants and print files, a verified pre-submit gate, cost estimates, idempotency and shipment updates. Preserve supplier payable events separately from customer receipt/payout events.",
+      "boundary": "Pin the tested API version and capability. A successful catalog read does not verify production submission.",
+      "unknown": "Authorized account configuration, current region pricing, samples, branding options and actual API behavior remain untested.",
+      "modules": [
+        "supplier",
+        "creative",
+        "procurement",
+        "fulfillment",
+        "finance"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "role": "Commerce and B2B data-model benchmark",
+      "publicFacts": "B2B documentation distinguishes company, location and contact; current plan differences include catalog assignments and advanced payment features.",
+      "sources": [
+        "S23",
+        "S24"
+      ],
+      "featureLesson": "A buyer’s identity, company membership and location-specific commercial policy are different concerns.",
+      "twelveSpecDesign": "Create company/location membership with roles, allowed catalogs, address books and approved terms. Keep TwelveSpec’s core commerce independent; an optional channel adapter maps external IDs later.",
+      "boundary": "This research does not authorize store migration or access to an existing Shopify store. Feature availability is plan-specific.",
+      "unknown": "App scopes, store entitlements, channel conflicts, subscription cost and merchant credentials remain outside this public research.",
+      "modules": [
+        "crm",
+        "stores",
+        "commerce",
+        "sales",
+        "finance"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "bigcommerce",
+      "name": "BigCommerce",
+      "role": "B2B quote, portal and API permission benchmark",
+      "publicFacts": "B2B APIs expose company users, quotes and invoices; buyer-facing APIs and server management APIs use different contexts.",
+      "sources": [
+        "S25",
+        "S26"
+      ],
+      "featureLesson": "Treat a buyer request, seller-issued quote and accepted agreement as distinct resources.",
+      "twelveSpecDesign": "Use a customer quote portal with buyer-specific permissions and immutable seller revisions. Expose a narrow public projection while server-side staff commands retain cost and supplier data.",
+      "boundary": "Administrative tokens never belong in the customer browser; a buyer session cannot act as a company-wide administrator.",
+      "unknown": "B2B licensing, tenant roles, API scope and authenticated behavior were not tested.",
+      "modules": [
+        "crm",
+        "sales",
+        "commerce",
+        "foundation"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle: NetSuite and Fusion ERP/SCM",
+      "role": "Enterprise approval and fulfillment-control benchmark",
+      "publicFacts": "NetSuite documents approval limits and routing; Fusion exposes fulfillment tasks per line and publishes release-specific feature removals.",
+      "sources": [
+        "S27",
+        "S28",
+        "S29"
+      ],
+      "featureLesson": "Use explicit approvals, task history and change control. NetSuite and Fusion are separate product families.",
+      "twelveSpecDesign": "Build requirement-level PO approval, per-line fulfillment tasks, holds, accountable owners and reconciliation queues. Connect accounting references without implementing a general ledger.",
+      "boundary": "Full GL, payroll, enterprise MRP and autonomous procurement stay Coming Soon; do not clone an ERP suite or removed Fusion planning behavior.",
+      "unknown": "No Oracle account, tenant configuration, integration license or internal ERP database was inspected.",
+      "modules": [
+        "foundation",
+        "orders",
+        "procurement",
+        "fulfillment",
+        "finance",
+        "today"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "smartpress",
+      "name": "Smartpress",
+      "role": "Reseller print and proof-dependent scheduling benchmark",
+      "publicFacts": "The reseller program offers blind shipping and reorder workflows; turnaround starts after proof approval, with combined-job shipping dependencies.",
+      "sources": [
+        "S30",
+        "S31"
+      ],
+      "featureLesson": "Print jobs need their own approval and completion dates inside a multi-job customer order.",
+      "twelveSpecDesign": "Keep stock, finish, dimensions, proof revision, production clock, shipment grouping and blind-ship identity in the agreement. Calculate order readiness from required jobs, not the first completed item.",
+      "boundary": "A published reseller benefit is not an approved TwelveSpec trade account or a universal delivery guarantee.",
+      "unknown": "No public wire-level API contract was established; special quotes, account terms and current shipment constraints require confirmation.",
+      "modules": [
+        "configuration",
+        "creative",
+        "orders",
+        "fulfillment",
+        "sales"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "sinalite",
+      "name": "SinaLite",
+      "role": "Trade print catalog and order integration benchmark",
+      "publicFacts": "Official indexed pages describe catalog/pricing integration and a fuller option including orders, artwork, status and tracking.",
+      "sources": [
+        "S32",
+        "S33",
+        "S34"
+      ],
+      "featureLesson": "Catalog enablement and transactional fulfillment are separate integration milestones.",
+      "twelveSpecDesign": "Add per-capability activation, source option mapping, order payload validation, private artwork transfer and acknowledgment reconciliation. Keep US/Canada currencies and catalogs distinct.",
+      "boundary": "Direct pages returned 403; indexed descriptions support discovery only, not schema or account verification.",
+      "unknown": "API protocol, sandbox, credentials, commercial eligibility, artwork rules and account-specific charges remain unverified.",
+      "modules": [
+        "supplier",
+        "catalog",
+        "procurement",
+        "fulfillment"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "4over",
+      "name": "4over",
+      "role": "Trade print options, file intake and production timing benchmark",
+      "publicFacts": "4over advertises a trade API program; turnaround guidance distinguishes facility cutoff, production, proof and shipping dependencies.",
+      "sources": [
+        "S35",
+        "S36"
+      ],
+      "featureLesson": "Print option combinations and facility calendars must survive the storefront-to-job transition.",
+      "twelveSpecDesign": "Version exact stock/size/side/finish selections, keep front/back artwork roles distinct and schedule against the source facility calendar. Retain external order IDs for reconciliation.",
+      "boundary": "Old program marketing is insufficient to promise a currently supported endpoint, wholesale rate or delivery date.",
+      "unknown": "Authorized current API schemas, product rules, prices, facility capacity and file-transfer requirements remain unverified.",
+      "modules": [
+        "configuration",
+        "supplier",
+        "orders",
+        "fulfillment"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    },
+    {
+      "id": "gotprint",
+      "name": "GotPrint",
+      "role": "Broker portal and conditional API-access benchmark",
+      "publicFacts": "The broker program includes blind shipping and eligibility requirements; API terms describe qualified access, setup fees and limited data rights.",
+      "sources": [
+        "S37",
+        "S38"
+      ],
+      "featureLesson": "Wholesale program eligibility and technical integration entitlement need separate records and expiry checks.",
+      "twelveSpecDesign": "Build an evidence checklist for approved reseller status, permitted media, supported operations and account-specific pricing. Enforce those gates before publishing or transmitting orders.",
+      "boundary": "Published API terms are not an executed agreement, current fee quote or valid access key.",
+      "unknown": "Current API onboarding, protocol, fee amount, qualification and product coverage require authorized confirmation.",
+      "modules": [
+        "supplier",
+        "catalog",
+        "procurement",
+        "foundation"
+      ],
+      "integrationVerification": "NOT_TESTED",
+      "analysisType": "ORIGINAL_TWELVESPEC_DESIGN_FROM_PUBLIC_BEHAVIOR"
+    }
+  ],
+  "features": [
+    {
+      "id": "F01",
+      "title": "Guided discovery and assisted handoff",
+      "inspiration": [
+        "custom-ink",
+        "imprint",
+        "4imprint"
+      ],
+      "sources": [
+        "S01",
+        "S08",
+        "S11"
+      ],
+      "modules": [
+        "catalog",
+        "commerce",
+        "crm"
+      ],
+      "gaps": [
+        "GAP-016",
+        "GAP-028",
+        "GAP-033",
+        "GAP-038"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Browse by product or purpose, filter available variants, save a shortlist and ask for help without retyping selections.",
+      "operatorFlow": "Receive the same configuration, deadline and customer context in an assigned inquiry queue.",
+      "records": [
+        "catalog_query",
+        "saved_shortlist",
+        "inquiry",
+        "account_assignment"
+      ],
+      "invariants": [
+        "Search and counts use server pagination across the entire scoped catalog.",
+        "A failed query is an error state, not an empty catalog.",
+        "Anonymous discovery never reveals source costs or credentials."
+      ],
+      "proposedCommands": [
+        "catalog.search",
+        "inquiry.submit"
+      ],
+      "proposedEvents": [
+        "inquiry.submitted"
+      ],
+      "proposedTests": [
+        "Given more than 1,000 variants, a matching item beyond the first page is discoverable.",
+        "Submitting twice with the same request key creates one inquiry.",
+        "A customer response contains no supplier costs or credential fields."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/commerce/src/index.ts",
+        "packages/crm/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/commerce.test.ts",
+        "tests/modules/crm.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A09",
+        "A10",
+        "A15",
+        "A18",
+        "A31",
+        "A37",
+        "A38",
+        "E01",
+        "E03",
+        "E15",
+        "E16",
+        "E23",
+        "T02",
+        "T06",
+        "T22",
+        "T24",
+        "T28",
+        "T29",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F02",
+      "title": "Dependent options and apparel quantity matrix",
+      "inspiration": [
+        "custom-ink",
+        "imprint",
+        "sanmar"
+      ],
+      "sources": [
+        "S01",
+        "S09",
+        "S06"
+      ],
+      "modules": [
+        "configuration",
+        "catalog",
+        "commerce",
+        "estimating"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-014",
+        "GAP-017",
+        "GAP-038"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Choose product, color, size quantities, method and location; incompatible selections explain what must change.",
+      "operatorFlow": "Preview and publish a versioned family rule set with exact imprint zones and minimum/increment rules.",
+      "records": [
+        "configuration_family",
+        "variant",
+        "option_group",
+        "option_constraint",
+        "imprint_area",
+        "saved_configuration"
+      ],
+      "invariants": [
+        "Size rows resolve to exact canonical variants; a family selection is not a purchasable SKU.",
+        "Quantity breaks use the configured grouping rule; mixed methods or artworks do not silently share a tier.",
+        "A product or template change invalidates prior configuration approval."
+      ],
+      "proposedCommands": [
+        "configuration.validate",
+        "configuration.save",
+        "configuration.publish_revision"
+      ],
+      "proposedEvents": [
+        "configuration.validated"
+      ],
+      "proposedTests": [
+        "A disallowed method/location combination cannot enter the cart.",
+        "A size matrix with a missing price stays quote-only.",
+        "Changing the template leaves an issued order’s snapshot unchanged."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/commerce/src/index.ts",
+        "packages/configuration/src/index.ts",
+        "packages/estimating/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/commerce.test.ts",
+        "tests/modules/configuration.test.ts",
+        "tests/modules/estimating.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A05",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A16",
+        "A18",
+        "A19",
+        "A24",
+        "A28",
+        "A30",
+        "A37",
+        "A38",
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05",
+        "E06",
+        "E07",
+        "E13",
+        "E14",
+        "E16",
+        "T02",
+        "T03",
+        "T06",
+        "T07",
+        "T09",
+        "T10",
+        "T15",
+        "T18",
+        "T21",
+        "T24",
+        "T28",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F03",
+      "title": "Canonical products, supplier offers and media rights",
+      "inspiration": [
+        "pcna",
+        "sanmar",
+        "sinalite",
+        "gotprint"
+      ],
+      "sources": [
+        "S03",
+        "S06",
+        "S07",
+        "S32",
+        "S38"
+      ],
+      "modules": [
+        "catalog",
+        "supplier"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-016"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See one truthful product identity with its available variants and permitted images.",
+      "operatorFlow": "Compare multiple source offers, resolve uncertain matches, approve publication and inspect field provenance.",
+      "records": [
+        "product",
+        "variant",
+        "external_product",
+        "external_part",
+        "supplier_offer",
+        "field_provenance",
+        "media_license",
+        "publication_revision"
+      ],
+      "invariants": [
+        "Supplier part identifiers are scoped to connection and provider.",
+        "Ambiguous matches enter a review queue; title similarity alone never merges products.",
+        "Disabled, rolled-back, expired or unlicensed offers cannot supply a new commercial price."
+      ],
+      "proposedCommands": [
+        "catalog.propose_match",
+        "catalog.approve_match",
+        "catalog.publish_revision"
+      ],
+      "proposedEvents": [
+        "catalog.source_mapped",
+        "catalog.publication_changed"
+      ],
+      "proposedTests": [
+        "Two providers with the same SKU string remain distinct source parts.",
+        "Rolling back an import makes its new offers ineligible for quoting.",
+        "An image with expired channel rights is absent from the customer projection."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "acceptance": [
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A15",
+        "A38",
+        "E01",
+        "E03",
+        "E04",
+        "E05",
+        "E16",
+        "T02",
+        "T06",
+        "T07",
+        "T09",
+        "T24",
+        "T29"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F04",
+      "title": "Component pricing with quantity precision",
+      "inspiration": [
+        "imprint",
+        "pcna",
+        "printify",
+        "4over"
+      ],
+      "sources": [
+        "S09",
+        "S12",
+        "S35"
+      ],
+      "modules": [
+        "estimating",
+        "sales",
+        "finance"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-027"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See a quantity comparison and clear quote-only reasons for incomplete costs.",
+      "operatorFlow": "Compare landed costs and apply the versioned margin policy with an audited exception flow.",
+      "records": [
+        "cost_component",
+        "price_break",
+        "price_snapshot",
+        "margin_policy",
+        "override_approval",
+        "currency"
+      ],
+      "invariants": [
+        "Preserve supplier unit precision until quantity extension; round commercial totals by policy.",
+        "Missing freight, setup, decoration or currency is unknown, not zero.",
+        "Target margin uses cost/(1-margin); a 40% markup is not a 40% margin.",
+        "Tax collected for remittance is excluded from margin revenue."
+      ],
+      "proposedCommands": [
+        "estimate.calculate",
+        "estimate.request_override",
+        "estimate.freeze"
+      ],
+      "proposedEvents": [
+        "estimate.calculated",
+        "margin_override.requested"
+      ],
+      "proposedTests": [
+        "Unit cost 0.0250 times quantity 1,000 extends to 25.00.",
+        "An unknown freight cost blocks a firm checkout price.",
+        "A below-floor quote cannot be issued without a valid scoped override."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/estimating/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/pricing/src/index.ts",
+        "packages/sales/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/estimating.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/sales.test.ts"
+      ],
+      "acceptance": [
+        "A11",
+        "A12",
+        "A18",
+        "A19",
+        "A20",
+        "A24",
+        "A26",
+        "A27",
+        "A28",
+        "A29",
+        "A30",
+        "A35",
+        "E02",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E14",
+        "E15",
+        "E19",
+        "E21",
+        "E22",
+        "E25",
+        "T03",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T21",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F05",
+      "title": "Shared 2D design project and private assets",
+      "inspiration": [
+        "custom-ink",
+        "imprint",
+        "vistaprint",
+        "printnow"
+      ],
+      "sources": [
+        "S01",
+        "S08",
+        "S18",
+        "S16"
+      ],
+      "modules": [
+        "creative",
+        "configuration",
+        "commerce"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-009",
+        "GAP-017",
+        "GAP-019"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Customize text and artwork on a product-specific 2D canvas, save a project and resume it on another device.",
+      "operatorFlow": "Open the same project, adjust with permission and produce a new revision with an attributable history.",
+      "records": [
+        "design_project",
+        "design_version",
+        "design_layer",
+        "artwork_asset",
+        "derivative_asset",
+        "project_share"
+      ],
+      "invariants": [
+        "The project binds product, variant, method, location and template revision.",
+        "Each save creates an immutable revision; assets use private durable storage.",
+        "Changing a saved color or size rebinds the project and invalidates approvals that no longer apply."
+      ],
+      "proposedCommands": [
+        "creative.create_project",
+        "creative.save_revision",
+        "creative.rebind_variant",
+        "creative.render_preview"
+      ],
+      "proposedEvents": [
+        "design.version_created",
+        "render.requested"
+      ],
+      "proposedTests": [
+        "Saving then changing the cap color creates a correctly bound project/revision.",
+        "A collaborator from another workspace cannot read a private asset.",
+        "An interrupted render can resume without losing the saved design."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/studio.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/app/[[...path]]/page.tsx",
+        "apps/shop/components/designer.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/commerce/src/index.ts",
+        "packages/configuration/src/index.ts",
+        "packages/creative/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/commerce.test.ts",
+        "tests/modules/configuration.test.ts",
+        "tests/modules/creative.test.ts"
+      ],
+      "acceptance": [
+        "A09",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16",
+        "A17",
+        "A20",
+        "A37",
+        "A39",
+        "E02",
+        "E05",
+        "E08",
+        "E13",
+        "E14",
+        "E15",
+        "E16",
+        "E17",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T11",
+        "T12",
+        "T15",
+        "T29"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F06",
+      "title": "Brand-controlled editable templates",
+      "inspiration": [
+        "printnow",
+        "ordermygear",
+        "vistaprint"
+      ],
+      "sources": [
+        "S16",
+        "S14",
+        "S18"
+      ],
+      "modules": [
+        "creative",
+        "stores",
+        "configuration",
+        "marketing"
+      ],
+      "gaps": [
+        "GAP-011",
+        "GAP-017",
+        "GAP-019",
+        "GAP-029"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Choose an approved company template and edit only permitted text, image and color fields.",
+      "operatorFlow": "Lock logo placement, set fonts and color rules, preview changes, then publish a new template version.",
+      "records": [
+        "brand_kit",
+        "brand_asset",
+        "editable_field",
+        "template_revision",
+        "template_assignment"
+      ],
+      "invariants": [
+        "A customer cannot unlock a protected field through a crafted API request.",
+        "Font and asset rights are checked before publication or export.",
+        "Template updates do not silently replace issued proofs or accepted specifications."
+      ],
+      "proposedCommands": [
+        "template.create_revision",
+        "template.validate",
+        "template.publish",
+        "template.assign"
+      ],
+      "proposedEvents": [
+        "template.published"
+      ],
+      "proposedTests": [
+        "Changing a locked logo layer is rejected server-side.",
+        "An invalid text overflow is reported before save or proof generation.",
+        "A new template revision preserves existing accepted order artifacts."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/studio.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/app/[[...path]]/page.tsx",
+        "apps/shop/components/designer.tsx",
+        "apps/shop/components/programs.tsx",
+        "packages/configuration/src/index.ts",
+        "packages/creative/src/index.ts",
+        "packages/marketing/src/index.ts",
+        "packages/stores/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/configuration.test.ts",
+        "tests/modules/creative.test.ts",
+        "tests/modules/marketing.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "acceptance": [
+        "A09",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16",
+        "A26",
+        "A27",
+        "A31",
+        "A37",
+        "E02",
+        "E05",
+        "E13",
+        "E14",
+        "E16",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T12",
+        "T15",
+        "T16",
+        "T17",
+        "T22",
+        "T29"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F07",
+      "title": "Version-bound proof and method-specific prepress",
+      "inspiration": [
+        "4imprint",
+        "vistaprint",
+        "smartpress",
+        "imprint"
+      ],
+      "sources": [
+        "S11",
+        "S18",
+        "S31",
+        "S10"
+      ],
+      "modules": [
+        "creative",
+        "orders",
+        "fulfillment"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-018",
+        "GAP-024"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Review the exact configured item, request a revision or approve a named proof version and download the artifact.",
+      "operatorFlow": "Run method-specific checks and record qualified manual review for checks that cannot be automated.",
+      "records": [
+        "proof_revision",
+        "proof_decision",
+        "preflight_report",
+        "review_check",
+        "production_artifact"
+      ],
+      "invariants": [
+        "Preview, customer proof approval and production preflight are independent gates.",
+        "A proof hash alone is insufficient: product, variant, design, method and location must also match.",
+        "No unconditional pass is allowed; unresolved review stays blocked.",
+        "Changes to the relevant content or specifications revoke affected approvals."
+      ],
+      "proposedCommands": [
+        "proof.generate",
+        "proof.approve",
+        "proof.request_changes",
+        "preflight.record_review"
+      ],
+      "proposedEvents": [
+        "proof.approved",
+        "preflight.completed"
+      ],
+      "proposedTests": [
+        "A proof from another product with the same artwork hash is rejected.",
+        "Editing artwork after approval blocks production release.",
+        "An authorized manual review records reviewer, checks, evidence and exact revision."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/studio.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/app/[[...path]]/page.tsx",
+        "apps/shop/components/designer.tsx",
+        "packages/creative/src/index.ts",
+        "packages/fulfillment/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/creative.test.ts",
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts"
+      ],
+      "acceptance": [
+        "A09",
+        "A13",
+        "A14",
+        "A16",
+        "A17",
+        "A20",
+        "A21",
+        "A23",
+        "A24",
+        "A28",
+        "E02",
+        "E08",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E15",
+        "E22",
+        "T02",
+        "T04",
+        "T05",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T18",
+        "T19",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F08",
+      "title": "Assisted RFQ and commercial intake",
+      "inspiration": [
+        "4imprint",
+        "custom-ink",
+        "smartpress"
+      ],
+      "sources": [
+        "S11",
+        "S01",
+        "S30"
+      ],
+      "modules": [
+        "crm",
+        "sales",
+        "estimating"
+      ],
+      "gaps": [
+        "GAP-013",
+        "GAP-028",
+        "GAP-038"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Request a quote using saved selections, artwork, intended quantity, destination and required in-hand date.",
+      "operatorFlow": "Assign a rep, identify missing information, compare supplier alternatives and issue a clear revision.",
+      "records": [
+        "request",
+        "request_line",
+        "requirement_question",
+        "quote_revision",
+        "sales_task"
+      ],
+      "invariants": [
+        "Request submission creates no supplier spend or false paid order.",
+        "Request revisions preserve what changed and who answered.",
+        "A supplier estimate expires independently from a customer quote."
+      ],
+      "proposedCommands": [
+        "request.submit",
+        "request.assign",
+        "request.request_information",
+        "quote.prepare_revision"
+      ],
+      "proposedEvents": [
+        "request.submitted",
+        "quote.revision_prepared"
+      ],
+      "proposedTests": [
+        "Missing destination is visible as a freight uncertainty.",
+        "Duplicate RFQ submission produces one durable request.",
+        "An expired supplier estimate forces repricing before a new firm quote."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/crm/src/index.ts",
+        "packages/estimating/src/index.ts",
+        "packages/sales/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/crm.test.ts",
+        "tests/modules/estimating.test.ts",
+        "tests/modules/sales.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A11",
+        "A18",
+        "A19",
+        "A20",
+        "A26",
+        "A31",
+        "A37",
+        "E01",
+        "E02",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E15",
+        "E16",
+        "E22",
+        "E25",
+        "T02",
+        "T06",
+        "T10",
+        "T11",
+        "T12",
+        "T16",
+        "T21",
+        "T22",
+        "T28",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F09",
+      "title": "B2B company, location and buyer permissions",
+      "inspiration": [
+        "shopify",
+        "bigcommerce",
+        "ordermygear"
+      ],
+      "sources": [
+        "S23",
+        "S24",
+        "S25",
+        "S14"
+      ],
+      "modules": [
+        "crm",
+        "stores",
+        "foundation",
+        "commerce"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-028",
+        "GAP-032"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Order for an authorized company location, use approved addresses and see only permitted catalogs and terms.",
+      "operatorFlow": "Manage company members, buyer roles, locations and approval limits independently from staff permissions.",
+      "records": [
+        "company",
+        "company_location",
+        "company_contact",
+        "location_membership",
+        "catalog_assignment",
+        "terms_approval"
+      ],
+      "invariants": [
+        "Tenant/workspace scope and company/location grants are both required.",
+        "A contact may belong to multiple companies without sharing their private orders.",
+        "Buyer administrator privileges never imply TwelveSpec staff or finance privileges."
+      ],
+      "proposedCommands": [
+        "company.invite_member",
+        "company.assign_location",
+        "company.grant_buyer_role"
+      ],
+      "proposedEvents": [
+        "company.membership_changed"
+      ],
+      "proposedTests": [
+        "A buyer for location A cannot view location B’s restricted quote.",
+        "Revoking a membership invalidates subsequent protected actions.",
+        "An address ID from another company is rejected."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/programs.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/commerce/src/index.ts",
+        "packages/crm/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/stores/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/commerce.test.ts",
+        "tests/modules/crm.test.ts",
+        "tests/modules/foundation.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A10",
+        "A18",
+        "A19",
+        "A20",
+        "A26",
+        "A27",
+        "A29",
+        "A31",
+        "A36",
+        "A40",
+        "E02",
+        "E07",
+        "E08",
+        "E17",
+        "E18",
+        "E20",
+        "E24",
+        "E25",
+        "T11",
+        "T12",
+        "T16",
+        "T17",
+        "T22",
+        "T25",
+        "T26"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F10",
+      "title": "Company-store budgets through checkout",
+      "inspiration": [
+        "ordermygear",
+        "shopify"
+      ],
+      "sources": [
+        "S14",
+        "S15",
+        "S23"
+      ],
+      "modules": [
+        "stores",
+        "commerce",
+        "sales",
+        "orders",
+        "finance"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-011",
+        "GAP-013"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Shop a permitted company catalog, see remaining allowance and submit any required manager approval.",
+      "operatorFlow": "Reserve budget against an exact agreement, approve within limits, release on cancellation and reconcile actual usage.",
+      "records": [
+        "store_program",
+        "store_membership",
+        "budget",
+        "budget_reservation",
+        "approval_request",
+        "agreement_context"
+      ],
+      "invariants": [
+        "Store, brand kit, budget and membership identity survive cart → RFQ → quote → order.",
+        "Reservation and acceptance are atomic; concurrent buyers cannot overspend.",
+        "Cancel/expiry releases a reservation exactly once; fulfillment converts commitment under the approved policy."
+      ],
+      "proposedCommands": [
+        "store.validate_checkout",
+        "budget.reserve",
+        "budget.release",
+        "budget.commit"
+      ],
+      "proposedEvents": [
+        "budget.reserved",
+        "budget.released",
+        "budget.committed"
+      ],
+      "proposedTests": [
+        "Two concurrent 60.00 orders against 100.00 cannot both reserve.",
+        "A forged brand kit or store context fails at quote acceptance.",
+        "A duplicate cancellation releases budget once."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/programs.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/commerce/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts",
+        "packages/sales/src/index.ts",
+        "packages/stores/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/commerce.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/sales.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A10",
+        "A11",
+        "A18",
+        "A19",
+        "A20",
+        "A26",
+        "A27",
+        "A29",
+        "A40",
+        "E02",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E15",
+        "E18",
+        "E22",
+        "E25",
+        "T10",
+        "T11",
+        "T12",
+        "T16",
+        "T17",
+        "T21",
+        "T25",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F11",
+      "title": "Campaign close and group quantity collection",
+      "inspiration": [
+        "custom-ink",
+        "ordermygear"
+      ],
+      "sources": [
+        "S02",
+        "S14",
+        "S15"
+      ],
+      "modules": [
+        "stores",
+        "commerce",
+        "orders"
+      ],
+      "gaps": [
+        "GAP-011",
+        "GAP-024",
+        "GAP-031"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Enter eligible size/variant choices before a clearly displayed campaign close time.",
+      "operatorFlow": "Review participation, resolve minimums and exceptions, close the campaign and create reviewed production batches.",
+      "records": [
+        "campaign",
+        "participant_selection",
+        "campaign_close_revision",
+        "batch_requirement"
+      ],
+      "invariants": [
+        "Campaign close uses a stored timezone and server clock.",
+        "Minimum quantity failure creates a decision queue, never an unapproved purchase.",
+        "Fundraising allocation is a reference; complex fund settlement remains disabled."
+      ],
+      "proposedCommands": [
+        "campaign.submit_selection",
+        "campaign.close",
+        "campaign.propose_batch"
+      ],
+      "proposedEvents": [
+        "campaign.closed",
+        "campaign.batch_proposed"
+      ],
+      "proposedTests": [
+        "A selection after the close boundary is rejected.",
+        "Repeating close does not create duplicate production batches.",
+        "A below-minimum campaign opens a hold rather than charging or purchasing."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/programs.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/commerce/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts",
+        "packages/stores/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/commerce.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "acceptance": [
+        "A21",
+        "A23",
+        "A24",
+        "A26",
+        "A27",
+        "A28",
+        "A32",
+        "E02",
+        "E10",
+        "E12",
+        "E22",
+        "T12",
+        "T13",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T23",
+        "T27",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F12",
+      "title": "Redemption and allowance identity",
+      "inspiration": [
+        "ordermygear"
+      ],
+      "sources": [
+        "S14",
+        "S15"
+      ],
+      "modules": [
+        "stores",
+        "commerce",
+        "finance"
+      ],
+      "gaps": [
+        "GAP-011",
+        "GAP-013",
+        "GAP-027"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Redeem an eligible one-time allowance for approved items and see any policy-based balance.",
+      "operatorFlow": "Issue scoped grants with expiry, revoke unused grants and review redemption attempts.",
+      "records": [
+        "redemption_grant",
+        "allowance",
+        "redemption_attempt",
+        "budget_reservation"
+      ],
+      "invariants": [
+        "Store only a hash of a secret redemption code.",
+        "Redemption is atomically single-use or explicitly quantity-limited.",
+        "Points and allowances are distinct from cash, processor payment and fundraiser settlement."
+      ],
+      "proposedCommands": [
+        "redemption.issue",
+        "redemption.redeem",
+        "redemption.revoke"
+      ],
+      "proposedEvents": [
+        "redemption.reserved",
+        "redemption.consumed"
+      ],
+      "proposedTests": [
+        "Two simultaneous uses of a single-use code produce one reservation.",
+        "A code for another program cannot buy an unassigned item.",
+        "Expired grants fail without consuming allowance."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/programs.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/commerce/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/stores/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/commerce.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "acceptance": [
+        "A11",
+        "A18",
+        "A19",
+        "A20",
+        "A26",
+        "A27",
+        "A29",
+        "A30",
+        "A35",
+        "E02",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E15",
+        "E19",
+        "E21",
+        "E22",
+        "E25",
+        "T10",
+        "T11",
+        "T12",
+        "T16",
+        "T17",
+        "T21",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F13",
+      "title": "BYOB kits with assembly and multi-source cost",
+      "inspiration": [
+        "pcna",
+        "ordermygear",
+        "smartpress"
+      ],
+      "sources": [
+        "S04",
+        "S14",
+        "S30"
+      ],
+      "modules": [
+        "byob",
+        "estimating",
+        "commerce",
+        "orders",
+        "fulfillment"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-012",
+        "GAP-024",
+        "GAP-026"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Build an eligible kit with required and optional components, packaging and a truthful complete estimate.",
+      "operatorFlow": "Approve the bill of materials, source components, receive them, assemble and inspect the kit before dispatch.",
+      "records": [
+        "bundle_template",
+        "kit_configuration",
+        "kit_component",
+        "packaging_requirement",
+        "assembly_operation",
+        "kit_job"
+      ],
+      "invariants": [
+        "Kit identity, quantities, packaging and labor survive commercial snapshots and job allocation.",
+        "A component substitution creates a new kit revision and relevant reapproval.",
+        "Dispatch waits for required components and assembly QC, not just the first source shipment."
+      ],
+      "proposedCommands": [
+        "bundle.validate",
+        "bundle.freeze",
+        "kit.allocate",
+        "assembly.complete"
+      ],
+      "proposedEvents": [
+        "kit.configured",
+        "kit.ready"
+      ],
+      "proposedTests": [
+        "A cart round-trip retains kit identity and assembly charges.",
+        "One missing component blocks a complete-kit shipment.",
+        "Component quantity changes trigger full kit repricing."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/programs.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/byob/src/index.ts",
+        "packages/commerce/src/index.ts",
+        "packages/estimating/src/index.ts",
+        "packages/fulfillment/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/byob.test.ts",
+        "tests/modules/commerce.test.ts",
+        "tests/modules/estimating.test.ts",
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts"
+      ],
+      "acceptance": [
+        "A11",
+        "A12",
+        "A18",
+        "A19",
+        "A21",
+        "A23",
+        "A24",
+        "A25",
+        "A28",
+        "A30",
+        "E06",
+        "E07",
+        "E10",
+        "E12",
+        "E14",
+        "E22",
+        "T03",
+        "T09",
+        "T10",
+        "T13",
+        "T15",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F14",
+      "title": "Immutable quote, acceptance and approved terms",
+      "inspiration": [
+        "bigcommerce",
+        "4imprint",
+        "shopify"
+      ],
+      "sources": [
+        "S26",
+        "S11",
+        "S23"
+      ],
+      "modules": [
+        "sales",
+        "estimating",
+        "orders",
+        "finance"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-010",
+        "GAP-013",
+        "GAP-032"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Compare issued revisions, review seller and assumptions, then accept an unexpired agreement with approved payment terms.",
+      "operatorFlow": "Issue a frozen revision, obtain margin/credit approvals and verify customer acceptance independently from payment.",
+      "records": [
+        "quote_revision",
+        "agreement_snapshot",
+        "seller_assignment",
+        "credit_approval",
+        "acceptance",
+        "payment_requirement"
+      ],
+      "invariants": [
+        "An accepted quote is immutable; any commercial change requires a new revision.",
+        "Credit exposure aggregates relevant open obligations at acceptance.",
+        "Handoff policy: first two orders prepaid; later Net 15 requires a qualifying approval.",
+        "A browser return URL never establishes payment received."
+      ],
+      "proposedCommands": [
+        "quote.issue",
+        "quote.accept",
+        "quote.expire",
+        "credit.evaluate"
+      ],
+      "proposedEvents": [
+        "quote.issued",
+        "quote.accepted"
+      ],
+      "proposedTests": [
+        "Acceptance after expiry fails even with a stale browser tab.",
+        "Two concurrent orders cannot exceed the approved credit exposure.",
+        "Changing seller, totals or specifications invalidates prior approval hashes."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/estimating/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts",
+        "packages/sales/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/estimating.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/sales.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A10",
+        "A11",
+        "A12",
+        "A18",
+        "A19",
+        "A20",
+        "A24",
+        "A26",
+        "A28",
+        "A29",
+        "A30",
+        "A31",
+        "A36",
+        "A40",
+        "E02",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E14",
+        "E15",
+        "E17",
+        "E18",
+        "E20",
+        "E22",
+        "E24",
+        "E25",
+        "T03",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T15",
+        "T16",
+        "T18",
+        "T21",
+        "T25",
+        "T26",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F15",
+      "title": "Saved carts, account history and safe reorder",
+      "inspiration": [
+        "vistaprint",
+        "smartpress",
+        "4imprint"
+      ],
+      "sources": [
+        "S19",
+        "S30",
+        "S11"
+      ],
+      "modules": [
+        "commerce",
+        "catalog",
+        "sales"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-013",
+        "GAP-038"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Resume saved projects and carts, view order progress and start a reorder with a visible change summary.",
+      "operatorFlow": "Resolve unavailable parts, new pricing, altered brand rules or expired artwork permissions before issuing the reorder.",
+      "records": [
+        "saved_cart",
+        "previous_order_reference",
+        "reorder_comparison",
+        "new_quote_revision"
+      ],
+      "invariants": [
+        "A reorder is a new draft and never reuses payment, supplier authorization or stale prices.",
+        "Store and kit context are retained and revalidated.",
+        "Previous artwork approval can be reused only under an explicit exact-match policy."
+      ],
+      "proposedCommands": [
+        "cart.save",
+        "order.propose_reorder",
+        "reorder.review_changes"
+      ],
+      "proposedEvents": [
+        "reorder.requested"
+      ],
+      "proposedTests": [
+        "A discontinued prior variant becomes a visible exception.",
+        "Current prices replace prior estimates only in the new draft.",
+        "Customer B cannot reorder customer A’s private order."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/commerce/src/index.ts",
+        "packages/sales/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/commerce.test.ts",
+        "tests/modules/sales.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A09",
+        "A11",
+        "A13",
+        "A14",
+        "A17",
+        "A18",
+        "A19",
+        "A20",
+        "A26",
+        "A27",
+        "A37",
+        "E01",
+        "E02",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E15",
+        "E16",
+        "E22",
+        "E25",
+        "T02",
+        "T04",
+        "T05",
+        "T06",
+        "T10",
+        "T11",
+        "T12",
+        "T16",
+        "T17",
+        "T21",
+        "T28",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F16",
+      "title": "Nontechnical Integration Center wizard",
+      "inspiration": [
+        "sanmar",
+        "pcna",
+        "sinalite",
+        "gotprint"
+      ],
+      "sources": [
+        "S06",
+        "S03",
+        "S32",
+        "S38",
+        "S39"
+      ],
+      "modules": [
+        "supplier",
+        "foundation",
+        "catalog",
+        "procurement"
+      ],
+      "gaps": [
+        "GAP-004",
+        "GAP-005",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-034"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Customer screens consume only published, approved data and never supplier configuration.",
+      "operatorFlow": "Choose supported provider → confirm entitlement → save masked credentials → test each capability → map sample → preview pricing/publication → schedule sync → activate approved operations.",
+      "records": [
+        "connection",
+        "secret_handle",
+        "provider_profile",
+        "capability_verification",
+        "mapping_profile",
+        "sync_policy",
+        "activation_approval"
+      ],
+      "invariants": [
+        "No credentials in browser responses, logs, exports or public assets.",
+        "Documented, mocked, sandbox-verified and live-verified operations are distinct.",
+        "Only reviewed adapters are plug-and-play; an arbitrary unknown API needs engineering.",
+        "Product, media, stock, pricing, PO, status and invoice are separately verified."
+      ],
+      "proposedCommands": [
+        "connection.create",
+        "credential.store",
+        "capability.test",
+        "mapping.preview",
+        "connection.activate"
+      ],
+      "proposedEvents": [
+        "connection.capability_verified",
+        "connection.activation_changed"
+      ],
+      "proposedTests": [
+        "An administrator can configure a supported fixture connection without editing source.",
+        "A successful product test does not enable purchase submission.",
+        "Credential rotation preserves masked display and prevents plaintext export."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/procurement/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/foundation.test.ts",
+        "tests/modules/procurement.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A08",
+        "A14",
+        "A19",
+        "A22",
+        "A25",
+        "A26",
+        "A31",
+        "A33",
+        "A34",
+        "A35",
+        "A36",
+        "A38",
+        "A39",
+        "E04",
+        "E05",
+        "E07",
+        "E12",
+        "E17",
+        "E18",
+        "E20",
+        "E24",
+        "T07",
+        "T08",
+        "T09",
+        "T15",
+        "T16",
+        "T20",
+        "T24",
+        "T25",
+        "T26",
+        "T27"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F17",
+      "title": "CSV/XML mapping, staged review and rollback",
+      "inspiration": [
+        "sanmar",
+        "sinalite"
+      ],
+      "sources": [
+        "S06",
+        "S32"
+      ],
+      "modules": [
+        "supplier",
+        "catalog",
+        "configuration"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-022"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Published products change only after a reviewed import commit and publication step.",
+      "operatorFlow": "Upload a private file, map product/variant/options/price fields, inspect row errors and differences, commit selected changes and resolve rollback conflicts.",
+      "records": [
+        "import_file",
+        "mapping_revision",
+        "staged_row",
+        "import_change",
+        "rollback_manifest",
+        "conflict"
+      ],
+      "invariants": [
+        "Unmapped identity, currency or units block affected rows.",
+        "Stream bounded input; reject unsafe XML entities and oversized resources.",
+        "A rollback never overwrites subsequent human edits or makes rolled-back costs eligible."
+      ],
+      "proposedCommands": [
+        "import.preview",
+        "import.validate",
+        "import.commit",
+        "import.rollback"
+      ],
+      "proposedEvents": [
+        "import.committed",
+        "import.rolled_back"
+      ],
+      "proposedTests": [
+        "Re-importing the same source file does not duplicate source identities.",
+        "A malformed row is attributable without exposing another tenant’s data.",
+        "Rollback after a conflicting manual edit creates a review exception."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/configuration/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/configuration.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "acceptance": [
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A15",
+        "A38",
+        "E01",
+        "E03",
+        "E04",
+        "E05",
+        "E12",
+        "E16",
+        "T02",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T24",
+        "T27",
+        "T29"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F18",
+      "title": "Independent inventory, pricing and status freshness",
+      "inspiration": [
+        "sanmar",
+        "printify",
+        "printful"
+      ],
+      "sources": [
+        "S06",
+        "S12",
+        "S21"
+      ],
+      "modules": [
+        "supplier",
+        "catalog",
+        "estimating",
+        "workflow"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-010",
+        "GAP-020",
+        "GAP-022"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See availability and estimate confidence with a meaningful freshness timestamp.",
+      "operatorFlow": "Schedule catalog, inventory, price and order-status updates independently and remediate one failed operation without disabling successful ones.",
+      "records": [
+        "inventory_snapshot",
+        "price_snapshot",
+        "sync_cursor",
+        "sync_run",
+        "freshness_policy",
+        "sync_exception"
+      ],
+      "invariants": [
+        "Inventory evidence is not a reservation.",
+        "Each capability has its own cursor, observed time, expiry and retry policy.",
+        "Rate limiting preserves work and resumes; stale evidence does not silently support a firm promise."
+      ],
+      "proposedCommands": [
+        "sync.schedule",
+        "sync.resume",
+        "sync.reconcile",
+        "freshness.evaluate"
+      ],
+      "proposedEvents": [
+        "sync.completed",
+        "source.evidence_expired"
+      ],
+      "proposedTests": [
+        "A pricing outage does not erase the last valid catalog.",
+        "A rate-limit response resumes after the permitted delay without duplicate records.",
+        "Expired cost evidence forces a fresh estimate or quote-only result."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/estimating/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts",
+        "packages/workflows/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/estimating.test.ts",
+        "tests/modules/supplier.test.ts",
+        "tests/modules/workflow.test.ts"
+      ],
+      "acceptance": [
+        "A04",
+        "A06",
+        "A08",
+        "A11",
+        "A12",
+        "A18",
+        "A19",
+        "A22",
+        "A24",
+        "A25",
+        "A28",
+        "A30",
+        "A32",
+        "A33",
+        "A34",
+        "A35",
+        "A38",
+        "E04",
+        "E05",
+        "E06",
+        "E07",
+        "E12",
+        "E14",
+        "E19",
+        "T03",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T14",
+        "T15",
+        "T18",
+        "T20",
+        "T21",
+        "T23",
+        "T27"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F19",
+      "title": "Provider-neutral POD routing proposals",
+      "inspiration": [
+        "printify",
+        "printful"
+      ],
+      "sources": [
+        "S12",
+        "S13",
+        "S20",
+        "S21",
+        "S22"
+      ],
+      "modules": [
+        "supplier",
+        "configuration",
+        "procurement",
+        "fulfillment",
+        "finance"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Receive the item and artwork that were approved; review any material substitution before production.",
+      "operatorFlow": "Compare eligible sources and propose exact or approved alternatives with cost, print geometry, geography and delivery impacts.",
+      "records": [
+        "provider_variant_map",
+        "print_file_binding",
+        "routing_proposal",
+        "substitution_approval",
+        "provider_order"
+      ],
+      "invariants": [
+        "A source change rechecks print area, method, region, landed price and agreement.",
+        "Draft creation, supplier charge and production confirmation are distinct commands.",
+        "No autonomous order submission or unknown-outcome retry is permitted."
+      ],
+      "proposedCommands": [
+        "routing.propose",
+        "routing.approve",
+        "provider.create_draft",
+        "provider.confirm"
+      ],
+      "proposedEvents": [
+        "routing.change_proposed",
+        "provider.order_confirmed"
+      ],
+      "proposedTests": [
+        "A similar garment cannot replace an approved brand without approval.",
+        "A new provider print-area mismatch blocks confirmation.",
+        "A failed billing outcome creates an exception and no false production status."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/workspace.tsx",
+        "packages/configuration/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/fulfillment/src/index.ts",
+        "packages/procurement/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/configuration.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/procurement.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "acceptance": [
+        "A04",
+        "A06",
+        "A11",
+        "A12",
+        "A18",
+        "A19",
+        "A21",
+        "A22",
+        "A23",
+        "A24",
+        "A25",
+        "A28",
+        "A29",
+        "A30",
+        "A33",
+        "A34",
+        "A35",
+        "E04",
+        "E06",
+        "E07",
+        "E10",
+        "E11",
+        "E12",
+        "E14",
+        "E19",
+        "E21",
+        "E22",
+        "T03",
+        "T08",
+        "T09",
+        "T10",
+        "T13",
+        "T14",
+        "T15",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T27",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F20",
+      "title": "Per-line job orchestration and holds",
+      "inspiration": [
+        "oracle",
+        "printnow",
+        "smartpress"
+      ],
+      "sources": [
+        "S28",
+        "S29",
+        "S16",
+        "S31"
+      ],
+      "modules": [
+        "orders",
+        "procurement",
+        "fulfillment",
+        "today"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "View truthful item-level progress, holds and partial fulfillment rather than one misleading order status.",
+      "operatorFlow": "Allocate blank supply, decoration, print, assembly and dispatch tasks with dependencies, owners and evidence.",
+      "records": [
+        "job",
+        "job_operation",
+        "operation_dependency",
+        "purchase_requirement",
+        "hold",
+        "execution_event"
+      ],
+      "invariants": [
+        "A customer order may create several jobs and supplier requirements.",
+        "Each dependent operation waits for required predecessor completion and valid approvals.",
+        "Order completion is derived from required quantities and exceptions, not manually set success."
+      ],
+      "proposedCommands": [
+        "order.allocate_jobs",
+        "job.plan_operations",
+        "operation.start",
+        "operation.complete",
+        "hold.resolve"
+      ],
+      "proposedEvents": [
+        "job.allocated",
+        "operation.completed",
+        "job.hold_changed"
+      ],
+      "proposedTests": [
+        "Blank receiving can complete while decoration remains blocked.",
+        "An assembly operation cannot complete before required components arrive.",
+        "One shipped line does not mark all order lines fulfilled."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/fulfillment/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/procurement/src/index.ts",
+        "packages/production/src/index.ts",
+        "packages/today/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/procurement.test.ts",
+        "tests/modules/today.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A10",
+        "A16",
+        "A17",
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24",
+        "A25",
+        "A28",
+        "A29",
+        "A32",
+        "A35",
+        "A40",
+        "E04",
+        "E08",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E18",
+        "E19",
+        "E22",
+        "T05",
+        "T11",
+        "T13",
+        "T14",
+        "T18",
+        "T19",
+        "T20",
+        "T23",
+        "T25",
+        "T27",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F21",
+      "title": "Purchase approvals and uncertain outcome reconciliation",
+      "inspiration": [
+        "oracle",
+        "printful",
+        "4over"
+      ],
+      "sources": [
+        "S27",
+        "S20",
+        "S35"
+      ],
+      "modules": [
+        "procurement",
+        "orders",
+        "finance",
+        "foundation"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-013",
+        "GAP-025",
+        "GAP-027"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Customer commitments are protected from unapproved supplier substitutions or spend.",
+      "operatorFlow": "Prepare by purchase requirement, inspect the exact PO payload, approve within authority, submit once and reconcile acknowledgments or uncertainty.",
+      "records": [
+        "purchase_requirement",
+        "po_revision",
+        "po_line",
+        "spend_approval",
+        "provider_transaction",
+        "reconciliation_case"
+      ],
+      "invariants": [
+        "Approval binds payload hash, amount, currency, provider and agreement revision.",
+        "One requirement cannot be purchased twice through competing job or connection paths.",
+        "A timeout after write is UNKNOWN_OUTCOME; query/reconcile before any resubmission."
+      ],
+      "proposedCommands": [
+        "purchase.prepare",
+        "purchase.approve",
+        "purchase.submit",
+        "purchase.reconcile"
+      ],
+      "proposedEvents": [
+        "purchase.authorized",
+        "purchase.acknowledged",
+        "purchase.outcome_uncertain"
+      ],
+      "proposedTests": [
+        "Changing a PO line after approval requires reapproval.",
+        "Two buyers cannot procure the same requirement twice.",
+        "A simulated post-write timeout cannot trigger an automatic second supplier order."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/finance/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/procurement/src/index.ts",
+        "packages/production/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/finance.test.ts",
+        "tests/modules/foundation.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/procurement.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A10",
+        "A11",
+        "A18",
+        "A19",
+        "A20",
+        "A21",
+        "A22",
+        "A24",
+        "A26",
+        "A27",
+        "A29",
+        "A30",
+        "A31",
+        "A35",
+        "A36",
+        "A40",
+        "E02",
+        "E04",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E10",
+        "E11",
+        "E15",
+        "E17",
+        "E18",
+        "E19",
+        "E20",
+        "E21",
+        "E22",
+        "E24",
+        "E25",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T16",
+        "T17",
+        "T18",
+        "T21",
+        "T25",
+        "T26",
+        "T27",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F22",
+      "title": "Split shipments, blind shipping and tracking",
+      "inspiration": [
+        "smartpress",
+        "gotprint",
+        "4over",
+        "vistaprint"
+      ],
+      "sources": [
+        "S30",
+        "S31",
+        "S37",
+        "S36",
+        "S19"
+      ],
+      "modules": [
+        "fulfillment",
+        "orders",
+        "commerce"
+      ],
+      "gaps": [
+        "GAP-024",
+        "GAP-026",
+        "GAP-036"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See packages, quantities, destination and tracking for each part of the order.",
+      "operatorFlow": "Allocate quantities to packages, verify blind-ship settings, record supplier-provided tracking and handle delivery exceptions.",
+      "records": [
+        "shipment",
+        "shipment_item",
+        "package",
+        "address_snapshot",
+        "tracking_event",
+        "blind_ship_instruction"
+      ],
+      "invariants": [
+        "Allocated shipped quantities cannot exceed authorized remaining quantities.",
+        "A supplier shipment does not trigger a duplicate purchased label.",
+        "A delivered package event is not automatically acceptance of every order line."
+      ],
+      "proposedCommands": [
+        "shipment.allocate",
+        "shipment.record_tracking",
+        "tracking.ingest",
+        "delivery.resolve_exception"
+      ],
+      "proposedEvents": [
+        "shipment.dispatched",
+        "shipment.delivered"
+      ],
+      "proposedTests": [
+        "Two packages correctly sum to a partly then fully shipped line.",
+        "Duplicate tracking webhooks do not duplicate fulfillment quantity.",
+        "A blind-shipping restriction blocks an unsupported route."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/commerce/src/index.ts",
+        "packages/fulfillment/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/commerce.test.ts",
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts"
+      ],
+      "acceptance": [
+        "A11",
+        "A21",
+        "A23",
+        "A24",
+        "A25",
+        "A28",
+        "A29",
+        "A33",
+        "A35",
+        "E10",
+        "E12",
+        "E14",
+        "E21",
+        "E22",
+        "T13",
+        "T15",
+        "T18",
+        "T19",
+        "T20",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F23",
+      "title": "Returns, claims, remakes and customer resolution",
+      "inspiration": [
+        "4imprint",
+        "ordermygear",
+        "printful"
+      ],
+      "sources": [
+        "S11",
+        "S15",
+        "S22"
+      ],
+      "modules": [
+        "fulfillment",
+        "crm",
+        "finance",
+        "orders"
+      ],
+      "gaps": [
+        "GAP-026",
+        "GAP-027",
+        "GAP-028"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Report a problem against the affected quantity, attach private evidence and see its resolution status.",
+      "operatorFlow": "Classify damage, defect, artwork or preference; authorize refund/remake and link supplier recovery separately.",
+      "records": [
+        "claim",
+        "claim_line",
+        "evidence_asset",
+        "resolution",
+        "remake_order",
+        "refund_reference",
+        "supplier_credit_reference"
+      ],
+      "invariants": [
+        "A customer refund and supplier reimbursement are separate outcomes.",
+        "Remakes retain original agreement and cause but require new production authorization.",
+        "Resolution does not fabricate a financial refund without processor/accounting evidence."
+      ],
+      "proposedCommands": [
+        "claim.open",
+        "claim.review",
+        "resolution.authorize",
+        "remake.prepare",
+        "refund.reconcile"
+      ],
+      "proposedEvents": [
+        "claim.opened",
+        "claim.resolved"
+      ],
+      "proposedTests": [
+        "Partial defect quantity does not refund the entire order by default.",
+        "A refund UI success without a provider event remains pending.",
+        "Remake costs appear in actual profitability with a link to the original order."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/crm/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/fulfillment/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/crm.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts"
+      ],
+      "acceptance": [
+        "A18",
+        "A21",
+        "A23",
+        "A25",
+        "A27",
+        "A29",
+        "A30",
+        "A31",
+        "A35",
+        "E06",
+        "E09",
+        "E12",
+        "E19",
+        "E21",
+        "E22",
+        "T12",
+        "T13",
+        "T17",
+        "T19",
+        "T20",
+        "T21",
+        "T22",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F24",
+      "title": "Estimated versus actual direct profit and references",
+      "inspiration": [
+        "oracle",
+        "printful",
+        "shopify"
+      ],
+      "sources": [
+        "S27",
+        "S22",
+        "S23"
+      ],
+      "modules": [
+        "finance",
+        "estimating",
+        "analytics",
+        "today"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-027",
+        "GAP-030",
+        "GAP-036"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Receive accurate payment and invoice references without exposure to internal costs.",
+      "operatorFlow": "Reconcile supplier invoices, freight, fees, credits, customer receipts and actual job costs against the frozen estimate.",
+      "records": [
+        "actual_cost",
+        "supplier_invoice_reference",
+        "customer_invoice_reference",
+        "payment_reference",
+        "reconciliation",
+        "profit_snapshot"
+      ],
+      "invariants": [
+        "Customer paid, processor payout and supplier payable are separate facts.",
+        "Profit excludes collected tax and distinguishes direct gross profit from overhead/net profit.",
+        "No full general ledger, payroll or automated settlement is activated."
+      ],
+      "proposedCommands": [
+        "cost.record_actual",
+        "invoice.match",
+        "payment.reconcile",
+        "profit.close_snapshot"
+      ],
+      "proposedEvents": [
+        "cost.actual_recorded",
+        "reconciliation.completed"
+      ],
+      "proposedTests": [
+        "A supplier credit reduces actual cost once and retains its original reference.",
+        "A customer payout delay does not mark the order unpaid twice.",
+        "A report reconciles totals across the whole dataset beyond the first 1,000 records."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/analytics/src/index.ts",
+        "packages/estimating/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/today/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/analytics.test.ts",
+        "tests/modules/estimating.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/today.test.ts"
+      ],
+      "acceptance": [
+        "A11",
+        "A12",
+        "A18",
+        "A19",
+        "A20",
+        "A24",
+        "A25",
+        "A26",
+        "A27",
+        "A28",
+        "A29",
+        "A30",
+        "A33",
+        "A35",
+        "E02",
+        "E06",
+        "E07",
+        "E08",
+        "E09",
+        "E14",
+        "E15",
+        "E19",
+        "E21",
+        "E22",
+        "E25",
+        "T03",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T20",
+        "T21",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F25",
+      "title": "CMS, licensed assets and controlled marketing",
+      "inspiration": [
+        "imprint",
+        "4over",
+        "ordermygear"
+      ],
+      "sources": [
+        "S08",
+        "S35",
+        "S14"
+      ],
+      "modules": [
+        "marketing",
+        "catalog",
+        "creative",
+        "crm"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-016",
+        "GAP-019",
+        "GAP-029"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See current published product content and permitted campaign imagery.",
+      "operatorFlow": "Draft brand-consistent content, review rights and audience permission, approve a revision and schedule an authorized publication.",
+      "records": [
+        "content_revision",
+        "campaign",
+        "asset_license",
+        "audience_consent",
+        "suppression",
+        "publication_approval"
+      ],
+      "invariants": [
+        "Unpublished and expired-rights assets cannot enter public projections.",
+        "Approval, publication and external message sending are independent permissions.",
+        "Unsubscribe/suppression survives an audience reimport."
+      ],
+      "proposedCommands": [
+        "content.save_revision",
+        "content.review",
+        "content.publish",
+        "audience.suppress"
+      ],
+      "proposedEvents": [
+        "content.published",
+        "audience.suppressed"
+      ],
+      "proposedTests": [
+        "A manager with an approval grant can approve without an unrelated module-wide denial.",
+        "A suppressed contact cannot be reactivated by a CSV overwrite.",
+        "A draft cannot be fetched through a public asset URL."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/studio.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/app/[[...path]]/page.tsx",
+        "apps/shop/components/designer.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/creative/src/index.ts",
+        "packages/crm/src/index.ts",
+        "packages/marketing/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/creative.test.ts",
+        "tests/modules/crm.test.ts",
+        "tests/modules/marketing.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A09",
+        "A10",
+        "A14",
+        "A15",
+        "A19",
+        "A26",
+        "A31",
+        "A36",
+        "A38",
+        "E01",
+        "E02",
+        "E07",
+        "E17",
+        "E18",
+        "E20",
+        "E24",
+        "T02",
+        "T04",
+        "T05",
+        "T06",
+        "T16",
+        "T22",
+        "T24",
+        "T25",
+        "T26",
+        "T29"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F26",
+      "title": "Versioned automation with a durable event contract",
+      "inspiration": [
+        "printnow",
+        "printful",
+        "bigcommerce"
+      ],
+      "sources": [
+        "S16",
+        "S21",
+        "S26"
+      ],
+      "modules": [
+        "workflow",
+        "foundation",
+        "today"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Receive an accurate status update only after the underlying transaction commits and sending is authorized.",
+      "operatorFlow": "Choose a supported trigger, conditions and allowed action; simulate on sample data, approve, activate, inspect attempts and replay safely.",
+      "records": [
+        "event_envelope",
+        "outbox",
+        "automation_revision",
+        "subscription",
+        "execution",
+        "delivery_attempt",
+        "dead_letter"
+      ],
+      "invariants": [
+        "Emitters and subscribers use one versioned registry and schema.",
+        "Events carry tenant, workspace, aggregate revision, correlation and causation IDs.",
+        "Retries are idempotent; live spend and external sending require their own gates."
+      ],
+      "proposedCommands": [
+        "automation.simulate",
+        "automation.activate",
+        "execution.replay",
+        "delivery.retry"
+      ],
+      "proposedEvents": [
+        "automation.activated",
+        "automation.execution_failed"
+      ],
+      "proposedTests": [
+        "A request.submitted event reaches the matching approved subscription.",
+        "Replaying an event cannot create a second PO or duplicate message.",
+        "A consumer failure leaves a visible retriable exception and preserves the event."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/foundation/src/index.ts",
+        "packages/today/src/index.ts",
+        "packages/workflows/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/foundation.test.ts",
+        "tests/modules/today.test.ts",
+        "tests/modules/workflow.test.ts"
+      ],
+      "acceptance": [
+        "A18",
+        "A22",
+        "A31",
+        "A32",
+        "A35",
+        "A39",
+        "E12",
+        "E19",
+        "T14",
+        "T22",
+        "T23",
+        "T27"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F27",
+      "title": "Operational dashboard and full-dataset analytics",
+      "inspiration": [
+        "oracle",
+        "printnow",
+        "shopify"
+      ],
+      "sources": [
+        "S28",
+        "S16",
+        "S23"
+      ],
+      "modules": [
+        "today",
+        "analytics",
+        "finance",
+        "crm"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-028",
+        "GAP-030",
+        "GAP-033"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Account history shows understandable current commitments and outstanding actions.",
+      "operatorFlow": "Open queues for overdue proofs, stale prices, production holds and unmatched payments; drill from every KPI to scoped source records.",
+      "records": [
+        "metric_definition",
+        "time_bucket",
+        "queue_item",
+        "sla_clock",
+        "report_run",
+        "export_manifest"
+      ],
+      "invariants": [
+        "Metrics define numerator, denominator, timezone, exclusions and freshness.",
+        "KPI aggregation is not a sum of a capped browser list.",
+        "Gross profit per owner hour requires recorded hours and is not a net-profit claim."
+      ],
+      "proposedCommands": [
+        "report.run",
+        "report.export",
+        "queue.assign",
+        "metric.reconcile"
+      ],
+      "proposedEvents": [
+        "report.completed",
+        "sla.breached"
+      ],
+      "proposedTests": [
+        "A known seeded population above 1,000 reconciles to SQL totals.",
+        "A buyer cannot export another company’s records.",
+        "Waiting for proof and active production time are reported separately."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/analytics/src/index.ts",
+        "packages/crm/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/today/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/analytics.test.ts",
+        "tests/modules/crm.test.ts",
+        "tests/modules/finance.test.ts",
+        "tests/modules/today.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A10",
+        "A18",
+        "A27",
+        "A29",
+        "A30",
+        "A31",
+        "A35",
+        "A37",
+        "E01",
+        "E03",
+        "E06",
+        "E09",
+        "E15",
+        "E19",
+        "E21",
+        "E22",
+        "E23",
+        "T02",
+        "T12",
+        "T17",
+        "T21",
+        "T22",
+        "T28",
+        "T29",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F28",
+      "title": "Administration, delegated authority and audit",
+      "inspiration": [
+        "oracle",
+        "bigcommerce",
+        "shopify"
+      ],
+      "sources": [
+        "S27",
+        "S25",
+        "S24"
+      ],
+      "modules": [
+        "foundation",
+        "supplier",
+        "finance",
+        "workflow"
+      ],
+      "gaps": [
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-032",
+        "GAP-034",
+        "GAP-035"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Use granted company access with clear permission-denied and session-expiry states.",
+      "operatorFlow": "Manage staff grants, legal sellers, limits, connection environments, audit review and recovery evidence.",
+      "records": [
+        "membership",
+        "resource_grant",
+        "approval_limit",
+        "legal_seller",
+        "audit_event",
+        "recovery_run"
+      ],
+      "invariants": [
+        "Deny by default; module visibility is distinct from action/resource authority.",
+        "Revocation and workspace changes are enforced server-side.",
+        "Audit records are append-only and redact credentials and sensitive payloads."
+      ],
+      "proposedCommands": [
+        "grant.assign",
+        "grant.revoke",
+        "seller.assign",
+        "recovery.verify"
+      ],
+      "proposedEvents": [
+        "grant.revoked",
+        "seller.assignment_changed"
+      ],
+      "proposedTests": [
+        "An allowed reviewer can review but cannot submit supplier spend.",
+        "A tampered workspace ID returns no cross-tenant record.",
+        "An audit export contains masked credential metadata only."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/workspace.tsx",
+        "packages/finance/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts",
+        "packages/workflows/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/finance.test.ts",
+        "tests/modules/foundation.test.ts",
+        "tests/modules/supplier.test.ts",
+        "tests/modules/workflow.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A03",
+        "A06",
+        "A10",
+        "A14",
+        "A19",
+        "A20",
+        "A26",
+        "A29",
+        "A31",
+        "A34",
+        "A35",
+        "A36",
+        "A39",
+        "A40",
+        "E07",
+        "E08",
+        "E17",
+        "E18",
+        "E20",
+        "E24",
+        "E25",
+        "T11",
+        "T16",
+        "T24",
+        "T25",
+        "T26",
+        "T27"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F29",
+      "title": "Direct supplier standards and licensed ASI interfaces",
+      "inspiration": [
+        "pcna",
+        "sanmar"
+      ],
+      "sources": [
+        "S03",
+        "S06",
+        "S39"
+      ],
+      "modules": [
+        "supplier",
+        "catalog",
+        "foundation"
+      ],
+      "gaps": [
+        "GAP-004",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-034"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See approved canonical data independent of its licensed upstream source.",
+      "operatorFlow": "Configure direct supplier profiles and keep ASI SmartLink, ESP-related workflows and file imports as separately entitled interfaces.",
+      "records": [
+        "service_profile",
+        "service_version",
+        "external_identity",
+        "license_entitlement",
+        "capability_test"
+      ],
+      "invariants": [
+        "PSRESTful is prohibited.",
+        "PromoStandards service versions are supplier-specific and independently tested.",
+        "ASI SmartLink and ESP website access are not interchangeable rights; obtain official authorized schemas.",
+        "Public standards history does not verify a specific supplier endpoint."
+      ],
+      "proposedCommands": [
+        "profile.register_reviewed",
+        "entitlement.record",
+        "capability.verify"
+      ],
+      "proposedEvents": [
+        "entitlement.changed"
+      ],
+      "proposedTests": [
+        "A Product Data fixture cannot set invoice or PO capability verified.",
+        "Missing ASI entitlement leaves that capability blocked with a clear reason.",
+        "A supplier endpoint outside a reviewed profile is rejected."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/foundation.test.ts",
+        "tests/modules/supplier.test.ts"
+      ],
+      "acceptance": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A08",
+        "A14",
+        "A22",
+        "A25",
+        "A33",
+        "A34",
+        "A35",
+        "A38",
+        "A39",
+        "E04",
+        "E05",
+        "E12",
+        "E17",
+        "E18",
+        "T07",
+        "T08",
+        "T09",
+        "T15",
+        "T20",
+        "T24",
+        "T25",
+        "T27"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F30",
+      "title": "Complete usable screens and query behavior",
+      "inspiration": [
+        "vistaprint",
+        "shopify",
+        "bigcommerce",
+        "ordermygear"
+      ],
+      "sources": [
+        "S19",
+        "S23",
+        "S25",
+        "S14"
+      ],
+      "modules": [
+        "commerce",
+        "stores",
+        "catalog",
+        "foundation"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-033",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Use mobile and keyboard navigation, persistent filters and understandable validation or recovery messages.",
+      "operatorFlow": "Use scoped server pagination, saved filters, bulk previews, column controls and accessible dialogs across contracted screens.",
+      "records": [
+        "saved_view",
+        "query_cursor",
+        "bulk_operation",
+        "operator_preference"
+      ],
+      "invariants": [
+        "Every contracted screen covers loading, empty, error, denied and stale states.",
+        "Cross-app links use configured preview origins, never hardcoded localhost.",
+        "A failed save cannot present a success toast or discard work."
+      ],
+      "proposedCommands": [
+        "view.save",
+        "query.list",
+        "bulk.preview"
+      ],
+      "proposedEvents": [
+        "bulk.preview_completed"
+      ],
+      "proposedTests": [
+        "All contracted screens are reachable for their authorized role.",
+        "Customer and OS navigation works at the deployed HTTPS origins.",
+        "Keyboard-only save and error recovery retain focus and entered data."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/programs.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/catalog/src/index.ts",
+        "packages/commerce/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/stores/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/catalog.test.ts",
+        "tests/modules/commerce.test.ts",
+        "tests/modules/foundation.test.ts",
+        "tests/modules/stores.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A10",
+        "A15",
+        "A37",
+        "A40",
+        "E01",
+        "E03",
+        "E15",
+        "E16",
+        "E23",
+        "T02",
+        "T06",
+        "T28",
+        "T29",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F31",
+      "title": "Print-specific specifications and file roles",
+      "inspiration": [
+        "4over",
+        "smartpress",
+        "sinalite",
+        "printnow"
+      ],
+      "sources": [
+        "S36",
+        "S30",
+        "S34",
+        "S16"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "estimating",
+        "orders"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-024"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Choose supported dimensions, stock, sides and finishing with product-specific artwork instructions.",
+      "operatorFlow": "Maintain validated product families, file-role requirements and operation specs for each supported route.",
+      "records": [
+        "print_spec_revision",
+        "stock",
+        "finish",
+        "dimension_rule",
+        "file_role",
+        "manufacturing_spec"
+      ],
+      "invariants": [
+        "Store dimensions with explicit units and distinguish trim, bleed and safe area.",
+        "Front, back, white ink and specialty finish masks are named file roles where applicable.",
+        "Embroidery requires reviewed digitization evidence; automatic digitization remains future.",
+        "Vendor specifications are versioned evidence, not universal print constants."
+      ],
+      "proposedCommands": [
+        "print_spec.validate",
+        "file.bind_role",
+        "manufacturing_spec.freeze"
+      ],
+      "proposedEvents": [
+        "manufacturing_spec.validated"
+      ],
+      "proposedTests": [
+        "A required back file missing from a two-sided job blocks prepress.",
+        "Mixing inches and millimeters cannot silently change dimensions.",
+        "A foil mask from another revision cannot be approved with the current print file."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/studio.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/app/[[...path]]/page.tsx",
+        "apps/shop/components/designer.tsx",
+        "packages/configuration/src/index.ts",
+        "packages/creative/src/index.ts",
+        "packages/estimating/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/production/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/configuration.test.ts",
+        "tests/modules/creative.test.ts",
+        "tests/modules/estimating.test.ts",
+        "tests/modules/orders.test.ts"
+      ],
+      "acceptance": [
+        "A09",
+        "A12",
+        "A13",
+        "A14",
+        "A16",
+        "A17",
+        "A20",
+        "A21",
+        "A23",
+        "A24",
+        "A28",
+        "A37",
+        "E02",
+        "E05",
+        "E08",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15",
+        "E16",
+        "E22",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T18",
+        "T19",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F32",
+      "title": "Durable development, storage and recovery foundations",
+      "inspiration": [],
+      "sources": [],
+      "modules": [
+        "foundation",
+        "creative",
+        "supplier",
+        "workflow"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-007",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "priority": "P0",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Saved demo work survives the intended development environment lifecycle and failures have actionable messages.",
+      "operatorFlow": "Use isolated development data, verified database trust, durable private storage, managed secrets, backup/restore and real CI evidence.",
+      "records": [
+        "environment_config",
+        "migration",
+        "artifact_manifest",
+        "secret_version",
+        "backup_manifest",
+        "verification_run"
+      ],
+      "invariants": [
+        "No existing TwelveSpec production infrastructure is accessed or changed.",
+        "Database TLS verification stays enabled; temporary demo storage is labeled accurately.",
+        "Source publication and deployment remain separate approvals with reviewable artifacts."
+      ],
+      "proposedCommands": [
+        "environment.validate",
+        "migration.apply_dev",
+        "backup.restore_test"
+      ],
+      "proposedEvents": [
+        "environment.verification_completed"
+      ],
+      "proposedTests": [
+        "Restarting the intended persistent development stack retains a saved project.",
+        "A restore test recovers scoped records and private artifacts.",
+        "The CI evidence names the actual commit and executed checks."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/integrations.tsx",
+        "apps/os/components/studio.tsx",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/app/[[...path]]/page.tsx",
+        "apps/shop/components/designer.tsx",
+        "packages/creative/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts",
+        "packages/workflows/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/creative.test.ts",
+        "tests/modules/foundation.test.ts",
+        "tests/modules/supplier.test.ts",
+        "tests/modules/workflow.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A02",
+        "A03",
+        "A06",
+        "A10",
+        "A14",
+        "A15",
+        "A16",
+        "A22",
+        "A32",
+        "A34",
+        "A35",
+        "A36",
+        "A39",
+        "A40",
+        "E03",
+        "E13",
+        "E17",
+        "E18",
+        "E19",
+        "E20",
+        "E23",
+        "E24",
+        "T01",
+        "T04",
+        "T14",
+        "T23",
+        "T24",
+        "T25",
+        "T26",
+        "T27",
+        "T29",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F33",
+      "title": "Reserved future capabilities",
+      "inspiration": [
+        "printnow",
+        "oracle",
+        "custom-ink"
+      ],
+      "sources": [
+        "S17",
+        "S27",
+        "S01"
+      ],
+      "modules": [
+        "future"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-032",
+        "GAP-038",
+        "GAP-040"
+      ],
+      "priority": "RESERVED",
+      "scope": "COMING_SOON_ONLY",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See Coming Soon labels for unavailable capabilities without active transaction controls.",
+      "operatorFlow": "Keep research notes for AI design, validated 3D, auto digitization, CAD, SaaS, GL/payroll, enterprise MRP and autonomous procurement.",
+      "records": [
+        "module_registry",
+        "future_capability_note"
+      ],
+      "invariants": [
+        "Researching a vendor feature does not activate it.",
+        "Reserved server commands deny execution even when called outside the UI."
+      ],
+      "proposedCommands": [],
+      "proposedEvents": [],
+      "proposedTests": [
+        "Every reserved module remains Coming Soon with no working transaction button.",
+        "Direct API attempts for reserved capabilities are denied."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/contracts/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/security/isolation.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A20",
+        "A36",
+        "A37",
+        "E01",
+        "E13",
+        "E16",
+        "E18",
+        "E20",
+        "E24",
+        "E25",
+        "T01",
+        "T02",
+        "T06",
+        "T26",
+        "T28",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F34",
+      "title": "CRM relationships, ownership and follow-through",
+      "inspiration": [
+        "4imprint",
+        "custom-ink",
+        "bigcommerce"
+      ],
+      "sources": [
+        "S11",
+        "S01",
+        "S25"
+      ],
+      "modules": [
+        "crm",
+        "sales",
+        "today",
+        "marketing"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "Keep one account context across inquiries, artwork reviews, quotes and service issues.",
+      "operatorFlow": "Manage account/contact relationships, lead source, opportunity stages, next tasks, assigned reps and activity history.",
+      "records": [
+        "account",
+        "contact",
+        "account_contact",
+        "opportunity",
+        "sales_activity",
+        "next_action",
+        "consent"
+      ],
+      "invariants": [
+        "Identity matching is scoped and uncertain duplicates require review.",
+        "Follow-up tasks preserve their triggering quote or claim revision.",
+        "Closing an opportunity requires a reason and does not fabricate collected revenue."
+      ],
+      "proposedCommands": [
+        "crm.propose_merge",
+        "opportunity.transition",
+        "task.schedule",
+        "activity.record"
+      ],
+      "proposedEvents": [
+        "opportunity.stage_changed",
+        "task.due"
+      ],
+      "proposedTests": [
+        "A contact can serve two company locations with independent permissions.",
+        "An opportunity closed lost retains its quotes and reason.",
+        "A scheduled follow-up does not send external email in demo mode."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/crm/src/index.ts",
+        "packages/marketing/src/index.ts",
+        "packages/sales/src/index.ts",
+        "packages/today/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/crm.test.ts",
+        "tests/modules/marketing.test.ts",
+        "tests/modules/sales.test.ts",
+        "tests/modules/today.test.ts"
+      ],
+      "acceptance": [
+        "A01",
+        "A02",
+        "A18",
+        "A19",
+        "A26",
+        "A30",
+        "A31",
+        "A36",
+        "A37",
+        "E01",
+        "E07",
+        "E16",
+        "E17",
+        "E18",
+        "E20",
+        "E24",
+        "T02",
+        "T06",
+        "T16",
+        "T21",
+        "T22",
+        "T25",
+        "T26",
+        "T28",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    },
+    {
+      "id": "F35",
+      "title": "Production execution and quality checkpoints",
+      "inspiration": [
+        "oracle",
+        "smartpress",
+        "4over",
+        "sanmar"
+      ],
+      "sources": [
+        "S28",
+        "S31",
+        "S36",
+        "S06"
+      ],
+      "modules": [
+        "orders",
+        "fulfillment",
+        "procurement",
+        "today"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-030"
+      ],
+      "priority": "P1",
+      "scope": "ACTIVE_V1_DESIGN",
+      "status": "DESIGNED_NOT_IMPLEMENTED_BY_THIS_RESEARCH",
+      "customerFlow": "See truthful production progress and approved explanations for delays.",
+      "operatorFlow": "Receive materials, execute authorized operations, record actual quantities/time, inspect method-specific QC and resolve shortages or remakes.",
+      "records": [
+        "material_receipt",
+        "operation_execution",
+        "qc_check",
+        "quantity_variance",
+        "production_hold",
+        "remake_requirement"
+      ],
+      "invariants": [
+        "Received, produced, rejected and shipped quantities reconcile.",
+        "QC is tied to the operation and exact manufacturing revision.",
+        "An operator cannot release a blocked or unapproved production artifact."
+      ],
+      "proposedCommands": [
+        "receipt.record",
+        "operation.record_actual",
+        "qc.record",
+        "production.release"
+      ],
+      "proposedEvents": [
+        "materials.received",
+        "qc.failed",
+        "production.released"
+      ],
+      "proposedTests": [
+        "A short blank receipt creates a shortage and blocks excess production.",
+        "Failed QC creates an attributable hold and possible remake requirement.",
+        "Production release requires current artwork, commercial and purchasing gates."
+      ],
+      "testExecution": "NOT_RUN_DESIGN_ONLY",
+      "currentCode": [
+        "apps/os/components/workspace.tsx",
+        "packages/fulfillment/src/index.ts",
+        "packages/orders/src/index.ts",
+        "packages/procurement/src/index.ts",
+        "packages/production/src/index.ts",
+        "packages/today/src/index.ts"
+      ],
+      "existingTests": [
+        "tests/modules/fulfillment.test.ts",
+        "tests/modules/orders.test.ts",
+        "tests/modules/procurement.test.ts",
+        "tests/modules/today.test.ts"
+      ],
+      "acceptance": [
+        "A16",
+        "A17",
+        "A21",
+        "A22",
+        "A23",
+        "A24",
+        "A25",
+        "A28",
+        "A30",
+        "E04",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E19",
+        "E22",
+        "T05",
+        "T13",
+        "T14",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T27",
+        "T30"
+      ],
+      "dependencyRule": "Foundation gates apply before dependent behavior; see ordered implementation waves in SOFTWARE_BLUEPRINT.md.",
+      "evidenceBoundary": "Vendor behavior inspired this original design; proposed records, rules, commands, events and tests are not vendor internals or completed implementation."
+    }
+  ]
+}

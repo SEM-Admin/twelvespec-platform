@@ -1,0 +1,105 @@
+test_id,feature,assertion,status,gaps
+F01-T01,F01,"Given more than 1,000 variants, a matching item beyond the first page is discoverable.",PROPOSED_NOT_RUN,GAP-016;GAP-028;GAP-033;GAP-038
+F01-T02,F01,Submitting twice with the same request key creates one inquiry.,PROPOSED_NOT_RUN,GAP-016;GAP-028;GAP-033;GAP-038
+F01-T03,F01,A customer response contains no supplier costs or credential fields.,PROPOSED_NOT_RUN,GAP-016;GAP-028;GAP-033;GAP-038
+F02-T01,F02,A disallowed method/location combination cannot enter the cart.,PROPOSED_NOT_RUN,GAP-010;GAP-014;GAP-017;GAP-038
+F02-T02,F02,A size matrix with a missing price stays quote-only.,PROPOSED_NOT_RUN,GAP-010;GAP-014;GAP-017;GAP-038
+F02-T03,F02,Changing the template leaves an issued order’s snapshot unchanged.,PROPOSED_NOT_RUN,GAP-010;GAP-014;GAP-017;GAP-038
+F03-T01,F03,Two providers with the same SKU string remain distinct source parts.,PROPOSED_NOT_RUN,GAP-014;GAP-015;GAP-016
+F03-T02,F03,Rolling back an import makes its new offers ineligible for quoting.,PROPOSED_NOT_RUN,GAP-014;GAP-015;GAP-016
+F03-T03,F03,An image with expired channel rights is absent from the customer projection.,PROPOSED_NOT_RUN,GAP-014;GAP-015;GAP-016
+F04-T01,F04,"Unit cost 0.0250 times quantity 1,000 extends to 25.00.",PROPOSED_NOT_RUN,GAP-010;GAP-013;GAP-027
+F04-T02,F04,An unknown freight cost blocks a firm checkout price.,PROPOSED_NOT_RUN,GAP-010;GAP-013;GAP-027
+F04-T03,F04,A below-floor quote cannot be issued without a valid scoped override.,PROPOSED_NOT_RUN,GAP-010;GAP-013;GAP-027
+F05-T01,F05,Saving then changing the cap color creates a correctly bound project/revision.,PROPOSED_NOT_RUN,GAP-003;GAP-009;GAP-017;GAP-019
+F05-T02,F05,A collaborator from another workspace cannot read a private asset.,PROPOSED_NOT_RUN,GAP-003;GAP-009;GAP-017;GAP-019
+F05-T03,F05,An interrupted render can resume without losing the saved design.,PROPOSED_NOT_RUN,GAP-003;GAP-009;GAP-017;GAP-019
+F06-T01,F06,Changing a locked logo layer is rejected server-side.,PROPOSED_NOT_RUN,GAP-011;GAP-017;GAP-019;GAP-029
+F06-T02,F06,An invalid text overflow is reported before save or proof generation.,PROPOSED_NOT_RUN,GAP-011;GAP-017;GAP-019;GAP-029
+F06-T03,F06,A new template revision preserves existing accepted order artifacts.,PROPOSED_NOT_RUN,GAP-011;GAP-017;GAP-019;GAP-029
+F07-T01,F07,A proof from another product with the same artwork hash is rejected.,PROPOSED_NOT_RUN,GAP-009;GAP-018;GAP-024
+F07-T02,F07,Editing artwork after approval blocks production release.,PROPOSED_NOT_RUN,GAP-009;GAP-018;GAP-024
+F07-T03,F07,"An authorized manual review records reviewer, checks, evidence and exact revision.",PROPOSED_NOT_RUN,GAP-009;GAP-018;GAP-024
+F08-T01,F08,Missing destination is visible as a freight uncertainty.,PROPOSED_NOT_RUN,GAP-013;GAP-028;GAP-038
+F08-T02,F08,Duplicate RFQ submission produces one durable request.,PROPOSED_NOT_RUN,GAP-013;GAP-028;GAP-038
+F08-T03,F08,An expired supplier estimate forces repricing before a new firm quote.,PROPOSED_NOT_RUN,GAP-013;GAP-028;GAP-038
+F09-T01,F09,A buyer for location A cannot view location B’s restricted quote.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-011;GAP-028;GAP-032
+F09-T02,F09,Revoking a membership invalidates subsequent protected actions.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-011;GAP-028;GAP-032
+F09-T03,F09,An address ID from another company is rejected.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-011;GAP-028;GAP-032
+F10-T01,F10,Two concurrent 60.00 orders against 100.00 cannot both reserve.,PROPOSED_NOT_RUN,GAP-006;GAP-011;GAP-013
+F10-T02,F10,A forged brand kit or store context fails at quote acceptance.,PROPOSED_NOT_RUN,GAP-006;GAP-011;GAP-013
+F10-T03,F10,A duplicate cancellation releases budget once.,PROPOSED_NOT_RUN,GAP-006;GAP-011;GAP-013
+F11-T01,F11,A selection after the close boundary is rejected.,PROPOSED_NOT_RUN,GAP-011;GAP-024;GAP-031
+F11-T02,F11,Repeating close does not create duplicate production batches.,PROPOSED_NOT_RUN,GAP-011;GAP-024;GAP-031
+F11-T03,F11,A below-minimum campaign opens a hold rather than charging or purchasing.,PROPOSED_NOT_RUN,GAP-011;GAP-024;GAP-031
+F12-T01,F12,Two simultaneous uses of a single-use code produce one reservation.,PROPOSED_NOT_RUN,GAP-011;GAP-013;GAP-027
+F12-T02,F12,A code for another program cannot buy an unassigned item.,PROPOSED_NOT_RUN,GAP-011;GAP-013;GAP-027
+F12-T03,F12,Expired grants fail without consuming allowance.,PROPOSED_NOT_RUN,GAP-011;GAP-013;GAP-027
+F13-T01,F13,A cart round-trip retains kit identity and assembly charges.,PROPOSED_NOT_RUN,GAP-010;GAP-012;GAP-024;GAP-026
+F13-T02,F13,One missing component blocks a complete-kit shipment.,PROPOSED_NOT_RUN,GAP-010;GAP-012;GAP-024;GAP-026
+F13-T03,F13,Component quantity changes trigger full kit repricing.,PROPOSED_NOT_RUN,GAP-010;GAP-012;GAP-024;GAP-026
+F14-T01,F14,Acceptance after expiry fails even with a stale browser tab.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-010;GAP-013;GAP-032
+F14-T02,F14,Two concurrent orders cannot exceed the approved credit exposure.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-010;GAP-013;GAP-032
+F14-T03,F14,"Changing seller, totals or specifications invalidates prior approval hashes.",PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-010;GAP-013;GAP-032
+F15-T01,F15,A discontinued prior variant becomes a visible exception.,PROPOSED_NOT_RUN,GAP-008;GAP-009;GAP-011;GAP-013;GAP-038
+F15-T02,F15,Current prices replace prior estimates only in the new draft.,PROPOSED_NOT_RUN,GAP-008;GAP-009;GAP-011;GAP-013;GAP-038
+F15-T03,F15,Customer B cannot reorder customer A’s private order.,PROPOSED_NOT_RUN,GAP-008;GAP-009;GAP-011;GAP-013;GAP-038
+F16-T01,F16,An administrator can configure a supported fixture connection without editing source.,PROPOSED_NOT_RUN,GAP-004;GAP-005;GAP-020;GAP-021;GAP-022;GAP-034
+F16-T02,F16,A successful product test does not enable purchase submission.,PROPOSED_NOT_RUN,GAP-004;GAP-005;GAP-020;GAP-021;GAP-022;GAP-034
+F16-T03,F16,Credential rotation preserves masked display and prevents plaintext export.,PROPOSED_NOT_RUN,GAP-004;GAP-005;GAP-020;GAP-021;GAP-022;GAP-034
+F17-T01,F17,Re-importing the same source file does not duplicate source identities.,PROPOSED_NOT_RUN,GAP-014;GAP-015;GAP-016;GAP-022
+F17-T02,F17,A malformed row is attributable without exposing another tenant’s data.,PROPOSED_NOT_RUN,GAP-014;GAP-015;GAP-016;GAP-022
+F17-T03,F17,Rollback after a conflicting manual edit creates a review exception.,PROPOSED_NOT_RUN,GAP-014;GAP-015;GAP-016;GAP-022
+F18-T01,F18,A pricing outage does not erase the last valid catalog.,PROPOSED_NOT_RUN,GAP-007;GAP-010;GAP-020;GAP-022
+F18-T02,F18,A rate-limit response resumes after the permitted delay without duplicate records.,PROPOSED_NOT_RUN,GAP-007;GAP-010;GAP-020;GAP-022
+F18-T03,F18,Expired cost evidence forces a fresh estimate or quote-only result.,PROPOSED_NOT_RUN,GAP-007;GAP-010;GAP-020;GAP-022
+F19-T01,F19,A similar garment cannot replace an approved brand without approval.,PROPOSED_NOT_RUN,GAP-010;GAP-020;GAP-024;GAP-025;GAP-036
+F19-T02,F19,A new provider print-area mismatch blocks confirmation.,PROPOSED_NOT_RUN,GAP-010;GAP-020;GAP-024;GAP-025;GAP-036
+F19-T03,F19,A failed billing outcome creates an exception and no false production status.,PROPOSED_NOT_RUN,GAP-010;GAP-020;GAP-024;GAP-025;GAP-036
+F20-T01,F20,Blank receiving can complete while decoration remains blocked.,PROPOSED_NOT_RUN,GAP-006;GAP-007;GAP-018;GAP-024;GAP-025;GAP-026
+F20-T02,F20,An assembly operation cannot complete before required components arrive.,PROPOSED_NOT_RUN,GAP-006;GAP-007;GAP-018;GAP-024;GAP-025;GAP-026
+F20-T03,F20,One shipped line does not mark all order lines fulfilled.,PROPOSED_NOT_RUN,GAP-006;GAP-007;GAP-018;GAP-024;GAP-025;GAP-026
+F21-T01,F21,Changing a PO line after approval requires reapproval.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-013;GAP-025;GAP-027
+F21-T02,F21,Two buyers cannot procure the same requirement twice.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-013;GAP-025;GAP-027
+F21-T03,F21,A simulated post-write timeout cannot trigger an automatic second supplier order.,PROPOSED_NOT_RUN,GAP-005;GAP-006;GAP-013;GAP-025;GAP-027
+F22-T01,F22,Two packages correctly sum to a partly then fully shipped line.,PROPOSED_NOT_RUN,GAP-024;GAP-026;GAP-036
+F22-T02,F22,Duplicate tracking webhooks do not duplicate fulfillment quantity.,PROPOSED_NOT_RUN,GAP-024;GAP-026;GAP-036
+F22-T03,F22,A blind-shipping restriction blocks an unsupported route.,PROPOSED_NOT_RUN,GAP-024;GAP-026;GAP-036
+F23-T01,F23,Partial defect quantity does not refund the entire order by default.,PROPOSED_NOT_RUN,GAP-026;GAP-027;GAP-028
+F23-T02,F23,A refund UI success without a provider event remains pending.,PROPOSED_NOT_RUN,GAP-026;GAP-027;GAP-028
+F23-T03,F23,Remake costs appear in actual profitability with a link to the original order.,PROPOSED_NOT_RUN,GAP-026;GAP-027;GAP-028
+F24-T01,F24,A supplier credit reduces actual cost once and retains its original reference.,PROPOSED_NOT_RUN,GAP-010;GAP-013;GAP-027;GAP-030;GAP-036
+F24-T02,F24,A customer payout delay does not mark the order unpaid twice.,PROPOSED_NOT_RUN,GAP-010;GAP-013;GAP-027;GAP-030;GAP-036
+F24-T03,F24,"A report reconciles totals across the whole dataset beyond the first 1,000 records.",PROPOSED_NOT_RUN,GAP-010;GAP-013;GAP-027;GAP-030;GAP-036
+F25-T01,F25,A manager with an approval grant can approve without an unrelated module-wide denial.,PROPOSED_NOT_RUN,GAP-005;GAP-016;GAP-019;GAP-029
+F25-T02,F25,A suppressed contact cannot be reactivated by a CSV overwrite.,PROPOSED_NOT_RUN,GAP-005;GAP-016;GAP-019;GAP-029
+F25-T03,F25,A draft cannot be fetched through a public asset URL.,PROPOSED_NOT_RUN,GAP-005;GAP-016;GAP-019;GAP-029
+F26-T01,F26,A request.submitted event reaches the matching approved subscription.,PROPOSED_NOT_RUN,GAP-007;GAP-028;GAP-029;GAP-031;GAP-035
+F26-T02,F26,Replaying an event cannot create a second PO or duplicate message.,PROPOSED_NOT_RUN,GAP-007;GAP-028;GAP-029;GAP-031;GAP-035
+F26-T03,F26,A consumer failure leaves a visible retriable exception and preserves the event.,PROPOSED_NOT_RUN,GAP-007;GAP-028;GAP-029;GAP-031;GAP-035
+F27-T01,F27,"A known seeded population above 1,000 reconciles to SQL totals.",PROPOSED_NOT_RUN,GAP-008;GAP-027;GAP-028;GAP-030;GAP-033
+F27-T02,F27,A buyer cannot export another company’s records.,PROPOSED_NOT_RUN,GAP-008;GAP-027;GAP-028;GAP-030;GAP-033
+F27-T03,F27,Waiting for proof and active production time are reported separately.,PROPOSED_NOT_RUN,GAP-008;GAP-027;GAP-028;GAP-030;GAP-033
+F28-T01,F28,An allowed reviewer can review but cannot submit supplier spend.,PROPOSED_NOT_RUN,GAP-004;GAP-005;GAP-006;GAP-032;GAP-034;GAP-035
+F28-T02,F28,A tampered workspace ID returns no cross-tenant record.,PROPOSED_NOT_RUN,GAP-004;GAP-005;GAP-006;GAP-032;GAP-034;GAP-035
+F28-T03,F28,An audit export contains masked credential metadata only.,PROPOSED_NOT_RUN,GAP-004;GAP-005;GAP-006;GAP-032;GAP-034;GAP-035
+F29-T01,F29,A Product Data fixture cannot set invoice or PO capability verified.,PROPOSED_NOT_RUN,GAP-004;GAP-020;GAP-021;GAP-022;GAP-023;GAP-034
+F29-T02,F29,Missing ASI entitlement leaves that capability blocked with a clear reason.,PROPOSED_NOT_RUN,GAP-004;GAP-020;GAP-021;GAP-022;GAP-023;GAP-034
+F29-T03,F29,A supplier endpoint outside a reviewed profile is rejected.,PROPOSED_NOT_RUN,GAP-004;GAP-020;GAP-021;GAP-022;GAP-023;GAP-034
+F30-T01,F30,All contracted screens are reachable for their authorized role.,PROPOSED_NOT_RUN,GAP-008;GAP-033;GAP-038;GAP-039
+F30-T02,F30,Customer and OS navigation works at the deployed HTTPS origins.,PROPOSED_NOT_RUN,GAP-008;GAP-033;GAP-038;GAP-039
+F30-T03,F30,Keyboard-only save and error recovery retain focus and entered data.,PROPOSED_NOT_RUN,GAP-008;GAP-033;GAP-038;GAP-039
+F31-T01,F31,A required back file missing from a two-sided job blocks prepress.,PROPOSED_NOT_RUN,GAP-009;GAP-017;GAP-018;GAP-024
+F31-T02,F31,Mixing inches and millimeters cannot silently change dimensions.,PROPOSED_NOT_RUN,GAP-009;GAP-017;GAP-018;GAP-024
+F31-T03,F31,A foil mask from another revision cannot be approved with the current print file.,PROPOSED_NOT_RUN,GAP-009;GAP-017;GAP-018;GAP-024
+F32-T01,F32,Restarting the intended persistent development stack retains a saved project.,PROPOSED_NOT_RUN,GAP-002;GAP-003;GAP-004;GAP-007;GAP-034;GAP-035;GAP-037;GAP-039;GAP-040
+F32-T02,F32,A restore test recovers scoped records and private artifacts.,PROPOSED_NOT_RUN,GAP-002;GAP-003;GAP-004;GAP-007;GAP-034;GAP-035;GAP-037;GAP-039;GAP-040
+F32-T03,F32,The CI evidence names the actual commit and executed checks.,PROPOSED_NOT_RUN,GAP-002;GAP-003;GAP-004;GAP-007;GAP-034;GAP-035;GAP-037;GAP-039;GAP-040
+F33-T01,F33,Every reserved module remains Coming Soon with no working transaction button.,PROPOSED_NOT_RUN,GAP-001;GAP-032;GAP-038;GAP-040
+F33-T02,F33,Direct API attempts for reserved capabilities are denied.,PROPOSED_NOT_RUN,GAP-001;GAP-032;GAP-038;GAP-040
+F34-T01,F34,A contact can serve two company locations with independent permissions.,PROPOSED_NOT_RUN,GAP-005;GAP-028;GAP-029;GAP-030;GAP-038
+F34-T02,F34,An opportunity closed lost retains its quotes and reason.,PROPOSED_NOT_RUN,GAP-005;GAP-028;GAP-029;GAP-030;GAP-038
+F34-T03,F34,A scheduled follow-up does not send external email in demo mode.,PROPOSED_NOT_RUN,GAP-005;GAP-028;GAP-029;GAP-030;GAP-038
+F35-T01,F35,A short blank receipt creates a shortage and blocks excess production.,PROPOSED_NOT_RUN,GAP-018;GAP-024;GAP-025;GAP-026;GAP-030
+F35-T02,F35,Failed QC creates an attributable hold and possible remake requirement.,PROPOSED_NOT_RUN,GAP-018;GAP-024;GAP-025;GAP-026;GAP-030
+F35-T03,F35,"Production release requires current artwork, commercial and purchasing gates.",PROPOSED_NOT_RUN,GAP-018;GAP-024;GAP-025;GAP-026;GAP-030

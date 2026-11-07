@@ -4,6 +4,8 @@ The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GA
 
 - [x] Research 30 primary sources and audit all 20 module contracts.
 - [x] Map 205 inventory entries and all 95 A/T/E acceptance scenarios; reproduce pricing, program-context and approval-role defects.
+- [x] Research all 17 requested companies for features to adapt into original TwelveSpec software; deliver [35 feature designs, data requirements and proposed tests](business-research/README.md).
+- [ ] Implement the researched feature designs in the existing application and execute their behavioral tests; preserve Coming Soon scope.
 - [ ] Execute GAP-002–040 with commit-specific tests and explicit external activation gates.
 
 - [x] Locate greenfield repository and supplied handoff.

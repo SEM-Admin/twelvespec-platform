@@ -1,0 +1,1877 @@
+[
+  {
+    "id": "F01-T01",
+    "feature": "F01",
+    "assertion": "Given more than 1,000 variants, a matching item beyond the first page is discoverable.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "catalog",
+      "commerce",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-016",
+      "GAP-028",
+      "GAP-033",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F01-T02",
+    "feature": "F01",
+    "assertion": "Submitting twice with the same request key creates one inquiry.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "catalog",
+      "commerce",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-016",
+      "GAP-028",
+      "GAP-033",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F01-T03",
+    "feature": "F01",
+    "assertion": "A customer response contains no supplier costs or credential fields.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "catalog",
+      "commerce",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-016",
+      "GAP-028",
+      "GAP-033",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F02-T01",
+    "feature": "F02",
+    "assertion": "A disallowed method/location combination cannot enter the cart.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "configuration",
+      "catalog",
+      "commerce",
+      "estimating"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-014",
+      "GAP-017",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F02-T02",
+    "feature": "F02",
+    "assertion": "A size matrix with a missing price stays quote-only.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "configuration",
+      "catalog",
+      "commerce",
+      "estimating"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-014",
+      "GAP-017",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F02-T03",
+    "feature": "F02",
+    "assertion": "Changing the template leaves an issued order\u2019s snapshot unchanged.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "configuration",
+      "catalog",
+      "commerce",
+      "estimating"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-014",
+      "GAP-017",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F03-T01",
+    "feature": "F03",
+    "assertion": "Two providers with the same SKU string remain distinct source parts.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "catalog",
+      "supplier"
+    ],
+    "gaps": [
+      "GAP-014",
+      "GAP-015",
+      "GAP-016"
+    ]
+  },
+  {
+    "id": "F03-T02",
+    "feature": "F03",
+    "assertion": "Rolling back an import makes its new offers ineligible for quoting.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "catalog",
+      "supplier"
+    ],
+    "gaps": [
+      "GAP-014",
+      "GAP-015",
+      "GAP-016"
+    ]
+  },
+  {
+    "id": "F03-T03",
+    "feature": "F03",
+    "assertion": "An image with expired channel rights is absent from the customer projection.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "catalog",
+      "supplier"
+    ],
+    "gaps": [
+      "GAP-014",
+      "GAP-015",
+      "GAP-016"
+    ]
+  },
+  {
+    "id": "F04-T01",
+    "feature": "F04",
+    "assertion": "Unit cost 0.0250 times quantity 1,000 extends to 25.00.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "estimating",
+      "sales",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-013",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F04-T02",
+    "feature": "F04",
+    "assertion": "An unknown freight cost blocks a firm checkout price.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "estimating",
+      "sales",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-013",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F04-T03",
+    "feature": "F04",
+    "assertion": "A below-floor quote cannot be issued without a valid scoped override.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "estimating",
+      "sales",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-013",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F05-T01",
+    "feature": "F05",
+    "assertion": "Saving then changing the cap color creates a correctly bound project/revision.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "configuration",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-003",
+      "GAP-009",
+      "GAP-017",
+      "GAP-019"
+    ]
+  },
+  {
+    "id": "F05-T02",
+    "feature": "F05",
+    "assertion": "A collaborator from another workspace cannot read a private asset.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "configuration",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-003",
+      "GAP-009",
+      "GAP-017",
+      "GAP-019"
+    ]
+  },
+  {
+    "id": "F05-T03",
+    "feature": "F05",
+    "assertion": "An interrupted render can resume without losing the saved design.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "configuration",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-003",
+      "GAP-009",
+      "GAP-017",
+      "GAP-019"
+    ]
+  },
+  {
+    "id": "F06-T01",
+    "feature": "F06",
+    "assertion": "Changing a locked logo layer is rejected server-side.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "stores",
+      "configuration",
+      "marketing"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-017",
+      "GAP-019",
+      "GAP-029"
+    ]
+  },
+  {
+    "id": "F06-T02",
+    "feature": "F06",
+    "assertion": "An invalid text overflow is reported before save or proof generation.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "stores",
+      "configuration",
+      "marketing"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-017",
+      "GAP-019",
+      "GAP-029"
+    ]
+  },
+  {
+    "id": "F06-T03",
+    "feature": "F06",
+    "assertion": "A new template revision preserves existing accepted order artifacts.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "stores",
+      "configuration",
+      "marketing"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-017",
+      "GAP-019",
+      "GAP-029"
+    ]
+  },
+  {
+    "id": "F07-T01",
+    "feature": "F07",
+    "assertion": "A proof from another product with the same artwork hash is rejected.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "orders",
+      "fulfillment"
+    ],
+    "gaps": [
+      "GAP-009",
+      "GAP-018",
+      "GAP-024"
+    ]
+  },
+  {
+    "id": "F07-T02",
+    "feature": "F07",
+    "assertion": "Editing artwork after approval blocks production release.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "orders",
+      "fulfillment"
+    ],
+    "gaps": [
+      "GAP-009",
+      "GAP-018",
+      "GAP-024"
+    ]
+  },
+  {
+    "id": "F07-T03",
+    "feature": "F07",
+    "assertion": "An authorized manual review records reviewer, checks, evidence and exact revision.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "creative",
+      "orders",
+      "fulfillment"
+    ],
+    "gaps": [
+      "GAP-009",
+      "GAP-018",
+      "GAP-024"
+    ]
+  },
+  {
+    "id": "F08-T01",
+    "feature": "F08",
+    "assertion": "Missing destination is visible as a freight uncertainty.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "sales",
+      "estimating"
+    ],
+    "gaps": [
+      "GAP-013",
+      "GAP-028",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F08-T02",
+    "feature": "F08",
+    "assertion": "Duplicate RFQ submission produces one durable request.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "sales",
+      "estimating"
+    ],
+    "gaps": [
+      "GAP-013",
+      "GAP-028",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F08-T03",
+    "feature": "F08",
+    "assertion": "An expired supplier estimate forces repricing before a new firm quote.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "sales",
+      "estimating"
+    ],
+    "gaps": [
+      "GAP-013",
+      "GAP-028",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F09-T01",
+    "feature": "F09",
+    "assertion": "A buyer for location A cannot view location B\u2019s restricted quote.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "stores",
+      "foundation",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-011",
+      "GAP-028",
+      "GAP-032"
+    ]
+  },
+  {
+    "id": "F09-T02",
+    "feature": "F09",
+    "assertion": "Revoking a membership invalidates subsequent protected actions.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "stores",
+      "foundation",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-011",
+      "GAP-028",
+      "GAP-032"
+    ]
+  },
+  {
+    "id": "F09-T03",
+    "feature": "F09",
+    "assertion": "An address ID from another company is rejected.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "stores",
+      "foundation",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-011",
+      "GAP-028",
+      "GAP-032"
+    ]
+  },
+  {
+    "id": "F10-T01",
+    "feature": "F10",
+    "assertion": "Two concurrent 60.00 orders against 100.00 cannot both reserve.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "sales",
+      "orders",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-006",
+      "GAP-011",
+      "GAP-013"
+    ]
+  },
+  {
+    "id": "F10-T02",
+    "feature": "F10",
+    "assertion": "A forged brand kit or store context fails at quote acceptance.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "sales",
+      "orders",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-006",
+      "GAP-011",
+      "GAP-013"
+    ]
+  },
+  {
+    "id": "F10-T03",
+    "feature": "F10",
+    "assertion": "A duplicate cancellation releases budget once.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "sales",
+      "orders",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-006",
+      "GAP-011",
+      "GAP-013"
+    ]
+  },
+  {
+    "id": "F11-T01",
+    "feature": "F11",
+    "assertion": "A selection after the close boundary is rejected.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-024",
+      "GAP-031"
+    ]
+  },
+  {
+    "id": "F11-T02",
+    "feature": "F11",
+    "assertion": "Repeating close does not create duplicate production batches.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-024",
+      "GAP-031"
+    ]
+  },
+  {
+    "id": "F11-T03",
+    "feature": "F11",
+    "assertion": "A below-minimum campaign opens a hold rather than charging or purchasing.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-024",
+      "GAP-031"
+    ]
+  },
+  {
+    "id": "F12-T01",
+    "feature": "F12",
+    "assertion": "Two simultaneous uses of a single-use code produce one reservation.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-013",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F12-T02",
+    "feature": "F12",
+    "assertion": "A code for another program cannot buy an unassigned item.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-013",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F12-T03",
+    "feature": "F12",
+    "assertion": "Expired grants fail without consuming allowance.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "stores",
+      "commerce",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-011",
+      "GAP-013",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F13-T01",
+    "feature": "F13",
+    "assertion": "A cart round-trip retains kit identity and assembly charges.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "byob",
+      "estimating",
+      "commerce",
+      "orders",
+      "fulfillment"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-012",
+      "GAP-024",
+      "GAP-026"
+    ]
+  },
+  {
+    "id": "F13-T02",
+    "feature": "F13",
+    "assertion": "One missing component blocks a complete-kit shipment.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "byob",
+      "estimating",
+      "commerce",
+      "orders",
+      "fulfillment"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-012",
+      "GAP-024",
+      "GAP-026"
+    ]
+  },
+  {
+    "id": "F13-T03",
+    "feature": "F13",
+    "assertion": "Component quantity changes trigger full kit repricing.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "byob",
+      "estimating",
+      "commerce",
+      "orders",
+      "fulfillment"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-012",
+      "GAP-024",
+      "GAP-026"
+    ]
+  },
+  {
+    "id": "F14-T01",
+    "feature": "F14",
+    "assertion": "Acceptance after expiry fails even with a stale browser tab.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "sales",
+      "estimating",
+      "orders",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-010",
+      "GAP-013",
+      "GAP-032"
+    ]
+  },
+  {
+    "id": "F14-T02",
+    "feature": "F14",
+    "assertion": "Two concurrent orders cannot exceed the approved credit exposure.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "sales",
+      "estimating",
+      "orders",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-010",
+      "GAP-013",
+      "GAP-032"
+    ]
+  },
+  {
+    "id": "F14-T03",
+    "feature": "F14",
+    "assertion": "Changing seller, totals or specifications invalidates prior approval hashes.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "sales",
+      "estimating",
+      "orders",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-010",
+      "GAP-013",
+      "GAP-032"
+    ]
+  },
+  {
+    "id": "F15-T01",
+    "feature": "F15",
+    "assertion": "A discontinued prior variant becomes a visible exception.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "commerce",
+      "catalog",
+      "sales"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-009",
+      "GAP-011",
+      "GAP-013",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F15-T02",
+    "feature": "F15",
+    "assertion": "Current prices replace prior estimates only in the new draft.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "commerce",
+      "catalog",
+      "sales"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-009",
+      "GAP-011",
+      "GAP-013",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F15-T03",
+    "feature": "F15",
+    "assertion": "Customer B cannot reorder customer A\u2019s private order.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "commerce",
+      "catalog",
+      "sales"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-009",
+      "GAP-011",
+      "GAP-013",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F16-T01",
+    "feature": "F16",
+    "assertion": "An administrator can configure a supported fixture connection without editing source.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "foundation",
+      "catalog",
+      "procurement"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-005",
+      "GAP-020",
+      "GAP-021",
+      "GAP-022",
+      "GAP-034"
+    ]
+  },
+  {
+    "id": "F16-T02",
+    "feature": "F16",
+    "assertion": "A successful product test does not enable purchase submission.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "foundation",
+      "catalog",
+      "procurement"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-005",
+      "GAP-020",
+      "GAP-021",
+      "GAP-022",
+      "GAP-034"
+    ]
+  },
+  {
+    "id": "F16-T03",
+    "feature": "F16",
+    "assertion": "Credential rotation preserves masked display and prevents plaintext export.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "foundation",
+      "catalog",
+      "procurement"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-005",
+      "GAP-020",
+      "GAP-021",
+      "GAP-022",
+      "GAP-034"
+    ]
+  },
+  {
+    "id": "F17-T01",
+    "feature": "F17",
+    "assertion": "Re-importing the same source file does not duplicate source identities.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "configuration"
+    ],
+    "gaps": [
+      "GAP-014",
+      "GAP-015",
+      "GAP-016",
+      "GAP-022"
+    ]
+  },
+  {
+    "id": "F17-T02",
+    "feature": "F17",
+    "assertion": "A malformed row is attributable without exposing another tenant\u2019s data.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "configuration"
+    ],
+    "gaps": [
+      "GAP-014",
+      "GAP-015",
+      "GAP-016",
+      "GAP-022"
+    ]
+  },
+  {
+    "id": "F17-T03",
+    "feature": "F17",
+    "assertion": "Rollback after a conflicting manual edit creates a review exception.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "configuration"
+    ],
+    "gaps": [
+      "GAP-014",
+      "GAP-015",
+      "GAP-016",
+      "GAP-022"
+    ]
+  },
+  {
+    "id": "F18-T01",
+    "feature": "F18",
+    "assertion": "A pricing outage does not erase the last valid catalog.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "estimating",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-007",
+      "GAP-010",
+      "GAP-020",
+      "GAP-022"
+    ]
+  },
+  {
+    "id": "F18-T02",
+    "feature": "F18",
+    "assertion": "A rate-limit response resumes after the permitted delay without duplicate records.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "estimating",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-007",
+      "GAP-010",
+      "GAP-020",
+      "GAP-022"
+    ]
+  },
+  {
+    "id": "F18-T03",
+    "feature": "F18",
+    "assertion": "Expired cost evidence forces a fresh estimate or quote-only result.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "estimating",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-007",
+      "GAP-010",
+      "GAP-020",
+      "GAP-022"
+    ]
+  },
+  {
+    "id": "F19-T01",
+    "feature": "F19",
+    "assertion": "A similar garment cannot replace an approved brand without approval.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "configuration",
+      "procurement",
+      "fulfillment",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-020",
+      "GAP-024",
+      "GAP-025",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F19-T02",
+    "feature": "F19",
+    "assertion": "A new provider print-area mismatch blocks confirmation.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "configuration",
+      "procurement",
+      "fulfillment",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-020",
+      "GAP-024",
+      "GAP-025",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F19-T03",
+    "feature": "F19",
+    "assertion": "A failed billing outcome creates an exception and no false production status.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "configuration",
+      "procurement",
+      "fulfillment",
+      "finance"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-020",
+      "GAP-024",
+      "GAP-025",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F20-T01",
+    "feature": "F20",
+    "assertion": "Blank receiving can complete while decoration remains blocked.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "orders",
+      "procurement",
+      "fulfillment",
+      "today"
+    ],
+    "gaps": [
+      "GAP-006",
+      "GAP-007",
+      "GAP-018",
+      "GAP-024",
+      "GAP-025",
+      "GAP-026"
+    ]
+  },
+  {
+    "id": "F20-T02",
+    "feature": "F20",
+    "assertion": "An assembly operation cannot complete before required components arrive.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "orders",
+      "procurement",
+      "fulfillment",
+      "today"
+    ],
+    "gaps": [
+      "GAP-006",
+      "GAP-007",
+      "GAP-018",
+      "GAP-024",
+      "GAP-025",
+      "GAP-026"
+    ]
+  },
+  {
+    "id": "F20-T03",
+    "feature": "F20",
+    "assertion": "One shipped line does not mark all order lines fulfilled.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "orders",
+      "procurement",
+      "fulfillment",
+      "today"
+    ],
+    "gaps": [
+      "GAP-006",
+      "GAP-007",
+      "GAP-018",
+      "GAP-024",
+      "GAP-025",
+      "GAP-026"
+    ]
+  },
+  {
+    "id": "F21-T01",
+    "feature": "F21",
+    "assertion": "Changing a PO line after approval requires reapproval.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "procurement",
+      "orders",
+      "finance",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-013",
+      "GAP-025",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F21-T02",
+    "feature": "F21",
+    "assertion": "Two buyers cannot procure the same requirement twice.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "procurement",
+      "orders",
+      "finance",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-013",
+      "GAP-025",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F21-T03",
+    "feature": "F21",
+    "assertion": "A simulated post-write timeout cannot trigger an automatic second supplier order.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "procurement",
+      "orders",
+      "finance",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-006",
+      "GAP-013",
+      "GAP-025",
+      "GAP-027"
+    ]
+  },
+  {
+    "id": "F22-T01",
+    "feature": "F22",
+    "assertion": "Two packages correctly sum to a partly then fully shipped line.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "fulfillment",
+      "orders",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-024",
+      "GAP-026",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F22-T02",
+    "feature": "F22",
+    "assertion": "Duplicate tracking webhooks do not duplicate fulfillment quantity.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "fulfillment",
+      "orders",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-024",
+      "GAP-026",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F22-T03",
+    "feature": "F22",
+    "assertion": "A blind-shipping restriction blocks an unsupported route.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "fulfillment",
+      "orders",
+      "commerce"
+    ],
+    "gaps": [
+      "GAP-024",
+      "GAP-026",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F23-T01",
+    "feature": "F23",
+    "assertion": "Partial defect quantity does not refund the entire order by default.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "fulfillment",
+      "crm",
+      "finance",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-026",
+      "GAP-027",
+      "GAP-028"
+    ]
+  },
+  {
+    "id": "F23-T02",
+    "feature": "F23",
+    "assertion": "A refund UI success without a provider event remains pending.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "fulfillment",
+      "crm",
+      "finance",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-026",
+      "GAP-027",
+      "GAP-028"
+    ]
+  },
+  {
+    "id": "F23-T03",
+    "feature": "F23",
+    "assertion": "Remake costs appear in actual profitability with a link to the original order.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "fulfillment",
+      "crm",
+      "finance",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-026",
+      "GAP-027",
+      "GAP-028"
+    ]
+  },
+  {
+    "id": "F24-T01",
+    "feature": "F24",
+    "assertion": "A supplier credit reduces actual cost once and retains its original reference.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "finance",
+      "estimating",
+      "analytics",
+      "today"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-013",
+      "GAP-027",
+      "GAP-030",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F24-T02",
+    "feature": "F24",
+    "assertion": "A customer payout delay does not mark the order unpaid twice.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "finance",
+      "estimating",
+      "analytics",
+      "today"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-013",
+      "GAP-027",
+      "GAP-030",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F24-T03",
+    "feature": "F24",
+    "assertion": "A report reconciles totals across the whole dataset beyond the first 1,000 records.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "finance",
+      "estimating",
+      "analytics",
+      "today"
+    ],
+    "gaps": [
+      "GAP-010",
+      "GAP-013",
+      "GAP-027",
+      "GAP-030",
+      "GAP-036"
+    ]
+  },
+  {
+    "id": "F25-T01",
+    "feature": "F25",
+    "assertion": "A manager with an approval grant can approve without an unrelated module-wide denial.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "marketing",
+      "catalog",
+      "creative",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-016",
+      "GAP-019",
+      "GAP-029"
+    ]
+  },
+  {
+    "id": "F25-T02",
+    "feature": "F25",
+    "assertion": "A suppressed contact cannot be reactivated by a CSV overwrite.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "marketing",
+      "catalog",
+      "creative",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-016",
+      "GAP-019",
+      "GAP-029"
+    ]
+  },
+  {
+    "id": "F25-T03",
+    "feature": "F25",
+    "assertion": "A draft cannot be fetched through a public asset URL.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "marketing",
+      "catalog",
+      "creative",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-016",
+      "GAP-019",
+      "GAP-029"
+    ]
+  },
+  {
+    "id": "F26-T01",
+    "feature": "F26",
+    "assertion": "A request.submitted event reaches the matching approved subscription.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "workflow",
+      "foundation",
+      "today"
+    ],
+    "gaps": [
+      "GAP-007",
+      "GAP-028",
+      "GAP-029",
+      "GAP-031",
+      "GAP-035"
+    ]
+  },
+  {
+    "id": "F26-T02",
+    "feature": "F26",
+    "assertion": "Replaying an event cannot create a second PO or duplicate message.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "workflow",
+      "foundation",
+      "today"
+    ],
+    "gaps": [
+      "GAP-007",
+      "GAP-028",
+      "GAP-029",
+      "GAP-031",
+      "GAP-035"
+    ]
+  },
+  {
+    "id": "F26-T03",
+    "feature": "F26",
+    "assertion": "A consumer failure leaves a visible retriable exception and preserves the event.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "workflow",
+      "foundation",
+      "today"
+    ],
+    "gaps": [
+      "GAP-007",
+      "GAP-028",
+      "GAP-029",
+      "GAP-031",
+      "GAP-035"
+    ]
+  },
+  {
+    "id": "F27-T01",
+    "feature": "F27",
+    "assertion": "A known seeded population above 1,000 reconciles to SQL totals.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "today",
+      "analytics",
+      "finance",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-027",
+      "GAP-028",
+      "GAP-030",
+      "GAP-033"
+    ]
+  },
+  {
+    "id": "F27-T02",
+    "feature": "F27",
+    "assertion": "A buyer cannot export another company\u2019s records.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "today",
+      "analytics",
+      "finance",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-027",
+      "GAP-028",
+      "GAP-030",
+      "GAP-033"
+    ]
+  },
+  {
+    "id": "F27-T03",
+    "feature": "F27",
+    "assertion": "Waiting for proof and active production time are reported separately.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "today",
+      "analytics",
+      "finance",
+      "crm"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-027",
+      "GAP-028",
+      "GAP-030",
+      "GAP-033"
+    ]
+  },
+  {
+    "id": "F28-T01",
+    "feature": "F28",
+    "assertion": "An allowed reviewer can review but cannot submit supplier spend.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "foundation",
+      "supplier",
+      "finance",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-005",
+      "GAP-006",
+      "GAP-032",
+      "GAP-034",
+      "GAP-035"
+    ]
+  },
+  {
+    "id": "F28-T02",
+    "feature": "F28",
+    "assertion": "A tampered workspace ID returns no cross-tenant record.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "foundation",
+      "supplier",
+      "finance",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-005",
+      "GAP-006",
+      "GAP-032",
+      "GAP-034",
+      "GAP-035"
+    ]
+  },
+  {
+    "id": "F28-T03",
+    "feature": "F28",
+    "assertion": "An audit export contains masked credential metadata only.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "foundation",
+      "supplier",
+      "finance",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-005",
+      "GAP-006",
+      "GAP-032",
+      "GAP-034",
+      "GAP-035"
+    ]
+  },
+  {
+    "id": "F29-T01",
+    "feature": "F29",
+    "assertion": "A Product Data fixture cannot set invoice or PO capability verified.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-020",
+      "GAP-021",
+      "GAP-022",
+      "GAP-023",
+      "GAP-034"
+    ]
+  },
+  {
+    "id": "F29-T02",
+    "feature": "F29",
+    "assertion": "Missing ASI entitlement leaves that capability blocked with a clear reason.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-020",
+      "GAP-021",
+      "GAP-022",
+      "GAP-023",
+      "GAP-034"
+    ]
+  },
+  {
+    "id": "F29-T03",
+    "feature": "F29",
+    "assertion": "A supplier endpoint outside a reviewed profile is rejected.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "supplier",
+      "catalog",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-004",
+      "GAP-020",
+      "GAP-021",
+      "GAP-022",
+      "GAP-023",
+      "GAP-034"
+    ]
+  },
+  {
+    "id": "F30-T01",
+    "feature": "F30",
+    "assertion": "All contracted screens are reachable for their authorized role.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "commerce",
+      "stores",
+      "catalog",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-033",
+      "GAP-038",
+      "GAP-039"
+    ]
+  },
+  {
+    "id": "F30-T02",
+    "feature": "F30",
+    "assertion": "Customer and OS navigation works at the deployed HTTPS origins.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "commerce",
+      "stores",
+      "catalog",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-033",
+      "GAP-038",
+      "GAP-039"
+    ]
+  },
+  {
+    "id": "F30-T03",
+    "feature": "F30",
+    "assertion": "Keyboard-only save and error recovery retain focus and entered data.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "commerce",
+      "stores",
+      "catalog",
+      "foundation"
+    ],
+    "gaps": [
+      "GAP-008",
+      "GAP-033",
+      "GAP-038",
+      "GAP-039"
+    ]
+  },
+  {
+    "id": "F31-T01",
+    "feature": "F31",
+    "assertion": "A required back file missing from a two-sided job blocks prepress.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "configuration",
+      "creative",
+      "estimating",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-009",
+      "GAP-017",
+      "GAP-018",
+      "GAP-024"
+    ]
+  },
+  {
+    "id": "F31-T02",
+    "feature": "F31",
+    "assertion": "Mixing inches and millimeters cannot silently change dimensions.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "configuration",
+      "creative",
+      "estimating",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-009",
+      "GAP-017",
+      "GAP-018",
+      "GAP-024"
+    ]
+  },
+  {
+    "id": "F31-T03",
+    "feature": "F31",
+    "assertion": "A foil mask from another revision cannot be approved with the current print file.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "configuration",
+      "creative",
+      "estimating",
+      "orders"
+    ],
+    "gaps": [
+      "GAP-009",
+      "GAP-017",
+      "GAP-018",
+      "GAP-024"
+    ]
+  },
+  {
+    "id": "F32-T01",
+    "feature": "F32",
+    "assertion": "Restarting the intended persistent development stack retains a saved project.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "foundation",
+      "creative",
+      "supplier",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-002",
+      "GAP-003",
+      "GAP-004",
+      "GAP-007",
+      "GAP-034",
+      "GAP-035",
+      "GAP-037",
+      "GAP-039",
+      "GAP-040"
+    ]
+  },
+  {
+    "id": "F32-T02",
+    "feature": "F32",
+    "assertion": "A restore test recovers scoped records and private artifacts.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "foundation",
+      "creative",
+      "supplier",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-002",
+      "GAP-003",
+      "GAP-004",
+      "GAP-007",
+      "GAP-034",
+      "GAP-035",
+      "GAP-037",
+      "GAP-039",
+      "GAP-040"
+    ]
+  },
+  {
+    "id": "F32-T03",
+    "feature": "F32",
+    "assertion": "The CI evidence names the actual commit and executed checks.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "foundation",
+      "creative",
+      "supplier",
+      "workflow"
+    ],
+    "gaps": [
+      "GAP-002",
+      "GAP-003",
+      "GAP-004",
+      "GAP-007",
+      "GAP-034",
+      "GAP-035",
+      "GAP-037",
+      "GAP-039",
+      "GAP-040"
+    ]
+  },
+  {
+    "id": "F33-T01",
+    "feature": "F33",
+    "assertion": "Every reserved module remains Coming Soon with no working transaction button.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "future"
+    ],
+    "gaps": [
+      "GAP-001",
+      "GAP-032",
+      "GAP-038",
+      "GAP-040"
+    ]
+  },
+  {
+    "id": "F33-T02",
+    "feature": "F33",
+    "assertion": "Direct API attempts for reserved capabilities are denied.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "future"
+    ],
+    "gaps": [
+      "GAP-001",
+      "GAP-032",
+      "GAP-038",
+      "GAP-040"
+    ]
+  },
+  {
+    "id": "F34-T01",
+    "feature": "F34",
+    "assertion": "A contact can serve two company locations with independent permissions.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "sales",
+      "today",
+      "marketing"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-028",
+      "GAP-029",
+      "GAP-030",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F34-T02",
+    "feature": "F34",
+    "assertion": "An opportunity closed lost retains its quotes and reason.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "sales",
+      "today",
+      "marketing"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-028",
+      "GAP-029",
+      "GAP-030",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F34-T03",
+    "feature": "F34",
+    "assertion": "A scheduled follow-up does not send external email in demo mode.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "crm",
+      "sales",
+      "today",
+      "marketing"
+    ],
+    "gaps": [
+      "GAP-005",
+      "GAP-028",
+      "GAP-029",
+      "GAP-030",
+      "GAP-038"
+    ]
+  },
+  {
+    "id": "F35-T01",
+    "feature": "F35",
+    "assertion": "A short blank receipt creates a shortage and blocks excess production.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "orders",
+      "fulfillment",
+      "procurement",
+      "today"
+    ],
+    "gaps": [
+      "GAP-018",
+      "GAP-024",
+      "GAP-025",
+      "GAP-026",
+      "GAP-030"
+    ]
+  },
+  {
+    "id": "F35-T02",
+    "feature": "F35",
+    "assertion": "Failed QC creates an attributable hold and possible remake requirement.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "orders",
+      "fulfillment",
+      "procurement",
+      "today"
+    ],
+    "gaps": [
+      "GAP-018",
+      "GAP-024",
+      "GAP-025",
+      "GAP-026",
+      "GAP-030"
+    ]
+  },
+  {
+    "id": "F35-T03",
+    "feature": "F35",
+    "assertion": "Production release requires current artwork, commercial and purchasing gates.",
+    "status": "PROPOSED_NOT_RUN",
+    "modules": [
+      "orders",
+      "fulfillment",
+      "procurement",
+      "today"
+    ],
+    "gaps": [
+      "GAP-018",
+      "GAP-024",
+      "GAP-025",
+      "GAP-026",
+      "GAP-030"
+    ]
+  }
+]

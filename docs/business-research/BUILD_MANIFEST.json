@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "researchDate": "2026-11-06",
+  "timezone": "America/Chicago",
+  "purpose": "Adapt publicly documented product behavior into original TwelveSpec workflows, data contracts and tests.",
+  "counts": {
+    "companies": 17,
+    "sources": 39,
+    "features": 35,
+    "proposedTests": 104,
+    "entities": 30,
+    "fields": 292,
+    "modules": 20,
+    "inventoryEntries": 205,
+    "originalScenarios": 95
+  },
+  "files": {
+    "ACTIVATION_REQUIREMENTS.md": "f1c70e6f4c4cf753194d1519120243588be7b4127e833210db1f70a19c1365b1",
+    "COMPANY_PROFILES.md": "e88f3aa795ee875d861257fb7faf7a7b7260f81be88e1dd3abf5026d4631015a",
+    "DATA_MODEL.md": "9db7abd0f5823f78200cd78c2187dd14f86ab85225ccebf5d3a8c07c00511ba1",
+    "FEATURE_PACKS.md": "c3c578741544c7fb4b4cb9b2918c8d38e1a2c9260b7e2fbae09450780da557d6",
+    "README.md": "678c8a6e6f1c8ea40c592f6ad6b176c0cc0c6916f284228a625477e0a265f975",
+    "SOFTWARE_BLUEPRINT.md": "6e0d0a385ba82b8d427cb5044956e38e24e27be0c54f882f8aa165502882fa2d",
+    "SOURCES.md": "4d4212ca421ffa21329b9192eb63a7828e2d20afaa80c8d2d2944a3a8a832327",
+    "TRACEABILITY.md": "019db0568e8538b3236403a6c9175779c863bcd81fbb012ca83c31cfa93becf4",
+    "TwelveSpec_Feature_Research.xlsx": "b86c3479244de92f64fab36fa037a5c89f057c71884f68321325019870abcffa",
+    "activation-requirements.json": "2536dae73953605a57b7d912d36f5e39fd4484d1662167941b8039f5ce66b085",
+    "companies.csv": "6c503ac30eb016c992cd44b3d9cd5697fef683c911f9a87b34ebdf17a971f4c0",
+    "data-fields.csv": "50dfac4760f32b79318afa9525a114a74420d5c9f11352cf12d0aa5508bb068b",
+    "data-model.json": "b7397e9bc5fe01c0c5f6f3d899e5f4293bdfb0480c40f1675c1edbf7dd671cf3",
+    "features.csv": "5c89ccebf77cf2ff55fd4dc9cb232fb7878553c22f3585a2d7072ad5d1be965d",
+    "index.html": "393d6a012de9b78fea3e2ef4ebc767bd45df3402980b6d7a15a608dd16ff8525",
+    "proposed-tests.csv": "ce4843d5628197e12b019af057283884c3d51438dbd92222ae79306cc6504179",
+    "proposed-tests.json": "a562f3a95dbb9bf5b5e05dc4d08362f101327c6aad19c2c77d54790b29c254e4",
+    "research.json": "830cf19e2a0e4285c7fb007c7f48878cc6205b0ee9692b1c7ecc4105acb703bd",
+    "sources.csv": "fdd0e38a6b83fb2dfdce2e99979b98e36312f1751dd6849396554e36453a2e10",
+    "traceability.json": "365b31fa4f95415b19703b7895dbc3c0d56230f0c3d08f770a34d48acccd8873",
+    "workbook-manifest.json": "0624f8ddd24ed2c74c6e4ec9435669c709165245f7a77c03bb6de9943e6cd1aa"
+  }
+}
