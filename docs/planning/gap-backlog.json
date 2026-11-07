@@ -1284,6 +1284,15 @@
         "packages/supplier/src/index.ts"
       ],
       "observed": "Only one bundled Product Data v1 fixture adapter exists. Admin connection tests are simulated; media, inventory, pricing, PO, status, ASN and invoice native operations are not implemented and wired.",
+      "partialProgress": [
+        {
+          "date": "2026-11-06",
+          "timezone": "America/Chicago",
+          "change": "A bounded external test verified native PCNA staging Product Data 2.0.0 and Media Content 1.1.0 using issued staging credentials. Returned blank-photo and raster-template assets loaded from the supplier CDN. SinaLite public sandbox catalog/detail reads also succeeded without authentication.",
+          "verification": "Native WSDL/XSD checks, actual staging response evidence, guarded request construction and artifact credential scan; account-specific results remain private.",
+          "remaining": "The TypeScript SDK, Integration Center diagnostics and worker are not wired to these services. Durable secrets/assets, exact source mapping, additional capabilities and full acceptance remain open. No production API or order was used."
+        }
+      ],
       "implementation": [
         "Implement the shared adapter SDK with typed errors, pagination, rate limits and independent operations",
         "Register approved supplier WSDL/XSD profiles and exact service versions",

@@ -7,6 +7,8 @@ The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GA
 - [x] Research all 17 requested companies for features to adapt into original TwelveSpec software; deliver [35 feature designs, data requirements and proposed tests](business-research/README.md).
 - [x] Expand public industry research to 16 business domains using 36 association, standards and specialist sources; link all 19 active modules in the [industry supplement](industry-research/README.md).
 - [x] Review official ASI SmartLink/ESP Updates distinctions and SAGE Connect access/usage requirements in the [supplier access assessment](industry-research/SUPPLIER_DATA_ACCESS.md); account correspondence remains in a private owner evidence packet.
+- [x] Verify PCNA staging Product Data 2.0.0 and Media Content 1.1.0 with issued staging credentials; retrieve a blank photo and raster template preview. Verify SinaLite public sandbox catalog/detail reads. Account-specific evidence stays private; application synchronization is still simulated.
+- [ ] Wire reviewed native supplier profiles into the Integration Center and worker with durable secrets/assets, exact media mapping and independent capability tests; GAP-020–022 remain open.
 - [x] Correct preliminary preflight to report unverified producer DPI/bleed requirements without invented defaults; 143 automated tests and nine local browser journeys pass. No new preview deployment was made for this correction.
 - [ ] Implement versioned producer profiles, exact design/configuration binding, qualified review and validated production output; GAP-018 remains open.
 - [ ] Implement the researched feature designs in the existing application and execute their behavioral tests; preserve Coming Soon scope.
