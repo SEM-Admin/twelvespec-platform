@@ -1,6 +1,7 @@
 /** Private verification of only the two new preview origins. Secrets are stdin-only. */
 import {chromium,expect} from '@playwright/test';
-import {mkdirSync,writeFileSync} from 'node:fs';
+import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
+import {createHash,X509Certificate} from 'node:crypto';
 if(process.stdin.isTTY)process.stdin.setRawMode(true);
 process.stdin.resume();console.log('Ready for private HTTPS preview verification (input is hidden).');
 let raw='';for await(const c of process.stdin){raw+=c.toString();if(raw.includes('\n'))break;}
@@ -25,7 +26,11 @@ try{
   if(!response?.ok)throw new Error(app+' HTTPS health failed: '+response?.status);
   await response.body?.cancel();console.log(app+' HTTPS health and Access protection: PASS');
  }
- browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox'],...(process.env.HTTPS_PROXY||process.env.HTTP_PROXY?{proxy:{server:process.env.HTTPS_PROXY??process.env.HTTP_PROXY}}:{})});
+ // Chromium has its own trust store. Trust only this managed session's proxy CA key;
+ // do not disable certificate validation for arbitrary certificates or in either app.
+ const proxyCa=process.env.CODEX_PROXY_CERT?new X509Certificate(readFileSync(process.env.CODEX_PROXY_CERT)):null;
+ const proxySpki=proxyCa?createHash('sha256').update(proxyCa.publicKey.export({format:'der',type:'spki'})).digest('base64'):null;
+ browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox',...(proxySpki?[`--ignore-certificate-errors-spki-list=${proxySpki}`]:[])],...(process.env.HTTPS_PROXY||process.env.HTTP_PROXY?{proxy:{server:process.env.HTTPS_PROXY??process.env.HTTP_PROXY}}:{})});
  const context=await browser.newContext({viewport:{width:1440,height:1000}});
  await context.route('**/*',route=>{const origin=new URL(route.request().url()).origin;return allowed.has(origin)?route.continue({headers:{...route.request().headers(),...accessHeaders}}):route.abort();});
  const page=await context.newPage();page.setDefaultTimeout(30000);

@@ -20,7 +20,16 @@ test('owned source → reviewed catalog → customer brief → private costs →
  const png=await sharp({create:{width:100,height:100,channels:3,background:'#35546a'}}).png().toBuffer();
  const upload=post(page,'save_catalog_image');await page.getByLabel('Upload approved product photo').setInputFiles({name:'synthetic-approved-photo.png',mimeType:'image/png',buffer:png});const uploaded=await (await upload).json();expect(uploaded.result.imagePath).toMatch(/^\/api\/catalog\/images\//);
  const hidden=await page.request.get(`${SHOP}${uploaded.result.imagePath}`);expect(hidden.status()).toBe(404);
+ // Hold the workspace refresh after the save response: the old editor revision
+ // must not accept a variant while the replacement editor is being loaded.
+ let releaseRefresh!:()=>void,holdRefresh=true;
+ const refreshGate=new Promise<void>(resolve=>{releaseRefresh=resolve;});
+ const refreshRoute='**/api/platform?module=catalog';
+ await page.route(refreshRoute,async route=>{if(holdRefresh){holdRefresh=false;await refreshGate;}await route.continue();});
  const save=post(page,'update');await page.getByRole('button',{name:'Save catalog draft',exact:true}).click();expect((await save).ok()).toBeTruthy();
+ try{await expect(page.getByRole('button',{name:'Add variant',exact:true})).toBeDisabled();}
+ finally{releaseRefresh();}
+ await expect(page.getByRole('button',{name:'Add variant',exact:true})).toBeEnabled();await page.unroute(refreshRoute);
  const newVariant=page.locator('.variant-editor').filter({hasText:'Add a reviewed variant'});await newVariant.getByLabel('Variant color',{exact:true}).fill('Ink');await newVariant.getByLabel('Variant size',{exact:true}).fill('M');await newVariant.getByLabel('Swatch hex',{exact:true}).fill('#35546a');const saveVariant=post(page,'save_variant');await newVariant.getByRole('button',{name:'Add variant',exact:true}).click();expect((await saveVariant).ok()).toBeTruthy();
  const review=post(page,'publish');await page.getByRole('button',{name:'Check website publication',exact:true}).click();expect((await review).ok()).toBeTruthy();await page.getByLabel('Publication review note',{exact:true}).fill('Synthetic fixture options, source mapping and photo rights reviewed.');const publish=post(page,'publish');await page.getByRole('button',{name:'Publish reviewed product',exact:true}).click();expect((await publish).ok()).toBeTruthy();
  const catalog=await (await page.request.get(`${SHOP}/api/shop`)).json(),product=catalog.products.find((p:{title:string})=>p.title===publicTitle);expect(product).toBeTruthy();expect(JSON.stringify(product)).not.toContain('Synthetic browser test');
