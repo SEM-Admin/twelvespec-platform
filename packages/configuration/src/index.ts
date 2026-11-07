@@ -79,7 +79,7 @@ export type ConfigurationResult={valid:boolean;errors:string[];requiredInputs:st
 export function validateConfiguration(product:Input,variant:Input,input:Input,template:Input={}):ConfigurationResult {
  const errors:string[]=[],requiredInputs:string[]=[];
  const quantity=number(input.quantity,1,1000000);if(!Number.isInteger(quantity))errors.push('QUANTITY_MUST_BE_INTEGER');
- const minimum=number(template.minQuantity??product.moq??product.minQuantity??1,1,1000000);
+ const minimum=number(template.minQuantity??product.minimumQuantity??product.moq??product.minQuantity??1,1,1000000);
  if(quantity<minimum)errors.push('MOQ_NOT_MET');
  const methods=stringArray(template.methods??product.methods??product.decorationMethods,[]);
  const locations=stringArray(template.locations??product.locations,[]);

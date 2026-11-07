@@ -54,6 +54,8 @@ try{
  await expect(page.locator('.cart-items')).toContainText(product.title);
  await page.reload({waitUntil:'networkidle'});
  await expect(page.locator('.cart-items')).toContainText(product.title);
+ await page.getByLabel('Delivery ZIP or postal code').fill('60601');
+ await page.getByLabel('Artwork preparation').selectOption('LATER');
  await page.getByRole('button',{name:/Submit quote request/}).click();
  await expect(page).toHaveURL(origins.shop+'/account');
  const verifiedRfq=await page.evaluate(async({productId,variantId})=>{const r=await fetch('/api/shop/account');if(!r.ok)throw new Error('Account read failed');const {tables}=await r.json();return tables.requests.find(row=>row.data.lines?.some(line=>line.productId===productId&&line.variantId===variantId))?.id;},{productId:product.id,variantId:variant.id});

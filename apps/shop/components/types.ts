@@ -5,7 +5,7 @@ export type Product = {id:string;title:string;description?:string;category?:stri
 export type PublicData={products:Product[];stores:Row[];bundles:Row[]};
 export type Session={actor:{userId:string;role:string;workspaceId:string;email?:string};user?:{name?:string;email?:string}};
 export type AccountData={tables:Record<string,Row[]>};
-export type CartLine={productId:string;variantId:string;quantity:number;method:string;location:string;designVersionId?:string;storeId?:string;brandKitId?:string};
+export type CartLine={productId:string;variantId:string;quantity:number;method:string;location:string;designVersionId?:string;storeId?:string;brandKitId?:string;catalogRevision?:number;notes?:string;specifications?:Data};
 export type Command=(module:string,action:string,input:Data)=>Promise<unknown>;
 export function stringValue(value:unknown,fallback=''){return typeof value==='string'?value:typeof value==='number'?String(value):fallback;}
 export function numberValue(value:unknown,fallback=0){const n=Number(value);return Number.isFinite(n)?n:fallback;}

@@ -8,6 +8,8 @@ The [17-company feature research](docs/business-research/README.md) translates p
 
 The [industry supplement](docs/industry-research/README.md) adds PPAI, PRINTING United Alliance and specialist sources across 16 relevant business domains. It links data, workflow and exception requirements to all 19 active modules. Preliminary artwork checks now distinguish measured values from unverified producer requirements; production approval remains blocked pending a verified profile and review path.
 
+The [owned catalog and reviewed quote workflow](docs/OWNED_CATALOG_AND_RFQ.md) lets operators stage source-only supplier facts, curate their own products and exact variants, upload approved photos and review publication. Customers submit immutable product specifications and project briefs; operators cost and issue reviewed quotes without exposing internal costs or unissued prices. Known supplier candidates stay private until reviewed. Current supplier prices/stock and production activation remain separate requirements.
+
 Run locally with Node.js 24:
 
 ```sh
