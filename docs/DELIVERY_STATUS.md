@@ -27,7 +27,7 @@ There are no current failures in the implemented test suites run for this change
 
 The hosted PostgreSQL and uploaded files remain temporary and reset after 30 minutes of inactivity. The configured Supabase development connection remains disabled pending its trusted CA and verification. The development credential vault is not a durable production secrets service.
 
-GitHub publication is incomplete. Shell push returned HTTP 403. Automatic approval review rejected branch creation because an existing remote ref might be reset, then rejected an alternate blob write because it would leave unreferenced repository data after blocked publication. No remote repository change was made. Local commits and a verified full-history Git bundle are preserved under ignored `.local/owned-catalog`; repository publication requires authorization/access resolution.
+The complete project and its original development history are published on [the GitHub development branch](https://github.com/SEM-Admin/twelvespec-platform/tree/build/owned-catalog-shopify-ab8e81e). Publication verification compared all 481 tracked files, file modes and Git blob hashes against the saved local tree, with an exact match. All 14 original development commits through `93f9cde` were preserved; publication documentation has a later commit. Private credentials, local databases, uploaded artwork and supplier account evidence remain excluded from the repository. Production deployment and active V1 acceptance remain separate gates.
 
 ## Remaining activation requirements
 
