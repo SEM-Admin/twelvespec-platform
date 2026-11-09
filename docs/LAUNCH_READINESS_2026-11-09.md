@@ -47,7 +47,7 @@ The first useful commercial milestone is a **small, human-reviewed quote-request
 ## Source and further evidence
 
 - The previously published complete platform remains on [the original development branch](https://github.com/SEM-Admin/twelvespec-platform/tree/build/owned-catalog-shopify-ab8e81e).
-- The new reviewed content backend and this status report are prepared on the separate development branch `build/website-content-studio-20261109`; publication must be verified before claiming the branch is available.
+- The new content backend, full source/history and this status report are published on [build/website-content-studio-20261109](https://github.com/SEM-Admin/twelvespec-platform/tree/build/website-content-studio-20261109). Remote readback matched tested code commit `92d499bef671e0802794a22e7d7d8f7c79b52ac2`; the source manifest matched all 353 recorded inputs. Publication is not a production deployment or full-platform completion.
 - [Current content-studio implementation checklist](website-content-studio/IMPLEMENTATION.md).
 - [Original all-module gap plan](GAP_CLOSURE_PLAN.md) and [95-scenario coverage](planning/COVERAGE_MATRIX.md).
 - [Selling readiness](SELLING_READINESS.md) and [Shopify activation boundaries](SHOPIFY_CONNECTOR.md).

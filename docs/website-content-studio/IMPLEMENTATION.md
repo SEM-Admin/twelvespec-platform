@@ -38,3 +38,5 @@ Implementation stays in the existing repository and isolated development environ
 The approved architecture and [80-case acceptance matrix](08-acceptance-tests.csv) provide the requirements-to-test mapping. Candidate implementation locations are `packages/contracts/src/website.ts`, `packages/marketing/src/website/`, existing server routes, the shared renderer and the OS website workspace. The module inventory remains the original 20 entries.
 
 The [implementation traceability matrix](implementation-traceability.csv) records 29 of the 80 CMS case IDs with partial backend evidence. None is claimed fully accepted through the owner UI; the remaining interface, provider, scale and operational conditions stay open.
+
+Source publication verified: [current development branch](https://github.com/SEM-Admin/twelvespec-platform/tree/build/website-content-studio-20261109), tested code commit `92d499b`. All 353 recorded source-input hashes matched. The hosted previews and production systems were not updated by this publication.
