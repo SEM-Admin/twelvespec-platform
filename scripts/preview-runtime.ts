@@ -1,3 +1,5 @@
+import {readdirSync} from 'node:fs';
+import {resolve} from 'node:path';
 import {spawn,type ChildProcess} from 'node:child_process';
 import {createEnv,loadEnv} from './env';
 import {databaseConfig} from '../packages/kernel/src/database-config';
@@ -10,7 +12,7 @@ export function validatePreviewEnvironment(env:NodeJS.ProcessEnv){
 }
 async function main(){validatePreviewEnvironment(process.env);createEnv();const root=loadEnv();const children:ChildProcess[]=[];
  const remote=!!process.env.DATABASE_URL&&!['localhost','127.0.0.1'].includes(new URL(process.env.DATABASE_URL).hostname);
- if(remote){const {Client}=await import('pg');const db=new Client(databaseConfig(process.env));try{await db.connect();const r=await db.query('select name from public._migrations');if(!['001_initial.sql','002_auth_rate_limit.sql','003_domain_references.sql','004_opportunity_contact.sql','005_owned_catalog_requests.sql','006_catalog_media_scope.sql'].every(name=>r.rows.some(row=>row.name===name)))throw new Error('Development database migrations are incomplete');}finally{await db.end();}}
+ if(remote){const {Client}=await import('pg');const db=new Client(databaseConfig(process.env));try{await db.connect();const r=await db.query('select name from public._migrations');if(!readdirSync(resolve(root,'database/migrations')).filter(name=>name.endsWith('.sql')).every(name=>r.rows.some(row=>row.name===name)))throw new Error('Development database migrations are incomplete');}finally{await db.end();}}
  const setup=spawn(process.execPath,['--import','tsx',remote?'scripts/seed.ts':'scripts/setup.ts'],{cwd:root,env:process.env,stdio:'inherit'});const code=await new Promise<number|null>(r=>setup.on('exit',r));if(code!==0)throw new Error('Synthetic database setup failed');
  for(const app of ['shop','os']){const port=app==='shop'?'3000':'3001';children.push(spawn(process.execPath,[root+'/node_modules/next/dist/bin/next','start','-p',port,'-H','0.0.0.0'],{cwd:root+'/apps/'+app,env:{...process.env,TWELVESPEC_APP:app,APP_ORIGIN:app==='shop'?process.env.SHOP_ORIGIN:process.env.OS_ORIGIN},stdio:'inherit'}));}
  children.push(spawn(process.execPath,['--import','tsx','apps/worker/src/index.ts'],{cwd:root,env:process.env,stdio:'inherit'}));

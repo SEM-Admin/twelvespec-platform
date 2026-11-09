@@ -83,6 +83,8 @@ export async function createSourceDraft(tx:Tx,a:Actor,input:Input):Promise<Row> 
  authorize(a,'catalog','create_from_source');
  const source=await get(tx,a,'source_records',input.id);
  if(!source.data.catalogSourceKey)fail('CATALOG_SOURCE_REQUIRED',400);
+ if(source.data.displayUse==='INTERNAL_ONLY')fail('SAGE_PUBLIC_SOURCE_REQUIRED',403);
+ const detail=source.data.supplierDetail as Input|undefined;if(detail?.expiresOn&&Date.parse(String(detail.expiresOn)+'T23:59:59Z')<Date.now())fail('SUPPLIER_DATA_EXPIRED',409);
  await tx.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[`${a.tenantId}/${a.workspaceId}/catalog-source/${source.data.catalogSourceKey}`]);
  const existing=await tx.query(`select * from app.products where tenant_id=$1 and workspace_id=$2 and data->>'catalogSourceKey'=$3`,[a.tenantId,a.workspaceId,source.data.catalogSourceKey]);
  if(existing.rows[0])return existing.rows[0];

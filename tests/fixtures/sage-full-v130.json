@@ -1,0 +1,124 @@
+{
+  "fixtureOrigin": "SYNTHETIC_FROM_OWNER_SUPPLIED_V130_CONTRACT",
+  "legalNote": "Synthetic fixture; no supplier offer or image license.",
+  "product": {
+    "prodEId": 345733702,
+    "category": "Synthetic promotional products",
+    "suppId": 99999,
+    "lineName": "Example Brand",
+    "itemNum": "DEMO-BUCKLE",
+    "spc": "SYNTHETIC-ONLY",
+    "prName": "Synthetic promotional buckle",
+    "description": "Contract test fixture. Not a sellable supplier product.",
+    "qty": [
+      "24",
+      "100",
+      "200",
+      "250",
+      "350",
+      "0"
+    ],
+    "prc": [
+      "74.70",
+      "67.50",
+      "62.10",
+      "58.50",
+      "56.70",
+      ""
+    ],
+    "catPrc": [
+      "83",
+      "75",
+      "69",
+      "65",
+      "63",
+      ""
+    ],
+    "net": [
+      "41.50",
+      "37.50",
+      "34.50",
+      "32.50",
+      "31.50",
+      ""
+    ],
+    "priceCode": "AAAAA",
+    "catPriceCode": "AAAAA",
+    "currency": "USD",
+    "piecesPerUnit": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "0"
+    ],
+    "setupChg": "0",
+    "options": [
+      {
+        "name": "Packaging",
+        "pricingIsTotal": 0,
+        "priceCode": "AAAAA",
+        "values": [
+          {
+            "value": "Synthetic standard box",
+            "prc": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "net": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "value": "Synthetic custom box",
+            "prc": [
+              "2",
+              "2",
+              "2",
+              "2",
+              "2",
+              ""
+            ],
+            "net": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ]
+      }
+    ],
+    "pics": [
+      {
+        "index": 1,
+        "caption": "Synthetic branded reference",
+        "url": "https://www.promoplace.com/ws/ws.dll/QPic?SN=99999&P=345733702&RS=300&I=1",
+        "hasLogo": 1
+      },
+      {
+        "index": 2,
+        "caption": "Synthetic blank candidate",
+        "url": "https://www.promoplace.com/ws/ws.dll/QPic?SN=99999&P=345733702&RS=300&I=2",
+        "hasLogo": 0
+      }
+    ],
+    "expDate": "2021-12-31",
+    "supplier": {
+      "suppId": 99999,
+      "coName": "Synthetic Supplier"
+    }
+  }
+}

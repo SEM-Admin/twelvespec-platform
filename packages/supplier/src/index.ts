@@ -7,7 +7,7 @@ import {stageCatalogSources} from '../../catalog/src/sources';
 export * from './imports';
 const object=(v:unknown):Input=>v&&typeof v==='object'&&!Array.isArray(v)?v as Input:{};
 const vault=new LocalEncryptedVault();
-export function connectionSummary(connection:Row){const d=connection.data;return {id:connection.id,title:connection.title,status:connection.status,revision:connection.revision,data:{providerType:d.providerType,environment:d.environment,maskedHint:d.maskedHint??null,endpointHost:d.endpointHost??null,verification:d.verification??'NOT_CONFIGURED',schedule:d.schedule??null,help:d.help??null,lastSyncAt:d.lastSyncAt??null,nextSyncAt:d.nextSyncAt??null,vaultMode:d.vaultMode??null,pricePolicy:d.pricePolicy??null,...(d.providerType==='SHOPIFY'?{shopDomain:d.shopDomain,apiVersion:d.apiVersion,activationRequirements:SHOPIFY_ACTIVATION_REQUIREMENTS,writeEnabled:false}:{})}};}
+export function connectionSummary(connection:Row){const d=connection.data;return {id:connection.id,title:connection.title,status:connection.status,revision:connection.revision,created_at:connection.created_at,updated_at:connection.updated_at,data:{providerType:d.providerType,environment:d.environment,maskedHint:d.maskedHint??null,endpointHost:d.endpointHost??null,verification:d.verification??'NOT_CONFIGURED',schedule:d.schedule??null,help:d.help??null,lastSyncAt:d.lastSyncAt??null,nextSyncAt:d.nextSyncAt??null,vaultMode:d.vaultMode??null,pricePolicy:d.pricePolicy??null,...(d.providerType==='SHOPIFY'?{shopDomain:d.shopDomain,apiVersion:d.apiVersion,activationRequirements:SHOPIFY_ACTIVATION_REQUIREMENTS,writeEnabled:false}:{})}};}
 export function validatePricePolicy(value:unknown){
  const p=object(value),targetMargin=number(p.targetMargin??0.4,0,0.95),floorMargin=number(p.floorMargin??0.3,0,targetMargin);const currency=String(p.currency??'USD');if(!/^[A-Z]{3}$/.test(currency))fail('PRICE_POLICY_CURRENCY_INVALID',400);
  const amount=(key:string):string|null=>{if(p[key]===undefined||p[key]===null||p[key]==='')return null;try{const value=new Decimal(String(p[key]));if(!value.isFinite()||value.isNegative()||value.decimalPlaces()>4)throw new Error();return value.toFixed(4);}catch{return fail('PRICE_POLICY_COST_INVALID',400);}};
@@ -19,8 +19,10 @@ async function profiles(tx:Tx,a:Actor,input:Input){if(input.mappingProfileId){co
 export async function handleSupplier(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'supplier',action);
  if(action==='read')return {providers:PROVIDERS,connections:(await list(tx,a,'connections')).map(connectionSummary)};
+ if(['save_secret','configure_service','test_connection','discover_capabilities','sync_now','schedule_sync'].includes(action)){const connection=await get(tx,a,'connections',input.id);if(['SAGE_CONNECT','SINALITE'].includes(String(connection.data.providerType)))fail('USE_METERED_API_SETUP',400);}
  if(action==='create_connection'||action==='create'){
   const providerType=text(input.providerType) as ProviderType;if(!(providerType in PROVIDERS))fail('ADAPTER_UNSUPPORTED_USE_FILE_IMPORT',400);
+  if(['SAGE_CONNECT','SINALITE'].includes(providerType))fail('USE_METERED_API_SETUP',400);
   const environment=input.environment??'mock';if(!['mock','sandbox'].includes(String(environment)))fail('LIVE_CONNECTION_ACTIVATION_BLOCKED',403);
   if(providerType==='SHOPIFY'&&environment!=='mock')fail('SHOPIFY_INSTALLATION_REQUIRED',403);
   let endpointHost:string|null=null;if(input.endpointHost){const value=text(input.endpointHost);const endpoint=validateEndpoint(value.startsWith('https://')?value:`https://${value}`,supplierHosts());endpointHost=endpoint.hostname;}
@@ -45,7 +47,7 @@ export async function handleSupplier(tx:Tx,a:Actor,action:string,input:Input):Pr
   });
  }
  if(action==='save_secret'){
-  const row=await get(tx,a,'connections',input.id,true);if(!PROVIDERS[row.data.providerType as ProviderType].credentials.length)fail('PROVIDER_REQUIRES_NO_CREDENTIAL',400);
+  const row=await get(tx,a,'connections',input.id,true);if(['SAGE_CONNECT','SINALITE'].includes(String(row.data.providerType)))fail('USE_METERED_API_SETUP',400);if(!PROVIDERS[row.data.providerType as ProviderType].credentials.length)fail('PROVIDER_REQUIRES_NO_CREDENTIAL',400);
   if(typeof input.secret!=='string'||input.secret.length<1||input.secret.length>16384)fail('INVALID_CREDENTIAL',400);
   const stored=await vault.replace(scope(a,row.id),String(input.secret));
   const next=await update(tx,a,'connections',row.id,{status:'CREDENTIALS_SAVED',data:{...row.data,secretReference:stored.reference,maskedHint:stored.maskedHint,vaultMode:stored.mode,verification:'NOT_CONFIGURED'}});

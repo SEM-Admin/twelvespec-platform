@@ -100,5 +100,17 @@
     "Persistent private artwork and credential storage before live activation",
     "Supplier credentials, ASI licensing and remaining V1 acceptance gates",
     "Production deployment authorization"
-  ]
+  ],
+  "pendingSupplierApiUpdate": {
+    "deployed": false,
+    "scope": "Existing two isolated preview hostnames only",
+    "publicSandboxReadFlag": "PREVIEW_CATALOG_READS_ENABLED",
+    "publicSandboxReadFlagDefault": false,
+    "accountReadFlag": "PREVIEW_API_ACCOUNT_READS_ENABLED",
+    "accountReadFlagDefault": false,
+    "requiresDeploymentApproval": "Enabling outbound preview networking is an infrastructure change under the owner instructions.",
+    "paidApiDefaultUsd": 0,
+    "ephemeralRealAccountMetering": "BLOCKED",
+    "rollback": "Retain current image digest and flags. Image replacement resets temporary synthetic data."
+  }
 }

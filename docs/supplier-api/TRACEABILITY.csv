@@ -1,0 +1,14 @@
+ID,Requirement,Code,Verification,Status
+SUP-API-01,Official current terms researched and unknowns retained,docs/supplier-api/RESEARCH_AND_REQUIREMENTS.md,Source links and account activation checklist,RESEARCHED
+SUP-API-02,Configurable shared account daily monthly burst and per-run caps,packages/supplier/src/api-budget.ts,tests/modules/supplier-api-budget.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-03,Zero paid overage default and unknown charge rejection,packages/supplier/src/api-budget.ts,tests/modules/supplier-api-budget.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-04,Committed reservation survives import rollback and parallel requests,packages/supplier/src/native.ts,tests/modules/supplier-native.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-05,Scoped encrypted write-only credentials and no public leakage,packages/supplier/src/api-vault.ts,tests/modules/supplier-native.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-06,Fixed official native read profiles without order writes,packages/providers/src/native-catalogs.ts,tests/modules/native-catalogs.test.ts,SINALITE_SANDBOX_VERIFIED_SAGE_CONTRACT_TESTED
+SUP-API-07,Private cache and immutable charge retention on failure,packages/supplier/src/native.ts,tests/modules/supplier-native.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-08,Commerce OS no-code budgets usage and supplier setup,apps/os/components/supplier-api-controls.tsx,tests/e2e/supplier-api.spec.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-09,SinaLite product options exact IDs and configured price evidence,packages/providers/src/native-catalogs.ts,tests/modules/native-catalogs.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-10,Stage print and promo sources without automatic publication,packages/supplier/src/native.ts,tests/modules/supplier-native.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-11,Durable metering and current SAGE entitlement required,packages/supplier/src/api-budget.ts,tests/modules/supplier-api-budget.test.ts,IMPLEMENTED_TESTED_LOCALLY
+SUP-API-12,Customer quote workflow reads owned catalog without supplier calls,packages/commerce/src/index.ts,tests/e2e/supplier-api.spec.ts,OWNED_CATALOG_RFQ_VERIFIED_NATIVE_PUBLICATION_PENDING
+SUP-API-13,No production infrastructure payments purchasing or PSRESTful,packages/providers/src/native-catalogs.ts,Endpoint allowlist and existing acceptance suite,IMPLEMENTED_TESTED_LOCALLY

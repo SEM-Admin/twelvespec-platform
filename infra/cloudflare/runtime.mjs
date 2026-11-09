@@ -25,11 +25,15 @@ export class TwelveSpecPreview extends DurableObject {
   async startAndWait() {
     const container = this.ctx.container;
     const databaseUrl=this.env.PREVIEW_DATABASE_ENABLED==='true'?this.env.DATABASE_URL:undefined;
+    const sandboxReads=this.env.PREVIEW_CATALOG_READS_ENABLED==='true';
+    const accountReads=!!databaseUrl&&this.env.PREVIEW_API_ACCOUNT_READS_ENABLED==='true';
     if (!container) throw new Error('CONTAINER_BINDING_REQUIRED');
-    const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify({image:container.images.base,database:databaseUrl??'',auth:this.env.BETTER_AUTH_SECRET})));
+    const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify({image:container.images.base,database:databaseUrl??'',auth:this.env.BETTER_AUTH_SECRET,sandboxReads,accountReads})));
     const revision=Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');
     if(container.running&&await this.ctx.storage.get('preview_revision')!==revision)await container.destroy('Preview configuration changed');
-    if (!container.running) container.start({ image: container.images.base, instance: 'standard-1', enableInternet: !!databaseUrl, env: {
+    if (!container.running) container.start({ image: container.images.base, instance: 'standard-1', enableInternet: !!databaseUrl||sandboxReads, env: {
+      TWELVESPEC_PREVIEW_CATALOG_READS:sandboxReads?'1':'0', TWELVESPEC_PREVIEW_ACCOUNT_READS:accountReads?'1':'0',
+      TWELVESPEC_API_METER_STORAGE:accountReads?'durable':'ephemeral',
       TWELVESPEC_PREVIEW: '1', TWELVESPEC_ROOT: '/app', TWELVESPEC_ENV: 'local',
       SHOP_ORIGIN: checkedOrigin(this.env.SHOP_ORIGIN), OS_ORIGIN: checkedOrigin(this.env.OS_ORIGIN),
       BETTER_AUTH_SECRET: this.env.BETTER_AUTH_SECRET, ASSET_SIGNING_KEY: this.env.ASSET_SIGNING_KEY,

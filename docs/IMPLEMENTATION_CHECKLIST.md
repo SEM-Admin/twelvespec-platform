@@ -1,5 +1,7 @@
 # Visible implementation checklist
 
+Latest supplier extension: [metered SAGE/SinaLite implementation and activation gates](supplier-api/README.md). 250 backend tests and 13 local browser journeys pass; authenticated account integrations and hosted rollout are not implied.
+
 Latest measured status: [November 9 launch readiness](LAUNCH_READINESS_2026-11-09.md) and [content-studio implementation](website-content-studio/IMPLEMENTATION.md). Backend/contract checks do not close the original 95 scenarios.
 
 The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GAP_AUDIT.md) and [complete coverage matrix](planning/COVERAGE_MATRIX.md) govern the remaining active V1 work. Research/planning completion does not mean implementation completion.
@@ -44,3 +46,20 @@ The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GA
 - [ ] Gate E: file imports, native SOAP fixture contracts, licensed ASI interface.
 - [ ] Gate F: integrated A01–A40, inherited T01–T30 and E01–E25 evidence.
 - [ ] Production activation (credentials, licensing, security, legal/finance and deployment approval).
+
+## Metered supplier API extension — November 9
+
+- [x] Inventory extension requirements before implementation; preserve all 20 original modules and 95 acceptance scenarios.
+- [x] Implement per-login call/unit limits, shared account USD ceilings, immutable committed reservations, cache and encrypted write-only credentials.
+- [x] Implement no-code Commerce OS settings, usage/receipt review, pause controls and bounded read/private source selection.
+- [x] Keep monthly named-user and one-time System/Public SAGE credits separate; test duplicate connections and month rollover.
+- [x] Implement/test owner-supplied SAGE v130101/103/104/105 contracts without making authenticated SAGE requests.
+- [x] Verify real public SinaLite sandbox catalog, options and configuration-price reads; stage three PRINT sources privately.
+- [x] Pass 250 backend checks, full 13 browser journeys, TypeScript, both optimized builds, specification and gap-plan integrity.
+- [ ] Deploy and verify the new protected preview image; enabling preview outbound networking awaits owner approval.
+- [ ] Verify durable approved development PostgreSQL and storage before real metered accounts.
+- [ ] Obtain rotated SAGE and SinaLite API credentials through secure backend entry; confirm tariffs, limits and data rights.
+- [ ] Implement/activate native scheduled sync, licensed automatic media/template downloads, customer source-option selectors and automatic supplier costing.
+- [ ] Verify live account product/option/image coverage and reviewed public catalog/quote test runs before real sales.
+
+See [supplier API traceability](supplier-api/TRACEABILITY.csv). These checkboxes do not close the original active V1 or launch gates.
