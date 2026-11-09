@@ -1,5 +1,7 @@
 # Selling readiness of the new TwelveSpec build
 
+Current review: [November 9 launch readiness and ordered release gates](LAUNCH_READINESS_2026-11-09.md). The public database root is now available and client trust is prepared; runtime connectivity and hosted persistence are still unverified.
+
 **Decision: NO-GO for paid production orders.** The isolated preview supports synthetic testing and the reviewed quote-request workflow. This assessment applies to the new build; the existing production website, application, customer database and domains have not been audited or changed.
 
 The owned-catalog → customer brief → private operator cost worksheet → issued customer quote workflow passed a real HTTPS browser test on November 7, 2026. That is evidence for this bounded workflow, not acceptance of the full platform or a production sales launch.

@@ -1,5 +1,7 @@
 # Current verification status
 
+> Current readiness update (November 9, 2026): see [the launch report](LAUNCH_READINESS_2026-11-09.md) for fresh tests, unfinished content-studio work and current hosted-persistence readback. The observations below are historical and must not be treated as a production-launch approval.
+
 Working development previews are available at:
 
 - https://twelvespec-preview-shop.samantha-4ec.workers.dev

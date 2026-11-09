@@ -1,4 +1,6 @@
 import type {PoolConfig} from 'pg';
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
 /** Only the development project explicitly selected by the owner is permitted. */
 export const PREVIEW_PROJECT='mtihnarlkprmyahbxlrl';
 export function databaseConfig(env:NodeJS.ProcessEnv):PoolConfig {
@@ -13,5 +15,7 @@ export function databaseConfig(env:NodeJS.ProcessEnv):PoolConfig {
    if((!direct&&!pooled)||url.pathname!=='/postgres'||url.port!=='5432'||!url.password||url.search)throw new Error('UNAPPROVED_PREVIEW_DATABASE');
   }else if(env.TWELVESPEC_ENV!=='staging')throw new Error('NONLOCAL_DATABASE_BLOCKED');
  }
- return {connectionString,max:local?12:4,idleTimeoutMillis:20000,connectionTimeoutMillis:15000,...(!local?{ssl:{rejectUnauthorized:true}}:{})};
+ const approvedPreview=!local&&env.TWELVESPEC_PREVIEW==='1';
+ const ca=approvedPreview?readFileSync(resolve(env.TWELVESPEC_ROOT??process.env.TWELVESPEC_ROOT??process.cwd(),'infra/supabase/prod-ca-2021.crt'),'utf8'):undefined;
+ return {connectionString,max:local?12:4,idleTimeoutMillis:20000,connectionTimeoutMillis:15000,...(!local?{ssl:{rejectUnauthorized:true,...(ca?{ca}:{})}}:{})};
 }

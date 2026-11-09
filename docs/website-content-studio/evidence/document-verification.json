@@ -1,0 +1,45 @@
+{
+  "kind": "REVIEW_DOCUMENT_VERIFICATION",
+  "cmsAcceptanceExecuted": false,
+  "checks": [
+    {
+      "name": "All report screenshots load",
+      "passed": true
+    },
+    {
+      "name": "All local review links resolve (PDF generated next)",
+      "passed": true,
+      "links": 31
+    },
+    {
+      "name": "Review no unintended overflow",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "name": "Review no unintended overflow",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "Full 80-case appendix is accessible in the report",
+      "passed": true
+    },
+    {
+      "name": "PDF overview generated",
+      "passed": true
+    }
+  ],
+  "consoleErrors": [],
+  "accessibility": [
+    {
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "width": 390,
+      "violations": []
+    }
+  ],
+  "passed": true
+}

@@ -12,7 +12,7 @@ async function main(){
  await pool().query('insert into memberships(user_id,tenant_id,workspace_id,role)values($1,$2,$3,$4)on conflict do nothing',[users.owner,DEMO.otherTenant,DEMO.otherWorkspace,'owner']);
  const owner={userId:users.owner,tenantId:DEMO.tenant,workspaceId:DEMO.workspace,role:'owner' as const};
  const count=await transaction(owner,tx=>tx.query('select count(*)::int as n from app.products where tenant_id=$1',[DEMO.tenant]));
- if(count.rows[0].n>=40){console.log('Synthetic seed already present (40+ products).');await pool().end();return;}
+ if(count.rows[0].n>=40){const {seedWebsite}=await import('../packages/marketing/src/website');await seedWebsite(owner);console.log('Synthetic seed already present; editable website initialized without overwriting saved content.');await pool().end();return;}
  const {publicProduct}=await import('../packages/catalog/src');
  const assets=resolve(process.env.TWELVESPEC_ROOT!,'apps/shop/public/products');mkdirSync(assets,{recursive:true});
  await transaction(owner,async tx=>{
@@ -47,6 +47,7 @@ async function main(){
  await create(tx,owner,'configuration_templates',{title:'Apparel decoration · standard',status:'PUBLISHED',data:{methods:['screen_print','embroidery','none'],locations:['front','back'],minimumQuantity:12,minQuantity:12,version:1,rule:{op:'gte',field:'quantity',value:12}}});
  });
  const other={...owner,tenantId:DEMO.otherTenant,workspaceId:DEMO.otherWorkspace};await transaction(other,tx=>create(tx,other,'contacts',{title:'Isolation sentinel',status:'ACTIVE',data:{email:'never-visible@example.test'}}));
+ const {seedWebsite}=await import('../packages/marketing/src/website');await seedWebsite(owner);
  console.log('Seeded 40 products with 120 exact color variants, private offers, 10 contacts, stores, bundle, tasks, and independent isolation tenant.');await pool().end();
 }
 

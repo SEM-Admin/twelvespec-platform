@@ -1,7 +1,9 @@
+import {handleWebsite} from './website';
 import { authorize,create,get,list,update,event,fail,text,idempotent,transition,type Actor,type Tx,type Input } from '../../kernel/src/index';
 export function marketingAllowed(contact:Input):boolean {const c=contact.consent;return Boolean(c&&typeof c==='object'&&(c as Input).marketing===true);}
 export function safeContent(value:unknown){const content=text(value,50000);if(/<\s*(?:script|iframe|object|embed)|javascript:|on(?:load|error)\s*=/i.test(content))fail('UNSAFE_CONTENT',400);return content;}
 export async function handleMarketing(tx:Tx,a:Actor,action:string,i:Input):Promise<unknown>{
+ if(action.startsWith('website_'))return handleWebsite(tx,a,action.slice(8),i);
  authorize(a,'marketing',action);
  if(['create','create_campaign'].includes(action)){const r=await create(tx,a,'campaigns',{title:text(i.name??i.title),status:'DRAFT',data:{goal:typeof i.goal==='string'?text(i.goal,2000):'',channel:typeof i.channel==='string'?text(i.channel):'LOCAL_PREVIEW',segmentId:i.segmentId??null,startsAt:i.startsAt?new Date(text(i.startsAt)).toISOString():null,communicationMode:'DRAFT_ONLY',attributionKey:typeof i.attributionKey==='string'?text(i.attributionKey):null}});await event(tx,a,'marketing.campaign_created',r.id);return r;}
  if(action==='create_content'){const r=await create(tx,a,'content_assets',{title:text(i.title),status:'DRAFT',data:{kind:typeof i.kind==='string'?text(i.kind):'COPY',body:safeContent(i.body),campaignId:i.campaignId??null}});await create(tx,a,'content_revisions',{title:`${r.title} revision 1`,status:'DRAFT',data:{contentId:r.id,version:1,body:r.data.body,author:a.userId}});await event(tx,a,'marketing.content_created',r.id);return r;}

@@ -3,6 +3,7 @@ import {checkedOrigin,verifyAccessJwt,gatewayFetch} from '../../infra/cloudflare
 import {validatePreviewEnvironment} from '../../scripts/preview-runtime';
 import {enforcePreviewPolicy} from '../../packages/server/src/preview-policy';
 import {databaseConfig,PREVIEW_PROJECT} from '../../packages/kernel/src/database-config';
+import {X509Certificate} from 'node:crypto';
 const b64=(value:unknown)=>Buffer.from(typeof value==='string'?value:JSON.stringify(value)).toString('base64url');
 const pair=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',hash:'SHA-256',modulusLength:2048,publicExponent:new Uint8Array([1,0,1])},true,['sign','verify']);
 const publicKey={...await crypto.subtle.exportKey('jwk',pair.publicKey),kid:'test-key',use:'sig'};
@@ -32,6 +33,7 @@ test('synthetic asset updates require Access and fall back to the running applic
 test('persistent previews require the approved Supabase project, restricted login and verified TLS',()=>{
  const DATABASE_URL=`postgresql://ts_app_server.${PREVIEW_PROJECT}:synthetic_password@aws-1-us-east-1.pooler.supabase.com:5432/postgres`;
  const env:NodeJS.ProcessEnv={NODE_ENV:'test',TWELVESPEC_PREVIEW:'1',SUPABASE_PROJECT_REF:PREVIEW_PROJECT,DATABASE_URL};
- assert.deepEqual(databaseConfig(env).ssl,{rejectUnauthorized:true});assert.equal(databaseConfig(env).max,4);
+ const ssl=databaseConfig(env).ssl;assert.ok(ssl&&typeof ssl==='object');assert.equal(ssl.rejectUnauthorized,true);assert.equal(typeof ssl.ca,'string');
+ const root=new X509Certificate(ssl.ca as string);assert.equal(root.ca,true);assert.match(root.subject,/Supabase Root 2021 CA/);assert.equal(root.fingerprint256,'80:70:25:AD:50:D4:ED:21:9D:2C:9C:7D:29:9C:00:4F:82:4E:B0:0C:F7:F6:5A:FE:F6:07:D0:7B:72:E6:CA:FA');assert.equal(databaseConfig(env).max,4);
  for(const override of [{SUPABASE_PROJECT_REF:'another_project'},{DATABASE_URL:DATABASE_URL.replace(PREVIEW_PROJECT,'another_project')},{DATABASE_URL:DATABASE_URL.replace('ts_app_server.','postgres.')},{DATABASE_URL:DATABASE_URL+'?sslmode=disable'},{DATABASE_URL:DATABASE_URL.replace(':5432',':6543')},{DATABASE_URL:DATABASE_URL.replace('us-east-1','us-west-2')},{DATABASE_URL:'postgresql://user:synthetic@production.example:5432/postgres'}])assert.throws(()=>databaseConfig({...env,...override}));
 });

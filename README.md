@@ -1,5 +1,7 @@
 # TwelveSpec Platform
 
+**Launch status — November 9, 2026:** development verification passes (194 backend tests, 11 browser journeys, TypeScript and both optimized builds), but paid production orders remain blocked. Hosted storage is still temporary, the native content editor interface is unfinished, and commercial/provider and full V1 acceptance gates remain open. See [current launch readiness](docs/LAUNCH_READINESS_2026-11-09.md) and [content-studio implementation](docs/website-content-studio/IMPLEMENTATION.md).
+
 A greenfield Next.js, TypeScript and PostgreSQL implementation with separate customer storefront and Commerce OS applications. Development uses synthetic data and simulated providers. No existing TwelveSpec production service is used.
 
 The complete implementation and saved development history are published on [build/owned-catalog-shopify-ab8e81e](https://github.com/SEM-Admin/twelvespec-platform/tree/build/owned-catalog-shopify-ab8e81e). This branch includes the storefront, Commerce OS, shared services, migrations, tests, original specification and research. See the [delivery status](docs/DELIVERY_STATUS.md) for implemented functionality, verified behavior and remaining activation requirements.
