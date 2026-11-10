@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "sku": "businesscard_14pt_profit_maximizer",
+    "name": "Business cards 14pt (Profit Maximizer)",
+    "category": "Business Cards",
+    "enabled": 1
+  },
+  {
+    "id": 2,
+    "sku": "businesscard_14pt_aq",
+    "name": "Business Cards 14pt + AQ ",
+    "category": "Business Cards",
+    "enabled": 1
+  },
+  {
+    "id": 7,
+    "sku": "businesscard_14pt_uv_high_gloss",
+    "name": "Business Cards 14pt + UV (High Gloss)",
+    "category": "Business Cards",
+    "enabled": 1
+  }
+]

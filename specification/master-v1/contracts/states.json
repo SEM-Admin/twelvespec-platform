@@ -1,0 +1,39 @@
+{
+  "import": [
+    "UPLOADED",
+    "PARSING",
+    "STAGED",
+    "VALIDATED",
+    "REVIEWED",
+    "COMMITTED",
+    "REJECTED"
+  ],
+  "quote": [
+    "DRAFT",
+    "COSTED",
+    "APPROVAL_REQUIRED",
+    "READY_TO_ISSUE",
+    "ISSUED",
+    "ACCEPTED",
+    "EXPIRED",
+    "DECLINED"
+  ],
+  "supplier_po": [
+    "DRAFT",
+    "APPROVAL_PENDING",
+    "AUTHORIZED",
+    "SUBMITTING",
+    "ACKNOWLEDGED",
+    "REJECTED",
+    "UNKNOWN_OUTCOME"
+  ],
+  "job": [
+    "PLANNED",
+    "READY",
+    "IN_PROGRESS",
+    "QC_PENDING",
+    "COMPLETE",
+    "REWORK",
+    "BLOCKED"
+  ]
+}

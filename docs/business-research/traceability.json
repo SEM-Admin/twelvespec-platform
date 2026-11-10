@@ -1,0 +1,7956 @@
+{
+  "modules": [
+    {
+      "module": "foundation",
+      "title": "Governance, identity and settings",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "currentCode": "packages/foundation/src/index.ts",
+      "existingTest": "tests/modules/foundation.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "today",
+      "title": "Executive dashboard",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F20",
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "currentCode": "packages/today/src/index.ts",
+      "existingTest": "tests/modules/today.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "crm",
+      "title": "CRM and sales pipeline",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "currentCode": "packages/crm/src/index.ts",
+      "existingTest": "tests/modules/crm.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "catalog",
+      "title": "Canonical catalog and publishing",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "currentCode": "packages/catalog/src/index.ts",
+      "existingTest": "tests/modules/catalog.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "supplier",
+      "title": "Integration Center",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "currentCode": "packages/supplier/src/index.ts",
+      "existingTest": "tests/modules/supplier.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "configuration",
+      "title": "Product rules and visual options",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F17",
+        "F19",
+        "F31"
+      ],
+      "currentCode": "packages/configuration/src/index.ts",
+      "existingTest": "tests/modules/configuration.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "creative",
+      "title": "Creative Studio",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "currentCode": "packages/creative/src/index.ts",
+      "existingTest": "tests/modules/creative.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "estimating",
+      "title": "Pricing and estimating",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24",
+        "F31"
+      ],
+      "currentCode": "packages/estimating/src/index.ts",
+      "existingTest": "tests/modules/estimating.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "commerce",
+      "title": "Customer storefront and checkout",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F22",
+        "F30"
+      ],
+      "currentCode": "packages/commerce/src/index.ts",
+      "existingTest": "tests/modules/commerce.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "stores",
+      "title": "Company, school and event stores",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "currentCode": "packages/stores/src/index.ts",
+      "existingTest": "tests/modules/stores.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "byob",
+      "title": "Build Your Own Bundle",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F13"
+      ],
+      "currentCode": "packages/byob/src/index.ts",
+      "existingTest": "tests/modules/byob.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "sales",
+      "title": "RFQ, quote and approvals",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "currentCode": "packages/sales/src/index.ts",
+      "existingTest": "tests/modules/sales.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "orders",
+      "title": "Orders and job tickets",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "currentCode": "packages/orders/src/index.ts",
+      "existingTest": "tests/modules/orders.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "procurement",
+      "title": "Purchasing and supplier POs",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "currentCode": "packages/procurement/src/index.ts",
+      "existingTest": "tests/modules/procurement.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "fulfillment",
+      "title": "Production, QC, shipping, returns",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "currentCode": "packages/fulfillment/src/index.ts",
+      "existingTest": "tests/modules/fulfillment.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "finance",
+      "title": "Finance and profitability",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "currentCode": "packages/finance/src/index.ts",
+      "existingTest": "tests/modules/finance.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "marketing",
+      "title": "Marketing and content management",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "currentCode": "packages/marketing/src/index.ts",
+      "existingTest": "tests/modules/marketing.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "workflow",
+      "title": "Automation and notifications",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "currentCode": "packages/workflows/src/index.ts",
+      "existingTest": "tests/modules/workflow.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "analytics",
+      "title": "Reporting and data quality",
+      "availability": "ACTIVE_V1_SPEC",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "currentCode": "packages/analytics/src/index.ts",
+      "existingTest": "tests/modules/analytics.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    },
+    {
+      "module": "future",
+      "title": "Reserved module slots",
+      "availability": "COMING_SOON",
+      "features": [
+        "F33"
+      ],
+      "currentCode": "packages/contracts/src/index.ts",
+      "existingTest": "tests/security/isolation.test.ts",
+      "acceptance": "OPEN_NOT_NEWLY_VERIFIED"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "foundation.module",
+      "module": "foundation",
+      "kind": "module",
+      "requirement": "Governance, identity and settings",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.screen.Workspace selector",
+      "module": "foundation",
+      "kind": "screen",
+      "requirement": "Workspace selector",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.screen.Users & roles",
+      "module": "foundation",
+      "kind": "screen",
+      "requirement": "Users & roles",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.screen.Venture/legal seller",
+      "module": "foundation",
+      "kind": "screen",
+      "requirement": "Venture/legal seller",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.screen.Audit",
+      "module": "foundation",
+      "kind": "screen",
+      "requirement": "Audit",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.screen.Module registry",
+      "module": "foundation",
+      "kind": "screen",
+      "requirement": "Module registry",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.command.create",
+      "module": "foundation",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.command.update",
+      "module": "foundation",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.command.review",
+      "module": "foundation",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.command.approve",
+      "module": "foundation",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "foundation.command.archive",
+      "module": "foundation",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F09",
+        "F16",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.module",
+      "module": "today",
+      "kind": "module",
+      "requirement": "Executive dashboard",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.screen.Needs attention",
+      "module": "today",
+      "kind": "screen",
+      "requirement": "Needs attention",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.screen.Revenue/GP snapshot",
+      "module": "today",
+      "kind": "screen",
+      "requirement": "Revenue/GP snapshot",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.screen.Waiting for others",
+      "module": "today",
+      "kind": "screen",
+      "requirement": "Waiting for others",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.screen.Tasks",
+      "module": "today",
+      "kind": "screen",
+      "requirement": "Tasks",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.screen.Owner hours",
+      "module": "today",
+      "kind": "screen",
+      "requirement": "Owner hours",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.command.create",
+      "module": "today",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.command.update",
+      "module": "today",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.command.review",
+      "module": "today",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.command.approve",
+      "module": "today",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "today.command.archive",
+      "module": "today",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F24",
+        "F26",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.module",
+      "module": "crm",
+      "kind": "module",
+      "requirement": "CRM and sales pipeline",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.screen.Accounts",
+      "module": "crm",
+      "kind": "screen",
+      "requirement": "Accounts",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.screen.Contacts",
+      "module": "crm",
+      "kind": "screen",
+      "requirement": "Contacts",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.screen.Pipeline board",
+      "module": "crm",
+      "kind": "screen",
+      "requirement": "Pipeline board",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.screen.Activity timeline",
+      "module": "crm",
+      "kind": "screen",
+      "requirement": "Activity timeline",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.screen.Lead import",
+      "module": "crm",
+      "kind": "screen",
+      "requirement": "Lead import",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.command.create",
+      "module": "crm",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.command.update",
+      "module": "crm",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.command.review",
+      "module": "crm",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.command.approve",
+      "module": "crm",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "crm.command.archive",
+      "module": "crm",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F01",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.module",
+      "module": "catalog",
+      "kind": "module",
+      "requirement": "Canonical catalog and publishing",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.screen.Products grid",
+      "module": "catalog",
+      "kind": "screen",
+      "requirement": "Products grid",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.screen.Bulk spreadsheet editor",
+      "module": "catalog",
+      "kind": "screen",
+      "requirement": "Bulk spreadsheet editor",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.screen.Variants",
+      "module": "catalog",
+      "kind": "screen",
+      "requirement": "Variants",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.screen.Collections",
+      "module": "catalog",
+      "kind": "screen",
+      "requirement": "Collections",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.screen.Publish review",
+      "module": "catalog",
+      "kind": "screen",
+      "requirement": "Publish review",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.command.match_product",
+      "module": "catalog",
+      "kind": "command",
+      "requirement": "match_product",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.command.bulk_change",
+      "module": "catalog",
+      "kind": "command",
+      "requirement": "bulk_change",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.command.stage_revision",
+      "module": "catalog",
+      "kind": "command",
+      "requirement": "stage_revision",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.command.publish",
+      "module": "catalog",
+      "kind": "command",
+      "requirement": "publish",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "catalog.command.pause",
+      "module": "catalog",
+      "kind": "command",
+      "requirement": "pause",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.module",
+      "module": "supplier",
+      "kind": "module",
+      "requirement": "Integration Center",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.screen.Connection cards",
+      "module": "supplier",
+      "kind": "screen",
+      "requirement": "Connection cards",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.screen.Add connection wizard",
+      "module": "supplier",
+      "kind": "screen",
+      "requirement": "Add connection wizard",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.screen.Credentials form",
+      "module": "supplier",
+      "kind": "screen",
+      "requirement": "Credentials form",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.screen.Service capabilities",
+      "module": "supplier",
+      "kind": "screen",
+      "requirement": "Service capabilities",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.screen.Import mappings",
+      "module": "supplier",
+      "kind": "screen",
+      "requirement": "Import mappings",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.screen.Sync history",
+      "module": "supplier",
+      "kind": "screen",
+      "requirement": "Sync history",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.command.save_secret",
+      "module": "supplier",
+      "kind": "command",
+      "requirement": "save_secret",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.command.test_connection",
+      "module": "supplier",
+      "kind": "command",
+      "requirement": "test_connection",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.command.discover_capabilities",
+      "module": "supplier",
+      "kind": "command",
+      "requirement": "discover_capabilities",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.command.stage_file",
+      "module": "supplier",
+      "kind": "command",
+      "requirement": "stage_file",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.command.preview_mapping",
+      "module": "supplier",
+      "kind": "command",
+      "requirement": "preview_mapping",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.command.commit_import",
+      "module": "supplier",
+      "kind": "command",
+      "requirement": "commit_import",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "supplier.command.schedule_sync",
+      "module": "supplier",
+      "kind": "command",
+      "requirement": "schedule_sync",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.module",
+      "module": "configuration",
+      "kind": "module",
+      "requirement": "Product rules and visual options",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.screen.Product family rules",
+      "module": "configuration",
+      "kind": "screen",
+      "requirement": "Product family rules",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.screen.Options matrix",
+      "module": "configuration",
+      "kind": "screen",
+      "requirement": "Options matrix",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.screen.Print zone editor",
+      "module": "configuration",
+      "kind": "screen",
+      "requirement": "Print zone editor",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.screen.Constraints simulator",
+      "module": "configuration",
+      "kind": "screen",
+      "requirement": "Constraints simulator",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.command.create",
+      "module": "configuration",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.command.update",
+      "module": "configuration",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.command.review",
+      "module": "configuration",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.command.approve",
+      "module": "configuration",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "configuration.command.archive",
+      "module": "configuration",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F19",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.module",
+      "module": "creative",
+      "kind": "module",
+      "requirement": "Creative Studio",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.screen.Customer designer",
+      "module": "creative",
+      "kind": "screen",
+      "requirement": "Customer designer",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.screen.Admin artwork",
+      "module": "creative",
+      "kind": "screen",
+      "requirement": "Admin artwork",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.screen.Brand kits",
+      "module": "creative",
+      "kind": "screen",
+      "requirement": "Brand kits",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.screen.Proof center",
+      "module": "creative",
+      "kind": "screen",
+      "requirement": "Proof center",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.screen.Prepress queue",
+      "module": "creative",
+      "kind": "screen",
+      "requirement": "Prepress queue",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.command.upload_asset",
+      "module": "creative",
+      "kind": "command",
+      "requirement": "upload_asset",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.command.save_design_version",
+      "module": "creative",
+      "kind": "command",
+      "requirement": "save_design_version",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.command.render_mockup",
+      "module": "creative",
+      "kind": "command",
+      "requirement": "render_mockup",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.command.request_proof",
+      "module": "creative",
+      "kind": "command",
+      "requirement": "request_proof",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.command.approve_proof",
+      "module": "creative",
+      "kind": "command",
+      "requirement": "approve_proof",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "creative.command.run_preflight",
+      "module": "creative",
+      "kind": "command",
+      "requirement": "run_preflight",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.module",
+      "module": "estimating",
+      "kind": "module",
+      "requirement": "Pricing and estimating",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.screen.Estimate builder",
+      "module": "estimating",
+      "kind": "screen",
+      "requirement": "Estimate builder",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.screen.Cost components",
+      "module": "estimating",
+      "kind": "screen",
+      "requirement": "Cost components",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.screen.Margin approvals",
+      "module": "estimating",
+      "kind": "screen",
+      "requirement": "Margin approvals",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.screen.Version history",
+      "module": "estimating",
+      "kind": "screen",
+      "requirement": "Version history",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.command.create",
+      "module": "estimating",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.command.update",
+      "module": "estimating",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.command.review",
+      "module": "estimating",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.command.approve",
+      "module": "estimating",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "estimating.command.archive",
+      "module": "estimating",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F13",
+        "F14",
+        "F18",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.module",
+      "module": "commerce",
+      "kind": "module",
+      "requirement": "Customer storefront and checkout",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.screen.Search listing",
+      "module": "commerce",
+      "kind": "screen",
+      "requirement": "Search listing",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.screen.Product detail",
+      "module": "commerce",
+      "kind": "screen",
+      "requirement": "Product detail",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.screen.Customer designer",
+      "module": "commerce",
+      "kind": "screen",
+      "requirement": "Customer designer",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.screen.Quote cart",
+      "module": "commerce",
+      "kind": "screen",
+      "requirement": "Quote cart",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.screen.Account/orders",
+      "module": "commerce",
+      "kind": "screen",
+      "requirement": "Account/orders",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.command.create",
+      "module": "commerce",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.command.update",
+      "module": "commerce",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.command.review",
+      "module": "commerce",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.command.approve",
+      "module": "commerce",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "commerce.command.archive",
+      "module": "commerce",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F15",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.module",
+      "module": "stores",
+      "kind": "module",
+      "requirement": "Company, school and event stores",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.screen.Store list",
+      "module": "stores",
+      "kind": "screen",
+      "requirement": "Store list",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.screen.Program type config",
+      "module": "stores",
+      "kind": "screen",
+      "requirement": "Program type config",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.screen.Products and budgets",
+      "module": "stores",
+      "kind": "screen",
+      "requirement": "Products and budgets",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.screen.Member management",
+      "module": "stores",
+      "kind": "screen",
+      "requirement": "Member management",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.command.create",
+      "module": "stores",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.command.update",
+      "module": "stores",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.command.review",
+      "module": "stores",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.command.approve",
+      "module": "stores",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "stores.command.archive",
+      "module": "stores",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F30"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.module",
+      "module": "byob",
+      "kind": "module",
+      "requirement": "Build Your Own Bundle",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.screen.Bundle builder",
+      "module": "byob",
+      "kind": "screen",
+      "requirement": "Bundle builder",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.screen.Component selector",
+      "module": "byob",
+      "kind": "screen",
+      "requirement": "Component selector",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.screen.Kit pricing",
+      "module": "byob",
+      "kind": "screen",
+      "requirement": "Kit pricing",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.screen.Assembly rules",
+      "module": "byob",
+      "kind": "screen",
+      "requirement": "Assembly rules",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.command.create",
+      "module": "byob",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.command.update",
+      "module": "byob",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.command.review",
+      "module": "byob",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.command.approve",
+      "module": "byob",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "byob.command.archive",
+      "module": "byob",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F13"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.module",
+      "module": "sales",
+      "kind": "module",
+      "requirement": "RFQ, quote and approvals",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.screen.RFQ inbox",
+      "module": "sales",
+      "kind": "screen",
+      "requirement": "RFQ inbox",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.screen.Quote editor",
+      "module": "sales",
+      "kind": "screen",
+      "requirement": "Quote editor",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.screen.Approvals",
+      "module": "sales",
+      "kind": "screen",
+      "requirement": "Approvals",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.screen.Order acceptance",
+      "module": "sales",
+      "kind": "screen",
+      "requirement": "Order acceptance",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.command.create",
+      "module": "sales",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.command.update",
+      "module": "sales",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.command.review",
+      "module": "sales",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.command.approve",
+      "module": "sales",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "sales.command.archive",
+      "module": "sales",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F14",
+        "F15",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.module",
+      "module": "orders",
+      "kind": "module",
+      "requirement": "Orders and job tickets",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.screen.Order cockpit",
+      "module": "orders",
+      "kind": "screen",
+      "requirement": "Order cockpit",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.screen.Job ticket",
+      "module": "orders",
+      "kind": "screen",
+      "requirement": "Job ticket",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.screen.Operation timeline",
+      "module": "orders",
+      "kind": "screen",
+      "requirement": "Operation timeline",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.screen.QC checklist",
+      "module": "orders",
+      "kind": "screen",
+      "requirement": "QC checklist",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.command.accept_order",
+      "module": "orders",
+      "kind": "command",
+      "requirement": "accept_order",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.command.allocate_jobs",
+      "module": "orders",
+      "kind": "command",
+      "requirement": "allocate_jobs",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.command.record_qc",
+      "module": "orders",
+      "kind": "command",
+      "requirement": "record_qc",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "orders.command.close_job",
+      "module": "orders",
+      "kind": "command",
+      "requirement": "close_job",
+      "features": [
+        "F07",
+        "F10",
+        "F11",
+        "F13",
+        "F14",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.module",
+      "module": "procurement",
+      "kind": "module",
+      "requirement": "Purchasing and supplier POs",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.screen.Source comparison",
+      "module": "procurement",
+      "kind": "screen",
+      "requirement": "Source comparison",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.screen.PO drafts",
+      "module": "procurement",
+      "kind": "screen",
+      "requirement": "PO drafts",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.screen.Approvals",
+      "module": "procurement",
+      "kind": "screen",
+      "requirement": "Approvals",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.screen.PO status",
+      "module": "procurement",
+      "kind": "screen",
+      "requirement": "PO status",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.command.prepare_po",
+      "module": "procurement",
+      "kind": "command",
+      "requirement": "prepare_po",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.command.approve_po",
+      "module": "procurement",
+      "kind": "command",
+      "requirement": "approve_po",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.command.submit_po",
+      "module": "procurement",
+      "kind": "command",
+      "requirement": "submit_po",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "procurement.command.reconcile_outcome",
+      "module": "procurement",
+      "kind": "command",
+      "requirement": "reconcile_outcome",
+      "features": [
+        "F16",
+        "F19",
+        "F20",
+        "F21",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.module",
+      "module": "fulfillment",
+      "kind": "module",
+      "requirement": "Production, QC, shipping, returns",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.screen.Routing plan",
+      "module": "fulfillment",
+      "kind": "screen",
+      "requirement": "Routing plan",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.screen.Shipments",
+      "module": "fulfillment",
+      "kind": "screen",
+      "requirement": "Shipments",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.screen.Tracking",
+      "module": "fulfillment",
+      "kind": "screen",
+      "requirement": "Tracking",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.screen.Returns/remakes",
+      "module": "fulfillment",
+      "kind": "screen",
+      "requirement": "Returns/remakes",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.command.create",
+      "module": "fulfillment",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.command.update",
+      "module": "fulfillment",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.command.review",
+      "module": "fulfillment",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.command.approve",
+      "module": "fulfillment",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "fulfillment.command.archive",
+      "module": "fulfillment",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F07",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.module",
+      "module": "finance",
+      "kind": "module",
+      "requirement": "Finance and profitability",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.screen.Cost ledger refs",
+      "module": "finance",
+      "kind": "screen",
+      "requirement": "Cost ledger refs",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.screen.Expected vs actual",
+      "module": "finance",
+      "kind": "screen",
+      "requirement": "Expected vs actual",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.screen.Invoices/payments refs",
+      "module": "finance",
+      "kind": "screen",
+      "requirement": "Invoices/payments refs",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.screen.Profit dashboard",
+      "module": "finance",
+      "kind": "screen",
+      "requirement": "Profit dashboard",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.command.create",
+      "module": "finance",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.command.update",
+      "module": "finance",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.command.review",
+      "module": "finance",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.command.approve",
+      "module": "finance",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "finance.command.archive",
+      "module": "finance",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F04",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.module",
+      "module": "marketing",
+      "kind": "module",
+      "requirement": "Marketing and content management",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.screen.Campaigns",
+      "module": "marketing",
+      "kind": "screen",
+      "requirement": "Campaigns",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.screen.Content library",
+      "module": "marketing",
+      "kind": "screen",
+      "requirement": "Content library",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.screen.Approval workflow",
+      "module": "marketing",
+      "kind": "screen",
+      "requirement": "Approval workflow",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.screen.Attribution",
+      "module": "marketing",
+      "kind": "screen",
+      "requirement": "Attribution",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.command.create",
+      "module": "marketing",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.command.update",
+      "module": "marketing",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.command.review",
+      "module": "marketing",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.command.approve",
+      "module": "marketing",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "marketing.command.archive",
+      "module": "marketing",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F06",
+        "F25",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.module",
+      "module": "workflow",
+      "kind": "module",
+      "requirement": "Automation and notifications",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.screen.Rule builder",
+      "module": "workflow",
+      "kind": "screen",
+      "requirement": "Rule builder",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.screen.Dry-run simulator",
+      "module": "workflow",
+      "kind": "screen",
+      "requirement": "Dry-run simulator",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.screen.Event log",
+      "module": "workflow",
+      "kind": "screen",
+      "requirement": "Event log",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.screen.Exception queue",
+      "module": "workflow",
+      "kind": "screen",
+      "requirement": "Exception queue",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.command.simulate_rule",
+      "module": "workflow",
+      "kind": "command",
+      "requirement": "simulate_rule",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.command.publish_rule",
+      "module": "workflow",
+      "kind": "command",
+      "requirement": "publish_rule",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "workflow.command.process_event",
+      "module": "workflow",
+      "kind": "command",
+      "requirement": "process_event",
+      "features": [
+        "F18",
+        "F26",
+        "F28",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.module",
+      "module": "analytics",
+      "kind": "module",
+      "requirement": "Reporting and data quality",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.screen.KPI definitions",
+      "module": "analytics",
+      "kind": "screen",
+      "requirement": "KPI definitions",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.screen.Report builder",
+      "module": "analytics",
+      "kind": "screen",
+      "requirement": "Report builder",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.screen.Data freshness",
+      "module": "analytics",
+      "kind": "screen",
+      "requirement": "Data freshness",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.screen.Exports",
+      "module": "analytics",
+      "kind": "screen",
+      "requirement": "Exports",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.command.create",
+      "module": "analytics",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.command.update",
+      "module": "analytics",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.command.review",
+      "module": "analytics",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.command.approve",
+      "module": "analytics",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "analytics.command.archive",
+      "module": "analytics",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.module",
+      "module": "future",
+      "kind": "module",
+      "requirement": "Reserved module slots",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.screen.Coming Soon index",
+      "module": "future",
+      "kind": "screen",
+      "requirement": "Coming Soon index",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.screen.Roadmap",
+      "module": "future",
+      "kind": "screen",
+      "requirement": "Roadmap",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.command.create",
+      "module": "future",
+      "kind": "command",
+      "requirement": "create",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.command.update",
+      "module": "future",
+      "kind": "command",
+      "requirement": "update",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.command.review",
+      "module": "future",
+      "kind": "command",
+      "requirement": "review",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.command.approve",
+      "module": "future",
+      "kind": "command",
+      "requirement": "approve",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    },
+    {
+      "id": "future.command.archive",
+      "module": "future",
+      "kind": "command",
+      "requirement": "archive",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "status": "DESIGN_LINK_NOT_IMPLEMENTATION_ACCEPTANCE"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "A01",
+      "journey": "First launch, synthetic seed",
+      "requiredAssertion": "Shop and OS authenticate, 40 products, modules and Coming Soon nav render",
+      "features": [
+        "F01",
+        "F02",
+        "F08",
+        "F15",
+        "F27",
+        "F30",
+        "F32",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-008",
+        "GAP-037",
+        "GAP-038"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A02",
+      "journey": "Tenant boundaries",
+      "requiredAssertion": "Workspace A cannot read B contacts or assets even by guessed UUID",
+      "features": [
+        "F09",
+        "F10",
+        "F14",
+        "F16",
+        "F20",
+        "F21",
+        "F25",
+        "F28",
+        "F29",
+        "F32",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A03",
+      "journey": "Add simulated supplier",
+      "requiredAssertion": "Masked credential metadata; no secret in API/browser/log",
+      "features": [
+        "F16",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-004",
+        "GAP-021",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A04",
+      "journey": "Invalid SOAP supplier auth",
+      "requiredAssertion": "Service marked BLOCKED, other service statuses unaffected",
+      "features": [
+        "F16",
+        "F18",
+        "F19",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-020",
+        "GAP-021"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A05",
+      "journey": "Import valid CSV",
+      "requiredAssertion": "Staged rows, mapping version, variant candidates; no auto publish",
+      "features": [
+        "F02",
+        "F03",
+        "F16",
+        "F17",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-021"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A06",
+      "journey": "Import XML with DTD",
+      "requiredAssertion": "Rejected before entity resolution, no outbound fetch",
+      "features": [
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-015",
+        "GAP-020",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A07",
+      "journey": "Malformed/duplicate source",
+      "requiredAssertion": "Reject or dedupe, keep raw evidence and issues",
+      "features": [
+        "F02",
+        "F03",
+        "F17"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A08",
+      "journey": "Supplier human edit conflict",
+      "requiredAssertion": "Curated title preserved; merge review created",
+      "features": [
+        "F02",
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-022"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A09",
+      "journey": "Product color swatch",
+      "requiredAssertion": "Visible circle corresponds to selected actual variant image, accessible label",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F05",
+        "F06",
+        "F07",
+        "F15",
+        "F17",
+        "F25",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-016",
+        "GAP-017"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A10",
+      "journey": "Bulk publish 100 SKUs",
+      "requiredAssertion": "Preview counts, authorization, revision and rollback manifest",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F09",
+        "F10",
+        "F14",
+        "F17",
+        "F20",
+        "F21",
+        "F25",
+        "F27",
+        "F28",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-033",
+        "GAP-039"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A11",
+      "journey": "Missing cost/freight",
+      "requiredAssertion": "Item quote-only; no unverified checkout price",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F18",
+        "F19",
+        "F21",
+        "F22",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A12",
+      "journey": "MOQ and quantity tiers",
+      "requiredAssertion": "Server rejects invalid quantity, accurate price tier recalculation",
+      "features": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F13",
+        "F14",
+        "F18",
+        "F19",
+        "F24",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-017"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A13",
+      "journey": "Dependent decoration options",
+      "requiredAssertion": "Method/location incompatible choices disabled and server rejects bypass",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F07",
+        "F15",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A14",
+      "journey": "Customer uploads logo",
+      "requiredAssertion": "Private original asset, versioned design, no exposed signed URL leak",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F15",
+        "F16",
+        "F25",
+        "F28",
+        "F29",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-009",
+        "GAP-019",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A15",
+      "journey": "Batch mockups",
+      "requiredAssertion": "One preset to eligible products, queued images, image/variant linkage",
+      "features": [
+        "F01",
+        "F03",
+        "F05",
+        "F06",
+        "F17",
+        "F25",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-016",
+        "GAP-019",
+        "GAP-039"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A16",
+      "journey": "Preflight failed DPI",
+      "requiredAssertion": "Proof not production-ready; vendor dispatch blocked",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F07",
+        "F20",
+        "F31",
+        "F32",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-017",
+        "GAP-018"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A17",
+      "journey": "Revised art after approval",
+      "requiredAssertion": "Prior approval invalidated for changed revision",
+      "features": [
+        "F05",
+        "F07",
+        "F15",
+        "F20",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-018"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A18",
+      "journey": "RFQ to issued quote",
+      "requiredAssertion": "Source cost snapshot frozen and approval checks enforced",
+      "features": [
+        "F01",
+        "F02",
+        "F04",
+        "F08",
+        "F09",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F18",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F26",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-028"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A19",
+      "journey": "Price below margin floor",
+      "requiredAssertion": "Approval required, audit who/why, no auto issue",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F09",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F18",
+        "F19",
+        "F21",
+        "F24",
+        "F25",
+        "F28",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-005"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A20",
+      "journey": "Accepted quote to order",
+      "requiredAssertion": "Immutable lines, legal seller and art revision frozen",
+      "features": [
+        "F04",
+        "F05",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F12",
+        "F14",
+        "F15",
+        "F20",
+        "F21",
+        "F24",
+        "F28",
+        "F31",
+        "F33"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-009",
+        "GAP-013",
+        "GAP-032"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A21",
+      "journey": "Mixed hats+brochures+tent",
+      "requiredAssertion": "One customer order, distinct jobs, provider POs and shipments",
+      "features": [
+        "F07",
+        "F11",
+        "F13",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A22",
+      "journey": "Supplier PO timeout",
+      "requiredAssertion": "UNKNOWN_OUTCOME; no duplicate submission until reconciliation",
+      "features": [
+        "F16",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F26",
+        "F29",
+        "F32",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-020",
+        "GAP-025"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A23",
+      "journey": "Partial shipment",
+      "requiredAssertion": "Customer sees partial fulfillment; tracking mapped to correct lines",
+      "features": [
+        "F07",
+        "F11",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-024",
+        "GAP-026"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A24",
+      "journey": "Outsourced decorated apparel",
+      "requiredAssertion": "Separate blank, decorator costs, operations and QC events",
+      "features": [
+        "F02",
+        "F04",
+        "F07",
+        "F11",
+        "F13",
+        "F14",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F24",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A25",
+      "journey": "POD sandbox fulfillment",
+      "requiredAssertion": "Provider event reflected; simulated tracking not called live",
+      "features": [
+        "F13",
+        "F16",
+        "F18",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F24",
+        "F29",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-020",
+        "GAP-026",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A26",
+      "journey": "Company store limits",
+      "requiredAssertion": "Wrong buyer/budget/brand kit blocked on server",
+      "features": [
+        "F04",
+        "F06",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F14",
+        "F15",
+        "F16",
+        "F21",
+        "F24",
+        "F25",
+        "F28",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-011",
+        "GAP-013"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A27",
+      "journey": "School fundraiser",
+      "requiredAssertion": "Correct campaign allocations and cutoff date with test clock",
+      "features": [
+        "F04",
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F15",
+        "F21",
+        "F23",
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-011",
+        "GAP-027"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A28",
+      "journey": "BYOB kit",
+      "requiredAssertion": "Each component mapped to correct source, plus kitting cost",
+      "features": [
+        "F02",
+        "F04",
+        "F07",
+        "F11",
+        "F13",
+        "F14",
+        "F18",
+        "F19",
+        "F20",
+        "F22",
+        "F24",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-012",
+        "GAP-024"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A29",
+      "journey": "Finance reference",
+      "requiredAssertion": "External webhook dedupe, no duplicate payment settlement",
+      "features": [
+        "F04",
+        "F09",
+        "F10",
+        "F12",
+        "F14",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F27",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-027",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A30",
+      "journey": "Profit closeout",
+      "requiredAssertion": "Actual versus estimated landed cost, profit/owner hour report",
+      "features": [
+        "F02",
+        "F04",
+        "F12",
+        "F13",
+        "F14",
+        "F18",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-027",
+        "GAP-030"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A31",
+      "journey": "CRM and marketing",
+      "requiredAssertion": "Contact permission, campaign publishing approval and attribution",
+      "features": [
+        "F01",
+        "F06",
+        "F08",
+        "F09",
+        "F14",
+        "F16",
+        "F21",
+        "F23",
+        "F25",
+        "F26",
+        "F27",
+        "F28",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A32",
+      "journey": "Automation dry-run",
+      "requiredAssertion": "Event/filter/action simulation shows intended effects, no side effects",
+      "features": [
+        "F11",
+        "F18",
+        "F20",
+        "F26",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-031"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A33",
+      "journey": "Unknown adapter",
+      "requiredAssertion": "UI shows unsupported capability; permits file/manual fallback",
+      "features": [
+        "F16",
+        "F18",
+        "F19",
+        "F22",
+        "F24",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-020",
+        "GAP-021",
+        "GAP-023",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A34",
+      "journey": "SSRF attempt",
+      "requiredAssertion": "Disallowed private host and redirect rejected",
+      "features": [
+        "F16",
+        "F18",
+        "F19",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-004",
+        "GAP-020",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A35",
+      "journey": "Webhook replay",
+      "requiredAssertion": "Signed event accepted once; invalid/replayed ignored and logged",
+      "features": [
+        "F04",
+        "F12",
+        "F16",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F26",
+        "F27",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-027",
+        "GAP-034",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A36",
+      "journey": "Coming Soon",
+      "requiredAssertion": "All deferred routes visible only as truthful, disabled placeholders",
+      "features": [
+        "F09",
+        "F14",
+        "F16",
+        "F21",
+        "F25",
+        "F28",
+        "F32",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-032",
+        "GAP-040"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A37",
+      "journey": "Keyboard/mobile UX",
+      "requiredAssertion": "Search/filter/configurator usable with keyboard and mobile viewport",
+      "features": [
+        "F01",
+        "F02",
+        "F05",
+        "F06",
+        "F08",
+        "F15",
+        "F27",
+        "F30",
+        "F31",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-017",
+        "GAP-033",
+        "GAP-038"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A38",
+      "journey": "Failed provider sync",
+      "requiredAssertion": "Stale status displays, storefront retains last safe published revision",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F25",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-016",
+        "GAP-022"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A39",
+      "journey": "Restore drill",
+      "requiredAssertion": "Backup restored into fresh staging environment; tenant counts match",
+      "features": [
+        "F05",
+        "F16",
+        "F26",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-035"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "A40",
+      "journey": "Fresh install",
+      "requiredAssertion": "One documented setup creates usable demo without existing vendor account",
+      "features": [
+        "F09",
+        "F10",
+        "F14",
+        "F20",
+        "F21",
+        "F28",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-002",
+        "GAP-006",
+        "GAP-037",
+        "GAP-039"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E01",
+      "journey": "Customer searches, filters departments and product variants",
+      "requiredAssertion": "URL/shareable filters work; no manual collection necessary for broad catalog; no wholesale supplier details",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F08",
+        "F15",
+        "F17",
+        "F25",
+        "F27",
+        "F30",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-016",
+        "GAP-033",
+        "GAP-038"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E02",
+      "journey": "Customer configures polo color/size + logo, previews then submits RFQ",
+      "requiredAssertion": "Same immutable design version visible to admin; all selected variants, artwork and imprint zones retained",
+      "features": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F14",
+        "F15",
+        "F21",
+        "F24",
+        "F25",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-011",
+        "GAP-013",
+        "GAP-017",
+        "GAP-019"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E03",
+      "journey": "Admin ingests provider synthetic products (100k seeded variants for performance benchmark)",
+      "requiredAssertion": "Dry-run, validation, staged review, bulk edit, publish preview and rollback; no duplicated variant identity",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F17",
+        "F27",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-033",
+        "GAP-039"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E04",
+      "journey": "Two suppliers offer same manufacturer/model",
+      "requiredAssertion": "One canonical public listing; two private offers; authorized admin can compare; identity mismatches not auto-merged",
+      "features": [
+        "F02",
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F29",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-020",
+        "GAP-025"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E05",
+      "journey": "Supplier sync tries to overwrite curated copy and imprint verified by staff",
+      "requiredAssertion": "Overridden fields retained; supplier evidence timestamped; exception recorded",
+      "features": [
+        "F02",
+        "F03",
+        "F05",
+        "F06",
+        "F16",
+        "F17",
+        "F18",
+        "F29",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-017",
+        "GAP-022"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E06",
+      "journey": "Price estimate mixes blank item, embroidery, rush, setup, freight and tax",
+      "requiredAssertion": "Distinct cost components; no float errors; source freshness; missing cost blocks quote issuance",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F18",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-027"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E07",
+      "journey": "Margin below 30% without approval",
+      "requiredAssertion": "Send blocked, review task shown and audited; 30\u201340% warning; 40% target visible",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F09",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F18",
+        "F19",
+        "F21",
+        "F24",
+        "F25",
+        "F28",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-010",
+        "GAP-013"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E08",
+      "journey": "Quote revision issued then modified",
+      "requiredAssertion": "Old revision preserved, new revision created; customer accepts exact revision",
+      "features": [
+        "F04",
+        "F05",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F12",
+        "F14",
+        "F15",
+        "F20",
+        "F21",
+        "F24",
+        "F28",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-009",
+        "GAP-013"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E09",
+      "journey": "Two first orders prepaid, account terms later Net15",
+      "requiredAssertion": "Terms guard, payment verified via sandbox webhook, duplicate webhook safe; no false Paid status",
+      "features": [
+        "F04",
+        "F08",
+        "F10",
+        "F12",
+        "F14",
+        "F15",
+        "F21",
+        "F23",
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-013",
+        "GAP-027"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E10",
+      "journey": "Approved order with two suppliers and one decorator",
+      "requiredAssertion": "Single customer job, separate draft vendor POs and ops, verified source, proof and payment gates",
+      "features": [
+        "F07",
+        "F11",
+        "F13",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-024",
+        "GAP-025"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E11",
+      "journey": "Proof not approved then attempt to send supplier PO",
+      "requiredAssertion": "Blocked. After approval, still requires explicit safe send capability/approval; sandbox only",
+      "features": [
+        "F07",
+        "F19",
+        "F20",
+        "F21",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-025"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E12",
+      "journey": "Supplier misses ship date",
+      "requiredAssertion": "Job at-risk notification, owner exception and customer status differentiated, no automated unsupported promise",
+      "features": [
+        "F07",
+        "F11",
+        "F13",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F26",
+        "F29",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-022",
+        "GAP-024",
+        "GAP-026",
+        "GAP-031"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E13",
+      "journey": "Print order needs bleed/preflight",
+      "requiredAssertion": "Missing bleed flags manual review; professional PDF/X function shown Coming Soon without fake validation",
+      "features": [
+        "F02",
+        "F05",
+        "F06",
+        "F07",
+        "F20",
+        "F31",
+        "F32",
+        "F33",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-017",
+        "GAP-018",
+        "GAP-040"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E14",
+      "journey": "MOQ1 POD offer not verified",
+      "requiredAssertion": "Cannot present self-service paid checkout; optional quote inquiry only",
+      "features": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F13",
+        "F14",
+        "F18",
+        "F19",
+        "F22",
+        "F24",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-017",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E15",
+      "journey": "Customer reorder",
+      "requiredAssertion": "Preserve design/legacy commercial history; refresh current availability and pricing for new order",
+      "features": [
+        "F01",
+        "F04",
+        "F05",
+        "F07",
+        "F08",
+        "F10",
+        "F12",
+        "F14",
+        "F15",
+        "F21",
+        "F24",
+        "F27",
+        "F30",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-013",
+        "GAP-033"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E16",
+      "journey": "Import and editing 20 products in one operation",
+      "requiredAssertion": "Grid preview, validation, partial reject, audit and undo for pre-publication mutation",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F05",
+        "F06",
+        "F08",
+        "F15",
+        "F17",
+        "F30",
+        "F31",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-015",
+        "GAP-017",
+        "GAP-038"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E17",
+      "journey": "Unauthorized external customer requests another customer's file",
+      "requiredAssertion": "403/no data; no guessing signed storage URLs",
+      "features": [
+        "F05",
+        "F09",
+        "F14",
+        "F16",
+        "F21",
+        "F25",
+        "F28",
+        "F29",
+        "F32",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-005",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E18",
+      "journey": "Tenant B and venture B read customer or supplier private records",
+      "requiredAssertion": "Denied; permitted shared generic template only by explicit resource grant",
+      "features": [
+        "F09",
+        "F10",
+        "F14",
+        "F16",
+        "F20",
+        "F21",
+        "F25",
+        "F28",
+        "F29",
+        "F32",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-032",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E19",
+      "journey": "Duplicate supplier order submission or duplicate payment webhook",
+      "requiredAssertion": "Exactly-once external side effect simulated with idempotency; historical traces retained",
+      "features": [
+        "F04",
+        "F12",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F23",
+        "F24",
+        "F26",
+        "F27",
+        "F32",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-025",
+        "GAP-027"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E20",
+      "journey": "Coming Soon modules navigation",
+      "requiredAssertion": "Every placeholder opens labelled page, no dead link, no claim of active sales/PO/AI capability",
+      "features": [
+        "F09",
+        "F14",
+        "F16",
+        "F21",
+        "F25",
+        "F28",
+        "F32",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-032",
+        "GAP-040"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E21",
+      "journey": "QuickBooks sandbox invoice or mock external ref",
+      "requiredAssertion": "External reference mapped once; no duplicate GL; fails closed if disconnected",
+      "features": [
+        "F04",
+        "F12",
+        "F19",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-027",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E22",
+      "journey": "Complete quote\u2192order\u2192job\u2192delivery\u2192profit",
+      "requiredAssertion": "Actual vs estimated cost and gross margin calculated, customer view shows only appropriate progress",
+      "features": [
+        "F04",
+        "F07",
+        "F08",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F27",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-013",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-027"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E23",
+      "journey": "100k+ variant load/search benchmark",
+      "requiredAssertion": "Establish documented P95 budgets, paging, indexing, CPU/cost and consistent results; fail benchmark with remediation plan, not invented pass",
+      "features": [
+        "F01",
+        "F27",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-033",
+        "GAP-039"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E24",
+      "journey": "Module flag changes to ACTIVE without test evidence",
+      "requiredAssertion": "Denied, audited, no hidden active route/transaction",
+      "features": [
+        "F09",
+        "F14",
+        "F16",
+        "F21",
+        "F25",
+        "F28",
+        "F32",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-032",
+        "GAP-040"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "E25",
+      "journey": "New tenant business seller legal entity changes",
+      "requiredAssertion": "Existing quote/order seller snapshots unchanged; future transactions use new eligible seller assignment",
+      "features": [
+        "F04",
+        "F08",
+        "F09",
+        "F10",
+        "F12",
+        "F14",
+        "F15",
+        "F21",
+        "F24",
+        "F28",
+        "F33"
+      ],
+      "gaps": [
+        "GAP-013",
+        "GAP-032"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T01",
+      "journey": "Synthetic fresh install",
+      "requiredAssertion": "migrations, seeds, secure mock login, reproducible scripts",
+      "features": [
+        "F32",
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-037"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T02",
+      "journey": "Public product discovery",
+      "requiredAssertion": "color circles, facets, brand, size, mobile/desktop, canonical dedupe",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F05",
+        "F07",
+        "F08",
+        "F15",
+        "F17",
+        "F25",
+        "F27",
+        "F30",
+        "F31",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-014",
+        "GAP-016",
+        "GAP-033",
+        "GAP-038"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T03",
+      "journey": "Product configuration",
+      "requiredAssertion": "valid combinations, invalid option conflicts, typed rules, quantity breaks",
+      "features": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F13",
+        "F14",
+        "F18",
+        "F19",
+        "F24",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-017"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T04",
+      "journey": "Customer brand assets",
+      "requiredAssertion": "import/upload, private scope, design revision save/reload",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F15",
+        "F25",
+        "F31",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-009",
+        "GAP-019"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T05",
+      "journey": "Art previews",
+      "requiredAssertion": "zone accuracy, physical units, render queue, versioned mockups, no supplier assets leaked",
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F15",
+        "F20",
+        "F25",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-018",
+        "GAP-019"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T06",
+      "journey": "Admin template bulk",
+      "requiredAssertion": "assign rule to 100 compatible products, conflict queue, revert nonbinding updates",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F05",
+        "F06",
+        "F08",
+        "F15",
+        "F17",
+        "F25",
+        "F30",
+        "F31",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-015",
+        "GAP-017",
+        "GAP-019",
+        "GAP-038"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T07",
+      "journey": "CSV supplier import",
+      "requiredAssertion": "10k variants stage/diff/dedupe, scoped vendor evidence, curated copy preserved",
+      "features": [
+        "F02",
+        "F03",
+        "F16",
+        "F17",
+        "F18",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-022"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T08",
+      "journey": "Native PromoStandards contract",
+      "requiredAssertion": "service/version per supplier; malformed XML, empty stock, partial price, timeouts",
+      "features": [
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-020",
+        "GAP-021",
+        "GAP-022"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T09",
+      "journey": "Source resolution",
+      "requiredAssertion": "same manufacturer SKU across 3 suppliers -> 1 public product, 3 private offers",
+      "features": [
+        "F02",
+        "F03",
+        "F04",
+        "F13",
+        "F14",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F24",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-014",
+        "GAP-020"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T10",
+      "journey": "Estimate pricing",
+      "requiredAssertion": "tier+setup+decoration+freight, UNKNOWN cost blocks automated price",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F18",
+        "F19",
+        "F21",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T11",
+      "journey": "Quote revision",
+      "requiredAssertion": "issue immutable revision, revise with history, approve exact version",
+      "features": [
+        "F04",
+        "F05",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F12",
+        "F14",
+        "F15",
+        "F20",
+        "F21",
+        "F24",
+        "F28",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-006",
+        "GAP-009",
+        "GAP-013"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T12",
+      "journey": "Customer request to order",
+      "requiredAssertion": "real persisted config + design to quote/order with sandbox payment ref",
+      "features": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F14",
+        "F15",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-011",
+        "GAP-013",
+        "GAP-027"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T13",
+      "journey": "Mixed order",
+      "requiredAssertion": "hats + print + tent -> jobs, separate PO drafts, split shipments",
+      "features": [
+        "F07",
+        "F11",
+        "F13",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T14",
+      "journey": "Supplier purchase authorization",
+      "requiredAssertion": "no submission before required approvals; ambiguous timeout deduped",
+      "features": [
+        "F07",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F26",
+        "F31",
+        "F32",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-018",
+        "GAP-025"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T15",
+      "journey": "POD MOQ 1",
+      "requiredAssertion": "only verified product/variant/placement/supplier route checkout; else quote",
+      "features": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F13",
+        "F14",
+        "F16",
+        "F18",
+        "F19",
+        "F22",
+        "F24",
+        "F29",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-017",
+        "GAP-020",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T16",
+      "journey": "Company store",
+      "requiredAssertion": "employee budget, approval and brand restriction, cross-store privacy",
+      "features": [
+        "F04",
+        "F06",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F14",
+        "F15",
+        "F16",
+        "F21",
+        "F24",
+        "F25",
+        "F28",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-011",
+        "GAP-013"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T17",
+      "journey": "Fundraiser",
+      "requiredAssertion": "campaign window, allocations, closeout draft, no unverified payouts",
+      "features": [
+        "F04",
+        "F06",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F15",
+        "F21",
+        "F23",
+        "F24",
+        "F27"
+      ],
+      "gaps": [
+        "GAP-011",
+        "GAP-027"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T18",
+      "journey": "BYOB bundle",
+      "requiredAssertion": "component quantity, minimums, pack/assembly, multi-provider freight",
+      "features": [
+        "F02",
+        "F04",
+        "F07",
+        "F11",
+        "F13",
+        "F14",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F24",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-012",
+        "GAP-024",
+        "GAP-025"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T19",
+      "journey": "Job MIS",
+      "requiredAssertion": "ticket, proof, QC, failure/remake, external production event handling",
+      "features": [
+        "F07",
+        "F11",
+        "F13",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-024",
+        "GAP-026"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T20",
+      "journey": "Shipment",
+      "requiredAssertion": "provider tracking vs own label; no double labels, partial shipments",
+      "features": [
+        "F13",
+        "F16",
+        "F18",
+        "F19",
+        "F20",
+        "F22",
+        "F23",
+        "F24",
+        "F29",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-020",
+        "GAP-026",
+        "GAP-036"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T21",
+      "journey": "Finance",
+      "requiredAssertion": "estimated/actual direct cost, gross margin, external invoice/payment references",
+      "features": [
+        "F02",
+        "F04",
+        "F08",
+        "F10",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F18",
+        "F19",
+        "F21",
+        "F23",
+        "F24",
+        "F27",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-027",
+        "GAP-030"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T22",
+      "journey": "Marketing",
+      "requiredAssertion": "draft campaign, audience rights and consent, no send from test",
+      "features": [
+        "F01",
+        "F06",
+        "F08",
+        "F09",
+        "F23",
+        "F25",
+        "F26",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-028",
+        "GAP-029"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T23",
+      "journey": "Automation",
+      "requiredAssertion": "dry run, approval gates, cycle detection, replay and idempotency",
+      "features": [
+        "F11",
+        "F18",
+        "F20",
+        "F26",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-031"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T24",
+      "journey": "Confidentiality",
+      "requiredAssertion": "SEO/API/source code/view/export cannot reveal supplier names/cost/IDs",
+      "features": [
+        "F01",
+        "F02",
+        "F03",
+        "F16",
+        "F17",
+        "F25",
+        "F28",
+        "F29",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-004",
+        "GAP-014",
+        "GAP-016",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T25",
+      "journey": "Security",
+      "requiredAssertion": "cross-tenant + role negative tests (data/files/artwork/costs/orders)",
+      "features": [
+        "F09",
+        "F10",
+        "F14",
+        "F16",
+        "F20",
+        "F21",
+        "F25",
+        "F28",
+        "F29",
+        "F32",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-034"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T26",
+      "journey": "Coming Soon",
+      "requiredAssertion": "routes visible with clear label; backend denies action; no false claims",
+      "features": [
+        "F09",
+        "F14",
+        "F16",
+        "F21",
+        "F25",
+        "F28",
+        "F32",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-032",
+        "GAP-040"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T27",
+      "journey": "Resilience",
+      "requiredAssertion": "provider outage, replay, late events, retry budget, DLQ and exception queue",
+      "features": [
+        "F11",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F26",
+        "F28",
+        "F29",
+        "F32",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-025",
+        "GAP-031",
+        "GAP-035"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T28",
+      "journey": "Accessibility",
+      "requiredAssertion": "keyboard, screen reader labels, color contrast, responsive use",
+      "features": [
+        "F01",
+        "F02",
+        "F08",
+        "F15",
+        "F27",
+        "F30",
+        "F33",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-008",
+        "GAP-038"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T29",
+      "journey": "Scale",
+      "requiredAssertion": "search 100k variants, bulk update 100 records, async 500 render jobs",
+      "features": [
+        "F01",
+        "F03",
+        "F05",
+        "F06",
+        "F17",
+        "F25",
+        "F27",
+        "F30",
+        "F32"
+      ],
+      "gaps": [
+        "GAP-015",
+        "GAP-019",
+        "GAP-033",
+        "GAP-039"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    },
+    {
+      "id": "T30",
+      "journey": "Owner workflow",
+      "requiredAssertion": "no-code catalog edit, quote, proof, PO draft, closeout; measure clicks/time",
+      "features": [
+        "F01",
+        "F02",
+        "F04",
+        "F07",
+        "F08",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F27",
+        "F30",
+        "F31",
+        "F32",
+        "F33",
+        "F34",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-013",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-027",
+        "GAP-038",
+        "GAP-040"
+      ],
+      "status": "ORIGINAL_SCENARIO_OPEN"
+    }
+  ],
+  "mappingRule": "Module and work-package intersection gives a planning dependency, not proof that a feature implements an entire original scenario."
+}

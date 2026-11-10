@@ -1,0 +1,34 @@
+# TwelveSpec development previews
+
+The previews use the existing Next.js storefront and Commerce OS, served by separate Cloudflare Workers and one isolated Linux container. The runtime Worker and version preview URLs have no public route. Cloudflare Access protects both frontends; application sessions also protect administrative operations.
+
+- Storefront: https://twelvespec-preview-shop.samantha-4ec.workers.dev
+- Commerce OS: https://twelvespec-preview-os.samantha-4ec.workers.dev
+
+Access allows the connected owner's email through a one-time PIN. Application demo accounts are `customer@demo.twelvespec.test` and `owner@demo.twelvespec.test`. The deployment generates their password separately; it is excluded from source and is never embedded in the remote login form.
+
+The temporary database starts with 40 synthetic products, 120 exact color variants and 10 CRM contacts. Browser verification creates additional synthetic records; these are test data. Provider operations remain simulated, and live supplier connections, payments and outbound messages are blocked. PSRESTful is prohibited. Future modules remain Coming Soon.
+
+The approved Supabase development project is `mtihnarlkprmyahbxlrl`. Its V1 schema and restricted application role are installed. Database connections require verified TLS and must match this project and the restricted login. Hosted application migrations run through the authorized connector, separately from the runtime login. The confirmed Session pooler is aws-0-us-east-1.pooler.supabase.com:5432/postgres. The database connection remains disabled. The official public Supabase CA has been added to source, but a current end-to-end hosted connection has not been verified; an earlier hosted attempt reported SELF_SIGNED_CERT_IN_CHAIN and the later workspace TCP probe was refused. TLS verification remains enabled. No persistent-database activation is claimed.
+
+Until that switch is verified, the preview container's PostgreSQL and private files are temporary. Cloudflare stops the container after thirty minutes of inactivity; it reseeds the demo on restart. Even after PostgreSQL is connected, uploaded artwork needs persistent object storage before its durability can be claimed.
+
+`scripts/cloudflare-verify.mjs` checks Access protection and real browser flows over HTTPS. Its private verification control is under ignored `.local/cloudflare`; deployment, registry and test credentials must never be committed. Temporary Access service tokens are removed after verification. Node verifies TLS using the managed workspace CA. When Chromium does not honor its installed CA trust, the verifier permits only the exact managed proxy CA public key through its SPKI allowlist; it does not disable certificate checks generally or change application TLS settings.
+
+The runtime contains application commit `ab8e81e`, including the owned catalog, migrations `005_owned_catalog_requests.sql` and `006_catalog_media_scope.sql`, the save-refresh guard and the gated Shopify development channel. The deployed image is `twelvespec-preview-runtime@sha256:8411ebcd4b589ae15325126ef4ea50b431f26492950aef9757de785c1962b1ad`; runtime Worker version `e4312a1d-0876-406e-bab4-2ea21fa07f46` serves it through deployment `f736e713-a4a9-4a3d-84bf-abe0da8446b9`. Both protected HTTPS applications passed browser checks on 2026-11-07. This rollout retained the frontend Workers and their static-asset manifests.
+
+The complete owned-catalog workflow also passed HTTPS verification: privately upload 5,643 known supplier candidates; create a separate synthetic product draft; upload a rights-reviewed photo; publish an exact variant; submit a customer project brief; review and cost it privately; issue a USD 200.00 synthetic quote; verify the customer's account shows its scope and total without internal notes or costs. This quote is test data. Source candidates are not automatically published. Temporary test service tokens and their two scoped policies were deleted; both Access apps were read back with only their original owner policy.
+
+The Shopify development panel also passed HTTPS verification on this version: save a store-specific mock channel, check its simulated capabilities, stage two private synthetic source records and find them in Products. The test confirmed that real activation, product publishing and order actions return HTTP 403, and the demo products remain absent from the public catalog. This is not an authenticated Shopify API verification. Final readback confirmed owner-only Access, version preview URLs disabled on both frontends, no runtime public route, and the external database still disabled. Unauthenticated requests to both frontend URLs redirect to Access.
+
+After pushing any container image, call the account's `POST /containers/image-preparations` with its full registry image digest and wait for `status: ready` before activating that image in the Worker. An uploaded registry image alone is insufficient: starting it before preparation returns `Image not found` and an HTTP 503. Preserve existing bindings when uploading a runtime version and independently verify health and browser workflows after activation.
+
+See [the implementation checklist](IMPLEMENTATION_CHECKLIST.md) and [traceability](TRACEABILITY.md) for active V1 completion status. Working development previews do not establish production readiness or live provider verification.
+
+The three Classic Camp Cap SVG color images are also deployed as Workers Static Assets on each frontend. Asset routing runs the Worker first and checks the same Access JWT before reading the `ASSETS` binding. Missing images fall back to the existing Next.js runtime. This update preserves the running container and temporary database. Subsequent gateway uploads must retain the asset manifest (`keep_assets: true`) or upload a replacement manifest, retain the `ASSETS` binding, and keep `run_worker_first: true`. The matching source images and seed generator are committed with the application.
+
+Worker uploads can re-enable version preview URLs. After every frontend upload, explicitly restore `enabled: true, previews_enabled: false` through its subdomain endpoint and read it back. Keep both flags false on the runtime Worker. The gateway also rejects any origin other than its exact protected frontend hostname.
+
+## Supplier API update awaiting preview authorization — November 9
+
+The new [metered SAGE/SinaLite implementation](supplier-api/README.md) is locally tested and not deployed on the URLs above. Its [concrete preview proposal](supplier-api/PREVIEW_UPDATE.md) preserves Access, separate origins, static assets and the isolated synthetic database, and requests approval for the new outbound public SinaLite sandbox mode. Real-account access stays disabled. Image replacement resets temporary test data. The existing remote migration/runtime and November 7 HTTPS evidence remain historical until the approved rollout is verified.

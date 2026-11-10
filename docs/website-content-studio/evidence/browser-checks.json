@@ -1,0 +1,260 @@
+{
+  "commit": "f5cb025",
+  "kind": "READ_ONLY_DEVELOPMENT_AUDIT",
+  "capturedAt": "2026-11-08T00:22:57.272Z",
+  "screens": [
+    "current-storefront-desktop",
+    "current-storefront-mobile",
+    "current-product-detail",
+    "current-bundle-builder",
+    "current-organization-stores",
+    "current-os-marketing",
+    "current-os-catalog",
+    "current-os-stores",
+    "current-os-creative"
+  ],
+  "blockedMutations": [],
+  "requests": [
+    {
+      "module": "marketing",
+      "status": 200,
+      "milliseconds": 439,
+      "tableCounts": {
+        "campaigns": 2,
+        "content_assets": 0,
+        "publications": 1,
+        "attributions": 0
+      }
+    },
+    {
+      "module": "catalog",
+      "status": 200,
+      "milliseconds": 341,
+      "tableCounts": {
+        "products": 168,
+        "variants": 200,
+        "collections": 0,
+        "catalog_revisions": 8
+      }
+    },
+    {
+      "module": "stores",
+      "status": 200,
+      "milliseconds": 354,
+      "tableCounts": {
+        "stores": 5,
+        "store_memberships": 4,
+        "store_products": 16,
+        "spending_budgets": 4
+      }
+    },
+    {
+      "module": "creative",
+      "status": 200,
+      "milliseconds": 365,
+      "tableCounts": {
+        "assets": 10,
+        "design_projects": 5,
+        "design_versions": 16,
+        "brand_kits": 2,
+        "proofs": 15,
+        "preflight_results": 1,
+        "render_jobs": 1
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "Current storefront accessibility and overflow",
+      "width": 1440,
+      "violations": [],
+      "horizontalOverflow": false
+    },
+    {
+      "name": "Current storefront accessibility and overflow",
+      "width": 390,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ],
+      "horizontalOverflow": false
+    },
+    {
+      "name": "Current CMS entry absent",
+      "present": false
+    },
+    {
+      "name": "Content mutation requests during audit",
+      "count": 0
+    }
+  ],
+  "consoleErrors": [],
+  "catalog": {
+    "products": 57,
+    "stores": 1,
+    "bundles": 2,
+    "synthetic": true
+  },
+  "siteShell": {
+    "title": "TwelveSpec — Make it yours",
+    "bodyFont": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+    "background": "rgb(255, 254, 250)",
+    "nav": [
+      {
+        "text": "Shop all ",
+        "href": "/"
+      },
+      {
+        "text": "Apparel & headwear",
+        "href": null
+      },
+      {
+        "text": "Promotional products",
+        "href": null
+      },
+      {
+        "text": "Print & packaging",
+        "href": null
+      },
+      {
+        "text": "Signs & events",
+        "href": null
+      },
+      {
+        "text": "Build a bundle",
+        "href": "/bundles"
+      },
+      {
+        "text": "Company stores",
+        "href": "/stores"
+      }
+    ],
+    "footerLinks": [
+      {
+        "text": "twelvespec",
+        "href": "/"
+      },
+      {
+        "text": "Shop all products",
+        "href": "/"
+      },
+      {
+        "text": "Build a bundle",
+        "href": "/bundles"
+      },
+      {
+        "text": "Company stores",
+        "href": "/stores"
+      },
+      {
+        "text": "Quote cart",
+        "href": "/cart"
+      },
+      {
+        "text": "Quotes & orders",
+        "href": "/account"
+      },
+      {
+        "text": "Artwork & proofs",
+        "href": "/account"
+      },
+      {
+        "text": "Coming Soon",
+        "href": "/coming-soon"
+      }
+    ]
+  },
+  "adminNavigation": [
+    {
+      "text": "t12TwelveSpecCOMMERCE OS",
+      "href": "/"
+    },
+    {
+      "text": "Overview",
+      "href": "/"
+    },
+    {
+      "text": "Customers & CRM",
+      "href": "/crm"
+    },
+    {
+      "text": "Estimates",
+      "href": "/estimating"
+    },
+    {
+      "text": "Quotes & requests",
+      "href": "/sales"
+    },
+    {
+      "text": "Products",
+      "href": "/catalog"
+    },
+    {
+      "text": "Product configuration",
+      "href": "/configuration"
+    },
+    {
+      "text": "Creative Studio",
+      "href": "/creative"
+    },
+    {
+      "text": "Bundle builder",
+      "href": "/byob"
+    },
+    {
+      "text": "Orders & jobs",
+      "href": "/orders"
+    },
+    {
+      "text": "Purchasing",
+      "href": "/procurement"
+    },
+    {
+      "text": "Fulfillment",
+      "href": "/fulfillment"
+    },
+    {
+      "text": "Administration",
+      "href": "/foundation"
+    },
+    {
+      "text": "Integration Center",
+      "href": "/supplier"
+    },
+    {
+      "text": "Storefront activity",
+      "href": "/commerce"
+    },
+    {
+      "text": "Company stores",
+      "href": "/stores"
+    },
+    {
+      "text": "Finance",
+      "href": "/finance"
+    },
+    {
+      "text": "Marketing",
+      "href": "/marketing"
+    },
+    {
+      "text": "Automations",
+      "href": "/workflow"
+    },
+    {
+      "text": "Reports & data quality",
+      "href": "/analytics"
+    },
+    {
+      "text": "Coming Soon",
+      "href": "/future"
+    },
+    {
+      "text": "Open storefront",
+      "href": "http://localhost:3000"
+    }
+  ]
+}

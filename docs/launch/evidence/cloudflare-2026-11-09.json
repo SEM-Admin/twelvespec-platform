@@ -1,0 +1,57 @@
+{
+  "observedAt": "2026-11-09T15:16:20.763Z",
+  "readOnly": true,
+  "workers": [
+    {
+      "name": "twelvespec-preview-runtime",
+      "compatibilityDate": "2026-11-05",
+      "persistentDatabaseEnabled": "false",
+      "workersDev": false,
+      "versionPreviewUrls": false,
+      "latestDeployment": {
+        "id": "f736e713-a4a9-4a3d-84bf-abe0da8446b9",
+        "createdOn": "2026-11-07T22:42:12.615412Z",
+        "versions": [
+          {
+            "version_id": "e4312a1d-0876-406e-bab4-2ea21fa07f46",
+            "percentage": 100
+          }
+        ]
+      }
+    },
+    {
+      "name": "twelvespec-preview-shop",
+      "compatibilityDate": "2026-11-05",
+      "persistentDatabaseEnabled": null,
+      "workersDev": true,
+      "versionPreviewUrls": false,
+      "latestDeployment": {
+        "id": "278c4616-a71a-48e8-a793-b937883367e9",
+        "createdOn": "2026-11-07T02:00:00.774774Z",
+        "versions": [
+          {
+            "version_id": "009b0b2a-8924-4854-9b4d-c8dfa06c20dd",
+            "percentage": 100
+          }
+        ]
+      }
+    },
+    {
+      "name": "twelvespec-preview-os",
+      "compatibilityDate": "2026-11-05",
+      "persistentDatabaseEnabled": null,
+      "workersDev": true,
+      "versionPreviewUrls": false,
+      "latestDeployment": {
+        "id": "04213dda-5ae8-465e-8aeb-d3da65b9715d",
+        "createdOn": "2026-11-07T02:00:03.649362Z",
+        "versions": [
+          {
+            "version_id": "91b18fb2-a81d-4020-b32d-31233c67861c",
+            "percentage": 100
+          }
+        ]
+      }
+    }
+  ]
+}

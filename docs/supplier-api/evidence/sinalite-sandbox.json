@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-09T16:46:16.192Z",
+  "environment": "ISOLATED_LOCAL_DB_AND_PUBLIC_SINALITE_SANDBOX",
+  "connectionId": "74d08b87-95c9-4a64-9e4b-6b68cf05627f",
+  "verification": "SANDBOX_VERIFIED",
+  "products": 192,
+  "enabled": 176,
+  "optionCount": 18,
+  "configuration": {
+    "productId": 1,
+    "storeCode": 9,
+    "optionIds": [
+      4,
+      5,
+      30,
+      140,
+      93,
+      540
+    ],
+    "supplierPrice": "8.8200",
+    "currency": "USD",
+    "shipping": null,
+    "customerPrice": null
+  },
+  "staged": {
+    "created": 3,
+    "unchanged": 0,
+    "autoPublished": 0,
+    "verification": "SANDBOX_VERIFIED"
+  },
+  "cachedRead": true,
+  "usage": {
+    "monthCalls": 4,
+    "dayCalls": 4,
+    "minuteCalls": 3,
+    "runCalls": 0,
+    "units": 4,
+    "creditUnits": 0,
+    "cost": "0.000000"
+  },
+  "paidFeesApproved": "0.00",
+  "supplierOrdersSubmitted": 0,
+  "productsPublished": 0,
+  "imagesOrTemplatesVerified": false
+}

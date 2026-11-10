@@ -1,0 +1,65 @@
+[
+  {
+    "id": "R-01",
+    "area": "Core feature development",
+    "status": "CAN_IMPLEMENT_WITH_SYNTHETIC_DATA",
+    "needed": "Implement the original designs, regression tests and complete UI paths in the existing repository.",
+    "approval": "Routine engineering; no vendor account required."
+  },
+  {
+    "id": "R-02",
+    "area": "Persistent development database",
+    "status": "EXISTING_BLOCKER_RECORDED",
+    "needed": "Approved development connection needs its trusted certificate chain; current preview demo database is temporary.",
+    "approval": "Credential/certificate material through the approved secure channel; no production connection."
+  },
+  {
+    "id": "R-03",
+    "area": "Private assets and secrets",
+    "status": "FOUNDATION_IMPLEMENTATION_OPEN",
+    "needed": "Durable private artwork and managed secret broker with verified recovery.",
+    "approval": "Any new paid service or account infrastructure change requires approval."
+  },
+  {
+    "id": "R-04",
+    "area": "Direct supplier/POD adapters",
+    "status": "PUBLIC_BEHAVIOR_RESEARCHED_NOT_INTEGRATION_VERIFIED",
+    "needed": "Authorized current schemas, sandbox access, scoped credentials, account pricing, permitted media and operation-level tests.",
+    "approval": "Credentials, licensing and any financial commitment when ready for account testing."
+  },
+  {
+    "id": "R-05",
+    "area": "ASI SmartLink and ESP interfaces",
+    "status": "LICENSED_CONTRACT_REQUIRED",
+    "needed": "Keep interfaces separate; obtain official entitled schemas, media/redistribution rights and developer credentials.",
+    "approval": "Licensing and credentials; PSRESTful is prohibited."
+  },
+  {
+    "id": "R-06",
+    "area": "Real payments, shipping and accounting",
+    "status": "SIMULATED_OR_REFERENCE_ONLY",
+    "needed": "Verified adapters and financial/legal policies; use isolated sandbox outcomes before live writes.",
+    "approval": "Financial approval and provider credentials; no real charges or labels in research."
+  },
+  {
+    "id": "R-07",
+    "area": "Source publication and CI",
+    "status": "SOURCE_DELIVERY_GAP_RECORDED",
+    "needed": "The existing audit found a public GitHub remote with only its initial commit. Review repository privacy and publication scope before uploading the implementation/handoff.",
+    "approval": "Source publication/privacy decision is separate from local work; no push performed."
+  },
+  {
+    "id": "R-08",
+    "area": "New deployment",
+    "status": "NOT_PERFORMED_BY_RESEARCH",
+    "needed": "Build reviewable changes and verify locally first; retain separate protected preview URLs.",
+    "approval": "Deployment authorization for the concrete changes."
+  },
+  {
+    "id": "R-09",
+    "area": "Future modules",
+    "status": "COMING_SOON",
+    "needed": "Research only for reserved capabilities; server and UI controls remain disabled.",
+    "approval": "A later scope/activation decision; no implicit activation from competitive research."
+  }
+]

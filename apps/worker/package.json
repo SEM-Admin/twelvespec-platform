@@ -1,0 +1,1 @@
+{"name":"@twelvespec/worker","version":"0.1.0","private":true,"scripts":{"start":"node --import tsx src/index.ts"}}

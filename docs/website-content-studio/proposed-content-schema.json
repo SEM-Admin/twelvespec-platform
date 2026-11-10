@@ -1,0 +1,1655 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:twelvespec:review:website-document:v1",
+  "title": "PROPOSED TwelveSpec website document contract",
+  "description": "Review artifact only, not a runtime validator. Does not create database records or authorize publication. Only 18 page blocks; header/footer are global documents. Private evidence is removed by the public projection.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/page"
+    },
+    {
+      "$ref": "#/$defs/navigation"
+    },
+    {
+      "$ref": "#/$defs/theme"
+    },
+    {
+      "$ref": "#/$defs/footer"
+    }
+  ],
+  "$defs": {
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "PAGE",
+            "COLLECTION",
+            "SOLUTION",
+            "STORE",
+            "WORKFLOW",
+            "EXTERNAL_HTTPS"
+          ]
+        },
+        "targetId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "href": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "kind"
+      ],
+      "description": "Server enforces exactly the target fields required by kind, same-site grants, reserved workflow routes and safe HTTPS allowlist. Schema alone cannot prove link safety."
+    },
+    "richNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "paragraph",
+            "heading",
+            "list",
+            "list_item",
+            "text",
+            "link"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 4
+        },
+        "marks": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "emphasis"
+            ]
+          }
+        },
+        "link": {
+          "$ref": "#/$defs/link"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/richNode"
+          }
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "description": "Illustrative bounded semantic AST. Runtime must enforce valid node shape per type, depth <= 8, document size and semantic link validation; never interpret text as HTML."
+    },
+    "richText": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 40,
+      "items": {
+        "$ref": "#/$defs/richNode"
+      }
+    },
+    "galleryItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 360
+        },
+        "focalPoint": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "y": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ]
+        }
+      },
+      "required": [
+        "assetId",
+        "alt"
+      ]
+    },
+    "testimonial": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "quote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "publicAttribution": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "consentEvidenceId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "portraitAssetId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "quote",
+        "publicAttribution",
+        "consentEvidenceId"
+      ]
+    },
+    "faqEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "answer": {
+          "$ref": "#/$defs/richText"
+        }
+      },
+      "required": [
+        "question",
+        "answer"
+      ]
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "assetId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        }
+      },
+      "required": [
+        "title",
+        "assetId"
+      ]
+    },
+    "hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "hero"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "split",
+            "centered",
+            "image-led"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "body": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 360
+            },
+            "imageAssetId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "imageAlt": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "primaryLink": {
+              "$ref": "#/$defs/link"
+            },
+            "secondaryLink": {
+              "$ref": "#/$defs/link"
+            }
+          },
+          "required": [
+            "heading",
+            "body",
+            "imageAssetId",
+            "imageAlt",
+            "primaryLink"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "promotion_banner": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "promotion_banner"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "inline",
+            "compact",
+            "full-width"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 180
+            },
+            "link": {
+              "$ref": "#/$defs/link"
+            },
+            "campaignId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "tone": {
+              "type": "string",
+              "enum": [
+                "neutral",
+                "accent"
+              ]
+            }
+          },
+          "required": [
+            "message",
+            "tone"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "product_carousel": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "product_carousel"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "compact"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "collectionId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            "showSwatches": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "heading",
+            "collectionId",
+            "limit",
+            "showSwatches"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "featured_collections": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "featured_collections"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "cards",
+            "editorial"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "collectionIds": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "collectionIds"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "category_grid": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "category_grid"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "tiles",
+            "compact"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "categoryIds": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "categoryIds"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "brand_showcase": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "brand_showcase"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "logos",
+            "text"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "brandIds": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 16,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "brandIds"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "image_gallery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "image_gallery"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "grid",
+            "editorial"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": {
+                "$ref": "#/$defs/galleryItem"
+              }
+            },
+            "captions": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "items",
+            "captions"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "testimonials": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "testimonials"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "cards",
+            "quote"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "entries": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "$ref": "#/$defs/testimonial"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "entries"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "video": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "video"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "inline",
+            "wide"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "videoAssetId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "posterAssetId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "transcript": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40000
+            },
+            "captionsAssetId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "required": [
+            "title",
+            "videoAssetId",
+            "posterAssetId",
+            "transcript",
+            "captionsAssetId"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "solution_cards": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "solution_cards"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "cards",
+            "feature-grid"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "solutionPageIds": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "solutionPageIds"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "cta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "cta"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "split",
+            "centered",
+            "compact"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "body": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "primaryLink": {
+              "$ref": "#/$defs/link"
+            },
+            "secondaryLink": {
+              "$ref": "#/$defs/link"
+            },
+            "tone": {
+              "type": "string",
+              "enum": [
+                "neutral",
+                "accent"
+              ]
+            }
+          },
+          "required": [
+            "heading",
+            "primaryLink",
+            "tone"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "faq": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "faq"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "accordion",
+            "expanded"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "entries": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 20,
+              "items": {
+                "$ref": "#/$defs/faqEntry"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "entries"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "rich_text_image": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "rich_text_image"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "image-left",
+            "image-right",
+            "text-only"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "body": {
+              "$ref": "#/$defs/richText"
+            },
+            "imageAssetId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "imageAlt": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            }
+          },
+          "required": [
+            "body"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "project_inquiry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "project_inquiry"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "project",
+            "compact"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "intro": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 360
+            },
+            "formPreset": {
+              "type": "string",
+              "enum": [
+                "AUTHENTICATED_RFQ"
+              ]
+            },
+            "ctaLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "heading",
+            "formPreset",
+            "ctaLabel"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "download_resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "download_resources"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "cards",
+            "list"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "resources": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": {
+                "$ref": "#/$defs/resource"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "resources"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "store_grid": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "store_grid"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "cards",
+            "compact"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "storeIds": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          "required": [
+            "heading",
+            "storeIds"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "organization_hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "organization_hero"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "split",
+            "centered"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "body": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 360
+            },
+            "bannerAssetId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "approvedBrandKitId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "link": {
+              "$ref": "#/$defs/link"
+            }
+          },
+          "required": [
+            "heading",
+            "body"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "campaign_window_notice": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "type": {
+          "const": "campaign_window_notice"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "inline",
+            "compact"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "storeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "beforeText": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "openText": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "closedText": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "storeId",
+            "beforeText",
+            "openText",
+            "closedText"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "visible",
+        "type",
+        "variant",
+        "content"
+      ]
+    },
+    "section": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/hero"
+        },
+        {
+          "$ref": "#/$defs/promotion_banner"
+        },
+        {
+          "$ref": "#/$defs/product_carousel"
+        },
+        {
+          "$ref": "#/$defs/featured_collections"
+        },
+        {
+          "$ref": "#/$defs/category_grid"
+        },
+        {
+          "$ref": "#/$defs/brand_showcase"
+        },
+        {
+          "$ref": "#/$defs/image_gallery"
+        },
+        {
+          "$ref": "#/$defs/testimonials"
+        },
+        {
+          "$ref": "#/$defs/video"
+        },
+        {
+          "$ref": "#/$defs/solution_cards"
+        },
+        {
+          "$ref": "#/$defs/cta"
+        },
+        {
+          "$ref": "#/$defs/faq"
+        },
+        {
+          "$ref": "#/$defs/rich_text_image"
+        },
+        {
+          "$ref": "#/$defs/project_inquiry"
+        },
+        {
+          "$ref": "#/$defs/download_resources"
+        },
+        {
+          "$ref": "#/$defs/store_grid"
+        },
+        {
+          "$ref": "#/$defs/organization_hero"
+        },
+        {
+          "$ref": "#/$defs/campaign_window_notice"
+        }
+      ]
+    },
+    "menuItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "link": {
+          "$ref": "#/$defs/link"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/menuItem"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "link"
+      ]
+    },
+    "menuGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/menuItem"
+          }
+        },
+        "featuredAssetId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "items"
+      ]
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "siteId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "documentType": {
+          "const": "WEBSITE_PAGE"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^/"
+        },
+        "seo": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 70
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 180
+            },
+            "noIndex": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "title",
+            "description",
+            "noIndex"
+          ]
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 40,
+          "items": {
+            "$ref": "#/$defs/section"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "siteId",
+        "title",
+        "documentType",
+        "path",
+        "seo",
+        "sections"
+      ]
+    },
+    "navigation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "siteId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "documentType": {
+          "const": "WEBSITE_NAVIGATION"
+        },
+        "logoVariantId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "searchEnabled": {
+          "type": "boolean"
+        },
+        "groups": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/menuGroup"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "siteId",
+        "title",
+        "documentType",
+        "logoVariantId",
+        "searchEnabled",
+        "groups"
+      ]
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "siteId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "documentType": {
+          "const": "WEBSITE_THEME"
+        },
+        "paletteId": {
+          "type": "string",
+          "enum": [
+            "twelvespec-neutral-vermilion"
+          ]
+        },
+        "fontPresetId": {
+          "type": "string",
+          "enum": [
+            "existing-ui-sans"
+          ]
+        },
+        "buttonStyleId": {
+          "type": "string",
+          "enum": [
+            "charcoal-primary",
+            "accent-charcoal-label"
+          ]
+        },
+        "spacingPresetId": {
+          "type": "string",
+          "enum": [
+            "compact",
+            "standard",
+            "roomy"
+          ]
+        },
+        "logoVariantId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "approvedBrandKitId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "siteId",
+        "title",
+        "documentType",
+        "paletteId",
+        "fontPresetId",
+        "buttonStyleId",
+        "spacingPresetId",
+        "logoVariantId"
+      ]
+    },
+    "footer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "siteId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "documentType": {
+          "const": "WEBSITE_FOOTER"
+        },
+        "groups": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {
+            "$ref": "#/$defs/menuGroup"
+          }
+        },
+        "legalLinks": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/link"
+          }
+        },
+        "approvedSocialLinks": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/link"
+          }
+        },
+        "supportCopy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "siteId",
+        "title",
+        "documentType",
+        "groups",
+        "legalLinks",
+        "approvedSocialLinks",
+        "supportCopy"
+      ]
+    }
+  },
+  "x-required-server-checks": [
+    "Current tenant/workspace/site and active store membership; no demo-customer privilege inheritance",
+    "Supported registry and schema versions; document byte/depth limits and stable unique section IDs",
+    "Exactly shaped semantic links, safe reserved routes and reviewed HTTPS targets; no arbitrary external fetches",
+    "Typed scoped FKs to canonical product/variant/collection/store/asset/design records",
+    "Current publication eligibility and rights, private-original denial, permitted derivative scope",
+    "Feature activation: video/download/template/export paths disabled until implemented acceptance passes",
+    "Approval bound to exact immutable revision hash; selected-change release; row-revision concurrency",
+    "Product/price/production truth remains in domain commands, never editable page objects",
+    "Rich text type-specific nodes and bounded recursive depth; never render arbitrary HTML",
+    "Public projections exclude private evidence, source IDs, authors, audiences and internal notes"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "asOf": "2026-11-09",
+  "timezone": "America/Chicago",
+  "recordedAtUTC": "2026-11-09T15:29:05.985790+00:00",
+  "launchDecision": "NOT_READY_FOR_PAID_PRODUCTION",
+  "backend": {
+    "passed": 194,
+    "files": 33,
+    "command": "npm test",
+    "newWebsiteTests": 25
+  },
+  "browser": {
+    "passed": 11,
+    "command": "npm run test:e2e",
+    "environment": "Local synthetic development apps",
+    "lastRunStatus": "passed"
+  },
+  "typecheck": "PASS",
+  "optimizedBuilds": {
+    "os": "PASS",
+    "shop": "PASS",
+    "knownWarnings": "Three existing Creative dynamic-filesystem tracing warnings per app"
+  },
+  "originalSpecificationIntegrity": "PASS: 85 originals and 20 modules",
+  "masterPlanIntegrity": "PASS: 205 entries and 95 tracked scenarios",
+  "completeV1Acceptance": "OPEN",
+  "completeCMSAcceptance": "OPEN",
+  "cmsInterface": "NOT_IMPLEMENTED",
+  "newCMSBackendDeployed": false,
+  "hostedPersistentDatabaseEnabled": false,
+  "publicPreviewHTTPStatus": {
+    "shop": 302,
+    "os": 302
+  },
+  "hostedWorkflowReverifiedToday": false,
+  "newProductionIntegrationsVerified": false,
+  "productionSystemsAccessedOrChanged": false,
+  "deploymentPerformed": false
+}

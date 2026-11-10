@@ -1,0 +1,186 @@
+{
+  "baselineCommit": "f5cb02511022909edb396dbd79c4be397858f67d",
+  "clientDate": "2026-11-07",
+  "clientTimezone": "America/Chicago",
+  "scope": "Audit and proposal only. No application changes, migrations, content publication or deployment.",
+  "trackedFilesAtBaseline": 481,
+  "moduleCount": 20,
+  "applicationTablesRegistered": 97,
+  "migrationFiles": [
+    "database/migrations/004_opportunity_contact.sql",
+    "database/migrations/005_owned_catalog_requests.sql",
+    "database/migrations/003_domain_references.sql",
+    "database/migrations/001_initial.sql",
+    "database/migrations/006_catalog_media_scope.sql",
+    "database/migrations/002_auth_rate_limit.sql"
+  ],
+  "syntheticProductImages": 120,
+  "modules": [
+    {
+      "code": "foundation",
+      "title": "Governance, identity and settings",
+      "source": "packages/foundation/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "e1191cdbee92d232ae0852c7413bd4e42176b9a78f016733977b842e6dc34b73",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "today",
+      "title": "Executive dashboard",
+      "source": "packages/today/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "7f50e6d35d09232566c5b751062e95223f3436ac1fd881e6ec5b8a0b238f2ada",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "crm",
+      "title": "CRM and sales pipeline",
+      "source": "packages/crm/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "cef53194d363b24d1639f63eb16df048c41d4f5b64eb8622d81e392f56dcdb0a",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "catalog",
+      "title": "Canonical catalog and publishing",
+      "source": "packages/catalog/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "675712707db667b55b5a86b4187425646d245e7a577d0b3251c42240b49477a8",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "supplier",
+      "title": "Integration Center",
+      "source": "packages/supplier/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "810601644c3837a14999d922f90b0fe42ea37cde657bdc6539be9650e731cc26",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "configuration",
+      "title": "Product rules and visual options",
+      "source": "packages/configuration/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "ae86f0d797bd09a8353aeee9dd640e26d338fe677181e0fd7c36f90e95714cf6",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "creative",
+      "title": "Creative Studio",
+      "source": "packages/creative/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "1780e4a88bcf56896bf14157204a70a0ffcf01fa83b74b39b0708a276a2424fe",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "estimating",
+      "title": "Pricing and estimating",
+      "source": "packages/estimating/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "6f56b41b656436c23a10f34bd7f51f75961900898de702717a808e8439f8b54a",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "commerce",
+      "title": "Customer storefront and checkout",
+      "source": "packages/commerce/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "b273cd984a2d0cf1e3b01d541f47bde1caa1cd60145a81db7acbdb61666867dd",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "stores",
+      "title": "Company, school and event stores",
+      "source": "packages/stores/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "494b8d4020826086e5a451b0772f68f708c0789ba99d86dbd1a8baefa54a8985",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "byob",
+      "title": "Build Your Own Bundle",
+      "source": "packages/byob/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "11bac2cb7d1adf3b494e8f0836f7c33e6095ceb16aece6b9263c51f52b2fd656",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "sales",
+      "title": "RFQ, quote and approvals",
+      "source": "packages/sales/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "e7e262e0a37d9029c2bff06c74e7b062197137b08f1b5db8fb0e21d4e31ea20f",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "orders",
+      "title": "Orders and job tickets",
+      "source": "packages/orders/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "f14a1dc0440212989e557c21b4dcc6445760f54be70156f467cf76b334062560",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "procurement",
+      "title": "Purchasing and supplier POs",
+      "source": "packages/procurement/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "1f6d65970abedd8a9093d3b7e213be0d303158e9d4b8ae8d43c90108a25c8ab0",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "fulfillment",
+      "title": "Production, QC, shipping, returns",
+      "source": "packages/fulfillment/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "5792f2f4599501ac696b85c9ba361bb30993474ef27314222b64e5d405bf0d94",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "finance",
+      "title": "Finance and profitability",
+      "source": "packages/finance/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "105ab4c448fe4e8cc6423466d589500d4a1c909cefe56dc1cc01e8a460373f4d",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "marketing",
+      "title": "Marketing and content management",
+      "source": "packages/marketing/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "9556ddcc5649ccc60360c9293c14d40258062af866c160c95e70744d37fabd21",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "workflow",
+      "title": "Automation and notifications",
+      "source": "packages/workflows/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "1b0cfe223124e4daff4b355c5734fd79894bb1350e907623555c4ee1b84cf16d",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "analytics",
+      "title": "Reporting and data quality",
+      "source": "packages/analytics/src/index.ts",
+      "sourcePresent": true,
+      "sha256": "1f65e321c88ec8a91d4a87b3abd04d06439ce2c4a5518f80dc5a8b70b73d61ef",
+      "scope": "Existing domain; presence is not full acceptance"
+    },
+    {
+      "code": "future",
+      "title": "Reserved module slots",
+      "source": null,
+      "sourcePresent": false,
+      "sha256": null,
+      "scope": "Coming Soon placeholder"
+    }
+  ],
+  "contrast": {
+    "whiteOnRequestedAccent": 3.513,
+    "charcoalOnRequestedAccent": 5.018,
+    "whiteOnCharcoal": 17.628
+  },
+  "referenceImagePresentInCurrentUpload": false
+}

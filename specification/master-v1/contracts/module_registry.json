@@ -1,0 +1,142 @@
+[
+  {
+    "code": "foundation",
+    "title": "Governance, identity and settings",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "SaaS onboarding"
+  },
+  {
+    "code": "today",
+    "title": "Executive dashboard",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Today",
+    "future": "AI advisor"
+  },
+  {
+    "code": "crm",
+    "title": "CRM and sales pipeline",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Sales",
+    "future": "AI outreach"
+  },
+  {
+    "code": "catalog",
+    "title": "Canonical catalog and publishing",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "autonomous enrichment"
+  },
+  {
+    "code": "supplier",
+    "title": "Integration Center",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "AI mapper"
+  },
+  {
+    "code": "configuration",
+    "title": "Product rules and visual options",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "CAD configure-to-engineer"
+  },
+  {
+    "code": "creative",
+    "title": "Creative Studio",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "AI design, 3D, embroidery digitization"
+  },
+  {
+    "code": "estimating",
+    "title": "Pricing and estimating",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Sales",
+    "future": "machine learning price optimization"
+  },
+  {
+    "code": "commerce",
+    "title": "Customer storefront and checkout",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Shop",
+    "future": "subscriptions"
+  },
+  {
+    "code": "stores",
+    "title": "Company, school and event stores",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "complex fund settlement"
+  },
+  {
+    "code": "byob",
+    "title": "Build Your Own Bundle",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "AI bundle suggestions"
+  },
+  {
+    "code": "sales",
+    "title": "RFQ, quote and approvals",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Sales",
+    "future": "autonomous negotiation"
+  },
+  {
+    "code": "orders",
+    "title": "Orders and job tickets",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Jobs",
+    "future": "enterprise MRP"
+  },
+  {
+    "code": "procurement",
+    "title": "Purchasing and supplier POs",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Jobs",
+    "future": "autonomous procurement"
+  },
+  {
+    "code": "fulfillment",
+    "title": "Production, QC, shipping, returns",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Jobs",
+    "future": "fleet and warehouse optimization"
+  },
+  {
+    "code": "finance",
+    "title": "Finance and profitability",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "full GL and payroll"
+  },
+  {
+    "code": "marketing",
+    "title": "Marketing and content management",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "advanced omnichannel AI"
+  },
+  {
+    "code": "workflow",
+    "title": "Automation and notifications",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "self-editing autonomous agents"
+  },
+  {
+    "code": "analytics",
+    "title": "Reporting and data quality",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "predictive forecasting"
+  },
+  {
+    "code": "future",
+    "title": "Reserved module slots",
+    "status": "COMING_SOON",
+    "navigation": "Business",
+    "future": "3D, digitization, manufacturing engineering, external SaaS"
+  }
+]

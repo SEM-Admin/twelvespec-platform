@@ -1,0 +1,1585 @@
+{
+  "schemaVersion": 1,
+  "title": "TwelveSpec industry intelligence supplement",
+  "researchDate": "2026-11-06",
+  "timezone": "America/Chicago",
+  "scope": "Public industry research and original software application decisions; no private attachment contents are embedded.",
+  "sources": [
+    {
+      "id": "I01",
+      "name": "PPAI industry association",
+      "url": "https://www.ppai.org/",
+      "sourceType": "ASSOCIATION",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "PPAI connects promotional-product distributors, suppliers and service providers through research, education and industry programs.",
+      "twelveSpecApplication": "Use an industry knowledge register and partner qualification; membership alone never sets route readiness.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I02",
+      "name": "PPAI 2025 US distributor sales estimate",
+      "url": "https://www.ppai.org/media-hub/ppai-sales-volume-estimate-promo-reaches-new-height-but-hampered-by-external-volatility/",
+      "sourceType": "ASSOCIATION_RESEARCH",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "2025 study; public summary January 12, 2026",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "The January 12, 2026 public summary estimates 2025 US distributor sales at $27.1 billion, up 1.3%; the full report is restricted to professional members.",
+      "twelveSpecApplication": "Track landed cost, quote expiry and actual direct profit. This market estimate is neither TwelveSpec revenue nor an addressable-market forecast.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I03",
+      "name": "PPAI 2026 trends analysis",
+      "url": "https://www.ppai.org/media-hub/ppai-research-new-year-new-ish-trends/",
+      "sourceType": "ASSOCIATION_RESEARCH",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "January 7, 2026",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "PPAI discusses margin pressure, tariff uncertainty and operational efficiency in its 2026 outlook.",
+      "twelveSpecApplication": "Version freight/duty assumptions, reprice expired offers and measure quote handling and exception work.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I04",
+      "name": "PPAI sustainability and responsibility resources",
+      "url": "https://www.ppai.org/sustainability/",
+      "sourceType": "ASSOCIATION_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "PPAI provides responsible-sourcing and sustainability resources, including attention to packaging obligations.",
+      "twelveSpecApplication": "Store claim evidence, responsible party, applicable market and expiry; avoid an unsupported eco-ready badge.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I05",
+      "name": "PRINTING United Alliance",
+      "url": "https://www.printing.org/",
+      "sourceType": "ASSOCIATION",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "PRINTING United Alliance covers printing markets through education, technical resources, research and certification programs.",
+      "twelveSpecApplication": "Train role-specific operators across print, apparel, packaging and wide format; keep the application multi-family.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I06",
+      "name": "PRINTING United industry benchmarking",
+      "url": "https://www.printing.org/library/business-excellence/economics-forecasting/industry-reports/state-of-the-industry-series",
+      "sourceType": "ASSOCIATION_RESEARCH_INDEX",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "2026 report index; full reports not accessed",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "Its report index spans commercial print, wide format, print buyers and decorated apparel; full report access is membership/purchase dependent.",
+      "twelveSpecApplication": "Maintain separate segment, period, sample and currency metadata. Do not add overlapping market studies together.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I07",
+      "name": "PRINTING United G7+ certification families",
+      "url": "https://www.printing.org/library/technical-excellence/certifications/g7plus",
+      "sourceType": "CERTIFICATION_PROGRAM",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "G7+ distinguishes expert, facility and system certification, each with its own requirements.",
+      "twelveSpecApplication": "Record credential scope, holder, version and validity; artwork upload cannot confer certification.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I08",
+      "name": "G7+ System Certification",
+      "url": "https://www.printing.org/library/technical-excellence/certifications/g7plus-system-certification",
+      "sourceType": "CERTIFICATION_PROGRAM",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "System certification evaluates print calibration capability and is specific to the evaluated system/version.",
+      "twelveSpecApplication": "A PDF, ICC tag or generated preview is not a certified printing system. Capture actual qualification evidence.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I09",
+      "name": "ISA sign permitting resources",
+      "url": "https://signs.org/codes-regulations/expert-assistance/permit/",
+      "sourceType": "ASSOCIATION_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "ISA describes permitting as part of sign projects and provides resources for local sign-code issues.",
+      "twelveSpecApplication": "Add project destination, installation scope, permit/engineering responsibility and approval status where applicable.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I10",
+      "name": "TLMI technical, regulatory and sustainability committees",
+      "url": "https://tlmi.com/community/committees/",
+      "sourceType": "ASSOCIATION_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "TLMI addresses label/converting technical topics and regulatory issues such as EPR and recycling.",
+      "twelveSpecApplication": "Treat facestock, adhesive, liner, roll orientation and application environment as explicit specification fields.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I11",
+      "name": "FEFCO corrugated packaging code",
+      "url": "https://www.fefco.org/technical-information/fefco-code",
+      "sourceType": "DESIGN_CLASSIFICATION",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "12th edition as presented on the official page",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "The official page identifies a 12th-edition classification of corrugated box designs.",
+      "twelveSpecApplication": "A style code aids communication; exact dimensions, material and a producer-approved dieline still govern manufacturing.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I12",
+      "name": "ISO processing steps for PDF",
+      "url": "https://www.iso.org/standard/90532.html",
+      "sourceType": "NORMATIVE_STANDARD_ABSTRACT",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "ISO 19593-1:2026, edition 2; full paid text not acquired",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "ISO lists ISO 19593-1:2026, edition 2, published October 2026, with the 2018 edition withdrawn.",
+      "twelveSpecApplication": "Version finishing-layer semantics and target export profiles; the public abstract does not establish implementation conformance.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I13",
+      "name": "ICC profile specifications",
+      "url": "https://www.color.org/icc_specs2/",
+      "sourceType": "PUBLISHED_SPECIFICATION",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "ICC.1:2022; April 2025 amendment noted on the page",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "ICC identifies ICC.1:2022/profile version 4.4 and describes ICC and iccMAX as distinct specifications.",
+      "twelveSpecApplication": "Record source/output profiles, intent and hashes per producer profile; do not infer a universal CMYK destination.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I14",
+      "name": "Ghent Workgroup packaging",
+      "url": "https://gwg.org/subcommittees/packaging/",
+      "sourceType": "INDUSTRY_TECHNICAL_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "GWG distinguishes printable PDF content from packaging production information and develops processing-step test suites.",
+      "twelveSpecApplication": "Preserve cut, crease, varnish, white and other semantic roles separately from customer print art.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I15",
+      "name": "GWG processing-step specifications/test resources",
+      "url": "https://gwg.org/technical-specifications/processing-steps/",
+      "sourceType": "RESTRICTED_SPECIFICATION",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "LOGIN_REQUIRED_NOT_READ",
+      "publicObservation": "The requested resource redirects to a login page.",
+      "twelveSpecApplication": "Keep exact profile/test-suite conformance unverified until authorized materials and fixtures are available.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I16",
+      "name": "W3C SVG coordinate systems",
+      "url": "https://www.w3.org/TR/SVG/coords.html",
+      "sourceType": "WEB_STANDARD_REFERENCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "SVG 2 coordinate-system chapter; current TR page",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "SVG viewports, viewBox coordinates, transforms and physical units have distinct meanings.",
+      "twelveSpecApplication": "Use explicit mm-space and pixel transforms; CSS pixels and a viewBox are not independent manufacturing dimensions.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I17",
+      "name": "GS1 size/color variation guidance",
+      "url": "https://support.gs1.org/support/solutions/articles/43000734083-how-many-gs1-gtins-do-i-need-when-i-have-a-product-with-many-sizes-and-colours-",
+      "sourceType": "IDENTITY_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "Modified August 30, 2024",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "GS1 identifies size/color combinations as distinct product variations for GTIN assignment.",
+      "twelveSpecApplication": "Retain exact source-part/variant identity and validate supplied GTINs; never generate a manufacturer GTIN from a title.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I18",
+      "name": "GS1 system architecture",
+      "url": "https://ref.gs1.org/architecture/system-architecture/",
+      "sourceType": "PUBLISHED_ARCHITECTURE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "Version 12.0.0, October 2024 as served",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "The published architecture distinguishes identification, capture, sharing and data use.",
+      "twelveSpecApplication": "Separate canonical identity, external identifiers, master/source facts and transaction/visibility events.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I19",
+      "name": "IPTC photo metadata",
+      "url": "https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-2025.1.html",
+      "sourceType": "PUBLISHED_SPECIFICATION",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "2025.1 rev 1, November 26, 2025",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "The pinned metadata specification includes creator, credit, rights usage and accessibility fields.",
+      "twelveSpecApplication": "Carry rights/attribution and accessibility through allowed public derivatives; redact private routing and personal details.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I20",
+      "name": "CIP4 JDF and XJDF",
+      "url": "https://www.cip4.org/print-automation/jdf",
+      "sourceType": "PUBLISHED_PROTOCOL_FAMILY",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "CIP4 maintains JDF/JMF and XJDF/XJMF for exchanging production information.",
+      "twelveSpecApplication": "Keep a shared internal job contract and add an adapter only for a real partner requirement; no machine actuation is enabled.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I21",
+      "name": "CIP4 Conventional Printing ICS",
+      "url": "https://www.cip4.org/news-detail/cip4-publishes-a-new-version-of-the-conventional-printing-ics",
+      "sourceType": "PUBLISHED_PROTOCOL_NOTICE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "MIS-CP ICS 2.2 notice",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "CIP4 announced XJDF Conventional Printing ICS 2.2 on April 27, 2026, scoped to specific workflow roles.",
+      "twelveSpecApplication": "Pin the exact role/profile when integrating a partner; a generic XML export does not prove interoperability.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I22",
+      "name": "Illustrator saved document presets",
+      "url": "https://helpx.adobe.com/illustrator/desktop/add-and-import-files/start-a-new-file/create-and-save-custom-document-presets.html",
+      "sourceType": "VENDOR_INSTRUCTIONS",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "Help page updated October 27, 2025",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "Adobe documents saved New Document presets with artboard, units, bleed, color mode and raster-effect settings.",
+      "twelveSpecApplication": "Distinguish a reusable document preset, a native editable template and a producer-approved imprint specification.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I23",
+      "name": "Illustrator native-template reference URL",
+      "url": "https://helpx.adobe.com/illustrator/desktop/manage-documents/save-and-export-files/create-document-templates.html",
+      "sourceType": "VENDOR_REFERENCE_LEAD",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "URL_UNAVAILABLE",
+      "publicObservation": "This supplied URL was not accessible through the research tool.",
+      "twelveSpecApplication": "Native AI/AIT editing and Saved-tab behavior require licensed desktop verification; no native success is inferred.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I24",
+      "name": "Canva upload formats and requirements",
+      "url": "https://www.canva.com/help/upload-formats-requirements/",
+      "sourceType": "VENDOR_INSTRUCTIONS",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "Canva documents format-specific constraints and warns that imported Illustrator layers may flatten.",
+      "twelveSpecApplication": "Treat imported imagery, editable objects and native frames as separate capability tests; preserve originals and report fidelity loss.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I25",
+      "name": "Epilog raster versus vector engraving",
+      "url": "https://support.epiloglaser.com/laser-machine/fusion-ascent/getting-started/raster-vs-vector/",
+      "sourceType": "DEVICE_VENDOR_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "Supplied /staging/ URL redirects to this canonical path",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "Epilog distinguishes raster and vector artwork behavior for engraving.",
+      "twelveSpecApplication": "Keep raster engraving, vector engraving and cutting roles separate; material/fixture/machine settings are provider controlled.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I26",
+      "name": "Roland VersaWorks special ink aliases",
+      "url": "https://files.rolanddga.com/Files/VersaWorks_6/topic/tAssigningAnArbitrarySpotColorNameToEachWhiteInkMetallicSilverInkGlossInkPrimer.html",
+      "sourceType": "DEVICE_VENDOR_INSTRUCTIONS",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "VersaWorks 6 documentation",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "VersaWorks maps spot-name aliases to particular special-ink channels.",
+      "twelveSpecApplication": "Use provider/device export mappings for white, gloss, metallic and primer rather than hardcoded global spot names.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I27",
+      "name": "Yoycol print specifications hub",
+      "url": "https://www.yoycol.com/resources/print-specs-hub",
+      "sourceType": "SUPPLIER_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "The hub gives different requirements for DTG, DTF, AOP, sublimation and embroidery and directs users to exact product templates.",
+      "twelveSpecApplication": "Do not universalize one supplier\u2019s resolution, color mode, maximum area, MOQ or lead time.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I28",
+      "name": "CPSC promotional-product responsibility FAQ",
+      "url": "https://www.cpsc.gov/FAQ/Promotional-Products",
+      "sourceType": "REGULATOR_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "OFFICIAL_INDEXED_EXCERPT_DIRECT_FETCH_403",
+      "publicObservation": "Official indexed text makes responsibility dependent on the arrangements for decorating, producing and selling a finished children\u2019s product.",
+      "twelveSpecApplication": "Record responsible parties and applicability decisions instead of assuming a supplier owns every obligation.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I29",
+      "name": "CPSC children\u2019s product certificates",
+      "url": "https://www.cpsc.gov/Business--Manufacturing/Testing-Certification/Childrens-Product-Certificate",
+      "sourceType": "REGULATOR_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "CPSC distinguishes applicable children\u2019s-product rules, responsible manufacturers/importers, test evidence and certificates; the page notes 2026 eFiling changes.",
+      "twelveSpecApplication": "Track intended use/age, jurisdiction, responsible party, batch/lot, applicable tests and evidence. Qualified review determines the particular obligation.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I30",
+      "name": "USPS mailpiece design resources",
+      "url": "https://pe.usps.com/MailpieceDesign/Index?ViewName=AdditionalResources",
+      "sourceType": "POSTAL_AUTHORITY_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "USPS points to the DMM for official domestic mailing standards and QSGs for summaries.",
+      "twelveSpecApplication": "Direct-mail configuration needs mail class, dimensions/weight, addressing, preparation and mailing-partner acceptance, not just print bleed.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I31",
+      "name": "FTC Green Guides summary",
+      "url": "https://www.ftc.gov/business-guidance/resources/environmental-claims-summary-green-guides",
+      "sourceType": "REGULATOR_GUIDANCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "FTC guidance calls for support and qualification of environmental marketing claims.",
+      "twelveSpecApplication": "Require substantiation, claim wording, scope and review before publishing sustainability assertions; a recycled tag is insufficient.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I32",
+      "name": "GS1 product image specification reference",
+      "url": "https://www.gs1.org/sites/default/files/docs/gdsn/Product_Image_Specification.pdf",
+      "sourceType": "SPECIFICATION_REFERENCE_LEAD",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "FETCH_BLOCKED_403",
+      "publicObservation": "Direct access to the supplied PDF returned 403.",
+      "twelveSpecApplication": "Keep detailed image-standard conformance unverified; do not fabricate naming or image-angle requirements.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I33",
+      "name": "Quality Logo Products imprint education",
+      "url": "https://www.qualitylogoproducts.com/blog/misconceptions-imprints-areas/",
+      "sourceType": "VENDOR_EDUCATION_NON_NORMATIVE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": "July 12, 2021",
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "This educational article discusses how substrate and decoration method affect an imprint.",
+      "twelveSpecApplication": "Useful buyer education; broad comparisons and included-color examples are not universal pricing or engineering rules.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I34",
+      "name": "PromoStandards protocol families",
+      "url": "https://promostandards.org/how-promostandards-makes-your-business-better/",
+      "sourceType": "PUBLISHED_PROTOCOL_OVERVIEW",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "PromoStandards publishes separate data, status and transaction protocol families.",
+      "twelveSpecApplication": "Verify each direct supplier service/version independently. Retain the explicit prohibition on PSRESTful.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I35",
+      "name": "GWG user-guide reference URL",
+      "url": "https://gwg.org/user-guides/",
+      "sourceType": "TECHNICAL_REFERENCE_LEAD",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "TOOL_CONTENT_LIMIT_NOT_READ",
+      "publicObservation": "The research tool could not retrieve this resource within its content limit.",
+      "twelveSpecApplication": "Mark detailed guide contents unreviewed; rely on accessible public summaries without claiming full conformance.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    },
+    {
+      "id": "I36",
+      "name": "PDF Association ISO status register",
+      "url": "https://pdfa.org/iso-status/",
+      "sourceType": "STANDARDS_STATUS_REFERENCE",
+      "reviewedOn": "2026-11-06",
+      "timezone": "America/Chicago",
+      "edition": null,
+      "access": "PUBLIC_PAGE_REVIEWED",
+      "publicObservation": "PDF Association publishes a status register for ISO work relating to PDF.",
+      "twelveSpecApplication": "Use standards version/status metadata and verify the normative publisher before selecting an output contract.",
+      "integrationVerification": "NOT_TESTED",
+      "conformanceClaim": "NONE"
+    }
+  ],
+  "domains": [
+    {
+      "id": "D01",
+      "name": "Promotional hardgoods",
+      "sources": [
+        "I01",
+        "I03",
+        "I17",
+        "I33",
+        "I34"
+      ],
+      "requiredInputs": [
+        "exact style/part/variant",
+        "material/coating",
+        "surface and method",
+        "imprint evidence",
+        "setup/run/quantity costs",
+        "stock and freight freshness"
+      ],
+      "twelveSpecWorkflow": "Canonical product \u2192 configured source option \u2192 complete landed quote \u2192 art/proof review \u2192 approved supplier requirement \u2192 shipment/reorder.",
+      "exceptionConditions": [
+        "ambiguous part",
+        "unverified print area",
+        "substitution",
+        "stale landed cost",
+        "rights or product-safety evidence missing"
+      ],
+      "modules": [
+        "catalog",
+        "supplier",
+        "configuration",
+        "estimating",
+        "procurement"
+      ],
+      "features": [
+        "F02",
+        "F03",
+        "F04",
+        "F16",
+        "F18",
+        "F21"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-014",
+        "GAP-017",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-025"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D02",
+      "name": "Decorated apparel and headwear",
+      "sources": [
+        "I05",
+        "I06",
+        "I25",
+        "I27"
+      ],
+      "requiredInputs": [
+        "style/color/size matrix",
+        "fabric/construction",
+        "zone/seam limits",
+        "method and decorator",
+        "digitization/underbase/transfer needs",
+        "blank-to-decorator route"
+      ],
+      "twelveSpecWorkflow": "Size grid \u2192 exact variant \u2192 shared logo project \u2192 method-specific review \u2192 blank supply/decoration/QC \u2192 wearer or company delivery.",
+      "exceptionConditions": [
+        "cap curvature or seam conflict",
+        "unknown fabric compatibility",
+        "art differs from approved variant",
+        "missing digitization or sew-out evidence"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "orders",
+        "procurement",
+        "fulfillment"
+      ],
+      "features": [
+        "F02",
+        "F05",
+        "F07",
+        "F20",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D03",
+      "name": "School, team and fundraiser programs",
+      "sources": [
+        "I01",
+        "I28",
+        "I29"
+      ],
+      "requiredInputs": [
+        "organization/authorized buyer",
+        "campaign dates/timezone",
+        "product/size eligibility",
+        "intended user/use",
+        "minimum aggregation",
+        "pickup/shipping and allocation policy"
+      ],
+      "twelveSpecWorkflow": "Program membership \u2192 assigned catalog/brand \u2192 selection \u2192 close/minimum review \u2192 approved batch \u2192 distribution; retain allocation references.",
+      "exceptionConditions": [
+        "campaign expiry",
+        "minimum not met",
+        "applicable children\u2019s-product evidence unknown",
+        "complex settlement unavailable"
+      ],
+      "modules": [
+        "stores",
+        "commerce",
+        "orders",
+        "finance"
+      ],
+      "features": [
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F14"
+      ],
+      "gaps": [
+        "GAP-011",
+        "GAP-013",
+        "GAP-024",
+        "GAP-027",
+        "GAP-032"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D04",
+      "name": "POD and small-run merchandise",
+      "sources": [
+        "I03",
+        "I27"
+      ],
+      "requiredInputs": [
+        "provider variant and print file contract",
+        "actual minimum",
+        "region/fulfillment origin",
+        "current cost and shipping",
+        "billing trigger",
+        "substitution permission"
+      ],
+      "twelveSpecWorkflow": "Validated configuration \u2192 customer agreement/payment gate \u2192 approved provider draft/confirmation \u2192 event reconciliation \u2192 packages/claims.",
+      "exceptionConditions": [
+        "similar-item substitution",
+        "insufficient billing capacity",
+        "unverified print file",
+        "duplicate or uncertain submission"
+      ],
+      "modules": [
+        "supplier",
+        "commerce",
+        "procurement",
+        "fulfillment",
+        "finance"
+      ],
+      "features": [
+        "F14",
+        "F19",
+        "F21",
+        "F22",
+        "F24"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-020",
+        "GAP-025",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D05",
+      "name": "Commercial flat print, publications and stationery",
+      "sources": [
+        "I05",
+        "I06",
+        "I12",
+        "I13",
+        "I14",
+        "I20"
+      ],
+      "requiredInputs": [
+        "finished/flat size and units",
+        "stock/caliper",
+        "page count/sides/binding",
+        "color/output condition",
+        "bleed/trim/safe from producer",
+        "file roles and finishing"
+      ],
+      "twelveSpecWorkflow": "Product family specification \u2192 original artwork \u2192 registered proof/preflight \u2192 frozen manufacturing specification \u2192 print/finish/QC/dispatch.",
+      "exceptionConditions": [
+        "wrong page geometry",
+        "unembedded fonts",
+        "unknown output intent",
+        "missing back or finish file",
+        "proof/turnaround delay"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "estimating",
+        "orders",
+        "fulfillment"
+      ],
+      "features": [
+        "F02",
+        "F04",
+        "F07",
+        "F20",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-010",
+        "GAP-017",
+        "GAP-018",
+        "GAP-024",
+        "GAP-026"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D06",
+      "name": "Direct mail and variable-data print",
+      "sources": [
+        "I30",
+        "I05"
+      ],
+      "requiredInputs": [
+        "mail class and delivery objective",
+        "piece dimensions/weight",
+        "addressing/recipient rights",
+        "barcode/clear zones",
+        "data merge fields",
+        "mailing partner and acceptance"
+      ],
+      "twelveSpecWorkflow": "Print specification + authorized variable data \u2192 merge/sample review \u2192 postal preparation acceptance \u2192 mailing evidence and cost references.",
+      "exceptionConditions": [
+        "personal data exposed",
+        "invalid mail qualification",
+        "unconfirmed postage or delivery promise",
+        "missing mailing-partner acceptance"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "orders",
+        "fulfillment",
+        "marketing",
+        "finance"
+      ],
+      "features": [
+        "F06",
+        "F07",
+        "F21",
+        "F22",
+        "F25",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-018",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-029",
+        "GAP-034"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D07",
+      "name": "Signs, wide format and applied graphics",
+      "sources": [
+        "I05",
+        "I06",
+        "I09",
+        "I25",
+        "I26"
+      ],
+      "requiredInputs": [
+        "substrate and finish",
+        "actual dimensions/scale",
+        "viewing/use environment",
+        "panel joins and cut paths",
+        "installation/site/permit scope",
+        "device/media profile"
+      ],
+      "twelveSpecWorkflow": "Project/site intake \u2192 supplier-specific media and artwork rules \u2192 panel/finish review \u2192 print/cut \u2192 installation or shipping handoff.",
+      "exceptionConditions": [
+        "scale mismatch",
+        "unknown contour/tooling",
+        "site or permit requirement unresolved",
+        "material/device mismatch"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "orders",
+        "procurement",
+        "fulfillment"
+      ],
+      "features": [
+        "F07",
+        "F20",
+        "F21",
+        "F22",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-017",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D08",
+      "name": "Exhibitions, displays, tents and event kits",
+      "sources": [
+        "I01",
+        "I05",
+        "I09"
+      ],
+      "requiredInputs": [
+        "hardware/model",
+        "panel template/source revision",
+        "fabric/material",
+        "event in-hand date and destination",
+        "venue requirements",
+        "assembly and split freight"
+      ],
+      "twelveSpecWorkflow": "Campaign project \u2192 exact component/panel specs \u2192 coordinated art \u2192 multi-source agreement/jobs \u2192 consolidated or approved split delivery.",
+      "exceptionConditions": [
+        "generic tent image used as dieline",
+        "deadline excludes proof/freight",
+        "unverified venue requirements",
+        "component arrives after kit assembly"
+      ],
+      "modules": [
+        "byob",
+        "configuration",
+        "creative",
+        "orders",
+        "fulfillment"
+      ],
+      "features": [
+        "F05",
+        "F07",
+        "F13",
+        "F20",
+        "F22",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-012",
+        "GAP-017",
+        "GAP-018",
+        "GAP-024",
+        "GAP-026"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D09",
+      "name": "Labels, stickers and converting",
+      "sources": [
+        "I10",
+        "I12",
+        "I14",
+        "I26"
+      ],
+      "requiredInputs": [
+        "facestock/adhesive/liner",
+        "application conditions",
+        "roll/sheet and unwind direction",
+        "die/contour and gap",
+        "ink/white/varnish",
+        "regulatory claim and end use"
+      ],
+      "twelveSpecWorkflow": "Application-specific configuration \u2192 registered print/cut/finish roles \u2192 producer preflight \u2192 print/conversion/QC \u2192 traceable batch.",
+      "exceptionConditions": [
+        "wrong adhesive or unwind",
+        "die/finish misregistration",
+        "unsubstantiated food/chemical/sustainability claim",
+        "missing producer acceptance"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "orders",
+        "procurement",
+        "fulfillment"
+      ],
+      "features": [
+        "F02",
+        "F07",
+        "F20",
+        "F21",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-017",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-032"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D10",
+      "name": "Packaging, corrugated and folding cartons",
+      "sources": [
+        "I10",
+        "I11",
+        "I12",
+        "I14",
+        "I31"
+      ],
+      "requiredInputs": [
+        "style/classification",
+        "dimensions and measurement convention",
+        "material/board grade",
+        "producer-approved dieline",
+        "cut/crease/glue/no-print roles",
+        "content/use/jurisdiction"
+      ],
+      "twelveSpecWorkflow": "Packaging brief \u2192 producer source/dieline \u2192 panel-aware artwork \u2192 finish/preflight \u2192 print/conversion/assembly \u2192 shipment/QC.",
+      "exceptionConditions": [
+        "style code mistaken for exact tooling",
+        "unapproved structural design",
+        "wrong panel orientation",
+        "unsupported environmental or contact-use claim"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "orders",
+        "byob",
+        "fulfillment"
+      ],
+      "features": [
+        "F07",
+        "F13",
+        "F20",
+        "F31",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-012",
+        "GAP-017",
+        "GAP-018",
+        "GAP-024",
+        "GAP-026",
+        "GAP-032"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D11",
+      "name": "Awards, drinkware, gifts and engraving",
+      "sources": [
+        "I01",
+        "I25",
+        "I26",
+        "I33"
+      ],
+      "requiredInputs": [
+        "exact blank/material/coating",
+        "usable area/curvature",
+        "fixture and method",
+        "raster/vector roles",
+        "finish and personalization data",
+        "producer sample/acceptance"
+      ],
+      "twelveSpecWorkflow": "Exact blank \u2192 permitted decoration option \u2192 customer visual approval \u2192 specialist route evidence \u2192 QC and protected shipment.",
+      "exceptionConditions": [
+        "photograph mistaken for scale",
+        "unknown coating or fixture",
+        "unapproved vector becomes toolpath",
+        "breakage or wrong personalization"
+      ],
+      "modules": [
+        "configuration",
+        "creative",
+        "procurement",
+        "fulfillment"
+      ],
+      "features": [
+        "F02",
+        "F07",
+        "F19",
+        "F21",
+        "F23",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-025",
+        "GAP-026"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D12",
+      "name": "Industrial, safety and custom-engineered sourcing",
+      "sources": [
+        "I01",
+        "I09",
+        "I28",
+        "I29"
+      ],
+      "requiredInputs": [
+        "intended use and technical requirements",
+        "drawings/spec revisions",
+        "material and performance claims",
+        "jurisdiction/responsible party",
+        "qualified manufacturer review",
+        "test/certification evidence where applicable"
+      ],
+      "twelveSpecWorkflow": "Assisted technical RFQ \u2192 source/engineering review \u2192 documented quote and approvals \u2192 specialist production handoff \u2192 inspection/reconciliation.",
+      "exceptionConditions": [
+        "unsupported safety claim",
+        "decorative art mistaken for engineering/CAD",
+        "unknown compliance responsibility",
+        "unverified substitution"
+      ],
+      "modules": [
+        "crm",
+        "sales",
+        "supplier",
+        "procurement",
+        "fulfillment"
+      ],
+      "features": [
+        "F08",
+        "F14",
+        "F21",
+        "F23",
+        "F28",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-013",
+        "GAP-018",
+        "GAP-020",
+        "GAP-025",
+        "GAP-026",
+        "GAP-028",
+        "GAP-032"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D13",
+      "name": "B2B company stores, redemption and recurring programs",
+      "sources": [
+        "I01",
+        "I03"
+      ],
+      "requiredInputs": [
+        "company/location/member grants",
+        "approved catalogs and brand revisions",
+        "budgets/allowances",
+        "commercial terms and seller",
+        "date/renewal policies",
+        "delivery and service rules"
+      ],
+      "twelveSpecWorkflow": "Program eligibility \u2192 configured catalog \u2192 atomic commitment/approval \u2192 order/jobs \u2192 delivery \u2192 reconciled usage \u2192 repeat/reorder.",
+      "exceptionConditions": [
+        "lost store/brand context",
+        "concurrent overspend",
+        "expired allowance",
+        "unapproved credit",
+        "complex settlement unavailable"
+      ],
+      "modules": [
+        "crm",
+        "stores",
+        "commerce",
+        "sales",
+        "finance"
+      ],
+      "features": [
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F14",
+        "F15"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D14",
+      "name": "Bundles, kitting, warehousing and fulfillment",
+      "sources": [
+        "I01",
+        "I20"
+      ],
+      "requiredInputs": [
+        "kit bill of materials",
+        "component quantities and variants",
+        "inbound/assembly/outbound destinations",
+        "packaging/labor",
+        "receipts and QC",
+        "partial shipment policy"
+      ],
+      "twelveSpecWorkflow": "Frozen kit agreement \u2192 component purchase requirements \u2192 receipts \u2192 assembly/QC \u2192 exact package allocations \u2192 actual cost closeout.",
+      "exceptionConditions": [
+        "kit identity/cost lost in cart",
+        "missing component",
+        "freight counted once for multiple legs",
+        "shipment quantity exceeds accepted production"
+      ],
+      "modules": [
+        "byob",
+        "orders",
+        "procurement",
+        "fulfillment",
+        "finance"
+      ],
+      "features": [
+        "F13",
+        "F20",
+        "F21",
+        "F22",
+        "F24",
+        "F35"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-012",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-027"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D15",
+      "name": "Design, prepress, proof and media interchange",
+      "sources": [
+        "I07",
+        "I08",
+        "I12",
+        "I13",
+        "I14",
+        "I16",
+        "I19",
+        "I22",
+        "I24"
+      ],
+      "requiredInputs": [
+        "immutable original and editable revision",
+        "exact product/configuration tuple",
+        "physical vs pixel geometry",
+        "source/media/font rights",
+        "provider output profile",
+        "proof/technical review/recipient acceptance"
+      ],
+      "twelveSpecWorkflow": "Shared original \u2192 editable design \u2192 illustrative preview \u2192 independent proof decision and technical checks \u2192 approved derivative/route handoff.",
+      "exceptionConditions": [
+        "zero interpreted as unknown",
+        "generic DPI/bleed defaults",
+        "flattened import called native editable",
+        "stale proof",
+        "private source leakage"
+      ],
+      "modules": [
+        "creative",
+        "configuration",
+        "marketing",
+        "foundation"
+      ],
+      "features": [
+        "F05",
+        "F06",
+        "F07",
+        "F25",
+        "F28",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-029",
+        "GAP-034"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    },
+    {
+      "id": "D16",
+      "name": "Distributor operations, economics and owner workload",
+      "sources": [
+        "I02",
+        "I03",
+        "I06",
+        "I20",
+        "I34"
+      ],
+      "requiredInputs": [
+        "source validity/cost components",
+        "quote and acceptance history",
+        "role/approval limits",
+        "actual costs/financial references",
+        "tasks/exception causes",
+        "owner and delegated time entries"
+      ],
+      "twelveSpecWorkflow": "Assigned inquiry \u2192 bounded staff decisions \u2192 governed exceptions \u2192 reliable event-driven follow-through \u2192 reconciled profit and workload metrics.",
+      "exceptionConditions": [
+        "sales growth mistaken for profit",
+        "stale supplier cost",
+        "capped KPI dataset",
+        "unobserved payment/PO success",
+        "unmeasured owner time savings"
+      ],
+      "modules": [
+        "foundation",
+        "today",
+        "estimating",
+        "sales",
+        "finance",
+        "workflow",
+        "analytics"
+      ],
+      "features": [
+        "F04",
+        "F14",
+        "F21",
+        "F24",
+        "F26",
+        "F27",
+        "F28",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-013",
+        "GAP-025",
+        "GAP-027",
+        "GAP-028",
+        "GAP-030",
+        "GAP-031",
+        "GAP-035"
+      ],
+      "status": "RESEARCHED_SCOPE_NOT_SUPPLIER_VERIFIED"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "IND-01",
+      "title": "One canonical catalog and source-offer boundary",
+      "features": [
+        "F03",
+        "F16",
+        "F17"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-016"
+      ],
+      "decision": "KEEP_EXTEND",
+      "implementation": "Retain existing canonical identity and private source records; creative references enter a review queue and never become a second PIM."
+    },
+    {
+      "id": "IND-02",
+      "title": "Separate creative canvas from verified imprint geometry",
+      "features": [
+        "F02",
+        "F05",
+        "F07",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018"
+      ],
+      "decision": "APPLIED_LOCAL_DIAGNOSTIC_AND_EXTEND",
+      "implementation": "Preflight now labels manufacturing requirements unverified. A versioned, exact provider geometry/profile resolver is still open."
+    },
+    {
+      "id": "IND-03",
+      "title": "No universal DPI, bleed or color defaults",
+      "features": [
+        "F04",
+        "F07",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-010",
+        "GAP-017",
+        "GAP-018"
+      ],
+      "decision": "APPLIED_LOCAL",
+      "implementation": "Remove generic manufacturing thresholds from preliminary preflight; measure pixels/physical placement and retain null requirements."
+    },
+    {
+      "id": "IND-04",
+      "title": "Independent readiness for each intended use",
+      "features": [
+        "F03",
+        "F07",
+        "F25"
+      ],
+      "gaps": [
+        "GAP-016",
+        "GAP-018",
+        "GAP-029"
+      ],
+      "decision": "EXTEND",
+      "implementation": "Creative draft, preview, marketing, quote, proof, production and provider acceptance have separate evidence requirements."
+    },
+    {
+      "id": "IND-05",
+      "title": "Provider-specific process and layer semantics",
+      "features": [
+        "F07",
+        "F20",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-017",
+        "GAP-018",
+        "GAP-024"
+      ],
+      "decision": "EXTEND",
+      "implementation": "Keep print, white/primer/varnish, foil, cut/crease and nonprinting guide roles separate; map target names in reviewed output profiles."
+    },
+    {
+      "id": "IND-06",
+      "title": "One original artwork and immutable lineage",
+      "features": [
+        "F05",
+        "F06",
+        "F07"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-009",
+        "GAP-019"
+      ],
+      "decision": "KEEP_EXTEND",
+      "implementation": "Retain originals, content hashes and exact configuration; extend safe edit/export fidelity rather than creating a separate editor."
+    },
+    {
+      "id": "IND-07",
+      "title": "Artwork interoperability is destination-specific",
+      "features": [
+        "F05",
+        "F06",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-003",
+        "GAP-018",
+        "GAP-019"
+      ],
+      "decision": "EXTEND_WITH_TESTS",
+      "implementation": "Treat PNG/SVG/PDF interchange and native AI/AIT/Canva features as separate tests with explicit loss reports."
+    },
+    {
+      "id": "IND-08",
+      "title": "Batch and compliance evidence follows the finished product",
+      "features": [
+        "F03",
+        "F21",
+        "F23",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-025",
+        "GAP-026",
+        "GAP-032"
+      ],
+      "decision": "EXTEND_QUALIFIED_REVIEW",
+      "implementation": "Track intended use, responsible party, applicable jurisdiction and evidence; never infer all liability or certification from a supplier name."
+    },
+    {
+      "id": "IND-09",
+      "title": "Claims and rights need field-level authority",
+      "features": [
+        "F03",
+        "F25",
+        "F28"
+      ],
+      "gaps": [
+        "GAP-016",
+        "GAP-029",
+        "GAP-032",
+        "GAP-034"
+      ],
+      "decision": "EXTEND",
+      "implementation": "Publish only allowed media and substantiated product/environmental claims, retaining effective dates and revocation history."
+    },
+    {
+      "id": "IND-10",
+      "title": "Program and kit identity survives commerce",
+      "features": [
+        "F10",
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "gaps": [
+        "GAP-011",
+        "GAP-012",
+        "GAP-024"
+      ],
+      "decision": "EXTEND_EXISTING",
+      "implementation": "Continue the actual cart/quote/order context repair; do not add an independent budget or bundle subsystem."
+    },
+    {
+      "id": "IND-11",
+      "title": "Partner handoff includes uncertainty and acceptance",
+      "features": [
+        "F19",
+        "F20",
+        "F21",
+        "F22"
+      ],
+      "gaps": [
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-036"
+      ],
+      "decision": "KEEP_EXTEND",
+      "implementation": "Approved payload, transfer and acknowledgment are separate; reconcile ambiguous outcomes before repeating a write."
+    },
+    {
+      "id": "IND-12",
+      "title": "Full versus partial feeds are explicit",
+      "features": [
+        "F16",
+        "F17",
+        "F18"
+      ],
+      "gaps": [
+        "GAP-014",
+        "GAP-015",
+        "GAP-022"
+      ],
+      "decision": "EXTEND",
+      "implementation": "A missing row in a partial feed does not mean discontinued; snapshot scope, cursors and failure checkpoints survive replay."
+    },
+    {
+      "id": "IND-13",
+      "title": "Direct native integrations and licensed discovery",
+      "features": [
+        "F16",
+        "F29"
+      ],
+      "gaps": [
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023"
+      ],
+      "decision": "KEEP",
+      "implementation": "Use direct reviewed supplier profiles and authorized ASI interfaces. PSRESTful remains prohibited."
+    },
+    {
+      "id": "IND-14",
+      "title": "Operational reporting measures owner workload",
+      "features": [
+        "F24",
+        "F27",
+        "F34"
+      ],
+      "gaps": [
+        "GAP-027",
+        "GAP-028",
+        "GAP-030",
+        "GAP-031"
+      ],
+      "decision": "EXTEND_MEASURE_FIRST",
+      "implementation": "Measure touches, active minutes, waiting causes and direct profit per owner hour; no invented savings or readiness percentage."
+    },
+    {
+      "id": "IND-15",
+      "title": "Advanced engines remain reserved",
+      "features": [
+        "F33"
+      ],
+      "gaps": [
+        "GAP-001",
+        "GAP-032",
+        "GAP-038",
+        "GAP-040"
+      ],
+      "decision": "DEFER",
+      "implementation": "AI design, automatic digitization, validated 3D, CAD, GL/payroll, enterprise MRP and autonomous purchasing stay Coming Soon."
+    },
+    {
+      "id": "IND-16",
+      "title": "Standards and research have scoped versions",
+      "features": [
+        "F16",
+        "F28",
+        "F31"
+      ],
+      "gaps": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-032",
+        "GAP-034"
+      ],
+      "decision": "APPLIED_RESEARCH_REGISTER",
+      "implementation": "Maintain exact publisher, edition, access level, scope and review date; a standard abstract or association logo does not certify an output."
+    }
+  ],
+  "limitations": [
+    "Broad relevant value-chain coverage, not an exhaustive survey of every geography or product regulation.",
+    "Public summaries and restricted/unavailable resources are labeled separately.",
+    "No authenticated supplier, legal certification, paid report or manufacturing route is verified by research.",
+    "Existing architecture and original 20-module/95-scenario acceptance remain controlling."
+  ]
+}

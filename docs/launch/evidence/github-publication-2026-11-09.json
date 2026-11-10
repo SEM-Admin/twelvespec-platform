@@ -1,0 +1,13 @@
+{
+  "verifiedAtUTC": "2026-11-09T15:32:22.002650+00:00",
+  "repository": "https://github.com/SEM-Admin/twelvespec-platform",
+  "branch": "build/website-content-studio-20261109",
+  "verifiedCodeCommit": "92d499bef671e0802794a22e7d7d8f7c79b52ac2",
+  "remoteBranchMatchesLocalCodeCommit": true,
+  "testedSourceManifestMatches": true,
+  "sourceManifestSHA256": "a3973e72fbc448d1b587de52c0c19b791a643366cbb6e0cef4d2d5525f20d013",
+  "originalPublishedHistoryRetained": true,
+  "productionDeploymentPerformed": false,
+  "cmsOwnerInterfaceComplete": false,
+  "githubActionsExecutionClaimed": false
+}

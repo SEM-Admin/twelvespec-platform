@@ -1,0 +1,6 @@
+SKU,Name,Cost,Color,Size,Brand
+HAT-001,"Rope Cap, Unstructured",12.50,Navy,One Size,Sample Brand
+POLO-001,Performance Polo,19.00,Charcoal,L,Example Manufacturer
+POLO-002,Performance Polo,19.00,White,XL,Example Manufacturer
+BAD-003,Incomplete Sample,,Red,,
+,Held Because Missing SKU,20.00,Black,,

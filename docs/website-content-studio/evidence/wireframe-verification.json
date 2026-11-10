@@ -1,0 +1,155 @@
+{
+  "kind": "OFFLINE_REVIEW_PROTOTYPE_VERIFICATION",
+  "cmsAcceptanceExecuted": false,
+  "checks": [
+    {
+      "name": "All nine proposed workspace views open",
+      "passed": true
+    },
+    {
+      "name": "In-memory headline updates read-only canvas",
+      "passed": true
+    },
+    {
+      "name": "Device control renders an actual 390 px iframe",
+      "passed": true
+    },
+    {
+      "name": "Section order changes in memory",
+      "passed": true
+    },
+    {
+      "name": "Visibility controls update prototype canvas",
+      "passed": true
+    },
+    {
+      "name": "Example FAQ can be added in memory",
+      "passed": true
+    },
+    {
+      "name": "Save/publish explicitly explain prototype-only behavior",
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "pages",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "editor",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "media",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "menus",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "brand",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "collections",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "stores",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "campaigns",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "releases",
+      "width": 1600,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "pages",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "editor",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "media",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "menus",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "brand",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "collections",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "stores",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "campaigns",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "name": "No unintended outer overflow",
+      "view": "releases",
+      "width": 390,
+      "passed": true
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "accessibility": [
+    {
+      "width": 1600,
+      "violations": []
+    },
+    {
+      "width": 390,
+      "violations": []
+    }
+  ],
+  "passed": true
+}

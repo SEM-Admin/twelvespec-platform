@@ -1,0 +1,6 @@
+import {existsSync,readFileSync,mkdirSync,writeFileSync} from 'node:fs';
+import {resolve,dirname} from 'node:path';
+import {randomBytes} from 'node:crypto';
+export function rootDir(){let dir=process.env.TWELVESPEC_ROOT??process.cwd();while(!existsSync(resolve(dir,'specification/master-v1/README.md'))){const parent=dirname(dir);if(parent===dir)throw new Error('Run from the TwelveSpec repository');dir=parent;}return dir;}
+export function loadEnv(){const root=rootDir();process.env.TWELVESPEC_ROOT=root;const file=resolve(root,'.env');if(existsSync(file))for(const line of readFileSync(file,'utf8').split('\n')){const i=line.indexOf('=');if(i>0&&!line.startsWith('#'))process.env[line.slice(0,i)]??=line.slice(i+1).replace(/^"|"$/g,'');}return root;}
+export function createEnv(){const root=rootDir();mkdirSync(resolve(root,'.local'),{recursive:true,mode:0o700});const f=resolve(root,'.env');if(!existsSync(f))writeFileSync(f,`TWELVESPEC_ENV=local\nTWELVESPEC_ROOT=${root}\nDATABASE_URL=postgresql://twelvespec@127.0.0.1:55432/twelvespec_local\nBETTER_AUTH_SECRET=${randomBytes(48).toString('base64url')}\nASSET_SIGNING_KEY=${randomBytes(32).toString('hex')}\nWEBHOOK_SIGNING_KEY=${randomBytes(32).toString('hex')}\n`,{mode:0o600});loadEnv();}

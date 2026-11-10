@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-11-09T17:15:35.888811+00:00",
+  "backend": {
+    "tests": 250,
+    "passed": 250,
+    "failed": 0,
+    "files": 36
+  },
+  "browser": {
+    "fullSuitePassed": 13,
+    "latestSupplierRegressionPassed": 2,
+    "scope": "Local actual browser journeys; hosted update not deployed"
+  },
+  "typecheck": "PASS",
+  "optimizedNextBuilds": {
+    "storefront": "PASS",
+    "commerceOs": "PASS",
+    "existingDynamicFilesystemWarnings": 6
+  },
+  "specification": {
+    "originalFiles": 85,
+    "modules": 20,
+    "activeModules": 19,
+    "comingSoonModules": 1,
+    "integrity": "PASS",
+    "originalAcceptanceScenarios": 95,
+    "allOriginalAcceptancePassed": false
+  },
+  "gapPlan": {
+    "inventoryEntries": 205,
+    "workPackages": 40,
+    "integrity": "PASS"
+  },
+  "liveVerification": {
+    "sinaliteUnauthenticatedSandbox": "PASS",
+    "sageAuthenticated": "NOT_VERIFIED",
+    "sinaliteAuthenticatedLive": "NOT_VERIFIED",
+    "supplierImagesOrTemplates": "NOT_VERIFIED"
+  },
+  "paidApiFeesApproved": "0.00",
+  "productionSystemsModified": false,
+  "hostedUpdateDeployed": false
+}

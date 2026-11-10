@@ -1,0 +1,16 @@
+{
+  "numTotalTests": 194,
+  "numPassedTests": 194,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTotalTestSuites": 79,
+  "numPassedTestSuites": 79,
+  "success": true,
+  "startTime": 1794237558345,
+  "capturedAtUTC": "2026-11-09T15:26:30.971426+00:00",
+  "scope": "Local isolated PostgreSQL/unit/security suite; not complete platform acceptance",
+  "newWebsiteTests": 25,
+  "existingSecurityTestsInTargetedRun": 7,
+  "testCommand": "npm test",
+  "baselineCommit": "f5cb02511022909edb396dbd79c4be397858f67d"
+}

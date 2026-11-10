@@ -1,0 +1,29 @@
+{
+  "sheets": {
+    "Companies": 17,
+    "Features": 35,
+    "Rules": 110,
+    "Commands and Events": 189,
+    "Test Designs": 104,
+    "Data Fields": 292,
+    "Modules": 20,
+    "Inventory": 205,
+    "Original Acceptance": 95,
+    "Sources": 39,
+    "Access Needs": 9
+  },
+  "logicCachedCells": {
+    "B7": 25,
+    "B8": 30,
+    "B9": 5,
+    "B15": 1666.67,
+    "B16": 1400,
+    "B17": 0.2857142857142857,
+    "B24": "NO",
+    "B25": 40,
+    "B26": "NO",
+    "B31": "QUOTE ONLY"
+  },
+  "logicSheet": "Logic Lab",
+  "workbook": "TwelveSpec_Feature_Research.xlsx"
+}

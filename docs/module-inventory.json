@@ -1,0 +1,2172 @@
+[
+  {
+    "code": "foundation",
+    "title": "Governance, identity and settings",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "SaaS onboarding",
+    "source": "specification/master-v1/modules/foundation.md",
+    "screens": [
+      "Workspace selector",
+      "Users & roles",
+      "Venture/legal seller",
+      "Audit",
+      "Module registry"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/foundation/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/foundation.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "foundation.screen.Workspace selector",
+    "module": "foundation",
+    "requirement": "Workspace selector",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "foundation.screen.Users & roles",
+    "module": "foundation",
+    "requirement": "Users & roles",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "foundation.screen.Venture/legal seller",
+    "module": "foundation",
+    "requirement": "Venture/legal seller",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "foundation.screen.Audit",
+    "module": "foundation",
+    "requirement": "Audit",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "foundation.screen.Module registry",
+    "module": "foundation",
+    "requirement": "Module registry",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "foundation.command.create",
+    "module": "foundation",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "foundation.command.update",
+    "module": "foundation",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "foundation.command.review",
+    "module": "foundation",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "foundation.command.approve",
+    "module": "foundation",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "foundation.command.archive",
+    "module": "foundation",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/foundation.md",
+    "code": "packages/foundation/src/index.ts",
+    "test": "tests/modules/foundation.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "today",
+    "title": "Executive dashboard",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Today",
+    "future": "AI advisor",
+    "source": "specification/master-v1/modules/today.md",
+    "screens": [
+      "Needs attention",
+      "Revenue/GP snapshot",
+      "Waiting for others",
+      "Tasks",
+      "Owner hours"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/today/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/today.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "today.screen.Needs attention",
+    "module": "today",
+    "requirement": "Needs attention",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/today.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "today.screen.Revenue/GP snapshot",
+    "module": "today",
+    "requirement": "Revenue/GP snapshot",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/today.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "today.screen.Waiting for others",
+    "module": "today",
+    "requirement": "Waiting for others",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/today.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "today.screen.Tasks",
+    "module": "today",
+    "requirement": "Tasks",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/today.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "today.screen.Owner hours",
+    "module": "today",
+    "requirement": "Owner hours",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/today.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "today.command.create",
+    "module": "today",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
+    "test": "tests/modules/today.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "today.command.update",
+    "module": "today",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
+    "test": "tests/modules/today.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "today.command.review",
+    "module": "today",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
+    "test": "tests/modules/today.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "today.command.approve",
+    "module": "today",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
+    "test": "tests/modules/today.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "today.command.archive",
+    "module": "today",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/today.md",
+    "code": "packages/today/src/index.ts",
+    "test": "tests/modules/today.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "crm",
+    "title": "CRM and sales pipeline",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Sales",
+    "future": "AI outreach",
+    "source": "specification/master-v1/modules/crm.md",
+    "screens": [
+      "Accounts",
+      "Contacts",
+      "Pipeline board",
+      "Activity timeline",
+      "Lead import"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/crm/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/crm.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "crm.screen.Accounts",
+    "module": "crm",
+    "requirement": "Accounts",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/crm.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "crm.screen.Contacts",
+    "module": "crm",
+    "requirement": "Contacts",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/crm.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "crm.screen.Pipeline board",
+    "module": "crm",
+    "requirement": "Pipeline board",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/crm.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "crm.screen.Activity timeline",
+    "module": "crm",
+    "requirement": "Activity timeline",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/crm.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "crm.screen.Lead import",
+    "module": "crm",
+    "requirement": "Lead import",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/crm.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "crm.command.create",
+    "module": "crm",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
+    "test": "tests/modules/crm.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "crm.command.update",
+    "module": "crm",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
+    "test": "tests/modules/crm.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "crm.command.review",
+    "module": "crm",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
+    "test": "tests/modules/crm.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "crm.command.approve",
+    "module": "crm",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
+    "test": "tests/modules/crm.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "crm.command.archive",
+    "module": "crm",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/crm.md",
+    "code": "packages/crm/src/index.ts",
+    "test": "tests/modules/crm.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "catalog",
+    "title": "Canonical catalog and publishing",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "autonomous enrichment",
+    "source": "specification/master-v1/modules/catalog.md",
+    "screens": [
+      "Products grid",
+      "Bulk spreadsheet editor",
+      "Variants",
+      "Collections",
+      "Publish review"
+    ],
+    "commands": [
+      "match_product",
+      "bulk_change",
+      "stage_revision",
+      "publish",
+      "pause"
+    ],
+    "service": "packages/catalog/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/catalog.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "catalog.screen.Products grid",
+    "module": "catalog",
+    "requirement": "Products grid",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "catalog.screen.Bulk spreadsheet editor",
+    "module": "catalog",
+    "requirement": "Bulk spreadsheet editor",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "catalog.screen.Variants",
+    "module": "catalog",
+    "requirement": "Variants",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "catalog.screen.Collections",
+    "module": "catalog",
+    "requirement": "Collections",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "catalog.screen.Publish review",
+    "module": "catalog",
+    "requirement": "Publish review",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "catalog.command.match_product",
+    "module": "catalog",
+    "requirement": "match_product",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "catalog.command.bulk_change",
+    "module": "catalog",
+    "requirement": "bulk_change",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "catalog.command.stage_revision",
+    "module": "catalog",
+    "requirement": "stage_revision",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "catalog.command.publish",
+    "module": "catalog",
+    "requirement": "publish",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "catalog.command.pause",
+    "module": "catalog",
+    "requirement": "pause",
+    "source": "specification/master-v1/modules/catalog.md",
+    "code": "packages/catalog/src/index.ts",
+    "test": "tests/modules/catalog.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "supplier",
+    "title": "Integration Center",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "AI mapper",
+    "source": "specification/master-v1/modules/supplier.md",
+    "screens": [
+      "Connection cards",
+      "Add connection wizard",
+      "Credentials form",
+      "Service capabilities",
+      "Import mappings",
+      "Sync history"
+    ],
+    "commands": [
+      "save_secret",
+      "test_connection",
+      "discover_capabilities",
+      "stage_file",
+      "preview_mapping",
+      "commit_import",
+      "schedule_sync"
+    ],
+    "service": "packages/supplier/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/supplier.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "supplier.screen.Connection cards",
+    "module": "supplier",
+    "requirement": "Connection cards",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "supplier.screen.Add connection wizard",
+    "module": "supplier",
+    "requirement": "Add connection wizard",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "supplier.screen.Credentials form",
+    "module": "supplier",
+    "requirement": "Credentials form",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "supplier.screen.Service capabilities",
+    "module": "supplier",
+    "requirement": "Service capabilities",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "supplier.screen.Import mappings",
+    "module": "supplier",
+    "requirement": "Import mappings",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "supplier.screen.Sync history",
+    "module": "supplier",
+    "requirement": "Sync history",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "supplier.command.save_secret",
+    "module": "supplier",
+    "requirement": "save_secret",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "supplier.command.test_connection",
+    "module": "supplier",
+    "requirement": "test_connection",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "supplier.command.discover_capabilities",
+    "module": "supplier",
+    "requirement": "discover_capabilities",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "supplier.command.stage_file",
+    "module": "supplier",
+    "requirement": "stage_file",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "supplier.command.preview_mapping",
+    "module": "supplier",
+    "requirement": "preview_mapping",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "supplier.command.commit_import",
+    "module": "supplier",
+    "requirement": "commit_import",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "supplier.command.schedule_sync",
+    "module": "supplier",
+    "requirement": "schedule_sync",
+    "source": "specification/master-v1/modules/supplier.md",
+    "code": "packages/supplier/src/index.ts",
+    "test": "tests/modules/supplier.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "configuration",
+    "title": "Product rules and visual options",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "CAD configure-to-engineer",
+    "source": "specification/master-v1/modules/configuration.md",
+    "screens": [
+      "Product family rules",
+      "Options matrix",
+      "Print zone editor",
+      "Constraints simulator"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/configuration/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/configuration.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "configuration.screen.Product family rules",
+    "module": "configuration",
+    "requirement": "Product family rules",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "configuration.screen.Options matrix",
+    "module": "configuration",
+    "requirement": "Options matrix",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "configuration.screen.Print zone editor",
+    "module": "configuration",
+    "requirement": "Print zone editor",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "configuration.screen.Constraints simulator",
+    "module": "configuration",
+    "requirement": "Constraints simulator",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "configuration.command.create",
+    "module": "configuration",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "configuration.command.update",
+    "module": "configuration",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "configuration.command.review",
+    "module": "configuration",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "configuration.command.approve",
+    "module": "configuration",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "configuration.command.archive",
+    "module": "configuration",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/configuration.md",
+    "code": "packages/configuration/src/index.ts",
+    "test": "tests/modules/configuration.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "creative",
+    "title": "Creative Studio",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "AI design, 3D, embroidery digitization",
+    "source": "specification/master-v1/modules/creative.md",
+    "screens": [
+      "Customer designer",
+      "Admin artwork",
+      "Brand kits",
+      "Proof center",
+      "Prepress queue"
+    ],
+    "commands": [
+      "upload_asset",
+      "save_design_version",
+      "render_mockup",
+      "request_proof",
+      "approve_proof",
+      "run_preflight"
+    ],
+    "service": "packages/creative/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/creative.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "creative.screen.Customer designer",
+    "module": "creative",
+    "requirement": "Customer designer",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/creative.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "creative.screen.Admin artwork",
+    "module": "creative",
+    "requirement": "Admin artwork",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/creative.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "creative.screen.Brand kits",
+    "module": "creative",
+    "requirement": "Brand kits",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/creative.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "creative.screen.Proof center",
+    "module": "creative",
+    "requirement": "Proof center",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/creative.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "creative.screen.Prepress queue",
+    "module": "creative",
+    "requirement": "Prepress queue",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/creative.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "creative.command.upload_asset",
+    "module": "creative",
+    "requirement": "upload_asset",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
+    "test": "tests/modules/creative.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "creative.command.save_design_version",
+    "module": "creative",
+    "requirement": "save_design_version",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
+    "test": "tests/modules/creative.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "creative.command.render_mockup",
+    "module": "creative",
+    "requirement": "render_mockup",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
+    "test": "tests/modules/creative.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "creative.command.request_proof",
+    "module": "creative",
+    "requirement": "request_proof",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
+    "test": "tests/modules/creative.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "creative.command.approve_proof",
+    "module": "creative",
+    "requirement": "approve_proof",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
+    "test": "tests/modules/creative.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "creative.command.run_preflight",
+    "module": "creative",
+    "requirement": "run_preflight",
+    "source": "specification/master-v1/modules/creative.md",
+    "code": "packages/creative/src/index.ts",
+    "test": "tests/modules/creative.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "estimating",
+    "title": "Pricing and estimating",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Sales",
+    "future": "machine learning price optimization",
+    "source": "specification/master-v1/modules/estimating.md",
+    "screens": [
+      "Estimate builder",
+      "Cost components",
+      "Margin approvals",
+      "Version history"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/estimating/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/estimating.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "estimating.screen.Estimate builder",
+    "module": "estimating",
+    "requirement": "Estimate builder",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "estimating.screen.Cost components",
+    "module": "estimating",
+    "requirement": "Cost components",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "estimating.screen.Margin approvals",
+    "module": "estimating",
+    "requirement": "Margin approvals",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "estimating.screen.Version history",
+    "module": "estimating",
+    "requirement": "Version history",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "estimating.command.create",
+    "module": "estimating",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "estimating.command.update",
+    "module": "estimating",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "estimating.command.review",
+    "module": "estimating",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "estimating.command.approve",
+    "module": "estimating",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "estimating.command.archive",
+    "module": "estimating",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/estimating.md",
+    "code": "packages/estimating/src/index.ts",
+    "test": "tests/modules/estimating.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "commerce",
+    "title": "Customer storefront and checkout",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Shop",
+    "future": "subscriptions",
+    "source": "specification/master-v1/modules/commerce.md",
+    "screens": [
+      "Search listing",
+      "Product detail",
+      "Customer designer",
+      "Quote cart",
+      "Account/orders"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/commerce/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/commerce.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "commerce.screen.Search listing",
+    "module": "commerce",
+    "requirement": "Search listing",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "commerce.screen.Product detail",
+    "module": "commerce",
+    "requirement": "Product detail",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "commerce.screen.Customer designer",
+    "module": "commerce",
+    "requirement": "Customer designer",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "commerce.screen.Quote cart",
+    "module": "commerce",
+    "requirement": "Quote cart",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "commerce.screen.Account/orders",
+    "module": "commerce",
+    "requirement": "Account/orders",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "commerce.command.create",
+    "module": "commerce",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "commerce.command.update",
+    "module": "commerce",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "commerce.command.review",
+    "module": "commerce",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "commerce.command.approve",
+    "module": "commerce",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "commerce.command.archive",
+    "module": "commerce",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/commerce.md",
+    "code": "packages/commerce/src/index.ts",
+    "test": "tests/modules/commerce.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "stores",
+    "title": "Company, school and event stores",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "complex fund settlement",
+    "source": "specification/master-v1/modules/stores.md",
+    "screens": [
+      "Store list",
+      "Program type config",
+      "Products and budgets",
+      "Member management"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/stores/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/stores.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "stores.screen.Store list",
+    "module": "stores",
+    "requirement": "Store list",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/stores.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "stores.screen.Program type config",
+    "module": "stores",
+    "requirement": "Program type config",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/stores.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "stores.screen.Products and budgets",
+    "module": "stores",
+    "requirement": "Products and budgets",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/stores.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "stores.screen.Member management",
+    "module": "stores",
+    "requirement": "Member management",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/stores.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "stores.command.create",
+    "module": "stores",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
+    "test": "tests/modules/stores.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "stores.command.update",
+    "module": "stores",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
+    "test": "tests/modules/stores.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "stores.command.review",
+    "module": "stores",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
+    "test": "tests/modules/stores.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "stores.command.approve",
+    "module": "stores",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
+    "test": "tests/modules/stores.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "stores.command.archive",
+    "module": "stores",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/stores.md",
+    "code": "packages/stores/src/index.ts",
+    "test": "tests/modules/stores.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "byob",
+    "title": "Build Your Own Bundle",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Catalog",
+    "future": "AI bundle suggestions",
+    "source": "specification/master-v1/modules/byob.md",
+    "screens": [
+      "Bundle builder",
+      "Component selector",
+      "Kit pricing",
+      "Assembly rules"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/byob/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/byob.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "byob.screen.Bundle builder",
+    "module": "byob",
+    "requirement": "Bundle builder",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/byob.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "byob.screen.Component selector",
+    "module": "byob",
+    "requirement": "Component selector",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/byob.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "byob.screen.Kit pricing",
+    "module": "byob",
+    "requirement": "Kit pricing",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/byob.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "byob.screen.Assembly rules",
+    "module": "byob",
+    "requirement": "Assembly rules",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/byob.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "byob.command.create",
+    "module": "byob",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
+    "test": "tests/modules/byob.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "byob.command.update",
+    "module": "byob",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
+    "test": "tests/modules/byob.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "byob.command.review",
+    "module": "byob",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
+    "test": "tests/modules/byob.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "byob.command.approve",
+    "module": "byob",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
+    "test": "tests/modules/byob.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "byob.command.archive",
+    "module": "byob",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/byob.md",
+    "code": "packages/byob/src/index.ts",
+    "test": "tests/modules/byob.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "sales",
+    "title": "RFQ, quote and approvals",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Sales",
+    "future": "autonomous negotiation",
+    "source": "specification/master-v1/modules/sales.md",
+    "screens": [
+      "RFQ inbox",
+      "Quote editor",
+      "Approvals",
+      "Order acceptance"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/sales/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/sales.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "sales.screen.RFQ inbox",
+    "module": "sales",
+    "requirement": "RFQ inbox",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/sales.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "sales.screen.Quote editor",
+    "module": "sales",
+    "requirement": "Quote editor",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/sales.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "sales.screen.Approvals",
+    "module": "sales",
+    "requirement": "Approvals",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/sales.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "sales.screen.Order acceptance",
+    "module": "sales",
+    "requirement": "Order acceptance",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/sales.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "sales.command.create",
+    "module": "sales",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
+    "test": "tests/modules/sales.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "sales.command.update",
+    "module": "sales",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
+    "test": "tests/modules/sales.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "sales.command.review",
+    "module": "sales",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
+    "test": "tests/modules/sales.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "sales.command.approve",
+    "module": "sales",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
+    "test": "tests/modules/sales.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "sales.command.archive",
+    "module": "sales",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/sales.md",
+    "code": "packages/sales/src/index.ts",
+    "test": "tests/modules/sales.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "orders",
+    "title": "Orders and job tickets",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Jobs",
+    "future": "enterprise MRP",
+    "source": "specification/master-v1/modules/orders.md",
+    "screens": [
+      "Order cockpit",
+      "Job ticket",
+      "Operation timeline",
+      "QC checklist"
+    ],
+    "commands": [
+      "accept_order",
+      "allocate_jobs",
+      "record_qc",
+      "close_job"
+    ],
+    "service": "packages/orders/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/orders.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "orders.screen.Order cockpit",
+    "module": "orders",
+    "requirement": "Order cockpit",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/orders.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "orders.screen.Job ticket",
+    "module": "orders",
+    "requirement": "Job ticket",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/orders.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "orders.screen.Operation timeline",
+    "module": "orders",
+    "requirement": "Operation timeline",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/orders.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "orders.screen.QC checklist",
+    "module": "orders",
+    "requirement": "QC checklist",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/orders.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "orders.command.accept_order",
+    "module": "orders",
+    "requirement": "accept_order",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
+    "test": "tests/modules/orders.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "orders.command.allocate_jobs",
+    "module": "orders",
+    "requirement": "allocate_jobs",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
+    "test": "tests/modules/orders.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "orders.command.record_qc",
+    "module": "orders",
+    "requirement": "record_qc",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
+    "test": "tests/modules/orders.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "orders.command.close_job",
+    "module": "orders",
+    "requirement": "close_job",
+    "source": "specification/master-v1/modules/orders.md",
+    "code": "packages/orders/src/index.ts",
+    "test": "tests/modules/orders.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "procurement",
+    "title": "Purchasing and supplier POs",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Jobs",
+    "future": "autonomous procurement",
+    "source": "specification/master-v1/modules/procurement.md",
+    "screens": [
+      "Source comparison",
+      "PO drafts",
+      "Approvals",
+      "PO status"
+    ],
+    "commands": [
+      "prepare_po",
+      "approve_po",
+      "submit_po",
+      "reconcile_outcome"
+    ],
+    "service": "packages/procurement/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/procurement.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "procurement.screen.Source comparison",
+    "module": "procurement",
+    "requirement": "Source comparison",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "procurement.screen.PO drafts",
+    "module": "procurement",
+    "requirement": "PO drafts",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "procurement.screen.Approvals",
+    "module": "procurement",
+    "requirement": "Approvals",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "procurement.screen.PO status",
+    "module": "procurement",
+    "requirement": "PO status",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "procurement.command.prepare_po",
+    "module": "procurement",
+    "requirement": "prepare_po",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "procurement.command.approve_po",
+    "module": "procurement",
+    "requirement": "approve_po",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "procurement.command.submit_po",
+    "module": "procurement",
+    "requirement": "submit_po",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "procurement.command.reconcile_outcome",
+    "module": "procurement",
+    "requirement": "reconcile_outcome",
+    "source": "specification/master-v1/modules/procurement.md",
+    "code": "packages/procurement/src/index.ts",
+    "test": "tests/modules/procurement.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "fulfillment",
+    "title": "Production, QC, shipping, returns",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Jobs",
+    "future": "fleet and warehouse optimization",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "screens": [
+      "Routing plan",
+      "Shipments",
+      "Tracking",
+      "Returns/remakes"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/fulfillment/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/fulfillment.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "fulfillment.screen.Routing plan",
+    "module": "fulfillment",
+    "requirement": "Routing plan",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "fulfillment.screen.Shipments",
+    "module": "fulfillment",
+    "requirement": "Shipments",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "fulfillment.screen.Tracking",
+    "module": "fulfillment",
+    "requirement": "Tracking",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "fulfillment.screen.Returns/remakes",
+    "module": "fulfillment",
+    "requirement": "Returns/remakes",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "fulfillment.command.create",
+    "module": "fulfillment",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "fulfillment.command.update",
+    "module": "fulfillment",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "fulfillment.command.review",
+    "module": "fulfillment",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "fulfillment.command.approve",
+    "module": "fulfillment",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "fulfillment.command.archive",
+    "module": "fulfillment",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/fulfillment.md",
+    "code": "packages/fulfillment/src/index.ts",
+    "test": "tests/modules/fulfillment.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "finance",
+    "title": "Finance and profitability",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "full GL and payroll",
+    "source": "specification/master-v1/modules/finance.md",
+    "screens": [
+      "Cost ledger refs",
+      "Expected vs actual",
+      "Invoices/payments refs",
+      "Profit dashboard"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/finance/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/finance.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "finance.screen.Cost ledger refs",
+    "module": "finance",
+    "requirement": "Cost ledger refs",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/finance.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "finance.screen.Expected vs actual",
+    "module": "finance",
+    "requirement": "Expected vs actual",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/finance.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "finance.screen.Invoices/payments refs",
+    "module": "finance",
+    "requirement": "Invoices/payments refs",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/finance.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "finance.screen.Profit dashboard",
+    "module": "finance",
+    "requirement": "Profit dashboard",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/finance.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "finance.command.create",
+    "module": "finance",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
+    "test": "tests/modules/finance.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "finance.command.update",
+    "module": "finance",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
+    "test": "tests/modules/finance.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "finance.command.review",
+    "module": "finance",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
+    "test": "tests/modules/finance.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "finance.command.approve",
+    "module": "finance",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
+    "test": "tests/modules/finance.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "finance.command.archive",
+    "module": "finance",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/finance.md",
+    "code": "packages/finance/src/index.ts",
+    "test": "tests/modules/finance.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "marketing",
+    "title": "Marketing and content management",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "advanced omnichannel AI",
+    "source": "specification/master-v1/modules/marketing.md",
+    "screens": [
+      "Campaigns",
+      "Content library",
+      "Approval workflow",
+      "Attribution"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/marketing/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/marketing.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "marketing.screen.Campaigns",
+    "module": "marketing",
+    "requirement": "Campaigns",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "marketing.screen.Content library",
+    "module": "marketing",
+    "requirement": "Content library",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "marketing.screen.Approval workflow",
+    "module": "marketing",
+    "requirement": "Approval workflow",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "marketing.screen.Attribution",
+    "module": "marketing",
+    "requirement": "Attribution",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "marketing.command.create",
+    "module": "marketing",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "marketing.command.update",
+    "module": "marketing",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "marketing.command.review",
+    "module": "marketing",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "marketing.command.approve",
+    "module": "marketing",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "marketing.command.archive",
+    "module": "marketing",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/marketing.md",
+    "code": "packages/marketing/src/index.ts",
+    "test": "tests/modules/marketing.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "workflow",
+    "title": "Automation and notifications",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "self-editing autonomous agents",
+    "source": "specification/master-v1/modules/workflow.md",
+    "screens": [
+      "Rule builder",
+      "Dry-run simulator",
+      "Event log",
+      "Exception queue"
+    ],
+    "commands": [
+      "simulate_rule",
+      "publish_rule",
+      "process_event"
+    ],
+    "service": "packages/workflows/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/workflow.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "workflow.screen.Rule builder",
+    "module": "workflow",
+    "requirement": "Rule builder",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/workflow.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "workflow.screen.Dry-run simulator",
+    "module": "workflow",
+    "requirement": "Dry-run simulator",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/workflow.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "workflow.screen.Event log",
+    "module": "workflow",
+    "requirement": "Event log",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/workflow.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "workflow.screen.Exception queue",
+    "module": "workflow",
+    "requirement": "Exception queue",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/workflow.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "workflow.command.simulate_rule",
+    "module": "workflow",
+    "requirement": "simulate_rule",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "packages/workflows/src/index.ts",
+    "test": "tests/modules/workflow.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "workflow.command.publish_rule",
+    "module": "workflow",
+    "requirement": "publish_rule",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "packages/workflows/src/index.ts",
+    "test": "tests/modules/workflow.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "workflow.command.process_event",
+    "module": "workflow",
+    "requirement": "process_event",
+    "source": "specification/master-v1/modules/workflow.md",
+    "code": "packages/workflows/src/index.ts",
+    "test": "tests/modules/workflow.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "analytics",
+    "title": "Reporting and data quality",
+    "status": "ACTIVE_V1_SPEC",
+    "navigation": "Business",
+    "future": "predictive forecasting",
+    "source": "specification/master-v1/modules/analytics.md",
+    "screens": [
+      "KPI definitions",
+      "Report builder",
+      "Data freshness",
+      "Exports"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/analytics/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/analytics.test.ts",
+    "implementation": "SOURCE_PRESENT_NOT_ACCEPTED"
+  },
+  {
+    "id": "analytics.screen.KPI definitions",
+    "module": "analytics",
+    "requirement": "KPI definitions",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "analytics.screen.Report builder",
+    "module": "analytics",
+    "requirement": "Report builder",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "analytics.screen.Data freshness",
+    "module": "analytics",
+    "requirement": "Data freshness",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "analytics.screen.Exports",
+    "module": "analytics",
+    "requirement": "Exports",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "SHARED_UI_SOURCE_NOT_BROWSER_VERIFIED"
+  },
+  {
+    "id": "analytics.command.create",
+    "module": "analytics",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "analytics.command.update",
+    "module": "analytics",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "analytics.command.review",
+    "module": "analytics",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "analytics.command.approve",
+    "module": "analytics",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "id": "analytics.command.archive",
+    "module": "analytics",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/analytics.md",
+    "code": "packages/analytics/src/index.ts",
+    "test": "tests/modules/analytics.test.ts",
+    "status": "COMMAND_ALIAS_REVIEW_REQUIRED"
+  },
+  {
+    "code": "future",
+    "title": "Reserved module slots",
+    "status": "COMING_SOON",
+    "navigation": "Business",
+    "future": "3D, digitization, manufacturing engineering, external SaaS",
+    "source": "specification/master-v1/modules/future.md",
+    "screens": [
+      "Coming Soon index",
+      "Roadmap"
+    ],
+    "commands": [
+      "create",
+      "update",
+      "review",
+      "approve",
+      "archive"
+    ],
+    "service": "packages/contracts/src/index.ts",
+    "ui": "apps/os/app/[module]/page.tsx",
+    "test": "tests/security/isolation.test.ts",
+    "implementation": "COMING_SOON_BACKEND_REJECTS_MUTATIONS"
+  },
+  {
+    "id": "future.screen.Coming Soon index",
+    "module": "future",
+    "requirement": "Coming Soon index",
+    "source": "specification/master-v1/modules/future.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/security/isolation.test.ts",
+    "status": "COMING_SOON_SCREEN_NOT_ACTIVE_FEATURE"
+  },
+  {
+    "id": "future.screen.Roadmap",
+    "module": "future",
+    "requirement": "Roadmap",
+    "source": "specification/master-v1/modules/future.md",
+    "code": "apps/os/app/[module]/page.tsx",
+    "test": "tests/security/isolation.test.ts",
+    "status": "COMING_SOON_SCREEN_NOT_ACTIVE_FEATURE"
+  },
+  {
+    "id": "future.command.create",
+    "module": "future",
+    "requirement": "create",
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
+  },
+  {
+    "id": "future.command.update",
+    "module": "future",
+    "requirement": "update",
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
+  },
+  {
+    "id": "future.command.review",
+    "module": "future",
+    "requirement": "review",
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
+  },
+  {
+    "id": "future.command.approve",
+    "module": "future",
+    "requirement": "approve",
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
+  },
+  {
+    "id": "future.command.archive",
+    "module": "future",
+    "requirement": "archive",
+    "source": "specification/master-v1/modules/future.md",
+    "code": "packages/kernel/src/index.ts",
+    "test": "tests/security/isolation.test.ts",
+    "status": "REQUIRED_DENIAL"
+  }
+]

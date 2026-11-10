@@ -1,0 +1,2325 @@
+{
+  "title": "TwelveSpec active V1 gap closure plan",
+  "version": 1,
+  "createdOn": "2026-11-07",
+  "baselineCommit": "57c58603aadcac8d2258d587121be12331bed10a",
+  "branch": "build/greenfield-v1",
+  "scope": {
+    "modules": 20,
+    "active": 19,
+    "comingSoon": 1,
+    "inventoryEntries": 205,
+    "screens": 86,
+    "commandContracts": 99,
+    "acceptanceScenarios": 95,
+    "originalFiles": 85
+  },
+  "status": "RESEARCH_AND_PLAN_COMPLETE_IMPLEMENTATION_OPEN",
+  "prohibited": [
+    "PSRESTful",
+    "Existing TwelveSpec production app/database/domains",
+    "Production supplier/payment/customer connections",
+    "Unimplemented future activation"
+  ],
+  "modules": [
+    {
+      "code": "foundation",
+      "title": "Governance, identity and settings",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/foundation/src/index.ts",
+      "existingTest": "tests/modules/foundation.test.ts",
+      "observed": "Scoped memberships, seller records, audit and immutable records exist.",
+      "missing": "Finish action/resource policy, grants, membership lifecycle, seller assignment, evidence-based activation and recovery.",
+      "workItems": [
+        "GAP-001",
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-006",
+        "GAP-008",
+        "GAP-032",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-037",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "today",
+      "title": "Executive dashboard",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/today/src/index.ts",
+      "existingTest": "tests/modules/today.test.ts",
+      "observed": "Tasks, exceptions, owner time and dashboard summaries exist.",
+      "missing": "Calculate whole-dataset KPIs, connect real waiting/SLA events and expose remediation with reconciled owner-time metrics.",
+      "workItems": [
+        "GAP-008",
+        "GAP-027",
+        "GAP-030",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "crm",
+      "title": "CRM and sales pipeline",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/crm/src/index.ts",
+      "existingTest": "tests/modules/crm.test.ts",
+      "observed": "Contacts, accounts, lead transitions, activity and lead import exist.",
+      "missing": "Add transactional identity/merge, complete relationship/follow-up lifecycle and RFQ/order timeline.",
+      "workItems": [
+        "GAP-028",
+        "GAP-029",
+        "GAP-030",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "catalog",
+      "title": "Canonical catalog and publishing",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/catalog/src/index.ts",
+      "existingTest": "tests/modules/catalog.test.ts",
+      "observed": "Published snapshots, bulk preview, revisions, collections and exact-image projection exist.",
+      "missing": "Unify canonical identity, complete media/variant editing and safe rollback; replace capped search.",
+      "workItems": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-017",
+        "GAP-019",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-033",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "supplier",
+      "title": "Integration Center",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/supplier/src/index.ts",
+      "existingTest": "tests/modules/supplier.test.ts",
+      "observed": "Provider registry, local encrypted credentials, CSV/XML staging and mock capability setup exist.",
+      "missing": "Managed vault, native independent service profiles, full wizard, scheduled evidence refresh and licensed ASI remain incomplete.",
+      "workItems": [
+        "GAP-002",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-010",
+        "GAP-014",
+        "GAP-015",
+        "GAP-016",
+        "GAP-020",
+        "GAP-021",
+        "GAP-022",
+        "GAP-023",
+        "GAP-025",
+        "GAP-030",
+        "GAP-031",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "configuration",
+      "title": "Product rules and visual options",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/configuration/src/index.ts",
+      "existingTest": "tests/modules/configuration.test.ts",
+      "observed": "Typed AST, rule analysis, templates, zone records and batch assignments exist.",
+      "missing": "Bind authoritative family/options/zone revisions to UI, designer, quote and server validation.",
+      "workItems": [
+        "GAP-009",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "creative",
+      "title": "Creative Studio",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/creative/src/index.ts",
+      "existingTest": "tests/modules/creative.test.ts",
+      "observed": "Private raster preview, immutable versions, visual proof and synthetic render jobs exist.",
+      "missing": "Fix exact variant/spec binding; persist/scan assets; complete 2D editing and method-specific production review.",
+      "workItems": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-005",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017",
+        "GAP-018",
+        "GAP-019",
+        "GAP-024",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "estimating",
+      "title": "Pricing and estimating",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/estimating/src/index.ts",
+      "existingTest": "tests/modules/estimating.test.ts",
+      "observed": "Decimal component estimates, tiers and margin checks exist.",
+      "missing": "Fix premature unit rounding and eligible source/policy selection; complete revisions, freight/tax assumptions and approvals.",
+      "workItems": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-021",
+        "GAP-027",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "commerce",
+      "title": "Customer storefront and checkout",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/commerce/src/index.ts",
+      "existingTest": "tests/modules/commerce.test.ts",
+      "observed": "Catalog, product options, customer sessions, carts, RFQs, accounts and reorder exist.",
+      "missing": "Preserve program/kit/artwork identity, server-side pagination/shareable filters and authorized complete commitment flows.",
+      "workItems": [
+        "GAP-002",
+        "GAP-007",
+        "GAP-008",
+        "GAP-009",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-016",
+        "GAP-017",
+        "GAP-033",
+        "GAP-034",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "stores",
+      "title": "Company, school and event stores",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/stores/src/index.ts",
+      "existingTest": "tests/modules/stores.test.ts",
+      "observed": "Program types, membership, standalone budget checks/reservations and fundraiser references exist.",
+      "missing": "Enforce the policy in cart/quote/order, make reservations idempotent across the lifecycle, finish redemption and program closeout.",
+      "workItems": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-011",
+        "GAP-013",
+        "GAP-032",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "byob",
+      "title": "Build Your Own Bundle",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/byob/src/index.ts",
+      "existingTest": "tests/modules/byob.test.ts",
+      "observed": "Template/components, private source proposals and separate calculator costs exist.",
+      "missing": "Carry kit identity, packing/assembly/freight and component allocations through cart, agreement, jobs and fulfillment.",
+      "workItems": [
+        "GAP-012",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "sales",
+      "title": "RFQ, quote and approvals",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/sales/src/index.ts",
+      "existingTest": "tests/modules/sales.test.ts",
+      "observed": "Costed quotes, margin approvals, issued revisions, acceptance and immutable order lines exist.",
+      "missing": "Bind seller, credit, tax/freight, exact art/configuration; complete decline/expiry/revision and concurrency behavior.",
+      "workItems": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-012",
+        "GAP-013",
+        "GAP-027",
+        "GAP-028",
+        "GAP-031",
+        "GAP-032",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "orders",
+      "title": "Orders and job tickets",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/orders/src/index.ts",
+      "existingTest": "tests/modules/orders.test.ts",
+      "observed": "Jobs, fixed operations, readiness guards, QC and exceptions exist.",
+      "missing": "Build component/decorator routes, enforce operation dependencies and quantities, and complete decorated production/rework flows.",
+      "workItems": [
+        "GAP-006",
+        "GAP-007",
+        "GAP-012",
+        "GAP-018",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "procurement",
+      "title": "Purchasing and supplier POs",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/procurement/src/index.ts",
+      "existingTest": "tests/modules/procurement.test.ts",
+      "observed": "Mock PO approval, idempotent submission and UNKNOWN_OUTCOME reconciliation exist.",
+      "missing": "Purchase by requirement, verify approved payload hashes and implement separately authorized native submit/reconcile profiles.",
+      "workItems": [
+        "GAP-018",
+        "GAP-020",
+        "GAP-024",
+        "GAP-025",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "fulfillment",
+      "title": "Production, QC, shipping, returns",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/fulfillment/src/index.ts",
+      "existingTest": "tests/modules/fulfillment.test.ts",
+      "observed": "Mock partial shipments, tracking projections and return/remake requests exist.",
+      "missing": "Finish provider events, allocation quantities, audited return/remake resolution and duplicate-label prevention.",
+      "workItems": [
+        "GAP-007",
+        "GAP-012",
+        "GAP-020",
+        "GAP-024",
+        "GAP-026",
+        "GAP-027",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "finance",
+      "title": "Finance and profitability",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/finance/src/index.ts",
+      "existingTest": "tests/modules/finance.test.ts",
+      "observed": "Immutable actual costs, mock payment/invoice references and profit snapshots exist.",
+      "missing": "Complete real reference adapter contracts, partial refunds/corrections, actual owner-time closeout and whole-dataset reporting.",
+      "workItems": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-011",
+        "GAP-013",
+        "GAP-020",
+        "GAP-026",
+        "GAP-027",
+        "GAP-030",
+        "GAP-034",
+        "GAP-036",
+        "GAP-038",
+        "GAP-039",
+        "GAP-040"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "marketing",
+      "title": "Marketing and content management",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/marketing/src/index.ts",
+      "existingTest": "tests/modules/marketing.test.ts",
+      "observed": "Drafts, consent-filtered local previews and operator attribution exist.",
+      "missing": "Complete content revisions, approval invalidation, segments, suppression and approved communication contracts.",
+      "workItems": [
+        "GAP-005",
+        "GAP-028",
+        "GAP-029",
+        "GAP-031",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "workflow",
+      "title": "Automation and notifications",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/workflows/src/index.ts",
+      "existingTest": "tests/modules/workflow.test.ts",
+      "observed": "Typed AST, dry run, local safe effects, throttling and idempotent runs exist.",
+      "missing": "Unify real emitted names, durable leases, rule revisions/runtime dependency enforcement and operator recovery.",
+      "workItems": [
+        "GAP-007",
+        "GAP-022",
+        "GAP-029",
+        "GAP-031",
+        "GAP-035",
+        "GAP-038"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "analytics",
+      "title": "Reporting and data quality",
+      "availability": "ACTIVE_V1_SPEC",
+      "currentSource": "packages/analytics/src/index.ts",
+      "existingTest": "tests/modules/analytics.test.ts",
+      "observed": "Saved report types, freshness views and CSV exports exist.",
+      "missing": "Use complete scoped aggregates, server paging, KPI definitions, quality remediation and unified safe exports.",
+      "workItems": [
+        "GAP-001",
+        "GAP-022",
+        "GAP-030",
+        "GAP-033",
+        "GAP-035",
+        "GAP-038",
+        "GAP-039"
+      ],
+      "acceptance": "NOT_ACCEPTED"
+    },
+    {
+      "code": "future",
+      "title": "Reserved module slots",
+      "availability": "COMING_SOON",
+      "currentSource": "packages/contracts/src/index.ts",
+      "existingTest": "tests/security/isolation.test.ts",
+      "observed": "A Coming Soon directory and backend mutation denial exist.",
+      "missing": "Preserve all deferred placeholders and negative tests; do not activate AI, 3D, digitization, SaaS, GL/payroll or enterprise MRP.",
+      "workItems": [
+        "GAP-001",
+        "GAP-040"
+      ],
+      "acceptance": "COMING_SOON_MUST_REMAIN_DISABLED"
+    }
+  ],
+  "workItems": [
+    {
+      "id": "GAP-001",
+      "title": "Repair traceability and preserve the controlling scope",
+      "priority": "P0",
+      "milestone": "M0",
+      "modules": [
+        "foundation",
+        "analytics",
+        "future"
+      ],
+      "status": "COMPLETE_PLANNING_ONLY",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "docs/module-inventory.json",
+        "docs/TRACEABILITY.md",
+        "docs/acceptance-evidence.json"
+      ],
+      "observed": "The inventory has malformed command paths, a nonexistent future service/test, stale run labels and no E01-E25 mapping.",
+      "implementation": [
+        "Correct source references without promoting acceptance",
+        "Map all 205 inventory entries and 95 scenarios",
+        "Separate source existence, observed test results and external verification"
+      ],
+      "completionChecks": [
+        "All 20 modules, 86 screens, 99 commands and 95 scenarios map to work and a verification target",
+        "Future commands remain required denials, not planned active implementations"
+      ],
+      "dependsOn": [],
+      "research": [
+        "R10",
+        "R27"
+      ],
+      "activationGates": [],
+      "plannedTests": []
+    },
+    {
+      "id": "GAP-002",
+      "title": "Make the approved development database durable",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "foundation",
+        "commerce",
+        "creative",
+        "supplier"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/kernel/src/database-config.ts",
+        "scripts/preview-runtime.ts",
+        "infra/cloudflare/runtime.mjs",
+        "scripts/setup.ts"
+      ],
+      "observed": "Previews currently use container PostgreSQL; the Supabase connection remains disabled after SELF_SIGNED_CERT_IN_CHAIN. Product IDs and sessions can disappear on reseed.",
+      "implementation": [
+        "Install the approved CA with hostname verification and the restricted runtime role",
+        "Run migrations through a separate migration identity",
+        "Separate startup readiness from migrations/seeding and persist stable records across image changes"
+      ],
+      "completionChecks": [
+        "Create a cart, design and CRM contact; restart the preview container and read the same IDs and hashes",
+        "Connection failures produce a bounded health error without disabling TLS"
+      ],
+      "dependsOn": [
+        "GAP-001"
+      ],
+      "research": [
+        "R04",
+        "R05",
+        "R09",
+        "R30"
+      ],
+      "activationGates": [
+        "EXT-DB-CA"
+      ],
+      "plannedTests": [
+        "tests/integration/persistent-preview.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-003",
+      "title": "Persist and scan private artwork and derivatives",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "creative",
+        "foundation"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/creative/src/index.ts",
+        "packages/server/src/index.ts"
+      ],
+      "observed": "Originals and raster previews are local files; no independent malware scanner is configured, and file writes can outlive failed database transactions.",
+      "implementation": [
+        "Add an object-store interface with a dedicated private development bucket",
+        "Track upload, quarantine, scan, derivative and retention states",
+        "Garbage-collect orphan uploads and bind object hashes to scoped metadata"
+      ],
+      "completionChecks": [
+        "Artwork survives container replacement and is denied to other buyers/workspaces",
+        "Unscanned/failed-scan files cannot become production derivatives; restore verifies bytes and hashes"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-006"
+      ],
+      "research": [
+        "R06",
+        "R09",
+        "R14"
+      ],
+      "activationGates": [
+        "EXT-STORAGE"
+      ],
+      "plannedTests": [
+        "tests/integration/asset-storage.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-004",
+      "title": "Replace the local credential vault with a scoped managed broker",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "supplier",
+        "foundation"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "observed": "Supplier secrets use a local AES-GCM file store with its key on the same temporary filesystem.",
+      "implementation": [
+        "Keep the local implementation for tests only",
+        "Implement server-only managed-vault resolution, replacement, revocation and rotation",
+        "Preserve structured provider fields and masked metadata without browser retrieval"
+      ],
+      "completionChecks": [
+        "No raw credentials in GET, logs, receipts, exports or client bundles",
+        "Replaced credentials cannot be used and cross-scope resolution is denied; restore/rotation are exercised"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-006"
+      ],
+      "research": [
+        "R07",
+        "R08",
+        "R13"
+      ],
+      "activationGates": [
+        "EXT-STORAGE",
+        "EXT-SUPPLIER"
+      ],
+      "plannedTests": [
+        "tests/security/managed-vault.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-005",
+      "title": "Align action, role and resource authorization",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "foundation",
+        "marketing",
+        "stores",
+        "creative",
+        "supplier"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW_WITH_REPRODUCTION",
+      "code": [
+        "packages/kernel/src/index.ts",
+        "packages/server/src/index.ts",
+        "packages/foundation/src/index.ts",
+        "packages/marketing/src/index.ts"
+      ],
+      "observed": "Authorization is mostly module-level; resource grants are explicitly unenforced. A manager is allowed by the marketing approval handler but rejected by central module authorization.",
+      "implementation": [
+        "Create a typed command/permission registry with deny-by-default resource rules",
+        "Apply the same policy to API, service and UI affordances, including aliases",
+        "Add scoped grant expiry/revocation and production session/recovery controls"
+      ],
+      "completionChecks": [
+        "A role-by-action/resource matrix covers every command and denied side effects",
+        "Manager campaign approval behaves consistently with policy; customer and cross-venture escalation attempts fail"
+      ],
+      "dependsOn": [
+        "GAP-001"
+      ],
+      "research": [
+        "R10",
+        "R28"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/security/permission-matrix.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-006",
+      "title": "Constrain authoritative domain relationships and revisions",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "foundation",
+        "catalog",
+        "sales",
+        "orders",
+        "stores",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "database/migrations/001_initial.sql",
+        "database/migrations/003_domain_references.sql",
+        "packages/kernel/src/index.ts"
+      ],
+      "observed": "Scoped foreign keys and immutable triggers exist, but many business relationships, quantities and money values remain unconstrained JSON; update revision checks are optional.",
+      "implementation": [
+        "Promote critical business keys, relationships, numeric values and state constraints to typed columns incrementally",
+        "Add uniqueness for source/variant, buyer budget, contact identity and provider references",
+        "Require optimistic revisions and canonical command digests where editing can conflict"
+      ],
+      "completionChecks": [
+        "Invalid cross-product or cross-aggregate links fail in the database",
+        "Concurrent edits and duplicate/reordered commands cannot silently replace agreements or create duplicate obligations"
+      ],
+      "dependsOn": [
+        "GAP-001"
+      ],
+      "research": [
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/domain-constraints.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-007",
+      "title": "Unify emitted events and durable processing",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "workflow",
+        "sales",
+        "commerce",
+        "orders",
+        "fulfillment",
+        "supplier"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/kernel/src/index.ts",
+        "packages/workflows/src/index.ts",
+        "apps/worker/src/tick.ts"
+      ],
+      "observed": "Emitters use request.submitted, quote.issued, quote.accepted, job.ready and shipment.dispatched, while several workflow subscriptions use different names. The worker has row locks but no durable lease contract or dedicated system identity.",
+      "implementation": [
+        "Define a shared versioned event registry and payload schemas",
+        "Propagate request correlation and origin actor",
+        "Add bounded claims, lease recovery, backoff, dead letters and audited replay with a dedicated worker identity"
+      ],
+      "completionChecks": [
+        "An actual customer command emits an event that triggers its matching published rule exactly once",
+        "Kill a worker after claiming an event; recovery preserves safe effects and does not replay ambiguous external writes"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-006"
+      ],
+      "research": [
+        "R11",
+        "R21",
+        "R22"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/emitted-events.test.ts",
+        "tests/integration/worker-recovery.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-008",
+      "title": "Repair preview navigation and actionable failure states",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "foundation",
+        "commerce",
+        "today"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx",
+        "infra/cloudflare/gateway.mjs"
+      ],
+      "observed": "Commerce OS Open storefront points at localhost. Generic controls and status labels do not establish all contracted views or role affordances.",
+      "implementation": [
+        "Resolve cross-app links from validated environment origins",
+        "Show permission-aware actions and human-readable remediation",
+        "Preserve form drafts and provide loading, stale, empty, conflict and retry states"
+      ],
+      "completionChecks": [
+        "Every cross-app link opens the correct HTTPS preview",
+        "A denied or expired session preserves user work and exposes the next safe action"
+      ],
+      "dependsOn": [
+        "GAP-005"
+      ],
+      "research": [
+        "R27"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/e2e/navigation-errors.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-009",
+      "title": "Bind every design and proof to its exact product variant",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "creative",
+        "configuration",
+        "commerce",
+        "sales"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "apps/shop/components/designer.tsx",
+        "apps/shop/components/account.tsx",
+        "apps/shop/components/storefront.tsx",
+        "packages/creative/src/index.ts",
+        "packages/sales/src/index.ts"
+      ],
+      "observed": "The designer does not rebind an existing project when color changes; proof lookup falls back to a non-unique document hash, and cart validation only checks that a design version exists.",
+      "implementation": [
+        "Store an immutable product/variant/method/zone specification snapshot on each version",
+        "Restore the saved variant and start/rebind a variant-specific project safely",
+        "Resolve proofs by exact version and specification, and validate line ownership and compatibility",
+        "Preserve order-bound historical evidence; use explicit change-order holds and reapproval for intended order changes"
+      ],
+      "completionChecks": [
+        "Save Clay, switch to Midnight, save and reload: each proof and cart line retains its own color",
+        "Identical text on two products never loads or approves the other product proof",
+        "Draft editing cannot rewrite accepted artwork; an intended order change records a hold and accepted amendment"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-006"
+      ],
+      "research": [
+        "R19",
+        "R20"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/design-binding.test.ts",
+        "tests/e2e/design-revisions.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-010",
+      "title": "Correct precision, pricing policy and source eligibility",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "estimating",
+        "sales",
+        "catalog",
+        "supplier",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW_WITH_REPRODUCTION",
+      "code": [
+        "packages/pricing/src/index.ts",
+        "packages/sales/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "observed": "tierCost rounds unit prices to two decimals before extension; a 0.0250 unit cost for 1,000 becomes 30.00 instead of 25.00. costLine excludes only DISABLED offers, so ROLLED_BACK offers are not excluded. Margin floors are hard-coded rather than bound to configured policy.",
+      "implementation": [
+        "Retain four-place supplier unit precision through extension and round totals deliberately",
+        "Select explicit eligible source/variant/service evidence and reject rolled-back/stale sources",
+        "Apply versioned policy, component completeness and exact residual allocation"
+      ],
+      "completionChecks": [
+        "Tier, quantity and rounding boundary tests reproduce and close the 25-versus-30 defect",
+        "A newer rolled-back offer is never chosen; configured floors and unknown costs cannot be bypassed"
+      ],
+      "dependsOn": [
+        "GAP-006"
+      ],
+      "research": [
+        "R01",
+        "R11",
+        "R12"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/pricing-evidence.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-011",
+      "title": "Enforce store policies through the real cart and order lifecycle",
+      "priority": "P0",
+      "milestone": "M2",
+      "modules": [
+        "stores",
+        "commerce",
+        "sales",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW_WITH_REPRODUCTION",
+      "code": [
+        "packages/stores/src/index.ts",
+        "packages/sales/src/index.ts",
+        "packages/commerce/src/index.ts",
+        "apps/shop/components/programs.tsx"
+      ],
+      "observed": "Store checks exist as standalone commands, but safeLines drops storeId and brandKitId. Cart/RFQ/quote acceptance do not enforce the program; budget reservations are not tied to spend/release/cancel transitions.",
+      "implementation": [
+        "Preserve and validate program references on every line",
+        "Calculate budget commitments from authoritative reviewed prices, not a buyer-entered amount",
+        "Implement approval, reserve, capture, release, redemption and fundraiser-reference transitions with locks",
+        "Bind approval to the recorded policy/quote/amount revision and return existing receipts before reevaluating a duplicate reservation"
+      ],
+      "completionChecks": [
+        "Calling cart/RFQ APIs directly cannot bypass membership, assignment, deadline, brand, seller or budget",
+        "Two concurrent accepted quotes cannot overspend; retry and cancellation restore the correct reservation once"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-010"
+      ],
+      "research": [
+        "R10",
+        "R11"
+      ],
+      "activationGates": [
+        "EXT-FINANCE"
+      ],
+      "plannedTests": [
+        "tests/integration/store-commerce.test.ts",
+        "tests/e2e/store-programs.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-012",
+      "title": "Carry kit identity and packing costs into the agreement",
+      "priority": "P0",
+      "milestone": "M2",
+      "modules": [
+        "byob",
+        "commerce",
+        "sales",
+        "orders",
+        "fulfillment"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/byob/src/index.ts",
+        "apps/shop/components/programs.tsx",
+        "packages/sales/src/index.ts",
+        "packages/orders/src/index.ts"
+      ],
+      "observed": "The bundle calculator records packaging and assembly separately, but the storefront flattens a saved kit into ordinary product cart lines and loses the kit configuration and operations.",
+      "implementation": [
+        "Persist a kit line plus immutable component/variant/quantity selections",
+        "Price packaging, assembly and multi-source freight in the quote",
+        "Decompose component requirements and a separate kitting operation from the same snapshot"
+      ],
+      "completionChecks": [
+        "A saved kit reaches quote/order/jobs with unchanged component ratios and packing/assembly costs",
+        "Missing required components, wrong variants and component MOQ/availability changes block commitment"
+      ],
+      "dependsOn": [
+        "GAP-006",
+        "GAP-010",
+        "GAP-017"
+      ],
+      "research": [
+        "R18",
+        "R25"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/bundle-commerce.test.ts",
+        "tests/e2e/bundle-to-order.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-013",
+      "title": "Complete issued agreement, seller, credit and expiry logic",
+      "priority": "P0",
+      "milestone": "M2",
+      "modules": [
+        "sales",
+        "commerce",
+        "estimating",
+        "finance",
+        "stores"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/sales/src/index.ts",
+        "packages/commerce/src/index.ts",
+        "packages/finance/src/index.ts"
+      ],
+      "observed": "Immutable revisions exist, but draft quote edits do not synchronize quote_lines, seller selection uses the first legal entity, and credit exposure is checked at issuance rather than reserved at concurrent acceptance. Decline/expiry/cancel and tax evidence need complete workflows.",
+      "implementation": [
+        "Resolve seller and venture explicitly and keep draft/revision/line projections consistent",
+        "Bind pricing, configuration, artwork and tax/freight assumptions to the issued revision",
+        "Add decline/expiry/revision flows and atomic credit/prepay commitment checks",
+        "Allow eligible sandbox checkout only with verified exact route, artwork, stock, freight and tax evidence; default to Request Quote"
+      ],
+      "completionChecks": [
+        "Two simultaneous acceptances cannot exceed a credit limit",
+        "An expired or mismatched revision cannot be accepted; changing the seller later leaves old agreements intact; unknown tax does not become a false settled charge"
+      ],
+      "dependsOn": [
+        "GAP-009",
+        "GAP-010",
+        "GAP-011",
+        "GAP-032"
+      ],
+      "research": [
+        "R11",
+        "R12",
+        "R21"
+      ],
+      "activationGates": [
+        "EXT-FINANCE",
+        "EXT-LEGAL"
+      ],
+      "plannedTests": [
+        "tests/integration/quote-agreement.test.ts",
+        "tests/e2e/quote-acceptance.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-014",
+      "title": "Unify canonical identity and source ownership",
+      "priority": "P1",
+      "milestone": "M2",
+      "modules": [
+        "catalog",
+        "supplier"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/catalog/src/index.ts",
+        "packages/supplier/src/index.ts"
+      ],
+      "observed": "A catalog identity helper requires brand, while import matching uses a separate SQL path that can match an empty brand. GTIN checks are mostly format checks; source-to-product linking and field ownership are incomplete.",
+      "implementation": [
+        "Use one verified identity resolver across imports and adapters",
+        "Separate supplier product and part IDs from canonical variant IDs",
+        "Add reviewed merge/split, curated-field ownership and provenance for every changed field"
+      ],
+      "completionChecks": [
+        "One manufacturer model across three suppliers becomes one product with three distinct private offers",
+        "Empty/ambiguous brand or mismatched color/size never auto-merges; split/merge retains source lineage"
+      ],
+      "dependsOn": [
+        "GAP-006"
+      ],
+      "research": [
+        "R01",
+        "R29"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/canonical-sources.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-015",
+      "title": "Finish streaming import mapping, review and reversible changes",
+      "priority": "P1",
+      "milestone": "M2",
+      "modules": [
+        "supplier",
+        "catalog"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/supplier/src/imports.ts",
+        "packages/supplier/src/index.ts",
+        "apps/os/components/integrations.tsx"
+      ],
+      "observed": "CSV parsing is bounded, but the whole upload is buffered; XML only accepts flat product rows. Import rollback tracks created records but not all before-images of updated records.",
+      "implementation": [
+        "Add private multipart staging, encoding checks and bounded streaming parsing",
+        "Support approved nested/namespace-aware XML selectors with inferred mapping previews",
+        "Store full row diffs, field overrides, resumable chunks and conflict-aware rollback manifests"
+      ],
+      "completionChecks": [
+        "A 10,000-variant import stages, reviews and commits without auto-publication or leaked raw data",
+        "Reject entity/DTD/depth attacks; rollback restores changed values without overwriting later human edits"
+      ],
+      "dependsOn": [
+        "GAP-004",
+        "GAP-006",
+        "GAP-014"
+      ],
+      "research": [
+        "R14",
+        "R15",
+        "R16",
+        "R17"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/import-recovery.test.ts",
+        "tests/e2e/xml-mapping.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-016",
+      "title": "Create licensed media and publication projections",
+      "priority": "P1",
+      "milestone": "M2",
+      "modules": [
+        "catalog",
+        "supplier",
+        "creative",
+        "commerce"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/catalog/src/index.ts",
+        "packages/providers/src/index.ts",
+        "scripts/seed-illustration.ts"
+      ],
+      "observed": "Cap imagery is corrected, but other synthetic families use generic category drawings; imported external image URLs are not an approved local derivative pipeline.",
+      "implementation": [
+        "Ingest permitted media to private originals and approved public derivatives",
+        "Bind exact color, view, source rights and expiry to each image",
+        "Compute publication eligibility independently of sync success and preserve the prior safe revision"
+      ],
+      "completionChecks": [
+        "A nontechnical administrator can map and publish a licensed exact-variant image",
+        "Unlicensed, wrong-color or stale media cannot silently become the public image; failed sync retains the last safe publication"
+      ],
+      "dependsOn": [
+        "GAP-003",
+        "GAP-014"
+      ],
+      "research": [
+        "R01",
+        "R15",
+        "R25"
+      ],
+      "activationGates": [
+        "EXT-LEGAL"
+      ],
+      "plannedTests": [
+        "tests/integration/media-publication.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-017",
+      "title": "Join configuration families, options and actual imprint zones",
+      "priority": "P1",
+      "milestone": "M2",
+      "modules": [
+        "configuration",
+        "catalog",
+        "creative",
+        "commerce"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/configuration/src/index.ts",
+        "apps/os/components/studio.tsx",
+        "apps/shop/components/storefront.tsx"
+      ],
+      "observed": "Rules and zones can be saved, but zones are not bound to exact variant/method/view validation; configure can accept a supplied template rather than resolving the authoritative product assignment.",
+      "implementation": [
+        "Persist typed option groups, values, method/variant compatibility and versioned zones",
+        "Resolve effective templates server-side and share deterministic guidance with the UI",
+        "Validate lead times, MOQ and dimensions against the same immutable configuration"
+      ],
+      "completionChecks": [
+        "Direct API calls cannot select a different template to bypass the assigned constraints",
+        "Invalid method/location/size combinations are visibly disabled and rejected; 100-product assignments have preview and safe revert"
+      ],
+      "dependsOn": [
+        "GAP-006",
+        "GAP-014"
+      ],
+      "research": [
+        "R01",
+        "R19",
+        "R20"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/configuration-authority.test.ts",
+        "tests/e2e/configuration-matrix.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-018",
+      "title": "Implement audited method-specific production review",
+      "priority": "P0",
+      "milestone": "M3",
+      "modules": [
+        "creative",
+        "configuration",
+        "orders",
+        "procurement"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/creative/src/index.ts",
+        "packages/orders/src/index.ts",
+        "apps/os/components/studio.tsx"
+      ],
+      "observed": "preflightDesign always returns BLOCKED and release_production_asset always fails; decorated production cannot complete through supported user commands.",
+      "partialProgress": [
+        {
+          "date": "2026-11-06",
+          "timezone": "America/Chicago",
+          "change": "Preliminary preflight now reports PASS, FAIL and UNVERIFIED, preserves measured raster resolution and leaves producer DPI/bleed requirements null without an authoritative profile.",
+          "verification": "143 automated local tests and nine local browser journeys pass; four new domain cases and persisted forged-profile rejection are included.",
+          "remaining": "Versioned provider profiles, exact product/configuration binding, qualified technical review and validated production output remain open. Production readiness stays BLOCKED; no deployment occurred."
+        }
+      ],
+      "implementation": [
+        "Add versioned provider/method profiles and checks against actual files and zones",
+        "Add an authorized manual prepress review of a scanned, immutable production derivative with evidence and reason",
+        "Preserve separate visual approval and production release; automated digitization/3D/PDF-X automation remain deferred where specified"
+      ],
+      "completionChecks": [
+        "A synthetic reviewed print derivative completes the decorated order route through public application commands",
+        "Missing fonts/profile/bleed/stitch evidence or changed variant/file blocks production and supplier dispatch; no client boolean can forge a pass"
+      ],
+      "dependsOn": [
+        "GAP-003",
+        "GAP-009",
+        "GAP-017"
+      ],
+      "research": [
+        "R14",
+        "R18",
+        "R19",
+        "R20"
+      ],
+      "activationGates": [
+        "EXT-LEGAL",
+        "EXT-SUPPLIER"
+      ],
+      "plannedTests": [
+        "tests/integration/prepress-release.test.ts",
+        "tests/e2e/decorated-order.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-019",
+      "title": "Finish shared editor, brand-kit and batch rendering behavior",
+      "priority": "P1",
+      "milestone": "M3",
+      "modules": [
+        "creative",
+        "catalog",
+        "configuration"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/creative/src/index.ts",
+        "apps/shop/components/designer.tsx",
+        "apps/os/components/studio.tsx"
+      ],
+      "observed": "Designer, account proof and worker renderer use different placement geometry; batch renders use a generic rounded rectangle rather than the product image. Brand-kit and layer editing are limited.",
+      "implementation": [
+        "Share one versioned scene/placement model and renderer",
+        "Support the active 2D layer, brand-kit, version history and batch review operations",
+        "Add queue progress, partial failures, cancellation and exact product/variant derivatives"
+      ],
+      "completionChecks": [
+        "Designer, saved proof and batch output place the same artwork in the same product zone",
+        "500 queued jobs retain exact variant/version identity and expose failures without declaring production readiness"
+      ],
+      "dependsOn": [
+        "GAP-003",
+        "GAP-009",
+        "GAP-016",
+        "GAP-017"
+      ],
+      "research": [
+        "R14",
+        "R19",
+        "R20"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/render-consistency.test.ts",
+        "tests/e2e/creative-operations.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-020",
+      "title": "Implement the provider SDK and reviewed PromoStandards profiles",
+      "priority": "P1",
+      "milestone": "M3",
+      "modules": [
+        "supplier",
+        "procurement",
+        "fulfillment",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/providers/src/index.ts",
+        "packages/providers/profiles/promostandards-product-v1.wsdl",
+        "packages/supplier/src/index.ts"
+      ],
+      "observed": "Only one bundled Product Data v1 fixture adapter exists. Admin connection tests are simulated; media, inventory, pricing, PO, status, ASN and invoice native operations are not implemented and wired.",
+      "partialProgress": [
+        {
+          "date": "2026-11-06",
+          "timezone": "America/Chicago",
+          "change": "A bounded external test verified native PCNA staging Product Data 2.0.0 and Media Content 1.1.0 using issued staging credentials. Returned blank-photo and raster-template assets loaded from the supplier CDN. SinaLite public sandbox catalog/detail reads also succeeded without authentication.",
+          "verification": "Native WSDL/XSD checks, actual staging response evidence, guarded request construction and artifact credential scan; account-specific results remain private.",
+          "remaining": "The TypeScript SDK, Integration Center diagnostics and worker are not wired to these services. Durable secrets/assets, exact source mapping, additional capabilities and full acceptance remain open. No production API or order was used."
+        }
+      ],
+      "implementation": [
+        "Implement the shared adapter SDK with typed errors, pagination, rate limits and independent operations",
+        "Register approved supplier WSDL/XSD profiles and exact service versions",
+        "Join product, part, location, FOB, charge and currency evidence without assuming universal schemas"
+      ],
+      "completionChecks": [
+        "Each supported operation passes its own positive/negative fixture contract and preserves redacted correlation evidence",
+        "An authorized read-only sandbox test is recorded before its capability can become SANDBOX_VERIFIED; writes require separate authorization"
+      ],
+      "dependsOn": [
+        "GAP-004",
+        "GAP-005",
+        "GAP-006"
+      ],
+      "research": [
+        "R01",
+        "R15",
+        "R16"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER"
+      ],
+      "plannedTests": [
+        "tests/contracts/promostandards-services.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-021",
+      "title": "Complete the nontechnical integration setup wizard",
+      "priority": "P1",
+      "milestone": "M3",
+      "modules": [
+        "supplier",
+        "catalog",
+        "estimating"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "apps/os/components/integrations.tsx",
+        "packages/supplier/src/index.ts"
+      ],
+      "observed": "Provider cards, mapping, price policy and mock diagnostics exist, but supported API setup is incomplete without per-service profiles, structured credential forms and end-to-end sample checks.",
+      "implementation": [
+        "Deliver all nine controlling wizard steps with provider-specific fields",
+        "Show per-operation readiness, mapping, effective prices, freshness and safe remediation",
+        "Configure known supported supplier accounts without source edits; unsupported proprietary protocols remain explicit adapter work"
+      ],
+      "completionChecks": [
+        "A fresh administrator configures a supported supplier, rotates a secret, maps variants, changes pricing, previews and publishes eligible products without source edits",
+        "Wrong auth, unsupported schema, rate limit or stale cost produces a specific next action and no false success"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-010",
+        "GAP-015",
+        "GAP-020"
+      ],
+      "research": [
+        "R01",
+        "R02",
+        "R03",
+        "R13"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER",
+        "EXT-ASI"
+      ],
+      "plannedTests": [
+        "tests/e2e/integration-onboarding.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-022",
+      "title": "Honor independent synchronization and freshness policies",
+      "priority": "P1",
+      "milestone": "M3",
+      "modules": [
+        "supplier",
+        "catalog",
+        "analytics",
+        "workflow"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "apps/worker/src/tick.ts",
+        "packages/supplier/src/index.ts",
+        "packages/analytics/src/index.ts"
+      ],
+      "observed": "The UI stores separate schedules, but the worker advances only a catalog interval and sync_now records a synthetic result without updating service-specific evidence.",
+      "implementation": [
+        "Schedule product/media, price, inventory and status jobs independently",
+        "Add cursors, checkpoints, contract-aware throttles and freshness windows",
+        "Keep merge reviews and publication independent of upstream refresh"
+      ],
+      "completionChecks": [
+        "Advancing a test clock triggers only the due service and does not overrun rate limits",
+        "A failed inventory/price refresh marks only affected evidence stale while preserving approved public data"
+      ],
+      "dependsOn": [
+        "GAP-007",
+        "GAP-014",
+        "GAP-020"
+      ],
+      "research": [
+        "R01",
+        "R11"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER"
+      ],
+      "plannedTests": [
+        "tests/integration/service-scheduler.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-023",
+      "title": "Complete licensed ASI SmartLink and separate ESP interfaces",
+      "priority": "P1",
+      "milestone": "M3",
+      "modules": [
+        "supplier",
+        "catalog"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/providers/src/index.ts",
+        "packages/supplier/src/index.ts",
+        "apps/os/components/integrations.tsx"
+      ],
+      "observed": "ASI currently exposes activation requirements and BLOCKED capabilities; no account-authorized SmartLink client exists.",
+      "implementation": [
+        "Obtain entitled account documentation and explicit catalog/image terms",
+        "Build the authorized search/detail adapter and its mapping, rate and retention rules",
+        "Keep ESP Updates and Connect distinct, with only approved requested operations available"
+      ],
+      "completionChecks": [
+        "Without entitlement, the interface stays accurately blocked and never sends an ESP+ UI password",
+        "With authorized sandbox credentials and schema, independently verify supported search/detail operations and licensed projection"
+      ],
+      "dependsOn": [
+        "GAP-020",
+        "GAP-021"
+      ],
+      "research": [
+        "R02",
+        "R03"
+      ],
+      "activationGates": [
+        "EXT-ASI",
+        "EXT-LEGAL"
+      ],
+      "plannedTests": [
+        "tests/contracts/asi-smartlink.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-024",
+      "title": "Finish multi-source MIS routing and operation execution",
+      "priority": "P1",
+      "milestone": "M4",
+      "modules": [
+        "orders",
+        "configuration",
+        "creative",
+        "procurement",
+        "fulfillment"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/orders/src/index.ts",
+        "packages/production/src/records.ts",
+        "apps/os/components/actions.tsx"
+      ],
+      "observed": "Current allocation creates one job per order line and a fixed operation list. Operations, resources, production events and QC are not a complete component/decorator route.",
+      "implementation": [
+        "Create versioned fulfillment demands, source routes, materials and decorator operations",
+        "Enforce readiness, dependency, time, quantity, waste and QC transitions",
+        "Add blocked/rework/cancellation recovery without rewriting the agreement"
+      ],
+      "completionChecks": [
+        "An embroidered cap, commercial print item and event kit create distinct source/decorator/kit operations and jobs",
+        "Skipping required operations or QC, using stale approval, or changing a locked route is rejected and remediable"
+      ],
+      "dependsOn": [
+        "GAP-012",
+        "GAP-013",
+        "GAP-017",
+        "GAP-018"
+      ],
+      "research": [
+        "R18",
+        "R19",
+        "R20"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/mis-routing.test.ts",
+        "tests/e2e/job-operations.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-025",
+      "title": "Authorize and reconcile POs at purchase-requirement level",
+      "priority": "P1",
+      "milestone": "M4",
+      "modules": [
+        "procurement",
+        "orders",
+        "supplier"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/procurement/src/index.ts",
+        "packages/orders/src/index.ts"
+      ],
+      "observed": "One active PO per job prevents a blank supplier and decorator PO for the same job; approval authorizationHash is recorded but not verified on submission. External submission is mock only.",
+      "implementation": [
+        "Source and purchase by requirement/operation, including blank and decorator suppliers",
+        "Bind approval to exact payload, source, cost, route and artwork",
+        "Persist provider write intent before sending; reconcile UNKNOWN_OUTCOME before any retry"
+      ],
+      "completionChecks": [
+        "One job can have independently approved blank and decorator POs without duplicate requirements",
+        "Mutating an approved payload invalidates authorization; timeout/crash/replay creates at most one simulated external purchase"
+      ],
+      "dependsOn": [
+        "GAP-004",
+        "GAP-020",
+        "GAP-024"
+      ],
+      "research": [
+        "R01",
+        "R11",
+        "R18"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER",
+        "EXT-FINANCE"
+      ],
+      "plannedTests": [
+        "tests/integration/purchase-authorization.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-026",
+      "title": "Complete shipments, tracking, returns and remakes",
+      "priority": "P1",
+      "milestone": "M4",
+      "modules": [
+        "fulfillment",
+        "orders",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/fulfillment/src/index.ts",
+        "apps/shop/components/account.tsx"
+      ],
+      "observed": "Partial shipment projection works, but returns/remakes only create requests and do not validate the full line/quantity lifecycle. Carrier labels and supplier events remain blocked/simulated.",
+      "implementation": [
+        "Add line-level return/remake authorization, quantities, receipt/QC and resolution",
+        "Normalize monotonic provider tracking with late-event reconciliation",
+        "Separate supplier tracking, own labels, cancellations and financial/budget adjustments"
+      ],
+      "completionChecks": [
+        "Split shipments and returns conserve quantities across allocations",
+        "Another order line cannot be returned; duplicate/late events and label retries create no extra shipment, purchase or refund"
+      ],
+      "dependsOn": [
+        "GAP-024",
+        "GAP-025"
+      ],
+      "research": [
+        "R21",
+        "R24"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER",
+        "EXT-FINANCE"
+      ],
+      "plannedTests": [
+        "tests/integration/fulfillment-lifecycle.test.ts",
+        "tests/e2e/returns-remakes.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-027",
+      "title": "Reconcile finance references and complete direct-profit closeout",
+      "priority": "P1",
+      "milestone": "M4",
+      "modules": [
+        "finance",
+        "estimating",
+        "sales",
+        "fulfillment",
+        "today"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/finance/src/index.ts",
+        "packages/pricing/src/index.ts"
+      ],
+      "observed": "References are mock-only; partial refunds, adjustments and reconciliation exceptions are incomplete. Actual-cost fallback keys can collapse distinct identical costs; closeout accepts manually supplied owner hours.",
+      "implementation": [
+        "Use explicit source document/line identities and correction entries",
+        "Reconcile authorized/settled/failed/refunded provider amounts and currencies without treating OS as a ledger",
+        "Close against complete actual-cost evidence and linked owner time, with unresolved discrepancies visible"
+      ],
+      "completionChecks": [
+        "Distinct equal-value costs remain distinct while a replayed source document remains single",
+        "Partial refund, credit, canceled PO and remake reconcile without double counting revenue, tax or direct cost; GL/payroll stay Coming Soon"
+      ],
+      "dependsOn": [
+        "GAP-010",
+        "GAP-013",
+        "GAP-026"
+      ],
+      "research": [
+        "R12",
+        "R21",
+        "R22",
+        "R23"
+      ],
+      "activationGates": [
+        "EXT-FINANCE",
+        "EXT-LEGAL"
+      ],
+      "plannedTests": [
+        "tests/integration/finance-closeout.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-028",
+      "title": "Complete CRM identity, relationships and follow-through",
+      "priority": "P1",
+      "milestone": "M4",
+      "modules": [
+        "crm",
+        "sales",
+        "marketing"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/crm/src/index.ts",
+        "apps/os/components/workspace.tsx"
+      ],
+      "observed": "Contact duplicate detection scans only 1,000 rows and is not a unique transactional key; account relationships and follow-ups have limited lifecycle/UI linkage.",
+      "implementation": [
+        "Constrain normalized identities and support reviewed merge without losing history/consent",
+        "Add account/contact roles, activity timeline and owned follow-up state transitions",
+        "Link lead, RFQ, quote and order records while keeping marketing permission separate"
+      ],
+      "completionChecks": [
+        "Concurrent duplicate creation cannot split the same scoped contact",
+        "Import/merge preserves provenance and opt-out; a follow-up opens its linked customer/quote and can be completed or rescheduled"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-006",
+        "GAP-013"
+      ],
+      "research": [
+        "R10",
+        "R11",
+        "R26"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/crm-lifecycle.test.ts",
+        "tests/e2e/crm-pipeline.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-029",
+      "title": "Complete content revisions, audience rights and suppression",
+      "priority": "P1",
+      "milestone": "M4",
+      "modules": [
+        "marketing",
+        "crm",
+        "workflow"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/marketing/src/index.ts",
+        "apps/os/components/actions.tsx"
+      ],
+      "observed": "Marketing publishes a local preview only. Content editing/reapproval, segment logic, unsubscribe/suppression and durable attribution are incomplete; regex content checking is not a future HTML sanitization pipeline.",
+      "implementation": [
+        "Add immutable content revisions and approval invalidation on edits",
+        "Model consent/withdrawal, suppression and recipient eligibility at send time",
+        "Keep test sending blocked and implement a provider-neutral approved communication interface",
+        "Add approved content-revision publication to the private preview CMS with sanitized structured content"
+      ],
+      "completionChecks": [
+        "An edited approved campaign cannot publish its old approval; opted-out contacts are always excluded",
+        "Test accounts produce no outbound mail; draft, review, rejection, scheduled preview and attribution are usable"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-007",
+        "GAP-028"
+      ],
+      "research": [
+        "R14",
+        "R26"
+      ],
+      "activationGates": [
+        "EXT-COMMS",
+        "EXT-LEGAL"
+      ],
+      "plannedTests": [
+        "tests/integration/marketing-consent.test.ts",
+        "tests/e2e/campaign-review.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-030",
+      "title": "Calculate whole-dataset KPIs and honest exports",
+      "priority": "P1",
+      "milestone": "M5",
+      "modules": [
+        "analytics",
+        "today",
+        "finance",
+        "supplier",
+        "crm"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/analytics/src/index.ts",
+        "packages/today/src/index.ts"
+      ],
+      "observed": "Reports sum at most 1,000 fetched rows; Today also limits records without a whole-dataset aggregate. Saved report columns are not a complete scoped report builder.",
+      "implementation": [
+        "Use indexed scoped SQL aggregates with explicit periods, currency and metric definitions",
+        "Build drill-down reports, waiting/SLA queues and data-quality remediation",
+        "Use one hardened paged/streamed export path and saved view schema"
+      ],
+      "completionChecks": [
+        "Adding the 1,001st matching record changes the correct total and drill-down count",
+        "CSV/export privacy and formula controls match the displayed scope; owner-time and profit metrics reconcile to authoritative records"
+      ],
+      "dependsOn": [
+        "GAP-022",
+        "GAP-024",
+        "GAP-027",
+        "GAP-028",
+        "GAP-033"
+      ],
+      "research": [
+        "R12",
+        "R17"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/report-aggregation.test.ts",
+        "tests/e2e/reports-dashboard.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-031",
+      "title": "Finish versioned automation, approval and replay UX",
+      "priority": "P1",
+      "milestone": "M5",
+      "modules": [
+        "workflow",
+        "today",
+        "marketing",
+        "supplier",
+        "sales"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/workflows/src/index.ts",
+        "packages/workflows/src/rules.ts",
+        "apps/worker/src/tick.ts",
+        "apps/os/components/actions.tsx"
+      ],
+      "observed": "Typed AST and local safe effects exist, but real event wiring is incomplete, definitions are stored in automation_runs, and dependencies/maxDepth are not a complete runtime execution contract.",
+      "implementation": [
+        "Add immutable rule revisions, effective dates, fixtures and traceable execution context",
+        "Enforce cycles, depth, throttles, human approvals and bounded escalation",
+        "Add operator simulation, disable, inspect, retry and dead-letter recovery"
+      ],
+      "completionChecks": [
+        "Publishing requires the exact tested definition and replay does not duplicate an effect",
+        "A real missed-supplier-date or approved-proof event produces the intended safe task/exception and cannot authorize spend or external sends"
+      ],
+      "dependsOn": [
+        "GAP-007",
+        "GAP-024",
+        "GAP-027",
+        "GAP-029"
+      ],
+      "research": [
+        "R11",
+        "R21",
+        "R22"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/automation-runtime.test.ts",
+        "tests/e2e/automation-recovery.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-032",
+      "title": "Complete governance and legal seller assignments",
+      "priority": "P1",
+      "milestone": "M2",
+      "modules": [
+        "foundation",
+        "sales",
+        "stores"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/foundation/src/index.ts",
+        "packages/server/src/auth.ts",
+        "packages/contracts/src/index.ts"
+      ],
+      "observed": "Role editing and legal entities exist, but invitations/revocation, venture assignments, effective grants and evidence-backed module activation are incomplete.",
+      "implementation": [
+        "Add scoped membership lifecycle and explicit seller/venture/channel assignments",
+        "Keep owner recovery and last-owner protection",
+        "Validate module enablement against accepted capabilities and leave future actions denied"
+      ],
+      "completionChecks": [
+        "Changing a future seller assignment leaves issued agreements unchanged",
+        "Revoked membership cannot act; no module flag activates unimplemented transactions or bypasses acceptance gates"
+      ],
+      "dependsOn": [
+        "GAP-005",
+        "GAP-006"
+      ],
+      "research": [
+        "R10",
+        "R28"
+      ],
+      "activationGates": [
+        "EXT-LEGAL",
+        "EXT-GIT"
+      ],
+      "plannedTests": [
+        "tests/integration/governance.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-033",
+      "title": "Replace capped snapshots with paginated query APIs",
+      "priority": "P1",
+      "milestone": "M2",
+      "modules": [
+        "catalog",
+        "commerce",
+        "analytics",
+        "foundation"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/kernel/src/index.ts",
+        "packages/server/src/index.ts",
+        "apps/os/components/workspace.tsx",
+        "apps/shop/components/storefront.tsx"
+      ],
+      "observed": "Server list limits are 200/1,000 while both interfaces paginate/filter already-fetched data. The storefront cannot search a 100k-variant catalog reliably.",
+      "implementation": [
+        "Add cursor-based scoped listing/search/facets with whitelisted sort/filter fields",
+        "Index canonical product, variant, source, date and status keys",
+        "Persist shareable customer filters and stable product routing; handle retired/changed product references explicitly"
+      ],
+      "completionChecks": [
+        "Search finds a product beyond the first 1,000 variants with stable next/previous cursors",
+        "Filters survive URL reload and no public search document leaks private source data"
+      ],
+      "dependsOn": [
+        "GAP-006",
+        "GAP-014"
+      ],
+      "research": [
+        "R10",
+        "R11"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/integration/query-pagination.test.ts",
+        "tests/e2e/catalog-search.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-034",
+      "title": "Close security, confidentiality and migration gates",
+      "priority": "P0",
+      "milestone": "M6",
+      "modules": [
+        "foundation",
+        "supplier",
+        "creative",
+        "commerce",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "tests/security/isolation.test.ts",
+        "database/migrations/001_initial.sql",
+        "packages/server/src/index.ts",
+        ".github/workflows/ci.yml"
+      ],
+      "observed": "RLS/immutable-record tests exist, but all-resource role coverage, public-surface leak checks and SCA/SAST/secret scanning are not established by the 139-test baseline.",
+      "implementation": [
+        "Add command/resource/column confidentiality tests across APIs, HTML, SEO, images, logs, CSV and generated documents",
+        "Harden webhook ingress, uploads and endpoint aliases",
+        "Add dependency, static, secret and migration checks with reviewed exceptions"
+      ],
+      "completionChecks": [
+        "Every critical command has unauthorized, cross-scope, stale revision, duplicate and rollback tests",
+        "No unwaived critical/high security finding; staging runs with the actual restricted identities and no production credentials"
+      ],
+      "dependsOn": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-004",
+        "GAP-005",
+        "GAP-007",
+        "GAP-013",
+        "GAP-023",
+        "GAP-025",
+        "GAP-026",
+        "GAP-029",
+        "GAP-033"
+      ],
+      "research": [
+        "R10",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R28"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/security/public-surfaces.test.ts",
+        "tests/security/command-matrix.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-035",
+      "title": "Make observability and recovery operational",
+      "priority": "P0",
+      "milestone": "M1",
+      "modules": [
+        "foundation",
+        "analytics",
+        "workflow",
+        "supplier"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/kernel/src/backup.ts",
+        "packages/kernel/src/index.ts",
+        "infra/cloudflare/runtime.mjs",
+        "apps/worker/src/tick.ts"
+      ],
+      "observed": "A local synthetic database restore passed, but combined hosted database/object/vault restore, actionable alerts, incident runbooks and durable diagnostics remain unverified.",
+      "implementation": [
+        "Propagate correlation IDs and redacted typed failure causes",
+        "Monitor freshness, queue leases, ambiguous POs, failed scans and reconciliation",
+        "Exercise isolated database/object/secret restoration and a safe preview rollback"
+      ],
+      "completionChecks": [
+        "A fault can be traced from browser command to transaction, worker and provider fixture",
+        "Restore into a separate development target verifies IDs, hashes, scopes, object bytes and role access within documented recovery objectives"
+      ],
+      "dependsOn": [
+        "GAP-002",
+        "GAP-003",
+        "GAP-007"
+      ],
+      "research": [
+        "R04",
+        "R05",
+        "R09",
+        "R13"
+      ],
+      "activationGates": [
+        "EXT-STORAGE",
+        "EXT-DEPLOY"
+      ],
+      "plannedTests": [
+        "tests/integration/combined-restore.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-036",
+      "title": "Implement supported POD, shipping and accounting adapters",
+      "priority": "P1",
+      "milestone": "M4",
+      "modules": [
+        "supplier",
+        "fulfillment",
+        "finance",
+        "procurement",
+        "catalog"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "packages/providers/src/index.ts",
+        "packages/finance/src/index.ts",
+        "packages/fulfillment/src/index.ts"
+      ],
+      "observed": "Provider registry entries currently expose simulators or activation blocks rather than complete selected-provider clients.",
+      "implementation": [
+        "Implement versioned provider-neutral contracts and selected reviewed adapter profiles",
+        "Add OAuth/refresh, signatures, pagination, recovery and sandbox-specific routing as applicable",
+        "Keep quote-only/manual fallback for unsupported or disconnected services",
+        "Resolve callback tenant/connection from registered authority, never the demo tenant or untrusted payload; keep administrative Access protection separate"
+      ],
+      "completionChecks": [
+        "Mocks cover the exact supported operations and negative cases without external effects",
+        "Authorized sandbox tests verify each operation separately; disconnected services never show Paid, label purchased or order transmitted"
+      ],
+      "dependsOn": [
+        "GAP-020"
+      ],
+      "research": [
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER",
+        "EXT-FINANCE"
+      ],
+      "plannedTests": [
+        "tests/contracts/business-adapters.test.ts"
+      ]
+    },
+    {
+      "id": "GAP-037",
+      "title": "Deliver recoverable GitHub source and actual CI evidence",
+      "priority": "P0",
+      "milestone": "M0",
+      "modules": [
+        "foundation"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "README.md",
+        ".github/workflows/ci.yml",
+        "docs/DECISIONS.md"
+      ],
+      "observed": "The selected GitHub repository is public and has only its initial main branch; no implementation workflow runs exist. The working build/greenfield-v1 branch is local.",
+      "implementation": [
+        "Prepare a privacy-reviewed branch/PR with no credentials or private operational files",
+        "Resolve repository confidentiality before publishing the supplied handoff",
+        "Execute pinned CI checks and retain commit-specific artifacts outside the ephemeral preview"
+      ],
+      "completionChecks": [
+        "The implementation commit is reachable in the authorized repository and a real CI run is linked",
+        "A clean checkout reproduces both apps and tests; branch rules and deployment permissions preserve human launch authorization"
+      ],
+      "dependsOn": [
+        "GAP-001"
+      ],
+      "research": [
+        "R13",
+        "R30"
+      ],
+      "activationGates": [
+        "EXT-GIT"
+      ],
+      "plannedTests": []
+    },
+    {
+      "id": "GAP-038",
+      "title": "Finish all contracted operator screens and accessibility states",
+      "priority": "P1",
+      "milestone": "M6",
+      "modules": [
+        "foundation",
+        "today",
+        "crm",
+        "catalog",
+        "supplier",
+        "configuration",
+        "creative",
+        "estimating",
+        "commerce",
+        "stores",
+        "byob",
+        "sales",
+        "orders",
+        "procurement",
+        "fulfillment",
+        "finance",
+        "marketing",
+        "workflow",
+        "analytics"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "apps/os/components/workspace.tsx",
+        "apps/os/components/actions.tsx",
+        "apps/os/components/studio.tsx",
+        "apps/os/components/integrations.tsx",
+        "apps/shop/components/storefront.tsx"
+      ],
+      "observed": "A shared records UI is useful, but it does not prove each of the 86 required screens and named workflows is complete or usable for its intended role.",
+      "implementation": [
+        "Build task-specific typed editors and detail views from shared authoritative services",
+        "Finish loading/empty/error/denied/stale/conflict states, server pagination and saved views",
+        "Review keyboard, focus, labels, touch sizing and mobile read/edit paths for each screen"
+      ],
+      "completionChecks": [
+        "Every screen inventory entry has a concrete component/route and browser assertion",
+        "Owner, sales, integration admin, operations, finance, marketing and customer journeys are independently usable without JSON editing"
+      ],
+      "dependsOn": [
+        "GAP-008",
+        "GAP-019",
+        "GAP-021",
+        "GAP-024",
+        "GAP-027",
+        "GAP-029",
+        "GAP-030",
+        "GAP-031",
+        "GAP-032"
+      ],
+      "research": [
+        "R27"
+      ],
+      "activationGates": [],
+      "plannedTests": [
+        "tests/e2e/module-screens.spec.ts",
+        "tests/e2e/role-accessibility.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-039",
+      "title": "Execute all cross-module, inherited and scale acceptance",
+      "priority": "P1",
+      "milestone": "M6",
+      "modules": [
+        "foundation",
+        "analytics",
+        "commerce",
+        "creative",
+        "supplier",
+        "orders",
+        "stores",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "docs/ACCEPTANCE_EVIDENCE.md",
+        "tests/e2e/os.spec.ts",
+        "tests/e2e/shop.spec.ts"
+      ],
+      "observed": "139 tests and nine earlier browser journeys are useful evidence, but do not establish all A01-A40, T01-T30 or inherited E01-E25 assertions.",
+      "implementation": [
+        "Create deterministic full-context acceptance fixtures and a per-assertion evidence runner",
+        "Run migration/security/domain/browser/recovery suites and measured load",
+        "Preserve PASS/FAIL/BLOCKED_EXTERNAL/COMING_SOON separately with exact commits and commands"
+      ],
+      "completionChecks": [
+        "All 95 scenario rows have their full assertions and observed results, not just a matching test filename",
+        "Measure 100k-variant search, 100 bulk updates and 500 queued renders; an unmet budget produces a failure and remediation"
+      ],
+      "dependsOn": [
+        "GAP-018",
+        "GAP-023",
+        "GAP-024",
+        "GAP-025",
+        "GAP-026",
+        "GAP-027",
+        "GAP-031",
+        "GAP-033",
+        "GAP-034",
+        "GAP-035",
+        "GAP-036",
+        "GAP-038"
+      ],
+      "research": [
+        "R27"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER",
+        "EXT-ASI",
+        "EXT-FINANCE"
+      ],
+      "plannedTests": [
+        "tests/acceptance/v1-journeys.spec.ts",
+        "tests/performance/v1-load.spec.ts"
+      ]
+    },
+    {
+      "id": "GAP-040",
+      "title": "Consolidate owner acceptance and explicit activation",
+      "priority": "P0",
+      "milestone": "M7",
+      "modules": [
+        "future",
+        "foundation",
+        "commerce",
+        "supplier",
+        "finance"
+      ],
+      "status": "OPEN",
+      "evidenceKind": "SOURCE_REVIEW",
+      "code": [
+        "docs/IMPLEMENTATION_CHECKLIST.md",
+        "docs/OPEN_DECISIONS.md",
+        "packages/contracts/src/modules.json"
+      ],
+      "observed": "Full active V1 acceptance remains open. Working previews do not authorize live suppliers, money, communications, domains or future modules.",
+      "implementation": [
+        "Demonstrate apparel, commercial print and mixed-event-kit journeys with measured operator effort",
+        "Publish separate implementation, simulation, verified integration, failure and activation reports",
+        "Produce a reviewed staging/launch/rollback change set and keep all future features disabled"
+      ],
+      "completionChecks": [
+        "A consolidated owner review sees complete durable workflows and remaining external blockers",
+        "Production readiness requires the exact approved deployment and legal/financial/licensing evidence; no production mutation is implied"
+      ],
+      "dependsOn": [
+        "GAP-037",
+        "GAP-039"
+      ],
+      "research": [
+        "R02",
+        "R03",
+        "R09",
+        "R13",
+        "R26",
+        "R27",
+        "R28"
+      ],
+      "activationGates": [
+        "EXT-SUPPLIER",
+        "EXT-ASI",
+        "EXT-FINANCE",
+        "EXT-COMMS",
+        "EXT-LEGAL",
+        "EXT-DEPLOY"
+      ],
+      "plannedTests": [
+        "tests/acceptance/owner-journey.spec.ts"
+      ]
+    }
+  ],
+  "activationGates": [
+    {
+      "id": "EXT-DB-CA",
+      "needed": "Trusted database CA certificate for approved project mtihnarlkprmyahbxlrl; credentials remain in secret storage.",
+      "when": "Before hosted database connectivity/persistence activation.",
+      "independentWork": "Implement and test the storage adapter and migration/health/restore logic locally."
+    },
+    {
+      "id": "EXT-STORAGE",
+      "needed": "Approval for a dedicated private development object store, scoped managed-vault permissions and any incremental paid resources.",
+      "when": "After adapters, ACL tests, migration/rollback and a concrete resource/cost diff are reviewable.",
+      "independentWork": "Use local test adapters and fixtures; accept no live credentials."
+    },
+    {
+      "id": "EXT-SUPPLIER",
+      "needed": "Supplier API credentials, approved service/version documentation and explicit permitted sandbox operations.",
+      "when": "Before authenticated vendor verification; production PO writes remain separately gated.",
+      "independentWork": "Implement all supported-operation fixture contracts, UI setup and negative paths."
+    },
+    {
+      "id": "EXT-ASI",
+      "needed": "SmartLink API entitlement, official account schemas, test credentials and catalog/image redistribution terms.",
+      "when": "Before implementing account-specific wire semantics or claiming an ASI operation verified.",
+      "independentWork": "Complete provider interfaces, setup states, fixture harness and explicit blocked/fallback paths."
+    },
+    {
+      "id": "EXT-FINANCE",
+      "needed": "Approved payment/accounting/carrier sandbox access and financial rules for credit, tax, refunds, postage and supplier spend.",
+      "when": "Before authenticated financial operations or any monetary effect.",
+      "independentWork": "Implement synthetic references, exact arithmetic, reconciliation and all approval/negative tests."
+    },
+    {
+      "id": "EXT-COMMS",
+      "needed": "Explicit communication authorization, approved sender/provider and jurisdiction-appropriate audience policy.",
+      "when": "Before any external customer message or campaign send.",
+      "independentWork": "Complete drafts, previews, consent/suppression and simulated event tests."
+    },
+    {
+      "id": "EXT-LEGAL",
+      "needed": "Seller identity, tax/terms/returns and catalog, artwork, font and preflight-tool rights reviewed for the intended market.",
+      "when": "Before legally binding or licensed production activation.",
+      "independentWork": "Use the handoff defaults and synthetic documents; preserve approval evidence fields and blocks."
+    },
+    {
+      "id": "EXT-GIT",
+      "needed": "Account/repository privacy decision before publishing the supplied handoff or changing repository visibility; the selected repository is currently public.",
+      "when": "Before source publication or repository administration changes.",
+      "independentWork": "Prepare a sanitized reviewable branch, scan secrets, run local CI-equivalent checks and preserve local commits."
+    },
+    {
+      "id": "EXT-DEPLOY",
+      "needed": "Approval for new paid infrastructure/account permissions or a specific staging/production deployment and domain change.",
+      "when": "After the exact resource diff, checks and rollback plan are ready; existing production remains excluded.",
+      "independentWork": "Implement and test locally, preserve existing preview protection and prepare deployable artifacts."
+    }
+  ]
+}

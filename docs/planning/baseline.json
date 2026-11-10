@@ -1,0 +1,29 @@
+{
+  "reviewedOn": "2026-11-07",
+  "commit": "57c58603aadcac8d2258d587121be12331bed10a",
+  "branch": "build/greenfield-v1",
+  "applicationChangesThisTurn": false,
+  "remoteInfrastructureChangesThisTurn": false,
+  "baselineTests": {
+    "unitIntegrationSecurity": 139,
+    "testFiles": 27,
+    "browserJourneys": 9,
+    "evidence": "Historical recorded runs in docs/VERIFICATION_STATUS.md; not rerun for this documentation-only audit."
+  },
+  "github": {
+    "repository": "SEM-Admin/twelvespec-platform",
+    "private": false,
+    "observedBranches": [
+      "main"
+    ],
+    "mainCommit": "9ee7168d3ccf039c96c41c27046468aa0d31dc10",
+    "implementationBranchPublished": false,
+    "workflowRuns": 0,
+    "evidence": "Read-only connected GitHub repository/branches/actions metadata on 2026-11-07"
+  },
+  "liveProviderVerificationThisTurn": "NONE; public documentation only",
+  "actualNewVerification": [
+    "Three isolated pure-function reproductions in audit-reproductions.json",
+    "Source/contract inventory and plan integrity checks"
+  ]
+}
