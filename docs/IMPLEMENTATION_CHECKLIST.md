@@ -1,5 +1,7 @@
 # Visible implementation checklist
 
+Current integration: 251 backend tests and the complete 18-journey local browser suite pass. The five CMS journeys also pass after the final refresh-control review. Both builds and TypeScript pass. Original launch acceptance remains open. See [November 10 branch inventory, traceability and verification checklist](integration/2026-11-10.md).
+
 Latest supplier extension: [metered SAGE/SinaLite implementation and activation gates](supplier-api/README.md). 250 backend tests and 13 local browser journeys pass; authenticated account integrations and hosted rollout are not implied.
 
 Latest measured status: [November 9 launch readiness](LAUNCH_READINESS_2026-11-09.md) and [content-studio implementation](website-content-studio/IMPLEMENTATION.md). Backend/contract checks do not close the original 95 scenarios.
@@ -56,7 +58,8 @@ The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GA
 - [x] Implement/test owner-supplied SAGE v130101/103/104/105 contracts without making authenticated SAGE requests.
 - [x] Verify real public SinaLite sandbox catalog, options and configuration-price reads; stage three PRINT sources privately.
 - [x] Pass 250 backend checks, full 13 browser journeys, TypeScript, both optimized builds, specification and gap-plan integrity.
-- [ ] Deploy and verify the new protected preview image; enabling preview outbound networking awaits owner approval.
+- [x] Deploy owner-approved supplier source `916160b` to the existing protected preview runtime; read back image, flags and owner-only Access policies.
+- [ ] Verify authenticated hosted workflows for that image. November 10 CMS changes require a separate preview update.
 - [ ] Verify durable approved development PostgreSQL and storage before real metered accounts.
 - [ ] Obtain rotated SAGE and SinaLite API credentials through secure backend entry; confirm tariffs, limits and data rights.
 - [ ] Implement/activate native scheduled sync, licensed automatic media/template downloads, customer source-option selectors and automatic supplier costing.

@@ -1,3 +1,18 @@
+# Approved preview rollout — status checked November 10, 2026
+
+The owner approved the isolated update. Cloudflare readback confirms source `916160b` is deployed at 100% as Worker version `66612b9b-3b02-4ec0-ba6d-adcf8afa26a5`, deployment `26105980-1f90-4c61-9216-ea0f514804e1`.
+
+- Image: `registry.cloudflare.com/4ec2144c2d67567d5fed301d0db45ea8/twelvespec-preview-runtime@sha256:f3ee7d1dd3d4c665b741f6a1ed42890ef04501c001b3f10d3e876f37c10ffc08`.
+- Public sandbox reads enabled; real-account reads and hosted-database activation disabled.
+- Runtime public and version-preview routes disabled.
+- Both preview applications retain only the original owner Access policy. Interrupted-session test policies and service token were removed and policy lists verified.
+- Container image builds succeeded. Local container startup verification was blocked by the workspace disk limit before the application started; that is not an observed application startup error.
+- **Authenticated hosted application workflows for this image have not yet been verified.** Deployment metadata alone is not browser acceptance. Storage remains temporary; the new November 10 CMS interface is not part of this older image.
+
+The original reviewed proposal is retained below as deployment history. Its approval request is historical, not a new permission request.
+
+---
+
 # Proposed isolated preview update — awaiting deployment authorization
 
 Targets: existing `twelvespec-preview-runtime`, protected Storefront and Commerce OS preview Workers under the existing account. No production Worker, domain, DNS, customer database or supplier account setting is a target.

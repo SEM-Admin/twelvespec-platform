@@ -6,7 +6,7 @@ Prepared November 7, 2026, America/Chicago. Baseline: `f5cb02511022909edb396dbd7
 
 Start with the [readable review](review.html), [PDF overview](TwelveSpec_Content_Studio_Review.pdf) or [interactive editor wireframes](06-studio-wireframes.html#editor). Extract the ZIP before opening its HTML files so their local images and links resolve. The HTML includes expandable technical appendices; the PDF is the overview.
 
-**Decision requested: review the architecture, visual direction and phased scope before implementation.** This package is an audit and proposal. It does not implement a CMS, change the applications, apply migrations, publish website content, purchase services or deploy anything.
+**Historical review packet:** the owner approved the proposed direction on November 8. Current source implementation and remaining acceptance gates are tracked in [IMPLEMENTATION.md](IMPLEMENTATION.md) and the [November 10 integration checklist](../integration/2026-11-10.md). The audit findings below describe the earlier review baseline. This package is an audit and proposal. It does not implement a CMS, change the applications, apply migrations, publish website content, purchase services or deploy anything.
 
 The controlling request is preserved in [source-brief.md](source-brief.md). Its section 6 requires the audit and proposal to be reviewed before implementation/publication. The referenced visual attachment was not present in the current upload. The comparison uses the written brief; the proposed layouts remain provisional until that image is supplied and reviewed.
 

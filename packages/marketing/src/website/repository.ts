@@ -32,9 +32,10 @@ export async function publicCatalogPage(tx:Tx,identity:WebsiteIdentity,input:Inp
  if(moq>0)where.push(`nullif(${field('minimumQuantity')},'')::numeric<=${param(moq)}`);
  if(productId)where.push(`p.id::text=${param(productId)}`);
  if(storeId)where.push(`exists(select 1 from app.store_products sp where sp.product_id=p.id and sp.store_id::text=${param(storeId)} and sp.status='ACTIVE')`);
- if(collection){const c=param(collection);where.push(`exists(select 1 from app.collection_products cp join app.collections c on c.id=cp.collection_id where cp.product_id=p.id and cp.status='ACTIVE' and c.status='PUBLISHED' and (c.id::text=${c} or c.data->>'slug'=${c}))`);}
+ let collectionParam='';
+ if(collection){const c=param(collection);collectionParam=c;where.push(`exists(select 1 from app.collection_products cp join app.collections c on c.id=cp.collection_id where cp.product_id=p.id and cp.status='ACTIVE' and c.status='PUBLISHED' and (c.id::text=${c} or c.data->>'slug'=${c}))`);}
  const condition=where.join(' and ');const total=Number((await tx.query(`select count(*)::int total from app.products p where ${condition}`,values)).rows[0].total);
- const sort=input.sort==='name'?"coalesce(p.data->'publicSnapshot'->>'title',p.title),p.id":input.sort==='moq'?`nullif(${field('minimumQuantity')},'')::numeric,p.id`:'p.created_at,p.id';
+ const sort=input.sort==='name'?"coalesce(p.data->'publicSnapshot'->>'title',p.title),p.id":input.sort==='moq'?`nullif(${field('minimumQuantity')},'')::numeric,p.id`:collection?`(select min((cp.data->>'rank')::integer) from app.collection_products cp join app.collections c on c.id=cp.collection_id where cp.product_id=p.id and cp.status='ACTIVE' and (c.id::text=${collectionParam} or c.data->>'slug'=${collectionParam})),p.id`:'p.created_at,p.id';
  const rows=(await tx.query(`select p.* from app.products p where ${condition} order by ${sort} limit $${values.length+1} offset $${values.length+2}`,[...values,pageSize,(page-1)*pageSize])).rows as Row[];
  const variants=rows.length?(await tx.query("select * from app.variants where tenant_id=$1 and workspace_id=$2 and product_id=any($3::uuid[]) and status<>'ARCHIVED' order by product_id,id",[identity.tenantId,identity.workspaceId,rows.map(r=>r.id)])).rows as Row[]:[];
  const facets=(await tx.query(`select distinct ${field('category')} category,${field('brand')} brand from app.products p where p.tenant_id=$1 and p.workspace_id=$2 and p.status='PUBLISHED'`,[identity.tenantId,identity.workspaceId])).rows as {category:string;brand:string}[];
@@ -64,7 +65,7 @@ export async function resolveWebsite(tx:Tx,site:WebsiteSite,revisions:WebsiteRev
  const assets=[...new Set(references.filter(r=>r.column==='asset_id'&&r.purpose!=='CONSENT').map(r=>r.id))];
  if(assets.length){
   const rows=(await tx.query('select id,title,status,data,site_id from app.assets where tenant_id=$1 and workspace_id=$2 and id=any($3::uuid[])',[site.tenant_id,site.workspace_id,assets])).rows as Row[];
-  for(const row of rows)if(activeMedia(row,site.id))media[row.id]={url:`/api/website/media/${row.id}${preview?'?preview=1':''}`,alt:String(row.data.alt??''),width:Number(row.data.width),height:Number(row.data.height)};
+  for(const row of rows)if(activeMedia(row,site.id))media[row.id]={url:`/api/website/media/${row.id}${preview?'?preview=1&workspaceId='+site.workspace_id:''}`,alt:String(row.data.alt??''),width:Number(row.data.width),height:Number(row.data.height)};
  }
  const collections:ResolvedWebsite['collections']={};
  for(const id of new Set(references.filter(r=>r.column==='collection_id').map(r=>r.id))){const collection=await publicWebsiteCollection(tx,site,id);if(collection)collections[id]=collection;}

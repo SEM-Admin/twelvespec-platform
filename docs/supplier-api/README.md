@@ -1,6 +1,6 @@
 # SAGE and SinaLite metered supplier catalogs
 
-Status: implemented and tested locally on 2026-11-09. Hosted preview deployment and real-account activation are separate, pending actions. This extension does not establish launch readiness or close the original active V1 acceptance suite.
+Status: implemented and tested locally on 2026-11-09. The owner-approved source `916160b` preview image is deployed; authenticated hosted verification and real-account activation remain separate gates. This extension does not establish launch readiness or close the original active V1 acceptance suite.
 
 ## Implemented functionality
 
@@ -35,13 +35,13 @@ The full 13-browser-journey run also covers owned catalog publication, customer 
 
 - The SinaLite signup email contains staging portal login information. This workspace's proxy rejects the portal hostname with CONNECT HTTP 400; this does not prove the vendor portal is down or the credentials are invalid. No API client ID/secret or live credentials were established from that email. A sent request for live API credentials was found, but no live credential response was verified.
 - Exact SAGE service fees and provider-side limit semantics still require confirmation. The supplied portal screenshots show paid-query limits of 100 for System/Public and unlimited for the named user; neither is proof of a zero-dollar ceiling. A visible authentication key should be rotated before live use. It was not copied into source or used for network calls.
-- Hosted previews still run the previous application image with temporary PostgreSQL/files and outbound networking disabled. The new implementation is not on those URLs yet. The approved Supabase project is not declared healthy or durable from this work. Real metered keys and reads remain blocked until that connection and migrations are verified.
+- Hosted previews run the approved supplier image `916160b` with temporary PostgreSQL/files and public SinaLite sandbox networking enabled. Real-account reads and hosted database activation remain off; authenticated hosted application verification is still pending. The approved Supabase project is not declared healthy or durable from this work. Real metered keys and reads remain blocked until that connection and migrations are verified.
 - Native reads and selected source staging are implemented. Automatic scheduled native synchronization, provider balance reconciliation, automatic supplier media/template downloads, source-option selectors published onto the storefront, automatic net-tier costing, supplier order submission and live purchases are **not activated**. Operators can test private options/prices and use the existing reviewed quote workflow; do not describe that as an automatic SinaLite/SAGE checkout.
 - Blank-image references are candidates. Photo reuse rights, exact variant/print mappings, artwork templates, current costs/availability, freight and delivery must be reviewed before real products are published or sold.
 
 ## Remaining activation requirements
 
-1. Approve the isolated development preview update and its public sandbox outbound-read flag. It affects only the two existing preview Workers/runtime; no production domain or supplier account changes. Replacing its container resets temporary synthetic state. Retain the old image digest and flags for rollback.
+1. Verify the deployed, owner-approved isolated preview update and its public sandbox outbound-read flag. It affects only the two existing preview Workers/runtime; no production domain or supplier account changes. Replacing its container resets temporary synthetic state. Retain the old image digest and flags for rollback.
 2. Verify the approved persistent development database `mtihnarlkprmyahbxlrl`, verified TLS, restricted application role, all migrations and backup/recovery. Provision stable server encryption material and private durable artwork storage. Enable real-account preview reads only after that separate review.
 3. Enter a rotated SAGE login-specific API key and SinaLite client ID/secret through the authenticated backend. Never use a website password as an assumed API secret. Confirm active API entitlement, tenant-specific cache/display rights and current service documents.
 4. For SAGE, verify each login's remaining credits, billing month/timezone and provider-side stopping behavior. Start with a small local allocation and zero paid ceiling. Cache free categories, search narrowly, then fetch full detail only for selected products when net cost is needed; avoid paying for both basic and full detail without a reason. Do not route anonymous requests through a named user.

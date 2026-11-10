@@ -1,7 +1,7 @@
 import {z} from 'zod';
 import {create,event,fail,get,update,type Actor,type Input,type Row,type Tx} from '../../kernel/src';
 
-const collectionSchema=z.object({id:z.uuid().optional(),siteId:z.uuid(),title:z.string().trim().min(1).max(160),slug:z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(120),description:z.string().max(2000),seoTitle:z.string().max(70),seoDescription:z.string().max(180),industries:z.array(z.string().max(80)).max(20).default([]),solutions:z.array(z.string().max(80)).max(20).default([]),occasions:z.array(z.string().max(80)).max(20).default([]),items:z.array(z.object({productId:z.uuid(),variantId:z.uuid().optional(),hidden:z.boolean().default(false),featured:z.boolean().default(false)}).strict()).max(500)}).strict();
+const collectionSchema=z.object({id:z.uuid().optional(),expectedRevision:z.number().int().positive().optional(),siteId:z.uuid(),title:z.string().trim().min(1).max(160),slug:z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(120),description:z.string().max(2000),seoTitle:z.string().max(70),seoDescription:z.string().max(180),industries:z.array(z.string().max(80)).max(20).default([]),solutions:z.array(z.string().max(80)).max(20).default([]),occasions:z.array(z.string().max(80)).max(20).default([]),items:z.array(z.object({productId:z.uuid(),variantId:z.uuid().optional(),hidden:z.boolean().default(false),featured:z.boolean().default(false)}).strict()).max(500)}).strict();
 
 /** Collection membership belongs to Catalog; no copied products or prices. */
 export async function saveWebsiteCollection(tx:Tx,a:Actor,input:Input){
@@ -18,7 +18,7 @@ export async function saveWebsiteCollection(tx:Tx,a:Actor,input:Input){
  }
  let collection:Row;
  const data={description:i.description,slug:i.slug,seoTitle:i.seoTitle,seoDescription:i.seoDescription,industries:i.industries,solutions:i.solutions,occasions:i.occasions,productIds:i.items.filter(item=>!item.hidden).map(item=>item.productId),membershipSource:'COLLECTION_PRODUCTS',publishedBy:a.userId,publishedAt:new Date().toISOString()};
- if(i.id){const old=await get(tx,a,'collections',i.id,true);if((old.store_id??null)!==(site.store_id??null))fail('CATALOG_COLLECTION_SCOPE_MISMATCH',403);collection=await update(tx,a,'collections',old.id,{title:i.title,status:'PUBLISHED',data});}
+ if(i.id){const old=await get(tx,a,'collections',i.id,true);if((old.store_id??null)!==(site.store_id??null))fail('CATALOG_COLLECTION_SCOPE_MISMATCH',403);if(i.expectedRevision!==old.revision)fail('REVISION_CONFLICT');collection=await update(tx,a,'collections',old.id,{title:i.title,status:'PUBLISHED',expectedRevision:i.expectedRevision,data});}
  else collection=await create(tx,a,'collections',{title:i.title,status:'PUBLISHED',...(site.store_id?{store_id:site.store_id}:{}),data});
  await tx.query("update app.collection_products set status='REMOVED',revision=revision+1,updated_at=now() where tenant_id=$1 and workspace_id=$2 and collection_id=$3",[a.tenantId,a.workspaceId,collection.id]);
  for(const [rank,item]of i.items.entries()){

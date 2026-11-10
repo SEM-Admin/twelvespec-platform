@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import {create,event,fail,get,text,update,type Actor,type Input,type Row,type Tx} from '../../../kernel/src';
 import {activeMedia,bytesHash,websiteSite} from './model';
 
-export function websiteMediaSummary(row:Row){return {id:row.id,title:row.title,status:row.status,revision:row.revision,created_at:row.created_at,site_id:row.site_id,data:{kind:row.data.kind,alt:row.data.alt??'',caption:row.data.caption??'',tags:row.data.tags??[],mimeType:row.data.mimeType,width:row.data.width,height:row.data.height,bytes:row.data.bytes,contentHash:row.data.contentHash,rightsConfirmed:row.data.rightsConfirmed===true,rightsExpiresAt:row.data.rightsExpiresAt??null,version:row.data.version??1,priorAssetId:row.data.priorAssetId??null,private:row.data.kind!=='WEBSITE_DERIVATIVE',previewUrl:row.data.kind==='WEBSITE_DERIVATIVE'?`/api/website/media/${row.id}?preview=1`:null}};}
+export function websiteMediaSummary(row:Row){return {id:row.id,title:row.title,status:row.status,revision:row.revision,created_at:row.created_at,site_id:row.site_id,data:{kind:row.data.kind,alt:row.data.alt??'',caption:row.data.caption??'',tags:row.data.tags??[],mimeType:row.data.mimeType,width:row.data.width,height:row.data.height,bytes:row.data.bytes,contentHash:row.data.contentHash,rightsConfirmed:row.data.rightsConfirmed===true,rightsExpiresAt:row.data.rightsExpiresAt??null,version:row.data.version??1,priorAssetId:row.data.priorAssetId??null,private:row.data.kind!=='WEBSITE_DERIVATIVE',previewUrl:row.data.kind==='WEBSITE_DERIVATIVE'?`/api/website/media/${row.id}?preview=1&workspaceId=${row.workspace_id}`:null}};}
 async function mediaRow(tx:Tx,a:Actor,id:unknown){const row=await get(tx,a,'assets',id);if(!row.site_id)fail('WEBSITE_MEDIA_NOT_FOUND',404);await websiteSite(tx,a,row.site_id,'MEDIA');return row;}
 export async function websiteMediaUsage(tx:Tx,a:Actor,id:unknown){
  const asset=await mediaRow(tx,a,id);
@@ -62,6 +62,7 @@ export async function handleWebsiteMedia(tx:Tx,a:Actor,action:string,i:Input):Pr
 }
 
 export async function readWebsitePreviewMedia(tx:Tx,a:Actor,id:unknown){
- const asset=await mediaRow(tx,a,id);if(asset.data.kind!=='WEBSITE_DERIVATIVE'||!asset.web_bytes||asset.status==='REVOKED'||asset.status==='ARCHIVED')fail('WEBSITE_MEDIA_NOT_FOUND',404);
+ const asset=await get(tx,a,'assets',id);if(!asset.site_id)fail('WEBSITE_MEDIA_NOT_FOUND',404);await websiteSite(tx,a,asset.site_id,'EDIT');
+ if(asset.data.kind!=='WEBSITE_DERIVATIVE'||!asset.web_bytes||!activeMedia(asset,String(asset.site_id)))fail('WEBSITE_MEDIA_NOT_FOUND',404);
  return {bytes:asset.web_bytes as Buffer,mimeType:'image/webp'};
 }

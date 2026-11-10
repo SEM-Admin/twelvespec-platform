@@ -27,6 +27,15 @@ async function publish(record:WebsiteRecord,revision:WebsiteRevision){
 }
 describe('Real editorial persistence and published-only access',()=>{
  it('CMS-001 saves drafts without changing public content or deploying code',async()=>{const result=await draft();const page=result.revision.data.document as PageDocument;const publicView=await readPublishedWebsite(identity(),page.path);expect(publicView?.page).toBeNull();expect(result.record.head_revision_id).toBe(result.revision.id);expect(result.revision.data.hash).toHaveLength(64);});
+ it('CMS-039/041 preserves collection order and rejects a stale merchandising save',async()=>{
+  const catalog=await withWebsiteReader(identity(),tx=>publicCatalogPage(tx,identity(),{pageSize:3}));
+  const input={siteId:site.id,title:'Canonical ordered collection',slug:'ordered-'+crypto.randomUUID(),description:'Synthetic ordered assortment',seoTitle:'Ordered assortment',seoDescription:'Synthetic catalog acceptance',items:catalog.products.map(product=>({productId:product.id,hidden:false,featured:false})).reverse()};
+  const first=await transaction(owner,tx=>handleWebsite(tx,owner,'save_collection',input)) as Row;
+  const current=await transaction(owner,tx=>handleWebsite(tx,owner,'save_collection',{...input,id:first.id,expectedRevision:first.revision,title:'Updated collection'})) as Row;
+  await expect(transaction(owner,tx=>handleWebsite(tx,owner,'save_collection',{...input,id:first.id,expectedRevision:first.revision,title:'Stale edit'}))).rejects.toThrow('REVISION_CONFLICT');
+  const page=await withWebsiteReader(identity(),tx=>publicCatalogPage(tx,identity(),{collection:first.id,pageSize:3}));expect(page.products.map(product=>product.id)).toEqual(input.items.map(item=>item.productId));
+  const retained=await transaction(owner,tx=>get(tx,owner,'collections',first.id));expect(retained.title).toBe('Updated collection');expect(retained.revision).toBe(current.revision);
+ });
  it('CMS-002 prevents duplicate normalized paths within a site',async()=>{const first=await draft();await expect(transaction(owner,tx=>handleWebsite(tx,owner,'create_page',{siteId:site.id,title:'Duplicate',path:(first.revision.data.document as PageDocument).path.toUpperCase()+'/'}))).rejects.toThrow();});
  it('CMS-022 publishes only selected changes while preserving unrelated drafts',async()=>{const first=await draft(owner,'Selected'),second=await draft(owner,'Still private');await publish(first.record,first.revision);expect((await readPublishedWebsite(identity(),(first.revision.data.document as PageDocument).path))?.page?.title).toBe('Selected');expect((await readPublishedWebsite(identity(),(second.revision.data.document as PageDocument).path))?.page).toBeNull();});
  it('CMS-024 rejects stale saves atomically without dropping either revision',async()=>{

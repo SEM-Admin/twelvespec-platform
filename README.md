@@ -1,6 +1,6 @@
 # TwelveSpec Platform
 
-**Launch status — November 9, 2026:** development verification passes (250 backend tests, 13 browser journeys, TypeScript and both optimized builds), but paid production orders remain blocked. Hosted storage is still temporary, the native content editor interface is unfinished, and commercial/provider and full V1 acceptance gates remain open. See [current launch readiness](docs/LAUNCH_READINESS_2026-11-09.md) and [content-studio implementation](docs/website-content-studio/IMPLEMENTATION.md).
+**Development status — November 10, 2026:** the source now includes the owner Website & Content Studio and shared published storefront renderer. Paid production orders remain blocked by durable hosting, commercial/provider activation and full V1 acceptance gates. See the [branch integration checklist](docs/integration/2026-11-10.md), [launch readiness](docs/LAUNCH_READINESS_2026-11-09.md) and [content implementation](docs/website-content-studio/IMPLEMENTATION.md).
 
 A greenfield Next.js, TypeScript and PostgreSQL implementation with separate customer storefront and Commerce OS applications. Development uses synthetic data and simulated providers. No existing TwelveSpec production service is used.
 
@@ -16,7 +16,9 @@ The [owned catalog and reviewed quote workflow](docs/OWNED_CATALOG_AND_RFQ.md) l
 
 The [Shopify connector foundation](docs/SHOPIFY_CONNECTOR.md) adds merchant-scoped development channels, private synthetic catalog imports and a versioned read-only Admin GraphQL adapter. Real merchant installation and sales actions remain blocked. The [selling readiness assessment](docs/SELLING_READINESS.md) records why this new build is not yet approved for paid production orders.
 
-The [SAGE/SinaLite metered catalog extension](docs/supplier-api/README.md) adds backend call caps, zero-default API spending, separate SAGE login allowances, committed private receipts, encrypted credentials and selected source imports. SinaLite's public sandbox catalog/options/configuration-price reads are verified. SAGE v130 contracts are tested; authenticated SAGE/live SinaLite, media rights and the [proposed hosted preview update](docs/supplier-api/PREVIEW_UPDATE.md) remain unactivated. The complete current code is on [build/sage-sinalite-metering-20261109](https://github.com/SEM-Admin/twelvespec-platform/tree/build/sage-sinalite-metering-20261109).
+The [SAGE/SinaLite metered catalog extension](docs/supplier-api/README.md) adds backend call caps, zero-default API spending, separate SAGE login allowances, committed private receipts, encrypted credentials and selected source imports. SinaLite's public sandbox catalog/options/configuration-price reads are verified. SAGE v130 contracts are tested; authenticated SAGE/live SinaLite, media rights and hosted verification of the [approved supplier preview rollout](docs/supplier-api/PREVIEW_UPDATE.md) remain separate activation gates. Its supplier checkpoint is on [build/sage-sinalite-metering-20261109](https://github.com/SEM-Admin/twelvespec-platform/tree/build/sage-sinalite-metering-20261109).
+
+The functional content editor is available in Commerce OS at `/website`. It writes versioned database drafts, previews exact saved revisions, and publishes selected approved changes; routine content editing needs no source changes after deployment. Registered video/download components and scheduled publication remain unavailable. Company-store content uses the existing membership, program and catalog records.
 
 Run locally with Node.js 24:
 
@@ -37,3 +39,5 @@ npm run check:plan
 ```
 
 Protected Cloudflare previews and their limitations are documented in [development previews](docs/DEVELOPMENT_PREVIEWS.md). Remote demo passwords and deployment credentials are generated separately and excluded from source. Supplier access, authorized ASI SmartLink, financial activation and production deployment require their respective credentials, licensing and approvals. PSRESTful is prohibited.
+
+The full `npm run test:e2e` command requires ports 3000 and 3001 to be free and uses a fresh disposable local database. Stop `npm run dev` first. Saved preview data remains unchanged; restart the development command afterward. Focused `npx playwright test` can explicitly test an already running synthetic preview.

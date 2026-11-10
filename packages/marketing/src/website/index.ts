@@ -1,6 +1,7 @@
 import {create,event,fail,get,list,text,transaction,update,type Actor,type Input,type Row,type Tx} from '../../../kernel/src';
 import {SITE_CAPABILITIES,WEBSITE_COMPONENTS,WEBSITE_GLOBAL_COMPONENTS,newWebsiteSection,type WebsiteDocument} from '../../../contracts/src/website';
 import {saveWebsiteCollection} from '../../../catalog/src/merchandising';
+import {publicProduct} from '../../../catalog/src';
 import {handleStores} from '../../../stores/src';
 import {defaultWebsiteDocuments} from './defaults';
 import {handleWebsiteDocuments,saveWebsiteDocument} from './documents';
@@ -48,14 +49,15 @@ export async function websiteWorkspace(tx:Tx,a:Actor,input:Input={}){
   coalesce((select p.data->'revisionIds' ? c.head_revision_id::text from app.website_releases p where p.id=$4),false) published
   from app.content_assets c left join app.content_revisions r on r.id=c.head_revision_id where c.tenant_id=$1 and c.workspace_id=$2 and c.site_id=$3 order by c.website_path nulls last,c.document_type,c.id limit $5 offset $6`,[a.tenantId,a.workspaceId,site.id,site.active_release_id,size,(page-1)*size])).rows:[];
  const total=caps.edit?Number((await tx.query('select count(*)::int n from app.content_assets where tenant_id=$1 and workspace_id=$2 and site_id=$3',[a.tenantId,a.workspaceId,site.id])).rows[0].n):0;
- const media=caps.media?(await tx.query("select id,title,status,data,site_id,revision,created_at from app.assets where tenant_id=$1 and workspace_id=$2 and site_id=$3 and data->>'kind' in ('WEBSITE_DERIVATIVE','WEBSITE_CONSENT') order by created_at desc,id limit 200",[a.tenantId,a.workspaceId,site.id])).rows.map(websiteMediaSummary):[];
+ const pageChoices=caps.edit?(await tx.query("select id,title,document_type,website_path,status from app.content_assets where tenant_id=$1 and workspace_id=$2 and site_id=$3 and document_type='WEBSITE_PAGE' and status<>'ARCHIVED' order by title,id limit 500",[a.tenantId,a.workspaceId,site.id])).rows:[];
+ const media=caps.media?(await tx.query("select id,title,status,data,site_id,workspace_id,revision,created_at from app.assets where tenant_id=$1 and workspace_id=$2 and site_id=$3 and data->>'kind' in ('WEBSITE_DERIVATIVE','WEBSITE_CONSENT') order by created_at desc,id limit 200",[a.tenantId,a.workspaceId,site.id])).rows.map(websiteMediaSummary):[];
  const collections=(await tx.query('select id,title,status,data,store_id,revision,created_at from app.collections where tenant_id=$1 and workspace_id=$2 and store_id is not distinct from $3::uuid order by title,id limit 200',[a.tenantId,a.workspaceId,site.store_id])).rows;
  const memberships=a.role==='owner'?(await tx.query('select m.user_id as id,m.role,u.name,u.email from memberships m join "user" u on u.id=m.user_id where m.tenant_id=$1 and m.workspace_id=$2 order by u.name',[a.tenantId,a.workspaceId])).rows:[];
  const grants=a.role==='owner'?(await tx.query("select id,status,data,revision from app.resource_grants where tenant_id=$1 and workspace_id=$2 and data->>'kind'='WEBSITE_CAPABILITY' and data->>'resourceId'=$3",[a.tenantId,a.workspaceId,site.id])).rows:[];
  const stores=(await tx.query("select id,title,status,data->>'brandKitId' as brand_kit_id from app.stores where tenant_id=$1 and workspace_id=$2 and status='ACTIVE' order by title,id",[a.tenantId,a.workspaceId])).rows;
  const releases=caps.edit?(await tx.query('select * from app.website_releases where tenant_id=$1 and workspace_id=$2 and site_id=$3 order by created_at desc,id desc limit 25',[a.tenantId,a.workspaceId,site.id])).rows:[];
  const jobs=caps.edit?(await tx.query('select * from app.website_publish_jobs where tenant_id=$1 and workspace_id=$2 and site_id=$3 order by created_at desc,id desc limit 25',[a.tenantId,a.workspaceId,site.id])).rows:[];
- return {sites,site,capabilities:caps,documents,page,pageSize:size,total,media,collections,stores,releases,jobs,memberships,grants,components:WEBSITE_COMPONENTS,globalComponents:WEBSITE_GLOBAL_COMPONENTS,durable:hasDurableWebsiteStorage(),schedulerActive:websiteSchedulerActive(),canInitialize:a.role==='owner'};
+ return {sites,site,capabilities:caps,documents,pageChoices,page,pageSize:size,total,media,collections,stores,releases,jobs,memberships,grants,components:WEBSITE_COMPONENTS,globalComponents:WEBSITE_GLOBAL_COMPONENTS,durable:hasDurableWebsiteStorage(),schedulerActive:websiteSchedulerActive(),canInitialize:a.role==='owner'};
 }
 export async function draftWebsitePreview(tx:Tx,a:Actor,siteId:string,revisionId:string){
  const site=await websiteSite(tx,a,siteId);const revision=await revisionRecord(tx,a,revisionId,site.id);const row=await get(tx,a,'content_assets',revision.content_id);
@@ -83,7 +85,9 @@ export async function handleWebsite(tx:Tx,a:Actor,action:string,i:Input):Promise
  if(action==='save_collection')return saveWebsiteCollection(tx,a,i);
  if(action==='get_collection'){
   const site=await websiteSite(tx,a,i.siteId,'MERCHANDISE'),collection=await get(tx,a,'collections',i.id);if((collection.store_id??null)!==(site.store_id??null))fail('CATALOG_COLLECTION_SCOPE_MISMATCH',403);
-  const items=(await tx.query('select product_id as "productId",variant_id as "variantId",status,data from app.collection_products where tenant_id=$1 and workspace_id=$2 and collection_id=$3 order by (data->>\'rank\')::integer,id',[a.tenantId,a.workspaceId,collection.id])).rows.filter(row=>row.status!=='REMOVED').map(row=>({productId:row.productId,...(row.variantId?{variantId:row.variantId}:{}),hidden:row.status==='HIDDEN',featured:row.data.featured===true}));return {collection,items};
+  const items=(await tx.query('select product_id as "productId",variant_id as "variantId",status,data from app.collection_products where tenant_id=$1 and workspace_id=$2 and collection_id=$3 order by (data->>\'rank\')::integer,id',[a.tenantId,a.workspaceId,collection.id])).rows.filter(row=>row.status!=='REMOVED').map(row=>({productId:row.productId,...(row.variantId?{variantId:row.variantId}:{}),hidden:row.status==='HIDDEN',featured:row.data.featured===true}));
+  const ids=items.map(item=>item.productId),products=(await tx.query('select * from app.products where tenant_id=$1 and workspace_id=$2 and id=any($3::uuid[])',[a.tenantId,a.workspaceId,ids])).rows as Row[],variants=(await tx.query("select * from app.variants where tenant_id=$1 and workspace_id=$2 and product_id=any($3::uuid[]) and status<>'ARCHIVED'",[a.tenantId,a.workspaceId,ids])).rows as Row[];
+  return {collection,items,products:products.map(product=>publicProduct(product,variants.filter(variant=>variant.product_id===product.id)))};
  }
  if(action==='catalog_picker'){const site=await websiteSite(tx,a,i.siteId);return publicCatalogPage(tx,{tenantId:a.tenantId,workspaceId:a.workspaceId,userId:a.userId},{...i,...(site.store_id?{storeId:site.store_id}:{})});}
  if(action==='add_to_store'){const site=await websiteSite(tx,a,i.siteId,'MERCHANDISE');if(!site.store_id)fail('WEBSITE_STORE_SCOPE_REQUIRED',400);return handleStores(tx,a,'assign_product',{storeId:site.store_id,productId:i.productId});}
