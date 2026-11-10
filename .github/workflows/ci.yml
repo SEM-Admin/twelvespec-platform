@@ -6,7 +6,9 @@ permissions:
   contents: read
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    # Playwright 1.58.2 supports Ubuntu 24.04; ubuntu-latest now resolves to
+    # Ubuntu 26.04, which its browser/dependency installer does not support.
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     env:
       NEXT_TELEMETRY_DISABLED: '1'
