@@ -2,7 +2,8 @@ import Decimal from 'decimal.js';
 import {type Actor,type Tx,type Input,type Row,authorize,create,get,list,update,event,idempotent,fail,text,number,hash,transition} from '../../kernel/src/index';
 import {related} from '../../production/src/records';
 import {validateConfiguration} from '../../configuration/src/index';
-import {amount,money,priceForTargetMargin,grossMargin,landedCost,tierCost,termsForOrder,type Components} from '../../pricing/src/index';
+import {amount,money,unitCost,extendUnitCost,priceForTargetMargin,grossMargin,landedCost,tierCost,termsForOrder,type Components} from '../../pricing/src/index';
+import {assessEvidenceInScope,PRICE_ASSESSMENT_VERSION,type PriceContext} from '../../intelligence/src';
 import {reviewedCostWorksheet} from './manual-costing';
 import {publicProduct} from '../../catalog/src';
 import {safeLines,type ConfigLine} from './line-input';
@@ -52,9 +53,9 @@ export async function costLine(tx:Tx,a:Actor,line:ConfigLine,freight:unknown,tar
  const offer=offers.sort((a,b)=>String(b.data.observedAt??b.updated_at).localeCompare(String(a.data.observedAt??a.updated_at)))[0];
  const d=offer.data;const observedAt=new Date(String(d.observedAt??d.verifiedAt??offer.updated_at)).getTime();if(!Number.isFinite(observedAt)||Date.now()-observedAt>24*3600000||observedAt>Date.now()+60000||(d.validUntil&&new Date(String(d.validUntil)).getTime()<=Date.now()))fail('STALE_COST');if(typeof d.currency!=='string'||!/^[A-Z]{3}$/.test(d.currency))fail('CURRENCY_REQUIRED');const currency=String(d.currency);if(currency!=='USD')fail('CURRENCY_NOT_APPROVED');
  const breaks=Array.isArray(d.priceBreaks)?(d.priceBreaks as Input[]).map(x=>({minimum:number(x.minimum??x.minQuantity??x.quantity,1),cost:String(x.cost??x.unitCost??x.price)})):null;
- const unit=breaks?tierCost(breaks,line.quantity):amount(money(d.unitCost??d.cost??d.baseCost));
+ const unit=breaks?tierCost(breaks,line.quantity):unitCost(d.unitCost??d.cost??d.baseCost).toString();
  if(line.quantity<number(d.moq??d.minimumQuantity??1,1))fail('MOQ_NOT_MET');
- const components:Components={material_cost:amount(money(unit).mul(line.quantity)),decoration_run_cost:line.method==='none'?'0.00':d.decorationCost===undefined?null:amount(money(d.decorationCost).mul(line.quantity)),setup:line.method==='none'?'0.00':d.setupCost===undefined?null:amount(money(d.setupCost)),prepress:amount(money(d.prepressCost??'0.00')),outsourced_labor:amount(money(d.laborCost??'0.00')),packaging:amount(money(d.packagingCost??'0.00')),allocated_freight:freight===undefined?d.freight===undefined?null:amount(money(d.freight)):amount(money(freight)),other_direct_cost:amount(money(d.otherCost??'0.00'))};
+ const components:Components={material_cost:extendUnitCost(unit,line.quantity),decoration_run_cost:line.method==='none'?'0.00':d.decorationCost===undefined?null:extendUnitCost(d.decorationCost,line.quantity),setup:line.method==='none'?'0.00':d.setupCost===undefined?null:amount(money(d.setupCost)),prepress:amount(money(d.prepressCost??'0.00')),outsourced_labor:amount(money(d.laborCost??'0.00')),packaging:amount(money(d.packagingCost??'0.00')),allocated_freight:freight===undefined?d.freight===undefined?null:amount(money(d.freight)):amount(money(freight)),other_direct_cost:amount(money(d.otherCost??'0.00'))};
  const designVersion=line.designVersionId?await get(tx,a,'design_versions',line.designVersionId):undefined;
  const cost=landedCost(components);const sell=priceForTargetMargin(cost,targetMargin);
  return {...line,title:product.title,designVersionHash:designVersion?.data.contentHash??designVersion?.data.versionHash??designVersion?.data.hash??null,configurationHash:hash(line),currency,components,landedCost:cost,sellTotal:sell,unitSell:money(sell).div(line.quantity).toFixed(4),productRevision:product.revision,sourceEvidence:{offerId:offer.id,connectionId:offer.connection_id,observedAt:d.observedAt??offer.updated_at,rawHash:d.rawHash??hash(d),verification:d.verification??'MOCKED',validUntil:d.validUntil??new Date(observedAt+24*3600000).toISOString()},artworkStatus:line.designVersionId?'VERSION_BOUND':'ARTWORK_NOT_REQUIRED_FOR_ESTIMATE'};
@@ -69,6 +70,27 @@ export function publicQuote(row:Row){
 export function publicOrder(row:Row){const d=row.data;return {id:row.id,title:row.title,status:row.status,created_at:row.created_at,data:{currency:d.currency,total:d.total,seller:d.seller,terms:d.terms,paymentStatus:d.paymentStatus,lines:Array.isArray(d.lines)?d.lines.map(v=>{const l=v as Input;return {productId:l.productId,variantId:l.variantId,title:l.title,quantity:l.quantity,method:l.method,location:l.location,sellTotal:l.sellTotal,designVersionId:l.designVersionId};}):[]}};}
 export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'sales',action);
+ if(action==='assess_quote_price'){
+  restricted(a);
+  const quoteId=text(input.quoteId),observationId=text(input.observationId),lineIndex=input.lineIndex;
+  if(typeof lineIndex!=='number'||!Number.isSafeInteger(lineIndex)||lineIndex<0||lineIndex>99)fail('INVALID_LINE_INDEX',400);
+  const currency=text(input.currency,3),territory=text(input.territory,2),channel=text(input.channel,30);
+  if(!/^[A-Z]{3}$/.test(currency)||!/^[A-Z]{2}$/.test(territory)||!['DIRECT','COMPANY_STORE','MARKETPLACE'].includes(channel))fail('PRICE_ASSESSMENT_CONTEXT_INVALID',400);
+  const accountId=input.accountId?text(input.accountId):null;
+  return idempotent(tx,a,'sales.assess_quote_price',input.idempotencyKey,{quoteId,observationId,lineIndex,currency,territory,channel,accountId},async()=>{
+   const quote=await get(tx,a,'quotes',quoteId,true);if(quote.status!=='DRAFT')fail('PRICE_ASSESSMENT_REQUIRES_DRAFT');
+   const line=safeLines(quote.data.lines)[lineIndex];if(!line)fail('QUOTE_LINE_NOT_FOUND',404);
+   if(currency!==quote.data.currency)fail('CURRENCY_MISMATCH',400);
+   if(accountId){const account=await get(tx,a,'accounts',accountId);if((account.data.customerUserId??account.data.userId)!==quote.owner_id)fail('QUOTE_ACCOUNT_MISMATCH',400);}
+   const product=await validateLine(tx,a,line,false),variant=line.variantId?await get(tx,a,'variants',line.variantId):null;
+   const context:PriceContext={productId:line.productId,variantId:line.variantId??null,productRevision:product.revision,variantRevision:variant?.revision??null,quantity:line.quantity,accountId,currency,territory,channel};
+   const result=await assessEvidenceInScope(tx,a,observationId,context);
+   const request={...context,lineIndex,configurationHash:hash(line)};
+   const assessment=(await tx.query(`insert into app.price_assessments(tenant_id,workspace_id,created_by,quote_id,observation_id,quote_revision,assessment_version,request,result)
+    values($1,$2,$3,$4,$5,$6,$7,$8,$9)returning *`,[a.tenantId,a.workspaceId,a.userId,quote.id,observationId,quote.revision,PRICE_ASSESSMENT_VERSION,request,result])).rows[0];
+   await event(tx,a,'intelligence.quote_price_assessed',assessment.id,{quoteId:quote.id,eligible:result.eligibleForQuoteCost});return assessment;
+  });
+ }
  if(action==='create'){
   restricted(a);
   const prepare=async()=>{
