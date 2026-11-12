@@ -1,12 +1,13 @@
-# Codex launch handoff — CIA-001 + CIA-PRODUCT-001
-**Read first.** Work on `SEM-Admin/twelvespec-platform`; CIA planning branch `planning/cia-intelligence-core-20261112`, draft PR #3; issue #2. Main remains original V1 platform and live-service gates. **No earlier chat prompts were sent to Codex:** this file and its companion contracts are the complete authoritative CIA handoff.
+# Codex launch handoff — CIA-001 + CIA-PRODUCT-001 + CIA-TRUST-001
+**Read first.** Work on `SEM-Admin/twelvespec-platform`; CIA planning branch `planning/cia-intelligence-core-20261112`, draft PR #3; issue #2. Main remains original V1 platform and live-service gates. **This file and its three companion contracts are the consolidated authoritative CIA handoff.** If Codex was started before this update, it must read the new customer-trust companion before locking architecture or altering storefront/commerce.
 
 ## Required reading (in order)
 1. `docs/cia/ARCHITECTURE_AND_IMPLEMENTATION_CONTRACT.md`
 2. `docs/cia/PRODUCT_LIFECYCLE_AND_MANUFACTURING_INTELLIGENCE.md`
-3. `docs/SELLING_READINESS.md`, `docs/GAP_CLOSURE_PLAN.md`, `docs/IMPLEMENTATION_CHECKLIST.md`, `docs/DECISIONS.md`
-4. `docs/business-research/DATA_MODEL.md`, `docs/industry-research/README.md`, `docs/industry-research/SUPPLIER_DATA_ACCESS.md`, `docs/planning/COVERAGE_MATRIX.md`
-5. Current source, migrations, APIs, CI and all source-of-truth product specification documents.
+3. `docs/cia/CUSTOMER_TRUST_MARKETING_AND_COMMERCE.md`
+4. `docs/SELLING_READINESS.md`, `docs/GAP_CLOSURE_PLAN.md`, `docs/IMPLEMENTATION_CHECKLIST.md`, `docs/DECISIONS.md`
+5. `docs/business-research/DATA_MODEL.md`, `docs/industry-research/README.md`, `docs/industry-research/SUPPLIER_DATA_ACCESS.md`, `docs/planning/COVERAGE_MATRIX.md`
+6. Current source, migrations, APIs, CI and all source-of-truth product specification documents.
 
 ## User goal
 
@@ -36,7 +37,14 @@ CIA does not replace existing operational ownership; AI recommendations do not a
 - Proof-focused design outputs for three distinct modes (embroidered cap, printed/cut sticker, commercial brochure) and an original retail product *prototype/specification*, without claiming production-ready files or compliance.
 - Add deterministic golden fixtures and integration/security tests. No actual factory submission.
 
-**D. Research specialized engines separately and recommend staged delivery.**
+**D. Customer trust, marketing and e-commerce (CIA-TRUST-001).**
+- Audit live and preview-facing claims against verifiable capabilities, supplier fulfillment, service categories, product imagery rights and quote/direct checkout eligibility.
+- Create approved public projections and a claims/availability truth-status model. Never promise live AI design, machine files, in-house manufacturing, instant stock or checkout when unverified.
+- Preserve current brand and CMS, improve customer pathways from product discovery to trusted RFQ/quote, and feed qualified inquiry/outcome analytics back into CIA.
+- Include SEO, mobile, accessibility, content management and conversion acceptance tests; avoid exposing wholesale sources via metadata/search.
+- Prioritize getting the first paying customer through an honest, functional website without expanding the V1 live-selling gate.
+
+**E. Research specialized engines separately and recommend staged delivery.**
 Evaluate embroidery digitization/stitch planning, commercial print PDF/X and producer profiles, cut/engrave vectors, vector graphics/geometry, CAD/PLM/BOM, 3D visualization/UV/materials, packaging/dielines, imposition, cost modeling and channel publishing. Compare verified APIs, libraries, commercial licenses/AGPL obligations, maintenance burden, actual producer acceptance, and owner-hours saved. Do not force Python/Rust/GPU/Redis/Blender unless proven needed.
 
 ## Release / safety rules
