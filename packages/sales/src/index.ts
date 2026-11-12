@@ -35,7 +35,7 @@ export async function validateLine(tx:Tx,a:Actor,line:ConfigLine,requirePublishe
  if(Array.isArray(data.locations)&&!data.locations.includes(line.location))fail('LOCATION_INCOMPATIBLE');
  let templateData:Input={};if(data.configurationTemplateId){const template=await get(tx,a,'configuration_templates',data.configurationTemplateId);if(template.status!=='PUBLISHED')fail('CONFIGURATION_TEMPLATE_NOT_PUBLISHED');templateData=template.data;}
  const configResult=validateConfiguration(data,variantData,line,templateData);if(!configResult.valid)fail('CONFIGURATION_INVALID');
- if(line.designVersionId){const design=await get(tx,a,'design_versions',line.designVersionId);const productId=design.product_id??design.data.productId,variantId=design.variant_id??design.data.variantId;if(productId&&productId!==line.productId)fail('DESIGN_PRODUCT_MISMATCH');if(variantId&&line.variantId&&variantId!==line.variantId)fail('DESIGN_VARIANT_MISMATCH');}
+ if(line.designVersionId){const design=await get(tx,a,'design_versions',line.designVersionId);const productId=design.product_id??design.data.productId,variantId=design.variant_id??design.data.variantId;if(!productId||(line.variantId&&!variantId))fail('DESIGN_BINDING_UNVERIFIED');if(productId!==line.productId)fail('DESIGN_PRODUCT_MISMATCH');if(line.variantId&&variantId!==line.variantId)fail('DESIGN_VARIANT_MISMATCH');if(design.data.method!==line.method||(design.data.placement as Input|undefined)?.location!==line.location)fail('DESIGN_CONFIGURATION_MISMATCH');}
  return {...original,title:usePublished?String(published.title):original.title,data:{...original.data,...data}};
 }
 export async function quoteLineSnapshot(tx:Tx,a:Actor,line:ConfigLine):Promise<Input>{
