@@ -7,7 +7,7 @@ import {amount,extendUnitCost,landedCost,priceForTargetMargin,unitCost,type Comp
 import {priceApplicabilityReasons,readPriceObservation,sourceEvidenceState,type PriceContext} from '../../intelligence/src';
 import {PROFILE_VERSION,readProcessProfile} from '../../production/src/profiles';
 import {safeLines} from './line-input';
-import {validateLine} from './validation';
+import {validateLine,currentPublishedDefinition} from './validation';
 
 export const QUALIFICATION_VERSION='connected-qualification/1';
 export async function qualificationHistory(tx:Tx,a:Actor,input:Input){
@@ -70,7 +70,8 @@ export async function qualifyQuote(tx:Tx,a:Actor,input:Input){
   if(width===null||height===null)blockers.push('ARTWORK_DIMENSIONS_UNKNOWN');
   else if((profile.data.zoneWidthMm!==null&&width>profile.data.zoneWidthMm)||(profile.data.zoneHeightMm!==null&&height>profile.data.zoneHeightMm))blockers.push('ARTWORK_OUTSIDE_PRODUCER_ZONE');
   if(v.accountId){const account=await get(tx,a,'accounts',v.accountId);if((account.data.customerUserId??account.data.userId)!==quote.owner_id)fail('QUOTE_ACCOUNT_MISMATCH',400);}
-  const context:PriceContext={productId:line.productId,variantId:line.variantId??null,productRevision:product.revision,variantRevision:variant?.revision??null,quantity:line.quantity,accountId:v.accountId??null,currency:String(quote.data.currency),territory:v.route.destinationCountry,channel:v.channel};
+  const context:PriceContext={productId:line.productId,variantId:line.variantId??null,productRevision:product.revision,variantRevision:variant?.revision??null,quantity:line.quantity,accountId:v.accountId??null,currency:String(quote.data.currency),territory:v.route.destinationCountry,channel:v.channel,publicationCurrent:currentPublishedDefinition(product,variant)};
+  if(!context.publicationCurrent)blockers.push('PUBLISHED_CONFIGURATION_DIVERGES');
   const components:Components=Object.fromEntries(COST_COMPONENTS.map(c=>[c,null])) as Components;
   const evidence:Input[]=[],used=new Set<string>();let allSynthetic=profileSource.source.origin==='SYNTHETIC'&&profile.verification==='SYNTHETIC'&&routeSource.source.origin==='SYNTHETIC',anySynthetic=profileSource.source.origin==='SYNTHETIC'||routeSource.source.origin==='SYNTHETIC';
   const syntheticOnlyReasons=new Set(['SYNTHETIC_EVIDENCE','EVIDENCE_REVIEW_REQUIRED']);

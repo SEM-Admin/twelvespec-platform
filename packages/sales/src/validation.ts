@@ -3,6 +3,16 @@ import {publicProduct} from '../../catalog/src';
 import {validateConfiguration} from '../../configuration/src';
 import type {ConfigLine} from './line-input';
 
+/** A staged private edit is not the customer's still-published definition. */
+export function currentPublishedDefinition(product:Row,variant:Row|null):boolean{
+ if(product.status!=='PUBLISHED')return true;
+ const value=product.data.publicSnapshot;if(!value||typeof value!=='object'||!Object.keys(value).length)return true;
+ const snapshot=value as Input,publishedRevision=Number(snapshot.catalogRevision??snapshot.revision??product.data.publishedRevision);
+ if(!Number.isSafeInteger(publishedRevision)||publishedRevision!==product.revision)return false;
+ if(variant){const published=Array.isArray(snapshot.variants)?(snapshot.variants as Row[]).find(v=>v.id===variant.id):null;if(!published||published.revision!==variant.revision)return false;}
+ return true;
+}
+
 export async function validateLine(tx:Tx,a:Actor,line:ConfigLine,requirePublished=true){
  const original=await get(tx,a,'products',line.productId);
  if((requirePublished||line.catalogRevision!==undefined)&&original.status!=='PUBLISHED')fail('PRODUCT_UNAVAILABLE');

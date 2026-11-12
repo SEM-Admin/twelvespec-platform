@@ -39,9 +39,11 @@ export type PriceObservation={
  evidence_state:'SYNTHETIC'|'UNVERIFIED'|'OPERATOR_REVIEWED';review_reference:string|null;fingerprint:string;
  component_code?:CostComponent;charge_basis?:ChargeBasis;process_profile_id?:string|null;method?:string|null;location?:string|null;
 };
-export type PriceContext={productId:string;variantId:string|null;productRevision:number;variantRevision:number|null;quantity:number;accountId:string|null;currency:string;territory:string;channel:string};
+export type PriceContext={productId:string;variantId:string|null;productRevision:number;variantRevision:number|null;quantity:number;accountId:string|null;currency:string;territory:string;channel:string;publicationCurrent?:boolean};
 function parse<T>(schema:z.ZodType<T>,input:unknown,code:string):T{const r=schema.safeParse(input);return r.success?r.data:fail(code,400);}
 function reader(a:Actor){if(!['owner','integration_admin','sales','manager','buyer','finance'].includes(a.role))fail('EVIDENCE_ACCESS_DENIED',403);}
+/** Local protocol opt-in; the database still enforces scope and authorized role. */
+export async function allowComponentPriceReads(tx:Tx,a:Actor){reader(a);await tx.query("select set_config('ts.component_price_reader','1',true)");}
 function steward(a:Actor){authorize(a,'supplier');}
 function safeUri(value:string|undefined):string|null{
  if(value===undefined)return null;
@@ -95,7 +97,7 @@ export async function restrictEvidenceSource(tx:Tx,a:Actor,input:Input){
  await event(tx,a,'intelligence.source_restricted',sourceId);return row;
 }
 export async function recordPriceObservation(tx:Tx,a:Actor,input:Input):Promise<PriceObservation>{
- steward(a);const v=parse(observationSchema,input,'PRICE_OBSERVATION_INVALID');
+ steward(a);await allowComponentPriceReads(tx,a);const v=parse(observationSchema,input,'PRICE_OBSERVATION_INVALID');
  const source=await readEvidenceSource(tx,a,v.sourceId);
  if(Date.parse(String(source.retention_until))<=Date.now())fail('EVIDENCE_RETENTION_EXPIRED');
  if(Date.parse(String(source.rights_valid_from))>Date.now()||Date.parse(String(source.rights_valid_until))<=Date.now())fail('EVIDENCE_SOURCE_RIGHTS_EXPIRED');
@@ -137,7 +139,7 @@ export async function recordPriceObservation(tx:Tx,a:Actor,input:Input):Promise<
  await event(tx,a,'intelligence.price_observed',row.id);return row;
 }
 export async function readPriceObservation(tx:Tx,a:Actor,id:unknown):Promise<PriceObservation>{
- reader(a);const row=(await tx.query('select * from app.price_observations where tenant_id=$1 and workspace_id=$2 and id=$3',[a.tenantId,a.workspaceId,text(id)])).rows[0];
+ await allowComponentPriceReads(tx,a);const row=(await tx.query('select * from app.price_observations where tenant_id=$1 and workspace_id=$2 and id=$3',[a.tenantId,a.workspaceId,text(id)])).rows[0];
  if(!row)fail('PRICE_OBSERVATION_NOT_FOUND',404);return row;
 }
 
@@ -156,6 +158,7 @@ export function priceApplicabilityReasons(p:PriceObservation,source:EvidenceSour
  if(!Number.isFinite(retention)||retention<=now.getTime())reasons.push('SOURCE_RETENTION_EXPIRED');
  if(p.product_id!==context.productId||p.variant_id!==context.variantId)reasons.push('EXACT_VARIANT_MISMATCH');
  if(p.product_revision!==context.productRevision||p.variant_revision!==context.variantRevision)reasons.push('PRODUCT_REVISION_CHANGED');
+ if(context.publicationCurrent===false)reasons.push('PUBLISHED_CONFIGURATION_DIVERGES');
  if(['ACCOUNT_NET','NEGOTIATED'].includes(p.price_class)&&!p.account_id)reasons.push('ACCOUNT_SCOPE_REQUIRED');
  if(p.account_id!==null&&p.account_id!==context.accountId)reasons.push('ACCOUNT_SCOPE_MISMATCH');
  // Reuse the current Sales USD policy; other source currencies remain evidence,

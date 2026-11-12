@@ -4,6 +4,7 @@ import {actors} from '../helpers';
 import {transaction,pool,create,get,update,type Actor,type Row,type Input} from '../../packages/kernel/src';
 import {handleCommerce} from '../../packages/commerce/src';
 import {handleSales,publicRequest} from '../../packages/sales/src';
+import {customerSafeObject} from '../../packages/server/src/customer-projection';
 let owner:Actor,otherOwner:Actor;
 beforeAll(async()=>({owner,otherOwner}=await actors()));afterAll(async()=>{await pool().end();});
 async function fixture(){
@@ -32,7 +33,11 @@ describe('product-free project → requested CRM follow-up → exact product sco
   const results=await Promise.all([key,randomUUID()].map(k=>transaction(owner,tx=>handleSales(tx,owner,'link_inquiry_to_crm',{requestId:request.id,key:k})))) as {request:Row;followUp:Row}[];
   expect(results[0].followUp.id).toBe(results[1].followUp.id);expect(results[0].followUp.data).toMatchObject({requestId:request.id,externalCommunication:'NOT_SENT'});
   const contact=await transaction(owner,tx=>get(tx,owner,'contacts',results[0].followUp.contact_id));expect(contact.data.email).toBe(f.email);expect((contact.data.consent as Input).marketing).toBe(false);
-  const customerView=publicRequest(results[0].request);expect(JSON.stringify(customerView)).not.toMatch(/crmContactId|crmFollowUpId|contactPermission|scopeReview|operatorNote/);expect(customerView.data.brief.contactName).toBe('SYNTHETIC Buyer');
+  const customerView=publicRequest(results[0].request);expect(JSON.stringify(customerView)).not.toMatch(/internalCrmContactId|internalCrmFollowUpId|contactPermission|internalScopeReview|operatorNote/);expect(customerView.data.brief.contactName).toBe('SYNTHETIC Buyer');
+  // Older applications use this generic filter: private additions retain its
+  // existing internal-field convention, so rolling back does not reveal IDs.
+  expect(JSON.stringify(customerSafeObject(results[0].request))).not.toContain(results[0].followUp.id);
+  expect(JSON.stringify(customerSafeObject(results[0].request))).not.toContain(contact.id);
   await expect(transaction(f.customer,tx=>handleSales(tx,f.customer,'link_inquiry_to_crm',{requestId:request.id,key:randomUUID()}))).rejects.toThrow('PERMISSION_DENIED');
   await expect(transaction(otherOwner,tx=>handleSales(tx,otherOwner,'link_inquiry_to_crm',{requestId:request.id,key:randomUUID()}))).rejects.toThrow('NOT_FOUND');
  });
@@ -47,9 +52,10 @@ describe('product-free project → requested CRM follow-up → exact product sco
   const input={requestId:request.id,key:randomUUID(),expectedRevision:request.revision,reference:'SYNTHETIC operator proposed scope for customer review',lines:[{productId:product.id,variantId:variant.id,quantity:48,method:'embroidery',location:'front',catalogRevision:1}]};
   await expect(transaction(f.customer,tx=>handleSales(tx,f.customer,'scope_inquiry',input))).rejects.toThrow('PERMISSION_DENIED');
   await expect(transaction(owner,tx=>handleSales(tx,owner,'scope_inquiry',{...input,expectedRevision:99}))).rejects.toThrow('REVISION_CONFLICT');
-  const scoped=await transaction(owner,tx=>handleSales(tx,owner,'scope_inquiry',input)) as Row;expect(scoped.data.originalInquiry).toEqual(request.data.brief);expect(scoped.data.lines).toHaveLength(1);expect(scoped.status).toBe('IN_REVIEW');
+  const scoped=await transaction(owner,tx=>handleSales(tx,owner,'scope_inquiry',input)) as Row;expect(scoped.data.internalOriginalInquiry).toEqual(request.data.brief);expect(scoped.data.lines).toHaveLength(1);expect(scoped.status).toBe('IN_REVIEW');
   const quote=await transaction(owner,tx=>handleSales(tx,owner,'create',{requestId:request.id})) as Row;expect(quote.status).toBe('DRAFT');expect(quote.data.lines).toEqual(scoped.data.lines);expect(quote.owner_id).toBe(f.customer.userId);
-  expect(JSON.stringify(publicRequest(scoped))).not.toMatch(/originalInquiry|scopeReview|reviewedBy/);
+  expect(JSON.stringify(publicRequest(scoped))).not.toMatch(/internalOriginalInquiry|internalScopeReview|reviewedBy/);
+  expect(JSON.stringify(customerSafeObject(scoped))).not.toContain(input.reference);
   await expect(transaction(owner,tx=>handleSales(tx,owner,'scope_inquiry',{...input,key:randomUUID(),expectedRevision:scoped.revision+1}))).rejects.toThrow('INQUIRY_ALREADY_QUOTED');
  });
 });

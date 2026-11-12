@@ -6,7 +6,7 @@ import {it,expect} from 'vitest';
 import {hash,type Actor,type Tx} from '../../packages/kernel/src';
 import {recordPriceObservation,registerEvidenceSource} from '../../packages/intelligence/src';
 
-it('upgrades an M1 database without rewriting original source, price, fingerprint or quote, and accepts the original retry',async()=>{
+it('upgrades an M1 database through component read guards without rewriting original facts or quote, and accepts the original retry',async()=>{
  const url=new URL(process.env.DATABASE_URL!);if(!['localhost','127.0.0.1'].includes(url.hostname))throw new Error('Migration verification requires local isolated PostgreSQL.');
  const admin=new Client({connectionString:url.toString()}),database='twelvespec_upgrade_'+randomUUID().replaceAll('-','');await admin.connect();let db:Client|undefined;
  try{
@@ -26,6 +26,7 @@ it('upgrades an M1 database without rewriting original source, price, fingerprin
    values($1,$2,$3,$4,$5,$6,$7,1,1,'DISTRIBUTOR_NET','0.0250','0.02500000',4,'USD','EACH',1,24,1000,1,'US','DIRECT',$8,$9,$10,24,'SYNTHETIC',$11)returning *`,[tenant,workspace,user,source.id,original.observationKey,product,variant,now,past,future,fingerprint])).rows[0];
   const before={source:(await db.query('select * from app.intelligence_sources')).rows,quote:(await db.query('select * from app.quotes')).rows};
   await db.query(readFileSync(resolve(migrations,'013_process_profiles_and_qualification.sql'),'utf8'));
+  await db.query(readFileSync(resolve(migrations,'014_component_reader_compatibility.sql'),'utf8'));
   expect((await db.query('select * from app.intelligence_sources')).rows).toEqual(before.source);expect((await db.query('select * from app.quotes')).rows).toEqual(before.quote);
   const upgraded=(await db.query('select * from app.price_observations')).rows[0],{component_code,charge_basis,process_profile_id,method,location,...unchanged}=upgraded;expect(unchanged).toEqual(price);expect({component_code,charge_basis,process_profile_id,method,location}).toEqual({component_code:'material_cost',charge_basis:'PER_ITEM',process_profile_id:null,method:null,location:null});
   const retry=await runtime(tx=>recordPriceObservation(tx,actor,original));expect(retry.id).toBe(price.id);expect(retry.fingerprint).toBe(fingerprint);

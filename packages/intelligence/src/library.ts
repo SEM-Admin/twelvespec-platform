@@ -1,5 +1,6 @@
 import {z} from 'zod';
 import {fail,type Actor,type Input,type Tx} from '../../kernel/src';
+import {allowComponentPriceReads} from './index';
 
 const inputSchema=z.object({kind:z.enum(['sources','prices']),page:z.number().int().min(1).max(100000).default(1),search:z.string().max(200).default(''),productId:z.string().uuid().optional()}).strict();
 /** Private, explicitly paged evidence; never registered in a public generic table list. */
@@ -16,6 +17,7 @@ export async function evidenceLibrary(tx:Tx,a:Actor,input:Input){
   const rows=(await tx.query(`select e.*,r.created_at as restricted_at,r.reason as restriction_reason from app.intelligence_sources e left join app.intelligence_restrictions r on r.tenant_id=e.tenant_id and r.workspace_id=e.workspace_id and r.source_id=e.id where ${condition} order by e.created_at desc,e.id limit 20 offset $${params.length+1}`,[...params,(v.page-1)*20])).rows;
   return {rows,page:v.page,total,pageSize:20,totalPages:Math.max(1,Math.ceil(total/20))};
  }
+ await allowComponentPriceReads(tx,a);
  if(v.productId)where.push(`e.product_id=${bind(v.productId)}`);
  if(v.search)where.push(`(p.title ilike ${bind(pattern)} or s.title ilike ${bind(pattern)} or e.observation_key ilike ${bind(pattern)})`);
  const from='app.price_observations e join app.products p on p.tenant_id=e.tenant_id and p.workspace_id=e.workspace_id and p.id=e.product_id join app.variants v on v.tenant_id=e.tenant_id and v.workspace_id=e.workspace_id and v.id=e.variant_id join app.intelligence_sources s on s.tenant_id=e.tenant_id and s.workspace_id=e.workspace_id and s.id=e.source_id';

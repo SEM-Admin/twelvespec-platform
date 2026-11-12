@@ -1,7 +1,7 @@
 import Decimal from 'decimal.js';
 import {type Actor,type Tx,type Input,type Row,authorize,create,get,list,update,event,idempotent,fail,text,number,hash,transition} from '../../kernel/src/index';
 import {related} from '../../production/src/records';
-import {validateLine} from './validation';
+import {validateLine,currentPublishedDefinition} from './validation';
 export {validateLine} from './validation';
 import {amount,money,unitCost,extendUnitCost,priceForTargetMargin,grossMargin,landedCost,tierCost,termsForOrder,type Components} from '../../pricing/src/index';
 import {assessEvidenceInScope,PRICE_ASSESSMENT_VERSION,type PriceContext} from '../../intelligence/src';
@@ -64,14 +64,14 @@ export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promi
    if(Array.isArray(request.data.lines)&&request.data.lines.length)fail('INQUIRY_ALREADY_SCOPED');
    const snapshots=[];for(const line of lines)snapshots.push(await quoteLineSnapshot(tx,a,line));
    for(let i=0;i<lines.length;i++)await create(tx,a,'request_lines',{title:String(snapshots[i].title),status:'OPERATOR_SCOPED',owner_id:request.owner_id,request_id:request.id,product_id:lines[i].productId,...(lines[i].variantId?{variant_id:lines[i].variantId}:{}),data:{...lines[i],snapshot:snapshots[i],lineNumber:i+1}});
-   const row=await update(tx,a,'requests',request.id,{status:'IN_REVIEW',expectedRevision:request.revision,data:{...request.data,lines,lineSnapshots:snapshots,originalInquiry:request.data.brief,scopeReview:{reference,reviewedBy:a.userId,at:new Date().toISOString()},intakeReview:{status:'SCOPED_FOR_QUOTE_REVIEW',missingFields:[]}}});await event(tx,a,'inquiry.scoped',row.id,{lineCount:lines.length});return row;
+   const row=await update(tx,a,'requests',request.id,{status:'IN_REVIEW',expectedRevision:request.revision,data:{...request.data,lines,lineSnapshots:snapshots,internalOriginalInquiry:request.data.brief,internalScopeReview:{reference,reviewedBy:a.userId,at:new Date().toISOString()},intakeReview:{status:'SCOPED_FOR_QUOTE_REVIEW',missingFields:[]}}});await event(tx,a,'inquiry.scoped',row.id,{lineCount:lines.length});return row;
   });
  }
  if(action==='link_inquiry_to_crm'){
   restricted(a);const requestId=text(input.requestId);
   return idempotent(tx,a,'sales.inquiry_crm',input.key,{requestId},async()=>{
    const request=await get(tx,a,'requests',requestId,true);if(request.data.kind!=='PROJECT_INQUIRY')fail('PROJECT_INQUIRY_REQUIRED');
-   if(request.data.crmFollowUpId)return {request,followUp:await get(tx,a,'follow_ups',request.data.crmFollowUpId)};
+   if(request.data.internalCrmFollowUpId)return {request,followUp:await get(tx,a,'follow_ups',request.data.internalCrmFollowUpId)};
    if((request.data.contactPermission as Input)?.purpose!=='REQUESTED_PROJECT_FOLLOW_UP')fail('CONTACT_PERMISSION_REQUIRED');
    const user=(await tx.query('select u.email,u.name from "user" u join memberships m on m.user_id=u.id where m.tenant_id=$1 and m.workspace_id=$2 and u.id=$3',[a.tenantId,a.workspaceId,request.owner_id])).rows[0];if(!user)fail('INQUIRY_CONTACT_UNAVAILABLE');
    const email=String(user.email).toLowerCase();await tx.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[`${a.tenantId}/${a.workspaceId}/crm-email/${email}`]);
@@ -79,7 +79,7 @@ export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promi
    if(existing.length>1)fail('CONTACT_IDENTITY_AMBIGUOUS');
    const brief=request.data.brief as Input,contact=existing[0]??await handleCrm(tx,a,'create_contact',{name:brief.contactName||user.name,email,...(brief.phone?{phone:brief.phone}:{}),consent:{marketing:false,source:'REQUESTED_PROJECT_FOLLOW_UP'},notes:'Customer requested project discussion.'}) as Row;
    const followUp=await handleCrm(tx,a,'create_follow_up',{contactId:contact.id,requestId:request.id,title:'Discuss project · '+request.title,kind:'REQUESTED_PROJECT_FOLLOW_UP'}) as Row;
-   const row=await update(tx,a,'requests',request.id,{data:{...request.data,crmContactId:contact.id,crmFollowUpId:followUp.id}});await event(tx,a,'inquiry.crm_follow_up_created',request.id,{followUpId:followUp.id});return {request:row,followUp};
+   const row=await update(tx,a,'requests',request.id,{data:{...request.data,internalCrmContactId:contact.id,internalCrmFollowUpId:followUp.id}});await event(tx,a,'inquiry.crm_follow_up_created',request.id,{followUpId:followUp.id});return {request:row,followUp};
   });
  }
  if(action==='quote_process_profiles'){restricted(a);return processProfileLibrary(tx,a,input);}
@@ -100,7 +100,7 @@ export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promi
    if(currency!==quote.data.currency)fail('CURRENCY_MISMATCH',400);
    if(accountId){const account=await get(tx,a,'accounts',accountId);if((account.data.customerUserId??account.data.userId)!==quote.owner_id)fail('QUOTE_ACCOUNT_MISMATCH',400);}
    const product=await validateLine(tx,a,line,false),variant=line.variantId?await get(tx,a,'variants',line.variantId):null;
-   const context:PriceContext={productId:line.productId,variantId:line.variantId??null,productRevision:product.revision,variantRevision:variant?.revision??null,quantity:line.quantity,accountId,currency,territory,channel};
+   const context:PriceContext={productId:line.productId,variantId:line.variantId??null,productRevision:product.revision,variantRevision:variant?.revision??null,quantity:line.quantity,accountId,currency,territory,channel,publicationCurrent:currentPublishedDefinition(product,variant)};
    const result=await assessEvidenceInScope(tx,a,observationId,context);
    const request={...context,lineIndex,configurationHash:hash(line)};
    const assessment=(await tx.query(`insert into app.price_assessments(tenant_id,workspace_id,created_by,quote_id,observation_id,quote_revision,assessment_version,request,result)

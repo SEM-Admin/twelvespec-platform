@@ -6,7 +6,7 @@ import {COST_COMPONENTS} from '../../packages/contracts/src/intelligence';
 import {handleSupplier} from '../../packages/supplier/src';
 import {handleOrders} from '../../packages/orders/src';
 import {handleSales,publicQuote} from '../../packages/sales/src';
-import {recordPriceObservation,registerEvidenceSource,restrictEvidenceSource,type PriceObservation} from '../../packages/intelligence/src';
+import {recordPriceObservation,readPriceObservation,registerEvidenceSource,restrictEvidenceSource,type PriceObservation} from '../../packages/intelligence/src';
 import {readProcessProfile,type ProcessProfile} from '../../packages/production/src/profiles';
 import {handleCreative} from '../../packages/creative/src';
 let owner:Actor,customer:Actor,otherOwner:Actor,operations:Actor;
@@ -118,5 +118,32 @@ describe('connected producer planning and 48-cap evidence qualification',()=>{
   await expect(transaction(customer,tx=>handleSales(tx,customer,'qualification_history',{quoteId:f.quote.id}))).rejects.toThrow('PERMISSION_DENIED');
   await expect(transaction(otherOwner,tx=>handleSales(tx,otherOwner,'qualification_history',{quoteId:f.quote.id}))).rejects.toThrow('NOT_FOUND');
   await transaction(owner,tx=>update(tx,owner,'quotes',f.quote.id,{status:'COSTED'}));await expect(f.qualify()).rejects.toThrow('QUALIFICATION_REQUIRES_DRAFT');
+ });
+ it('hides component and profile-bound prices from older readers while preserving M1 prices and scoped new readers',async()=>{
+  const f=await fixture();const legacy=await f.record({processProfileId:undefined,method:undefined,location:undefined});
+  await transaction(owner,async tx=>{
+   const oldRows=(await tx.query('select * from app.price_observations where tenant_id=$1 and workspace_id=$2 and source_id=$3',[owner.tenantId,owner.workspaceId,f.source.id])).rows;
+   expect(oldRows.map(r=>r.id)).toEqual([legacy.id]);
+   expect((await tx.query('select * from app.price_observations where id=$1',[f.prices[2].id])).rows).toEqual([]);
+   expect((await readPriceObservation(tx,owner,f.prices[2].id)).component_code).toBe('setup');
+  });
+  // Opt-in is SET LOCAL, so a connection reused by an older binary cannot inherit it.
+  await transaction(owner,async tx=>{expect((await tx.query('select * from app.price_observations where source_id=$1',[f.source.id])).rows.map(r=>r.id)).toEqual([legacy.id]);});
+  await transaction(customer,async tx=>{await tx.query("select set_config('ts.component_price_reader','1',true)");expect((await tx.query('select * from app.price_observations where source_id=$1',[f.source.id])).rows).toEqual([]);});
+  await expect(transaction(otherOwner,tx=>readPriceObservation(tx,otherOwner,f.prices[2].id))).rejects.toThrow('PRICE_OBSERVATION_NOT_FOUND');
+ });
+ it('rejects current private prices/profiles against an older published variant, even when all current revisions match',async()=>{
+  const f=await fixture(false);
+  const product=await transaction(owner,tx=>update(tx,owner,'products',f.product.id,{status:'PUBLISHED',data:{...f.product.data,publicSnapshot:{revision:2,title:f.product.title,product:f.product.data,variants:[f.variant]}}}));
+  const variant=await transaction(owner,tx=>update(tx,owner,'variants',f.variant.id,{data:{...f.variant.data,color:'SYNTHETIC changed Clay'}}));
+  const profile=await transaction(owner,tx=>handleOrders(tx,owner,'record_process_profile',{...f.profileInput,profileKey:randomUUID(),expectedProductRevision:product.revision,expectedVariantRevision:variant.revision,previousProfileId:f.profile.id})) as ProcessProfile;
+  const evidence:Input={};
+  for(const [index,old]of f.prices.entries()){
+   const price=await f.record({componentCode:old.component_code,chargeBasis:old.charge_basis,originalValue:old.original_value,expectedProductRevision:product.revision,expectedVariantRevision:variant.revision,processProfileId:profile.id});
+   const component=old.component_code!,rows=(evidence[component]??[]) as Input[];rows.push({observationId:price.id,...(component==='allocated_freight'?{freightLeg:index===6?'BLANK_TO_DECORATOR':'DECORATOR_TO_CUSTOMER'}:{})});evidence[component]=rows;
+  }
+  const result=await f.qualify({processProfileId:profile.id,evidence});expect(result.result.eligibleForQuoteCost).toBe(false);expect(result.result.reasons).toContain('PUBLISHED_CONFIGURATION_DIVERGES');expect(result.result.reasons).not.toContain('PROFILE_PRODUCT_REVISION_CHANGED');
+  const legacyMaterial=await f.record({expectedProductRevision:product.revision,expectedVariantRevision:variant.revision,processProfileId:undefined,method:undefined,location:undefined});
+  const assessed=await transaction(owner,tx=>handleSales(tx,owner,'assess_quote_price',{quoteId:f.quote.id,lineIndex:0,observationId:legacyMaterial.id,currency:'USD',territory:'US',channel:'DIRECT',idempotencyKey:randomUUID()})) as {result:Input};expect(assessed.result.reasons).toContain('PUBLISHED_CONFIGURATION_DIVERGES');expect(assessed.result.materialCost).toBeNull();
  });
 });
