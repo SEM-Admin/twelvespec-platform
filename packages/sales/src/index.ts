@@ -4,6 +4,7 @@ import {related} from '../../production/src/records';
 import {validateConfiguration} from '../../configuration/src/index';
 import {amount,money,unitCost,extendUnitCost,priceForTargetMargin,grossMargin,landedCost,tierCost,termsForOrder,type Components} from '../../pricing/src/index';
 import {assessEvidenceInScope,PRICE_ASSESSMENT_VERSION,type PriceContext} from '../../intelligence/src';
+import {evidenceLibrary} from '../../intelligence/src/library';
 import {reviewedCostWorksheet} from './manual-costing';
 import {publicProduct} from '../../catalog/src';
 import {safeLines,type ConfigLine} from './line-input';
@@ -70,6 +71,7 @@ export function publicQuote(row:Row){
 export function publicOrder(row:Row){const d=row.data;return {id:row.id,title:row.title,status:row.status,created_at:row.created_at,data:{currency:d.currency,total:d.total,seller:d.seller,terms:d.terms,paymentStatus:d.paymentStatus,lines:Array.isArray(d.lines)?d.lines.map(v=>{const l=v as Input;return {productId:l.productId,variantId:l.variantId,title:l.title,quantity:l.quantity,method:l.method,location:l.location,sellTotal:l.sellTotal,designVersionId:l.designVersionId};}):[]}};}
 export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'sales',action);
+ if(action==='price_evidence_library'){restricted(a);return evidenceLibrary(tx,a,{...input,kind:'prices'});}
  if(action==='assess_quote_price'){
   restricted(a);
   const quoteId=text(input.quoteId),observationId=text(input.observationId),lineIndex=input.lineIndex;

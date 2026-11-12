@@ -2,6 +2,7 @@
 import {useState} from 'react';
 import {ArrowRight,CheckCircle2,ClipboardList,FileCheck2} from 'lucide-react';
 import {asString,key,money,pretty,type Data,type Row} from './types';
+import {QuoteEvidenceReview} from './evidence-library';
 
 type Run=(action:string,input:Data)=>Promise<unknown>;
 const object=(v:unknown):Data=>v&&typeof v==='object'&&!Array.isArray(v)?v as Data:{};
@@ -40,6 +41,7 @@ function QuoteReview({quote,run}:{quote:Row;run:Run}){
  const assumptions=object(quote.data.commercialAssumptions);
  return <div className="quote-review"><div className="workbench-heading"><div><h3>{quote.title}</h3><p>Quote revision {quote.revision} · {pretty(quote.status)}</p></div>{quote.data.total?<strong className="reviewed-total">{money(quote.data.total)}</strong>:<FileCheck2 size={25}/>}</div>
   {error&&<p role="alert" className="alert error">{error}</p>}
+  {quote.status==='DRAFT'&&<QuoteEvidenceReview quote={quote} run={run}/>}
   {['DRAFT','COSTED'].includes(quote.status)&&<CostWorksheet quote={quote} run={run}/>}
   {quote.status==='APPROVAL_REQUIRED'&&<><p>A margin exception needs owner or manager approval.</p><label>Margin exception reason<textarea value={reason} maxLength={2000} onChange={e=>setReason(e.target.value)}/></label><button className="button secondary" disabled={busy||!reason.trim()} onClick={()=>void act('approve_margin',{id:quote.id,reason})}>Approve margin exception</button></>}
   {['READY_TO_ISSUE','ISSUED','ACCEPTED'].includes(quote.status)&&<><p className="workbench-note">{assumptions.deliveryNote?asString(assumptions.deliveryNote):'Review the quote specifications and delivery assumptions before issue.'}</p>{assumptions.taxNote&&<p>{asString(assumptions.taxNote)}</p>}<p>Quote valid until {quote.data.validUntil?new Date(String(quote.data.validUntil)).toLocaleString():'not set'}.</p>

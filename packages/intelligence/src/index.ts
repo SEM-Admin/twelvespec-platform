@@ -2,8 +2,9 @@
 import {z} from 'zod';
 import {authorize,event,fail,get,hash,text,type Actor,type Input,type Tx} from '../../kernel/src';
 import {unitCost,extendUnitCost} from '../../pricing/src';
+import {PRICE_CLASSES} from '../../contracts/src/intelligence';
+export {PRICE_CLASSES} from '../../contracts/src/intelligence';
 
-export const PRICE_CLASSES=['PUBLISHED_LIST','MSRP','MAP','DISTRIBUTOR_NET','ACCOUNT_NET','NEGOTIATED','MARKET_OBSERVATION','ESTIMATED_LANDED','TWELVESPEC_SELL','ACTUAL_COST'] as const;
 export type PriceClass=typeof PRICE_CLASSES[number];
 export const PRICE_ASSESSMENT_VERSION='price-evidence/1';
 const uuid=z.string().uuid(), instant=z.string().datetime({offset:true});
