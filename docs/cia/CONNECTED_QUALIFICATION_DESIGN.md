@@ -1,6 +1,6 @@
 # Connected planning and quotation evidence
 
-Continuation of PR #4; architecture contracts remain unmerged. No deployment or new external integration is included.
+Continuation of PR #4 (foundation now consolidated into main); architecture contracts remain unmerged. No deployment or new external integration is included.
 
 ## Existing owners and boundaries
 
@@ -31,4 +31,4 @@ Embroidery still needs exact-version proof, method-specific preflight, digitizat
 
 Ten integration tests exercise precise 48-item math, per-order setup, two freight legs, explicit zero vs unknown, documentary vs synthetic/mixed sources, rights revocation and historical replay, stale profiles, immutable history, saved oversized artwork, customer/operations/workspace isolation and M1 retry compatibility. The browser journey records the profile and all nine charges through actual forms, submits the 48-cap customer RFQ and displays the USD 368.00 synthetic proposal while real costing remains blocked. The two other continuation browser journeys cover saved-color binding and source/quote forms.
 
-These are synthetic local tests, not a verified supplier/manufacturer integration. Real licensed media/catalog activation, retention/deletion operations, production acceptance and hosted persistence remain release dependencies. Claim truth, product-free inquiry, complete-data outcome reporting and the original V1/CMS acceptance inventories remain separately tracked in the checklist. Full regression results will be recorded at the final continuation head.
+These are synthetic local tests, not a verified supplier/manufacturer integration. Real licensed media/catalog activation, retention/deletion operations, production acceptance and hosted persistence remain release dependencies. Product-free inquiry and complete-data outcome reporting are now implemented and tested through their existing owners. Claim truth and the original V1/CMS acceptance inventories remain separately tracked in the checklist. Final local regression and activation limits are recorded in [connected verification](CONNECTED_VERIFICATION.md).
