@@ -3,6 +3,8 @@
 **Baseline:** main at `3c221f697a3bd9631ccb7ecabaaa8e3c2c5d9649` (November 12, 2026)  
 **Owner objective:** profitable repeatable TwelveSpec operations with progressively fewer owner hours; reusable foundations for a *separate future retail brand*.
 
+> **Architecture expansion (2026-11-12):** This foundational CIA commercial evidence/decision contract is complemented by [CIA-PRODUCT-001: Unified Product Creation, Engineering & Manufacturing Digital Thread](PRODUCT_LIFECYCLE_AND_MANUFACTURING_INTELLIGENCE.md). Together they define one integrated target CIA. The latter adds original product development, engineering/PLM-like product definitions, manufacturing-aware design scene graphs, method-specific preflight/compilers, 3D visualization, marketing/merchandising and retail reuse. Neither document supersedes the other. Where source-of-truth implementation conflicts are found, Codex must produce a compatibility decision record and preserve existing V1 release and authority gates before implementation.
+
 ## 1. Non-negotiable principles
 
 1. **CIA feeds every applicable domain bidirectionally**, but does not replace their authoritative transaction services. Catalog owns product publication; sales owns accepted quote snapshots; finance owns financial references; authorized prepress releases production files; integrations own secrets and supplier access.
