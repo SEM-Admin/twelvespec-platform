@@ -31,7 +31,7 @@ export function authorize(a:Actor,module:string,action='read'){
  if(module==='future'||action.startsWith('live_'))fail('FEATURE_NOT_ACTIVE',403);
  if(a.role==='owner')return;
  if(!moduleRoles[module]?.includes(a.role))fail('PERMISSION_DENIED',403);
- if(a.role==='customer'&& !['read','create','update','archive','save_bundle','save_design_version','upload_asset','request_proof','approve_proof','configure','submit_request','accept_quote','reorder','validate_budget','price_bundle'].includes(action))fail('PERMISSION_DENIED',403);
+ if(a.role==='customer'&& !['read','create','update','archive','save_bundle','save_design_version','upload_asset','request_proof','approve_proof','configure','submit_request','submit_inquiry','accept_quote','reorder','validate_budget','price_bundle'].includes(action))fail('PERMISSION_DENIED',403);
 }
 function tbl(t:Table){if(!TABLES.includes(t))fail('INVALID_TABLE',400);return `app.${t}`;}
 export async function list<T extends Input=Input>(tx:Tx,a:Actor,t:Table,limit=200):Promise<Row<T>[]>{return (await tx.query(`select * from ${tbl(t)} where tenant_id=$1 and workspace_id=$2 order by created_at desc,id limit $3`,[a.tenantId,a.workspaceId,Math.min(limit,1000)])).rows;}

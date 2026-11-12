@@ -4,6 +4,7 @@ import {ArrowRight,CheckCircle2,ClipboardList,FileCheck2} from 'lucide-react';
 import {asString,key,money,pretty,type Data,type Row} from './types';
 import {QuoteEvidenceReview} from './evidence-library';
 import {QuoteQualification} from './quote-qualification';
+import {InquiryScope} from './inquiry-scope';
 
 type Run=(action:string,input:Data)=>Promise<unknown>;
 const object=(v:unknown):Data=>v&&typeof v==='object'&&!Array.isArray(v)?v as Data:{};
@@ -28,7 +29,8 @@ export function QuoteWorkspace({tables,run}:{tables:Record<string,Row[]>;run:Run
    {!!request.data.note&&<p className="customer-notes">{asString(request.data.note)}</p>}
    {snapshots.map((line,i)=><div className="request-line" key={i}><strong>{asString(line.title)||asString(line.productId)} × {asString(line.quantity)}</strong><p>{[line.color,line.size,pretty(asString(line.method)),pretty(asString(line.location))].filter(Boolean).join(' · ')}</p>{!!line.notes&&<p>{asString(line.notes)}</p>}{Object.keys(object(line.specifications)).length>0&&<small>{Object.entries(object(line.specifications)).map(([name,value])=>`${pretty(name)}: ${value}`).join(' · ')}</small>}</div>)}
    {Array.isArray(object(request.data.intakeReview).missingFields)&&object(request.data.intakeReview).status==='NEEDS_DETAILS'&&<p className="workbench-note">Missing intake details: {(object(request.data.intakeReview).missingFields as string[]).map(pretty).join(', ')}. Confirm these with the customer before issuing a price.</p>}
-   {!quote&&request.status!=='CLOSED'&&<button className="button primary" disabled={busy} onClick={()=>void act('create',{requestId:request.id,idempotencyKey:`prepare-${request.id}`}).then(value=>{if(value)setQuoteId((value as Row).id);})}>Prepare quote from request<ArrowRight size={16}/></button>}
+   {request.data.kind==='PROJECT_INQUIRY'&&request.status!=='CLOSED'&&<InquiryScope key={request.id+':'+request.revision} request={request} run={run}/>}
+   {!quote&&request.status!=='CLOSED'&&snapshots.length>0&&<button className="button primary" disabled={busy} onClick={()=>void act('create',{requestId:request.id,idempotencyKey:`prepare-${request.id}`}).then(value=>{if(value)setQuoteId((value as Row).id);})}>Prepare quote from request<ArrowRight size={16}/></button>}
    {!['CLOSED','QUOTED'].includes(request.status)&&<details className="request-follow-up"><summary>Request follow-up</summary><label>Internal review note<textarea value={note} maxLength={2000} onChange={e=>setNote(e.target.value)}/></label><div className="workbench-buttons">{request.status!=='AWAITING_CUSTOMER'&&<button className="button secondary compact" disabled={busy||!note.trim()} onClick={()=>void act('review_request',{id:request.id,status:'AWAITING_CUSTOMER',note,expectedRevision:request.revision})}>Mark waiting for customer</button>}{request.status==='AWAITING_CUSTOMER'&&<button className="button secondary compact" disabled={busy||!note.trim()} onClick={()=>void act('review_request',{id:request.id,status:'IN_REVIEW',note,expectedRevision:request.revision})}>Resume review</button>}<button className="button secondary compact" disabled={busy||!note.trim()} onClick={()=>void act('review_request',{id:request.id,status:'CLOSED',note,expectedRevision:request.revision})}>Close request</button></div></details>}
   </div>}
   {quotes.length>0&&<label>Quote to review<select value={quote?.id??''} onChange={e=>setQuoteId(e.target.value)}><option value="">Choose a quote</option>{quotes.map(q=><option key={q.id} value={q.id}>{q.title} · {pretty(q.status)}</option>)}</select></label>}

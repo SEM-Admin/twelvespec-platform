@@ -113,7 +113,7 @@ export type FooterDocument=Extract<WebsiteDocument,{documentType:'WEBSITE_FOOTER
 export function normalizeWebsitePath(value:string){
  let path:string;try{path=decodeURIComponent(value).toLowerCase().replace(/\/+$/,'')||'/';}catch{throw new Error('WEBSITE_PATH_INVALID');}
  if(!/^\/[a-z0-9/_-]*$/.test(path)||path.includes('//')||path.length>240)throw new Error('WEBSITE_PATH_INVALID');
- if(/^\/(api|auth|_next|products|create|cart|account|bundles|stores|coming-soon|catalog|collections)(\/|$)/.test(path))throw new Error('WEBSITE_PATH_RESERVED');
+ if(/^\/(api|auth|_next|products|create|cart|account|bundles|stores|coming-soon|catalog|collections|inquiry)(\/|$)/.test(path))throw new Error('WEBSITE_PATH_RESERVED');
  return path;
 }
 export function parseWebsiteDocument(value:unknown):WebsiteDocument{

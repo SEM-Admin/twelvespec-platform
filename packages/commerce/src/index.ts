@@ -1,8 +1,10 @@
 import {type Actor,type Tx,type Input,authorize,create,get,list,update,event,idempotent,fail,text} from '../../kernel/src/index';
 import {normalizeQuoteBrief,briefMissingFields} from './brief';
 import {safeLines,validateLine,quoteLineSnapshot,publicOrder} from '../../sales/src/index';
+import {submitInquiry} from './inquiry';
 export async function handleCommerce(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'commerce',action);
+ if(action==='submit_inquiry')return submitInquiry(tx,a,input);
  if(action==='create'){
   const lines=safeLines(input.lines);for(const l of lines)await validateLine(tx,a,l);
   const row=await create(tx,a,'carts',{title:input.title?text(input.title):'Your quote cart',status:'DRAFT',data:{lines,currency:'USD',quoteFirst:true}});await event(tx,a,'cart.created',row.id);return row;

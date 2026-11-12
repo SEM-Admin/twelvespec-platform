@@ -6,7 +6,8 @@ async function changed(tx:Tx,a:Actor,table:'contacts'|'accounts'|'opportunities'
 export async function handleCrm(tx:Tx,a:Actor,action:string,i:Input):Promise<unknown>{
  authorize(a,'crm',action);
  if(action==='create'||action==='create_contact'){
-  const email=validEmail(i.email);const duplicates=(await list(tx,a,'contacts',1000)).filter(r=>r.data.email===email&&r.status!=='ARCHIVED');if(duplicates.length)fail('CONTACT_ALREADY_EXISTS');
+  const email=validEmail(i.email);await tx.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[`${a.tenantId}/${a.workspaceId}/crm-email/${email}`]);
+  const duplicates=await tx.query("select id from app.contacts where tenant_id=$1 and workspace_id=$2 and lower(data->>'email')=$3 and status<>'ARCHIVED' limit 1",[a.tenantId,a.workspaceId,email]);if(duplicates.rowCount)fail('CONTACT_ALREADY_EXISTS');
   if(i.accountId)await get(tx,a,'accounts',i.accountId);
   return changed(tx,a,'contacts',await create(tx,a,'contacts',{title:text(i.name??i.title),status:'ACTIVE',data:{email,phone:typeof i.phone==='string'?text(i.phone,100):null,accountId:i.accountId??null,consent:consent(i.consent),notes:typeof i.notes==='string'?text(i.notes,5000):null}}),'contact_created');
  }
@@ -25,8 +26,8 @@ export async function handleCrm(tx:Tx,a:Actor,action:string,i:Input):Promise<unk
  }
  if(action==='record_activity'||action==='create_follow_up'){
   const c=await get(tx,a,'contacts',i.contactId),table=action==='record_activity'?'activities':'follow_ups';
-  const dueAt=i.dueAt?new Date(text(i.dueAt)).toISOString():null;
-  return changed(tx,a,table,await create(tx,a,table,{title:text(i.title??i.note,2000),status:table==='activities'?'RECORDED':'OPEN',contact_id:c.id,data:{contactId:c.id,kind:typeof i.kind==='string'?text(i.kind):'NOTE',dueAt,externalCommunication:'NOT_SENT'}}),action);
+  const dueAt=i.dueAt?new Date(text(i.dueAt)).toISOString():null;if(i.requestId)await get(tx,a,'requests',i.requestId);
+  return changed(tx,a,table,await create(tx,a,table,{title:text(i.title??i.note,2000),status:table==='activities'?'RECORDED':'OPEN',contact_id:c.id,data:{contactId:c.id,...(i.requestId?{requestId:i.requestId}:{}),kind:typeof i.kind==='string'?text(i.kind):'NOTE',dueAt,externalCommunication:'NOT_SENT'}}),action);
  }
  if(action==='import_leads'){
   if(!Array.isArray(i.rows)||i.rows.length>1000)return fail('INVALID_LEAD_ROWS',400);
