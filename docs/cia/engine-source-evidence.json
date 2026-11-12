@@ -1,0 +1,173 @@
+{
+  "notice": "Public documentation shortlist only; no engine installed, integration run, fee incurred or manufacturing acceptance verified. License snippets are not a legal opinion. Failed routes are not inferred.",
+  "sources": [
+    {
+      "id": "ENG-01",
+      "title": "Ink/Stitch",
+      "url": "https://raw.githubusercontent.com/inkstitch/inkstitch/main/README.md",
+      "finalUrl": "https://raw.githubusercontent.com/inkstitch/inkstitch/main/README.md",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "b94a5c9bf842b65156e0914c99d2ad30f25e69128c3e5a01f867b9eec3f4821f",
+      "bytes": 2405,
+      "excerpts": [
+        "ogos/inkstitch_colour_logo.svg) Ink/Stitch aims to be a full-fledged embroidery digitizing platform based entirely on free, open source software. Our goal is to be approachable for hobbyists while also providing the power needed by professional digitizers. We also aim to provide a \u2026"
+      ]
+    },
+    {
+      "id": "ENG-02",
+      "title": "pyembroidery",
+      "url": "https://raw.githubusercontent.com/EmbroidePy/pyembroidery/main/README.md",
+      "finalUrl": "https://raw.githubusercontent.com/EmbroidePy/pyembroidery/main/README.md",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "6c67843b75a762fe1a640c4f7bac48b21afeaf2212f9b91c80d2f1805864c227",
+      "bytes": 41159,
+      "excerpts": [
+        "el commands are encoded, but are not themselves commands executed by embroidery machines. * Middle level commands will be helpful and converted to low-level commands during writing events. * These will often be context sensitive converting to slightly different low \u2026"
+      ]
+    },
+    {
+      "id": "ENG-03",
+      "title": "Ghostscript licensing",
+      "url": "https://ghostscript.com/licensing/index.html",
+      "finalUrl": "https://ghostscript.com/licensing/index.html",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "16272c51d3569d72e8c714e50ff25e92e9f6162e55b58c589819dff556d9b11e",
+      "bytes": 1943,
+      "excerpts": [
+        "Ghostscript : Licensing Licensing Licensing is handled exclusively by Artifex Software, Inc. Please visit the Artifex Licensing page ."
+      ]
+    },
+    {
+      "id": "ENG-04",
+      "title": "OCCT licensing",
+      "url": "https://dev.opencascade.org/doc/overview/html/occt__license.html",
+      "status": "UNAVAILABLE",
+      "httpStatus": 404
+    },
+    {
+      "id": "ENG-05",
+      "title": "Blender licensing",
+      "url": "https://www.blender.org/about/license/",
+      "status": "UNAVAILABLE",
+      "httpStatus": 403
+    },
+    {
+      "id": "ENG-06",
+      "title": "Three.js license",
+      "url": "https://raw.githubusercontent.com/mrdoob/three.js/dev/LICENSE",
+      "finalUrl": "https://raw.githubusercontent.com/mrdoob/three.js/dev/LICENSE",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "bytes": 1081,
+      "excerpts": [
+        "The MIT License Copyright \u00a9 2010-2026 three.js authors Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction"
+      ]
+    },
+    {
+      "id": "ENG-07",
+      "title": "glTF specification overview",
+      "url": "https://raw.githubusercontent.com/KhronosGroup/glTF/main/README.md",
+      "finalUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF/main/README.md",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "b7254e74ef0b6edac33ce30a5903dea0f36a410ede9925268981f7fed0e0f8f5",
+      "bytes": 25692,
+      "excerpts": [
+        "fab.com/models?features=downloadable&sort_by=-likeCount) under Creative Commons license on Sketchfab (check license for individual models). * [Drag-and-drop validator](http://github.khronos.org/glTF-Validator/) for verifying correctness of existing glTF files. * [glTF Tutorial Series](https://github.com/KhronosGroup",
+        "dge/chat-on%20slack-blue.svg)](https://www.khr.io/slack) glTF\u2122 (GL Transmission Format) is a royalty-free specification for the efficient transmission and \u2026"
+      ]
+    },
+    {
+      "id": "ENG-08",
+      "title": "Boxes.py",
+      "url": "https://raw.githubusercontent.com/florianfesti/boxes/master/README.rst",
+      "finalUrl": "https://raw.githubusercontent.com/florianfesti/boxes/master/README.rst",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "3702e445545017aeda626352497f1e56484ffdbd947608dd27103e31a7d2cc0f",
+      "bytes": 3641,
+      "excerpts": [
+        "ape plug-in * Boxes.py is library to write your own * Boxes.py is free software licensed under GPL v3+ * Boxes.py is written in Python and runs with Python 3 Boxes.py comes with a growing set of ready-to-use, fully parametrized \u2026"
+      ]
+    },
+    {
+      "id": "ENG-09",
+      "title": "Ink/Stitch license metadata",
+      "url": "https://api.github.com/repos/inkstitch/inkstitch/license",
+      "finalUrl": "https://api.github.com/repos/inkstitch/inkstitch/license",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "4d9511e9b96ae219fe3b91fe1e49a4b96bb30f13dffff2ebd2aeb6eed6901d30",
+      "bytes": 49360,
+      "spdxId": "GPL-3.0",
+      "licensePath": "LICENSE",
+      "licenseFileSha": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+      "excerpts": [
+        "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free Software Foundation, Inc. Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU General Public \u2026"
+      ]
+    },
+    {
+      "id": "ENG-10",
+      "title": "pyembroidery license metadata",
+      "url": "https://api.github.com/repos/EmbroidePy/pyembroidery/license",
+      "finalUrl": "https://api.github.com/repos/EmbroidePy/pyembroidery/license",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "50739917b657f94fe32c9740ba9f6ed2f86e5141985e6740c4bb4e7e2a4cbe27",
+      "bytes": 2383,
+      "spdxId": "MIT",
+      "licensePath": "LICENSE",
+      "licenseFileSha": "ab602974d200aa6849e6ad8220951ef9a78d9f08",
+      "excerpts": [
+        "MIT License Copyright (c) 2018 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to \u2026"
+      ]
+    },
+    {
+      "id": "ENG-11",
+      "title": "Artifex licensing",
+      "url": "https://artifex.com/licensing",
+      "finalUrl": "https://artifex.com/licensing",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "256520dabfbc9ac2fb89a580dfd507822827bf9d5c84e4be521124ff997741fb",
+      "bytes": 235666,
+      "excerpts": [
+        "Most of our products are dual-licensed under open source with the GNU AGPLv3 license (the \u201cAGPL\u201d referenced on this page) or with commercial license agreements. The information on this page is designed to help you understand which license type is \u2026"
+      ]
+    },
+    {
+      "id": "ENG-12",
+      "title": "OCCT official source overview",
+      "url": "https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/master/README.md",
+      "finalUrl": "https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/master/README.md",
+      "reviewDate": "2026-11-12",
+      "status": "PUBLIC_DOCUMENTATION_RETRIEVED",
+      "httpStatus": 200,
+      "sha256": "4428eba11b309f841554b620d950fb108cc4279a3aee667848aa1bc415fed09e",
+      "bytes": 4554,
+      "excerpts": [
+        "AD), manufacturing/measuring (CAM), or numerical simulation (CAE). ## License Open CASCADE Technology is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License version 2.1 as published by the Free Software \u2026"
+      ]
+    },
+    {
+      "id": "ENG-13",
+      "title": "callas pdfToolbox",
+      "url": "https://www.callassoftware.com/en/products/pdftoolbox",
+      "status": "UNAVAILABLE",
+      "httpStatus": 404
+    }
+  ]
+}
