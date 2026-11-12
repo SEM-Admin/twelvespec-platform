@@ -2,7 +2,7 @@
 import {z} from 'zod';
 import {authorize,event,fail,get,hash,text,type Actor,type Input,type Tx} from '../../kernel/src';
 import {unitCost,extendUnitCost} from '../../pricing/src';
-import {PRICE_CLASSES} from '../../contracts/src/intelligence';
+import {PRICE_CLASSES,COST_COMPONENTS,CHARGE_BASES,type CostComponent,type ChargeBasis} from '../../contracts/src/intelligence';
 export {PRICE_CLASSES} from '../../contracts/src/intelligence';
 
 export type PriceClass=typeof PRICE_CLASSES[number];
@@ -24,7 +24,8 @@ const observationSchema=z.object({
  minimumQuantity:z.number().int().min(1).max(1000000),maximumQuantity:z.number().int().min(1).max(1000000).optional(),
  orderMultiple:z.number().int().min(1).max(1000000),territory:z.string().regex(/^[A-Z]{2}$/),
  channel:z.enum(['DIRECT','COMPANY_STORE','MARKETPLACE']),observedAt:instant,effectiveFrom:instant,effectiveUntil:instant,
- freshnessHours:z.number().int().min(1).max(8760),evidenceState:z.enum(['SYNTHETIC','UNVERIFIED','OPERATOR_REVIEWED']),reviewReference:label(1000).optional()
+ freshnessHours:z.number().int().min(1).max(8760),evidenceState:z.enum(['SYNTHETIC','UNVERIFIED','OPERATOR_REVIEWED']),reviewReference:label(1000).optional(),
+ componentCode:z.enum(COST_COMPONENTS).optional(),chargeBasis:z.enum(CHARGE_BASES).optional(),processProfileId:uuid.optional(),method:label(100).optional(),location:label(100).optional()
 }).strict();
 export type EvidenceSource={
  id:string;source_key:string;title:string;publisher:string;edition:string;source_uri:string|null;content_hash:string;
@@ -36,6 +37,7 @@ export type PriceObservation={
  unit_basis:'EACH'|'PACK';units_per_price:number;minimum_quantity:number;maximum_quantity:number|null;order_multiple:number;
  territory:string;channel:string;observed_at:string;effective_from:string;effective_until:string;freshness_hours:number;
  evidence_state:'SYNTHETIC'|'UNVERIFIED'|'OPERATOR_REVIEWED';review_reference:string|null;fingerprint:string;
+ component_code?:CostComponent;charge_basis?:ChargeBasis;process_profile_id?:string|null;method?:string|null;location?:string|null;
 };
 export type PriceContext={productId:string;variantId:string|null;productRevision:number;variantRevision:number|null;quantity:number;accountId:string|null;currency:string;territory:string;channel:string};
 function parse<T>(schema:z.ZodType<T>,input:unknown,code:string):T{const r=schema.safeParse(input);return r.success?r.data:fail(code,400);}
@@ -67,10 +69,20 @@ export async function registerEvidenceSource(tx:Tx,a:Actor,input:Input):Promise<
  await event(tx,a,'intelligence.source_recorded',row.id);return row;
 }
 export async function readEvidenceSource(tx:Tx,a:Actor,id:unknown):Promise<EvidenceSource>{
- reader(a);const sourceId=text(id);
+ if(a.role!=='operations')reader(a);const sourceId=text(id);
  await tx.query('select pg_advisory_xact_lock_shared(hashtextextended($1,0))',[`${a.tenantId}/${a.workspaceId}/evidence-rights/${sourceId}`]);
  const row=(await tx.query('select * from app.intelligence_sources where tenant_id=$1 and workspace_id=$2 and id=$3',[a.tenantId,a.workspaceId,sourceId])).rows[0];
  if(!row)fail('EVIDENCE_SOURCE_NOT_FOUND',404);return row;
+}
+export async function sourceEvidenceState(tx:Tx,a:Actor,id:string,use:'INTERNAL_RESEARCH'|'QUOTE_COST',now=new Date()){
+ const source=await readEvidenceSource(tx,a,id);
+ const restricted=Boolean((await tx.query('select id from app.intelligence_restrictions where tenant_id=$1 and workspace_id=$2 and source_id=$3',[a.tenantId,a.workspaceId,source.id])).rowCount);
+ const reasons:string[]=[];
+ if(restricted)reasons.push('SOURCE_RIGHTS_RESTRICTED');
+ if(!source.allowed_uses.includes(use))reasons.push('SOURCE_USE_NOT_PERMITTED');
+ if(Date.parse(String(source.rights_valid_from))>now.getTime()||Date.parse(String(source.rights_valid_until))<=now.getTime())reasons.push('SOURCE_RIGHTS_OUTSIDE_EFFECTIVE_WINDOW');
+ if(Date.parse(String(source.retention_until))<=now.getTime())reasons.push('SOURCE_RETENTION_EXPIRED');
+ return {source,restricted,reasons};
 }
 export async function restrictEvidenceSource(tx:Tx,a:Actor,input:Input){
  steward(a);const sourceId=text(input.sourceId),reason=text(input.reason,1000);
@@ -99,16 +111,29 @@ export async function recordPriceObservation(tx:Tx,a:Actor,input:Input):Promise<
  if(Date.parse(v.effectiveUntil)<=Date.parse(v.effectiveFrom)||Date.parse(v.observedAt)>Date.now()+60000)fail('EVIDENCE_DATES_INVALID',400);
  if((source.origin==='SYNTHETIC')!==(v.evidenceState==='SYNTHETIC'))fail('EVIDENCE_ORIGIN_MISMATCH',400);
  if(v.evidenceState==='OPERATOR_REVIEWED'&&!v.reviewReference)fail('EVIDENCE_REVIEW_REQUIRED',400);
+ const component=v.componentCode??'material_cost',charge=v.chargeBasis??'PER_ITEM';
+ if(charge!=='PER_ITEM'&&(v.unitBasis!=='EACH'||v.unitsPerPrice!==1))fail('EVIDENCE_CHARGE_BASIS_INVALID',400);
+ if(charge==='PER_SHIPMENT'&&component!=='allocated_freight')fail('EVIDENCE_CHARGE_BASIS_INVALID',400);
+ if(component!=='material_cost'||charge!=='PER_ITEM'||v.processProfileId||v.method||v.location){
+  if(!v.processProfileId||!v.method||!v.location)fail('EVIDENCE_PROCESS_PROFILE_REQUIRED',400);
+  const profile=(await tx.query('select * from app.process_profile_versions where tenant_id=$1 and workspace_id=$2 and id=$3',[a.tenantId,a.workspaceId,v.processProfileId])).rows[0];
+  if(!profile)fail('PROCESS_PROFILE_NOT_FOUND',404);
+  if(profile.product_id!==product.id||profile.variant_id!==variant.id||profile.product_revision!==product.revision||profile.variant_revision!==variant.revision||profile.data.method!==v.method||profile.data.location!==v.location)fail('EVIDENCE_PROCESS_PROFILE_MISMATCH');
+  const state=await sourceEvidenceState(tx,a,profile.source_id,'INTERNAL_RESEARCH');if(state.reasons.length)fail('PROCESS_PROFILE_SOURCE_UNAVAILABLE');
+ }
  const numeric=unitCost(v.originalValue).toFixed(8),scale=v.originalValue.split('.')[1]?.length??0;
  const normalized={...v,accountId:v.accountId??null,maximumQuantity:v.maximumQuantity??null,reviewReference:v.reviewReference??null,observedAt:iso(v.observedAt),effectiveFrom:iso(v.effectiveFrom),effectiveUntil:iso(v.effectiveUntil)};
+ // Preserve M1 retry fingerprints when callers omit or explicitly send original defaults.
+ if(normalized.componentCode==='material_cost')delete normalized.componentCode;
+ if(normalized.chargeBasis==='PER_ITEM')delete normalized.chargeBasis;
  const fingerprint=hash(normalized);
  await tx.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[`${a.tenantId}/${a.workspaceId}/price-observation/${source.id}/${v.observationKey}`]);
  const prior=(await tx.query('select * from app.price_observations where tenant_id=$1 and workspace_id=$2 and source_id=$3 and observation_key=$4',[a.tenantId,a.workspaceId,source.id,v.observationKey])).rows[0] as PriceObservation|undefined;
  if(prior){if(prior.fingerprint!==fingerprint)fail('PRICE_OBSERVATION_KEY_CONFLICT');return prior;}
  const row=(await tx.query(`insert into app.price_observations
- (tenant_id,workspace_id,created_by,source_id,observation_key,product_id,variant_id,product_revision,variant_revision,account_id,price_class,original_value,unit_amount,source_scale,currency,unit_basis,units_per_price,minimum_quantity,maximum_quantity,order_multiple,territory,channel,observed_at,effective_from,effective_until,freshness_hours,evidence_state,review_reference,fingerprint)
- values(${Array.from({length:29},(_,i)=>'$'+(i+1)).join(',')}) returning *`,
- [a.tenantId,a.workspaceId,a.userId,source.id,v.observationKey,v.productId,v.variantId,product.revision,variant.revision,normalized.accountId,v.priceClass,v.originalValue,numeric,scale,v.currency,v.unitBasis,v.unitsPerPrice,v.minimumQuantity,normalized.maximumQuantity,v.orderMultiple,v.territory,v.channel,normalized.observedAt,normalized.effectiveFrom,normalized.effectiveUntil,v.freshnessHours,v.evidenceState,normalized.reviewReference,fingerprint])).rows[0] as PriceObservation;
+ (tenant_id,workspace_id,created_by,source_id,observation_key,product_id,variant_id,product_revision,variant_revision,account_id,price_class,original_value,unit_amount,source_scale,currency,unit_basis,units_per_price,minimum_quantity,maximum_quantity,order_multiple,territory,channel,observed_at,effective_from,effective_until,freshness_hours,evidence_state,review_reference,fingerprint,component_code,charge_basis,process_profile_id,method,location)
+ values(${Array.from({length:34},(_,i)=>'$'+(i+1)).join(',')}) returning *`,
+ [a.tenantId,a.workspaceId,a.userId,source.id,v.observationKey,v.productId,v.variantId,product.revision,variant.revision,normalized.accountId,v.priceClass,v.originalValue,numeric,scale,v.currency,v.unitBasis,v.unitsPerPrice,v.minimumQuantity,normalized.maximumQuantity,v.orderMultiple,v.territory,v.channel,normalized.observedAt,normalized.effectiveFrom,normalized.effectiveUntil,v.freshnessHours,v.evidenceState,normalized.reviewReference,fingerprint,component,charge,v.processProfileId??null,v.method??null,v.location??null])).rows[0] as PriceObservation;
  await event(tx,a,'intelligence.price_observed',row.id);return row;
 }
 export async function readPriceObservation(tx:Tx,a:Actor,id:unknown):Promise<PriceObservation>{
@@ -117,7 +142,7 @@ export async function readPriceObservation(tx:Tx,a:Actor,id:unknown):Promise<Pri
 }
 
 /** Deterministic financial applicability only. Never a quote, supplier or manufacturing approval. */
-export function assessPriceObservation(p:PriceObservation,source:EvidenceSource,restricted:boolean,context:PriceContext,now=new Date()){
+export function priceApplicabilityReasons(p:PriceObservation,source:EvidenceSource,restricted:boolean,context:PriceContext,now=new Date()){
  const reasons:string[]=[];
  if(!Number.isSafeInteger(context.quantity)||context.quantity<1||context.quantity>1000000)fail('INVALID_QUANTITY',400);
  if(p.source_id!==source.id)fail('EVIDENCE_SOURCE_MISMATCH',400);
@@ -147,6 +172,11 @@ export function assessPriceObservation(p:PriceObservation,source:EvidenceSource,
  if(p.maximum_quantity===null)reasons.push('QUANTITY_SCOPE_UNVERIFIED');
  if(p.maximum_quantity!==null&&context.quantity>p.maximum_quantity)reasons.push('QUANTITY_TIER_EXCEEDED');
  if(context.quantity%p.order_multiple!==0||context.quantity%p.units_per_price!==0)reasons.push('PACK_OR_INCREMENT_MISMATCH');
+ return reasons;
+}
+export function assessPriceObservation(p:PriceObservation,source:EvidenceSource,restricted:boolean,context:PriceContext,now=new Date()){
+ const reasons=priceApplicabilityReasons(p,source,restricted,context,now);
+ if((p.component_code??'material_cost')!=='material_cost'||(p.charge_basis??'PER_ITEM')!=='PER_ITEM'||p.process_profile_id)reasons.push('MATERIAL_ONLY_ASSESSMENT');
  const quantityUnits=context.quantity/p.units_per_price;
  const eligible=!reasons.length;
  return {version:PRICE_ASSESSMENT_VERSION,scope:'MATERIAL_ONLY' as const,status:eligible?'MATERIAL_COST_ELIGIBLE':'REQUIRES_REVIEW',eligibleForQuoteCost:eligible,

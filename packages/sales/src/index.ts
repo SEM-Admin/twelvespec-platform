@@ -1,44 +1,18 @@
 import Decimal from 'decimal.js';
 import {type Actor,type Tx,type Input,type Row,authorize,create,get,list,update,event,idempotent,fail,text,number,hash,transition} from '../../kernel/src/index';
 import {related} from '../../production/src/records';
-import {validateConfiguration} from '../../configuration/src/index';
+import {validateLine} from './validation';
+export {validateLine} from './validation';
 import {amount,money,unitCost,extendUnitCost,priceForTargetMargin,grossMargin,landedCost,tierCost,termsForOrder,type Components} from '../../pricing/src/index';
 import {assessEvidenceInScope,PRICE_ASSESSMENT_VERSION,type PriceContext} from '../../intelligence/src';
 import {evidenceLibrary} from '../../intelligence/src/library';
 import {reviewedCostWorksheet} from './manual-costing';
 import {publicProduct} from '../../catalog/src';
 import {safeLines,type ConfigLine} from './line-input';
+import {processProfileLibrary} from '../../production/src/profiles';
+import {qualifyQuote,qualificationHistory} from './qualification';
 export {safeLines,type ConfigLine} from './line-input';
 export const QUOTE_GRAPH:Record<string,string[]>={DRAFT:['COSTED'],COSTED:['APPROVAL_REQUIRED','READY_TO_ISSUE'],APPROVAL_REQUIRED:['READY_TO_ISSUE','DRAFT'],READY_TO_ISSUE:['ISSUED','DRAFT'],ISSUED:['ACCEPTED','EXPIRED','DECLINED'],ACCEPTED:[],EXPIRED:[],DECLINED:[]};
-export async function validateLine(tx:Tx,a:Actor,line:ConfigLine,requirePublished=true){
- const original=await get(tx,a,'products',line.productId);
- if((requirePublished||line.catalogRevision!==undefined)&&original.status!=='PUBLISHED')fail('PRODUCT_UNAVAILABLE');
- const variants=(await tx.query("select * from app.variants where tenant_id=$1 and workspace_id=$2 and product_id=$3 order by id",[a.tenantId,a.workspaceId,original.id])).rows as Row[];
- if(line.variantId){const variant=await get(tx,a,'variants',line.variantId);if(variant.product_id!==original.id&&variant.data.productId!==original.id)fail('VARIANT_PRODUCT_MISMATCH');}
- const usePublished=original.status==='PUBLISHED'&&(requirePublished||line.catalogRevision!==undefined);
- const published=publicProduct(original,variants);
- let data=original.data,variantData:Input={};
- if(usePublished){
-  const snapshot=original.data.publicSnapshot as Input|undefined;
-  data=snapshot&&typeof snapshot.product==='object'&&snapshot.product!==null?snapshot.product as Input:snapshot??original.data;
-  if(line.catalogRevision!==undefined&&line.catalogRevision!==Number(published.catalogRevision))fail('CATALOG_CHANGED_REVIEW_CART');
-  const choices=published.variants as Input[];
-  if(choices.length&&!line.variantId)fail('VARIANT_REQUIRED',400);
-  if(line.variantId){const chosen=choices.find(v=>v.id===line.variantId);if(!chosen)fail('VARIANT_UNAVAILABLE');variantData=chosen;}
- }else if(line.variantId){
-  const variant=await get(tx,a,'variants',line.variantId);
-  if(variant.product_id!==original.id&&variant.data.productId!==original.id)fail('VARIANT_PRODUCT_MISMATCH');
-  if(variant.status==='ARCHIVED')fail('VARIANT_UNAVAILABLE');variantData=variant.data;
- }
- const minimum=number(data.minimumQuantity??data.moq??1,1);if(line.quantity<minimum)fail('MOQ_NOT_MET');
- const allowed=data.methods??data.decorationMethods;if(Array.isArray(allowed)&&!allowed.includes(line.method))fail('DECORATION_INCOMPATIBLE');
- if(line.method==='embroidery'&&String(data.family??data.category).toUpperCase().includes('PRINT'))fail('DECORATION_INCOMPATIBLE');
- if(Array.isArray(data.locations)&&!data.locations.includes(line.location))fail('LOCATION_INCOMPATIBLE');
- let templateData:Input={};if(data.configurationTemplateId){const template=await get(tx,a,'configuration_templates',data.configurationTemplateId);if(template.status!=='PUBLISHED')fail('CONFIGURATION_TEMPLATE_NOT_PUBLISHED');templateData=template.data;}
- const configResult=validateConfiguration(data,variantData,line,templateData);if(!configResult.valid)fail('CONFIGURATION_INVALID');
- if(line.designVersionId){const design=await get(tx,a,'design_versions',line.designVersionId);const productId=design.product_id??design.data.productId,variantId=design.variant_id??design.data.variantId;if(!productId||(line.variantId&&!variantId))fail('DESIGN_BINDING_UNVERIFIED');if(productId!==line.productId)fail('DESIGN_PRODUCT_MISMATCH');if(line.variantId&&variantId!==line.variantId)fail('DESIGN_VARIANT_MISMATCH');if(design.data.method!==line.method||(design.data.placement as Input|undefined)?.location!==line.location)fail('DESIGN_CONFIGURATION_MISMATCH');}
- return {...original,title:usePublished?String(published.title):original.title,data:{...original.data,...data}};
-}
 export async function quoteLineSnapshot(tx:Tx,a:Actor,line:ConfigLine):Promise<Input>{
  const product=await validateLine(tx,a,line);
  const variants=(await tx.query('select * from app.variants where tenant_id=$1 and workspace_id=$2 and product_id=$3',[a.tenantId,a.workspaceId,product.id])).rows as Row[];
@@ -71,7 +45,11 @@ export function publicQuote(row:Row){
 export function publicOrder(row:Row){const d=row.data;return {id:row.id,title:row.title,status:row.status,created_at:row.created_at,data:{currency:d.currency,total:d.total,seller:d.seller,terms:d.terms,paymentStatus:d.paymentStatus,lines:Array.isArray(d.lines)?d.lines.map(v=>{const l=v as Input;return {productId:l.productId,variantId:l.variantId,title:l.title,quantity:l.quantity,method:l.method,location:l.location,sellTotal:l.sellTotal,designVersionId:l.designVersionId};}):[]}};}
 export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'sales',action);
+ if(action==='quote_process_profiles'){restricted(a);return processProfileLibrary(tx,a,input);}
+ if(action==='qualify_quote')return qualifyQuote(tx,a,input);
+ if(action==='qualification_history')return qualificationHistory(tx,a,input);
  if(action==='price_evidence_library'){restricted(a);return evidenceLibrary(tx,a,{...input,kind:'prices'});}
+ if(action==='qualification_sources'){restricted(a);return evidenceLibrary(tx,a,{...input,kind:'sources'});}
  if(action==='assess_quote_price'){
   restricted(a);
   const quoteId=text(input.quoteId),observationId=text(input.observationId),lineIndex=input.lineIndex;
