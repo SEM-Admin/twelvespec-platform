@@ -1,0 +1,62 @@
+'use client';
+import {useEffect,useState} from 'react';
+import {COST_COMPONENTS,type CostComponent} from '../../../packages/contracts/src/intelligence';
+import {asString,command,key,pretty,type Data} from './types';
+import {EvidencePaging,type EvidencePage} from './evidence-library';
+const empty:EvidencePage={rows:[],page:1,total:0,totalPages:1};
+const localTime=(date=new Date())=>new Date(date.getTime()-date.getTimezoneOffset()*60000).toISOString().slice(0,16);
+async function query<T>(action:string,input:Data){return (await command('sales',action,input)).result as T;}
+type Selection={row:Data;freightLeg?:string};
+export function QuoteQualification({quote,run}:{quote:Data;run:(action:string,input:Data)=>Promise<unknown>}){
+ const data=quote.data as Data,lines=data.lines as Data[],brief=(data.brief??{}) as Data;
+ const [lineIndex,setLine]=useState(0),[pricePage,setPricePage]=useState(1),[prices,setPrices]=useState(empty),[profilePage,setProfilePage]=useState(1),[profiles,setProfiles]=useState(empty),[profile,setProfile]=useState<Data|null>(null);
+ const [selected,setSelected]=useState<Partial<Record<CostComponent,Selection[]>>>({}),[routeMode,setRouteMode]=useState('BLANK_TO_DECORATOR'),[history,setHistory]=useState(empty),[historyPage,setHistoryPage]=useState(1),[generation,setGeneration]=useState(0);
+ const [result,setResult]=useState<Data|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[sourceId,setSourceId]=useState('');
+ const [sources,setSources]=useState(empty),[sourceSearch,setSourceSearch]=useState(''),[sourcePage,setSourcePage]=useState(1),[freightMode,setFreightMode]=useState('SPLIT_LEGS');
+ const line=lines[lineIndex],productId=asString(line?.productId),variantId=asString(line?.variantId);
+ useEffect(()=>{let active=true;setPrices(empty);void query<EvidencePage>('price_evidence_library',{productId,page:pricePage}).then(value=>{if(active)setPrices(value);}).catch(e=>{if(active)setError(e.message);});return()=>{active=false;};},[productId,pricePage]);
+ useEffect(()=>{let active=true;setProfiles(empty);if(!variantId)return;void query<EvidencePage>('quote_process_profiles',{productId,variantId,page:profilePage}).then(value=>{if(active)setProfiles(value);}).catch(e=>{if(active)setError(e.message);});return()=>{active=false;};},[productId,variantId,profilePage]);
+ useEffect(()=>{let active=true;void query<EvidencePage>('qualification_history',{quoteId:quote.id,page:historyPage}).then(value=>{if(active)setHistory(value);}).catch(e=>{if(active)setError(e.message);});return()=>{active=false;};},[quote.id,historyPage,generation]);
+ useEffect(()=>{let active=true;const timer=setTimeout(()=>{void query<EvidencePage>('qualification_sources',{search:sourceSearch,page:sourcePage}).then(value=>{if(active)setSources(value);}).catch(e=>{if(active)setError(e.message);});},150);return()=>{active=false;clearTimeout(timer);};},[sourceSearch,sourcePage]);
+ const profileChoices=profile&&!profiles.rows.some(p=>p.id===profile.id)?[profile,...profiles.rows]:profiles.rows;
+ const sourceChoices=sourceId&&!sources.rows.some(s=>s.id===sourceId)?[{id:sourceId,title:'Selected profile source'},...sources.rows]:sources.rows;
+ function select(component:CostComponent,id:string,leg?:string){
+  const row=prices.rows.find(p=>p.id===id);setResult(null);
+  setSelected(previous=>({...previous,[component]:[...(previous[component]??[]).filter(s=>s.freightLeg!==leg),...(row?[{row,...(leg?{freightLeg:leg}:{})}]:[])]}));
+ }
+ function picker(component:CostComponent,leg?:string){
+  const selection=selected[component]?.find(s=>s.freightLeg===leg),matches=prices.rows.filter(p=>(p.component_code??'material_cost')===component),choices=selection&&!matches.some(p=>p.id===selection.row.id)?[selection.row,...matches]:matches;
+  return <label key={component+String(leg)}>{pretty(component)}{leg?' · '+pretty(leg.toLowerCase()):''}<select value={asString(selection?.row.id)} onChange={e=>select(component,e.target.value,leg)}><option value="">Unknown / no evidence</option>{choices.map(p=><option key={asString(p.id)} value={asString(p.id)}>{asString(p.currency)} {asString(p.original_value)} · {pretty(asString(p.charge_basis).toLowerCase())} · {asString(p.variant_title)} · {asString(p.source_title)}</option>)}</select></label>;
+ }
+ async function qualify(event:React.FormEvent<HTMLFormElement>){
+  event.preventDefault();const values=new FormData(event.currentTarget);setBusy(true);setError('');try{
+   const accountIds=[...new Set(Object.values(selected).flatMap(items=>(items??[]).map(s=>s.row.account_id).filter(Boolean)))];if(accountIds.length>1)throw new Error('Selected prices refer to different customer accounts.');
+   const optionalNumber=(name:string)=>values.get(name)?Number(values.get(name)):null;
+   const record=await run('qualify_quote',{quoteId:quote.id,lineIndex,processProfileId:profile?.id,idempotencyKey:key(),channel:values.get('channel'),...(accountIds[0]?{accountId:accountIds[0]}:{}),evidence:Object.fromEntries(Object.entries(selected).map(([c,items])=>[c,(items??[]).map(s=>({observationId:s.row.id,...(s.freightLeg?{freightLeg:s.freightLeg}:{})}))])),route:{sourceId,reviewReference:values.get('reference'),observedAt:new Date(asString(values.get('observed'))).toISOString(),validUntil:new Date(asString(values.get('until'))).toISOString(),freshnessHours:Number(values.get('freshness')),supplyMode:routeMode,availableQuantity:optionalNumber('available'),confirmedDeliveryDate:values.get('delivery')||null,destinationCountry:values.get('country'),destinationPostalCode:values.get('postal'),flexibleDeadlineReviewed:values.get('flexible')==='on',artworkWidthMm:optionalNumber('width'),artworkHeightMm:optionalNumber('height')}}) as Data;
+   setResult(record);setGeneration(g=>g+1);
+  }catch(e){setError(e instanceof Error?e.message:'Qualification failed.');}finally{setBusy(false);}
+ }
+ const facts=result?.result as Data|undefined;
+ return <section className="request-review" aria-label="Connected quote qualification">
+  <h4>Connect production planning and all direct costs.</h4><p>This creates an immutable proposal for review. It never issues a quote, sends a purchase order, charges a customer, publishes a product or releases production.</p>
+  <form onSubmit={qualify} onChange={()=>setResult(null)} className="cost-worksheet"><fieldset disabled={busy}><legend>Exact quote item and evidence</legend>
+   <label>Qualification quote item<select value={lineIndex} onChange={e=>{setLine(Number(e.target.value));setProfile(null);setSelected({});setPricePage(1);setProfilePage(1);setResult(null);setSourceId('');}}>{lines.map((l,i)=><option value={i} key={i}>Item {i+1} · {asString(l.quantity)} units · {asString(l.method)} · {asString(l.location)}</option>)}</select></label>
+   <label>Qualification planning profile<select required value={asString(profile?.id)} onChange={e=>{const row=profileChoices.find(p=>p.id===e.target.value)??null;setProfile(row);setResult(null);setSourceId(asString(row?.source_id));}}><option value="">Choose the exact producer profile</option>{profileChoices.map(p=><option key={asString(p.id)} value={asString(p.id)}>{asString(p.title)} · {asString(p.verification)} · {asString((p.data as Data).method)} · {asString((p.data as Data).location)}</option>)}</select></label><EvidencePaging page={profilePage} totalPages={profiles.totalPages} onPage={setProfilePage}/>
+   <p>Cost evidence page {pricePage}: each explicit zero needs its own evidence. Change pages to find additional charges; selections are retained.</p><EvidencePaging page={pricePage} totalPages={prices.totalPages} onPage={setPricePage}/>
+   {COST_COMPONENTS.filter(c=>c!=='allocated_freight').map(c=>picker(c))}
+   <label>Supply route<select value={routeMode} onChange={e=>{setRouteMode(e.target.value);setSelected(s=>({...s,allocated_freight:[]}));setResult(null);}}><option value="BLANK_TO_DECORATOR">Blank supplier → decorator → customer</option><option value="SINGLE_PRODUCER">Single producer → customer</option></select></label>
+   <label>Freight evidence scope<select value={freightMode} onChange={e=>{setFreightMode(e.target.value);setSelected(s=>({...s,allocated_freight:[]}));}}><option value="SPLIT_LEGS">Separate evidence for each leg</option><option value="ALL_LEGS">One reviewed charge explicitly covers every leg</option></select></label>
+   {freightMode==='ALL_LEGS'?picker('allocated_freight','ALL_LEGS'):routeMode==='BLANK_TO_DECORATOR'?<>{picker('allocated_freight','BLANK_TO_DECORATOR')}{picker('allocated_freight','DECORATOR_TO_CUSTOMER')}</>:picker('allocated_freight','PRODUCER_TO_CUSTOMER')}
+  </fieldset><fieldset disabled={busy}><legend>Source-confirmed availability and delivery</legend>
+   <label>Find route evidence source<input type="search" value={sourceSearch} onChange={e=>{setSourceSearch(e.target.value);setSourcePage(1);}}/></label><label>Route evidence source<select value={sourceId} required onChange={e=>setSourceId(e.target.value)}><option value="">Choose a permitted source</option>{sourceChoices.map(s=><option key={asString(s.id)} value={asString(s.id)}>{asString(s.title)}</option>)}</select><small>Use a registered document that actually supports these route facts.</small></label><EvidencePaging page={sourcePage} totalPages={sources.totalPages} onPage={setSourcePage}/>
+   <label>Route facts reference<textarea name="reference" required maxLength={1000}/></label><label>Route observed at<input type="datetime-local" name="observed" required defaultValue={localTime()}/></label><label>Route valid until<input type="datetime-local" name="until" required defaultValue={localTime(new Date(Date.now()+86400000))}/></label><label>Route freshness hours<input name="freshness" type="number" min={1} max={168} defaultValue={24} required/></label>
+   <label>Confirmed available quantity (blank means unknown)<input name="available" type="number" min={0} max={1000000}/></label><label>Confirmed delivery date<input name="delivery" type="date"/></label>
+   <label>Reviewed destination country<input name="country" required pattern="[A-Z]{2}" defaultValue={asString(brief.deliveryCountry)}/></label><label>Reviewed destination postal code<input name="postal" required maxLength={30} defaultValue={asString(brief.deliveryPostalCode)}/></label><label className="workbench-check"><input name="flexible" type="checkbox"/>I reviewed the flexible delivery scope when no date was requested.</label>
+   <label>Proposed art width (mm; saved design dimensions take precedence)<input name="width" type="number" min="0.001" max={100000} step="any"/></label><label>Proposed art height (mm; saved design dimensions take precedence)<input name="height" type="number" min="0.001" max={100000} step="any"/></label>
+   <label>Qualification sales channel<select name="channel"><option value="DIRECT">Direct</option><option value="COMPANY_STORE">Company store</option><option value="MARKETPLACE">Marketplace</option></select></label>
+  </fieldset><button className="button secondary" disabled={busy||!profile}>Qualify connected proposal</button></form>
+  {error&&<p className="alert error" role="alert">{error}</p>}
+  {facts&&<div className="workbench-note" role="status"><strong>{pretty(asString(facts.status).toLowerCase())}</strong><p>Assessed {new Date(asString(facts.assessedAt)).toLocaleString()}. This is a historical result; run a new qualification after any fact or rights change.</p><p>Complete landed cost: {facts.landedCost===null?'Unknown / incomplete':`${asString(facts.currency)} ${asString(facts.landedCost)}`}. Suggested sale at 40% target margin: {asString(facts.suggestedSellTotal,'Unknown')}.</p><p>{facts.eligibleForQuoteCost?'Documentary cost proposal needs commercial review.':'Real quote costing is blocked.'} Production release is blocked.</p><ul>{(facts.reasons as string[]).map(reason=><li key={reason}>{pretty(reason.toLowerCase())}</li>)}</ul><p>Production holds: {(facts.productionHolds as string[]).map(h=>pretty(h.toLowerCase())).join('; ')}.</p></div>}
+  <details><summary>Qualification history ({history.total})</summary>{history.rows.map(row=><button type="button" className="button secondary compact" key={asString(row.id)} onClick={()=>setResult(row)}>{new Date(asString(row.created_at)).toLocaleString()} · {pretty(asString((row.result as Data).status).toLowerCase())}</button>)}<EvidencePaging page={historyPage} totalPages={history.totalPages} onPage={setHistoryPage}/></details>
+ </section>;
+}

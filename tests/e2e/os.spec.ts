@@ -1,4 +1,5 @@
 import {randomUUID} from 'node:crypto';
+import {loginOwner as authenticateOwner} from './owner-session';
 import {test,expect,type Page,type BrowserContext} from '@playwright/test';
 
 const OS='http://localhost:3001';
@@ -6,20 +7,10 @@ const SHOP='http://localhost:3000';
 type BusinessRow={id:string;title:string;status:string;tenant_id:string;workspace_id:string;batch_id?:string;data:Record<string,unknown>};
 type Workspace={id:string;tenantId:string;name:string;role:string};
 type Session={actor:{userId:string;tenantId:string;workspaceId:string;role:string};workspaces:Workspace[]};
-let ownerCookies:Awaited<ReturnType<BrowserContext['cookies']>>|undefined;
-
 async function loginOwner(page:Page){
- if(ownerCookies)await page.context().addCookies(ownerCookies);
- await page.goto(OS,{waitUntil:'networkidle'});
- if(!ownerCookies){
-  await page.getByLabel('Email address',{exact:true}).fill('owner@demo.twelvespec.test');
-  await page.getByLabel('Password',{exact:true}).fill('TwelveSpec-Demo-2026!');
-  await page.getByRole('button',{name:'Sign in to workspace',exact:true}).click();
- }
+ await authenticateOwner(page);
  await expect(page.getByRole('heading',{name:'A clear view of what’s next.',exact:true})).toBeVisible();
  await expect(page.getByLabel('Select workspace',{exact:true})).toBeVisible();
- // Workflow journeys share the authenticated owner's session; the first journey checks sign-in.
- ownerCookies=await page.context().cookies(OS);
 }
 async function moduleData(page:Page,module:string,workspaceId?:string){
  const response=await page.request.get(`${OS}/api/platform?module=${module}`,workspaceId?{headers:{'x-workspace-id':workspaceId}}:{});
@@ -35,6 +26,10 @@ test('owner dashboard and canonical catalog use scoped records and protect the p
  const session=await (await page.request.get(`${OS}/api/session`)).json() as Session;
  expect(session.actor.role).toBe('owner');
  await expect(page.locator('.demo-ribbon')).toContainText('Synthetic data');
+ const today=await (await page.request.get(`${OS}/api/platform?module=today`)).json();const totals=today.summary.today.metrics;
+ await expect(page.locator('.metric-card').filter({hasText:'Orders in motion'}).locator('strong')).toHaveText(String(totals.ordersInMotion));
+ await expect(page.locator('.metric-card').filter({hasText:'Recorded gross profit'}).locator('strong')).toHaveText(totals.grossProfit===null?'Unknown':new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(totals.grossProfit)));
+ await expect(page.locator('.today-topline')).toContainText('Complete workspace totals');
  const catalog=await moduleData(page,'catalog');
  expect(catalog.tables.products.length).toBeGreaterThanOrEqual(40);
  expect(catalog.tables.variants.length).toBeGreaterThanOrEqual(120);

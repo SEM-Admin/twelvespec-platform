@@ -1,43 +1,19 @@
 import Decimal from 'decimal.js';
 import {type Actor,type Tx,type Input,type Row,authorize,create,get,list,update,event,idempotent,fail,text,number,hash,transition} from '../../kernel/src/index';
 import {related} from '../../production/src/records';
-import {validateConfiguration} from '../../configuration/src/index';
+import {validateLine,currentPublishedDefinition} from './validation';
+export {validateLine} from './validation';
 import {amount,money,unitCost,extendUnitCost,priceForTargetMargin,grossMargin,landedCost,tierCost,termsForOrder,type Components} from '../../pricing/src/index';
 import {assessEvidenceInScope,PRICE_ASSESSMENT_VERSION,type PriceContext} from '../../intelligence/src';
+import {evidenceLibrary,evidenceOptions} from '../../intelligence/src/library';
+import {handleCrm} from '../../crm/src';
 import {reviewedCostWorksheet} from './manual-costing';
 import {publicProduct} from '../../catalog/src';
 import {safeLines,type ConfigLine} from './line-input';
+import {processProfileLibrary} from '../../production/src/profiles';
+import {qualifyQuote,qualificationHistory} from './qualification';
 export {safeLines,type ConfigLine} from './line-input';
 export const QUOTE_GRAPH:Record<string,string[]>={DRAFT:['COSTED'],COSTED:['APPROVAL_REQUIRED','READY_TO_ISSUE'],APPROVAL_REQUIRED:['READY_TO_ISSUE','DRAFT'],READY_TO_ISSUE:['ISSUED','DRAFT'],ISSUED:['ACCEPTED','EXPIRED','DECLINED'],ACCEPTED:[],EXPIRED:[],DECLINED:[]};
-export async function validateLine(tx:Tx,a:Actor,line:ConfigLine,requirePublished=true){
- const original=await get(tx,a,'products',line.productId);
- if((requirePublished||line.catalogRevision!==undefined)&&original.status!=='PUBLISHED')fail('PRODUCT_UNAVAILABLE');
- const variants=(await tx.query("select * from app.variants where tenant_id=$1 and workspace_id=$2 and product_id=$3 order by id",[a.tenantId,a.workspaceId,original.id])).rows as Row[];
- if(line.variantId){const variant=await get(tx,a,'variants',line.variantId);if(variant.product_id!==original.id&&variant.data.productId!==original.id)fail('VARIANT_PRODUCT_MISMATCH');}
- const usePublished=original.status==='PUBLISHED'&&(requirePublished||line.catalogRevision!==undefined);
- const published=publicProduct(original,variants);
- let data=original.data,variantData:Input={};
- if(usePublished){
-  const snapshot=original.data.publicSnapshot as Input|undefined;
-  data=snapshot&&typeof snapshot.product==='object'&&snapshot.product!==null?snapshot.product as Input:snapshot??original.data;
-  if(line.catalogRevision!==undefined&&line.catalogRevision!==Number(published.catalogRevision))fail('CATALOG_CHANGED_REVIEW_CART');
-  const choices=published.variants as Input[];
-  if(choices.length&&!line.variantId)fail('VARIANT_REQUIRED',400);
-  if(line.variantId){const chosen=choices.find(v=>v.id===line.variantId);if(!chosen)fail('VARIANT_UNAVAILABLE');variantData=chosen;}
- }else if(line.variantId){
-  const variant=await get(tx,a,'variants',line.variantId);
-  if(variant.product_id!==original.id&&variant.data.productId!==original.id)fail('VARIANT_PRODUCT_MISMATCH');
-  if(variant.status==='ARCHIVED')fail('VARIANT_UNAVAILABLE');variantData=variant.data;
- }
- const minimum=number(data.minimumQuantity??data.moq??1,1);if(line.quantity<minimum)fail('MOQ_NOT_MET');
- const allowed=data.methods??data.decorationMethods;if(Array.isArray(allowed)&&!allowed.includes(line.method))fail('DECORATION_INCOMPATIBLE');
- if(line.method==='embroidery'&&String(data.family??data.category).toUpperCase().includes('PRINT'))fail('DECORATION_INCOMPATIBLE');
- if(Array.isArray(data.locations)&&!data.locations.includes(line.location))fail('LOCATION_INCOMPATIBLE');
- let templateData:Input={};if(data.configurationTemplateId){const template=await get(tx,a,'configuration_templates',data.configurationTemplateId);if(template.status!=='PUBLISHED')fail('CONFIGURATION_TEMPLATE_NOT_PUBLISHED');templateData=template.data;}
- const configResult=validateConfiguration(data,variantData,line,templateData);if(!configResult.valid)fail('CONFIGURATION_INVALID');
- if(line.designVersionId){const design=await get(tx,a,'design_versions',line.designVersionId);const productId=design.product_id??design.data.productId,variantId=design.variant_id??design.data.variantId;if(productId&&productId!==line.productId)fail('DESIGN_PRODUCT_MISMATCH');if(variantId&&line.variantId&&variantId!==line.variantId)fail('DESIGN_VARIANT_MISMATCH');}
- return {...original,title:usePublished?String(published.title):original.title,data:{...original.data,...data}};
-}
 export async function quoteLineSnapshot(tx:Tx,a:Actor,line:ConfigLine):Promise<Input>{
  const product=await validateLine(tx,a,line);
  const variants=(await tx.query('select * from app.variants where tenant_id=$1 and workspace_id=$2 and product_id=$3',[a.tenantId,a.workspaceId,product.id])).rows as Row[];
@@ -68,8 +44,49 @@ export function publicQuote(row:Row){
  return {id:row.id,title:row.title,status:row.status,revision:row.revision,created_at:row.created_at,data:{currency:d.currency,total:issued?d.total:null,validUntil:issued?d.validUntil:null,revisionId:issued?d.revisionId:null,seller:issued?d.seller:null,terms:issued?d.terms:null,brief:{projectName:b.projectName,company:b.company,contactName:b.contactName,phone:b.phone,deliveryCountry:b.deliveryCountry,deliveryPostalCode:b.deliveryPostalCode,requestedDate:b.requestedDate,hardDeadline:b.hardDeadline,artworkStatus:b.artworkStatus,notes:b.notes},commercialAssumptions:issued?{deliveryNote:assumptions.deliveryNote,taxTreatment:assumptions.taxTreatment,taxNote:assumptions.taxNote,freightIncluded:assumptions.freightIncluded}:null,lines:Array.isArray(d.lines)?d.lines.map((v,i)=>{const l=v as Input,snapshot=Array.isArray(d.lineSnapshots)&&d.lineSnapshots[i]&&typeof d.lineSnapshots[i]==='object'?d.lineSnapshots[i] as Input:{};return {productId:l.productId,variantId:l.variantId,title:l.title??snapshot.title,color:snapshot.color,size:snapshot.size,quantity:l.quantity,method:l.method,location:l.location,notes:l.notes,specifications:l.specifications,designVersionId:l.designVersionId,...(issued?{sellTotal:l.sellTotal,unitSell:l.unitSell}:{})};}):[]}};
 }
 export function publicOrder(row:Row){const d=row.data;return {id:row.id,title:row.title,status:row.status,created_at:row.created_at,data:{currency:d.currency,total:d.total,seller:d.seller,terms:d.terms,paymentStatus:d.paymentStatus,lines:Array.isArray(d.lines)?d.lines.map(v=>{const l=v as Input;return {productId:l.productId,variantId:l.variantId,title:l.title,quantity:l.quantity,method:l.method,location:l.location,sellTotal:l.sellTotal,designVersionId:l.designVersionId};}):[]}};}
+export function publicRequest(row:Row){
+ const projected=publicQuote(row).data,review=(row.data.intakeReview??{}) as Input;
+ return {id:row.id,title:row.title,status:row.status,revision:row.revision,created_at:row.created_at,data:{kind:row.data.kind??'PRODUCT_REQUEST',currency:row.data.currency,brief:projected.brief,lines:projected.lines,lineSnapshots:projected.lines,note:row.data.note,submittedAt:row.data.submittedAt,quoteFirst:true,intakeReview:{status:review.status,missingFields:review.missingFields}}};
+}
 export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'sales',action);
+ if(action==='inquiry_catalog'){
+  restricted(a);const options=await evidenceOptions(tx,a,input,true);let configuration:Input|null=null;
+  if(input.productId){const product=await get(tx,a,'products',input.productId),variants=await related(tx,a,'variants','product_id',product.id);configuration=publicProduct(product,variants);}
+  return {...options,configuration};
+ }
+ if(action==='scope_inquiry'){
+  restricted(a);const requestId=text(input.requestId),lines=safeLines(input.lines),reference=text(input.reference,1000);
+  return idempotent(tx,a,'sales.scope_inquiry',input.key,{requestId,lines,reference,expectedRevision:input.expectedRevision},async()=>{
+   const request=await get(tx,a,'requests',requestId,true);if(request.data.kind!=='PROJECT_INQUIRY'||!['NEW','IN_REVIEW','AWAITING_CUSTOMER'].includes(request.status))fail('INQUIRY_NOT_SCOPEABLE');
+   if(request.revision!==input.expectedRevision)fail('REVISION_CONFLICT');
+   if((await tx.query('select id from app.quotes where tenant_id=$1 and workspace_id=$2 and request_id=$3 limit 1',[a.tenantId,a.workspaceId,request.id])).rowCount)fail('INQUIRY_ALREADY_QUOTED');
+   if(Array.isArray(request.data.lines)&&request.data.lines.length)fail('INQUIRY_ALREADY_SCOPED');
+   const snapshots=[];for(const line of lines)snapshots.push(await quoteLineSnapshot(tx,a,line));
+   for(let i=0;i<lines.length;i++)await create(tx,a,'request_lines',{title:String(snapshots[i].title),status:'OPERATOR_SCOPED',owner_id:request.owner_id,request_id:request.id,product_id:lines[i].productId,...(lines[i].variantId?{variant_id:lines[i].variantId}:{}),data:{...lines[i],snapshot:snapshots[i],lineNumber:i+1}});
+   const row=await update(tx,a,'requests',request.id,{status:'IN_REVIEW',expectedRevision:request.revision,data:{...request.data,lines,lineSnapshots:snapshots,internalOriginalInquiry:request.data.brief,internalScopeReview:{reference,reviewedBy:a.userId,at:new Date().toISOString()},intakeReview:{status:'SCOPED_FOR_QUOTE_REVIEW',missingFields:[]}}});await event(tx,a,'inquiry.scoped',row.id,{lineCount:lines.length});return row;
+  });
+ }
+ if(action==='link_inquiry_to_crm'){
+  restricted(a);const requestId=text(input.requestId);
+  return idempotent(tx,a,'sales.inquiry_crm',input.key,{requestId},async()=>{
+   const request=await get(tx,a,'requests',requestId,true);if(request.data.kind!=='PROJECT_INQUIRY')fail('PROJECT_INQUIRY_REQUIRED');
+   if(request.data.internalCrmFollowUpId)return {request,followUp:await get(tx,a,'follow_ups',request.data.internalCrmFollowUpId)};
+   if((request.data.contactPermission as Input)?.purpose!=='REQUESTED_PROJECT_FOLLOW_UP')fail('CONTACT_PERMISSION_REQUIRED');
+   const user=(await tx.query('select u.email,u.name from "user" u join memberships m on m.user_id=u.id where m.tenant_id=$1 and m.workspace_id=$2 and u.id=$3',[a.tenantId,a.workspaceId,request.owner_id])).rows[0];if(!user)fail('INQUIRY_CONTACT_UNAVAILABLE');
+   const email=String(user.email).toLowerCase();await tx.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[`${a.tenantId}/${a.workspaceId}/crm-email/${email}`]);
+   const existing=(await tx.query("select * from app.contacts where tenant_id=$1 and workspace_id=$2 and lower(data->>'email')=$3 and status<>'ARCHIVED' order by id limit 2",[a.tenantId,a.workspaceId,email])).rows;
+   if(existing.length>1)fail('CONTACT_IDENTITY_AMBIGUOUS');
+   const brief=request.data.brief as Input,contact=existing[0]??await handleCrm(tx,a,'create_contact',{name:brief.contactName||user.name,email,...(brief.phone?{phone:brief.phone}:{}),consent:{marketing:false,source:'REQUESTED_PROJECT_FOLLOW_UP'},notes:'Customer requested project discussion.'}) as Row;
+   const followUp=await handleCrm(tx,a,'create_follow_up',{contactId:contact.id,requestId:request.id,title:'Discuss project · '+request.title,kind:'REQUESTED_PROJECT_FOLLOW_UP'}) as Row;
+   const row=await update(tx,a,'requests',request.id,{data:{...request.data,internalCrmContactId:contact.id,internalCrmFollowUpId:followUp.id}});await event(tx,a,'inquiry.crm_follow_up_created',request.id,{followUpId:followUp.id});return {request:row,followUp};
+  });
+ }
+ if(action==='quote_process_profiles'){restricted(a);return processProfileLibrary(tx,a,input);}
+ if(action==='qualify_quote')return qualifyQuote(tx,a,input);
+ if(action==='qualification_history')return qualificationHistory(tx,a,input);
+ if(action==='price_evidence_library'){restricted(a);return evidenceLibrary(tx,a,{...input,kind:'prices'});}
+ if(action==='qualification_sources'){restricted(a);return evidenceLibrary(tx,a,{...input,kind:'sources'});}
  if(action==='assess_quote_price'){
   restricted(a);
   const quoteId=text(input.quoteId),observationId=text(input.observationId),lineIndex=input.lineIndex;
@@ -83,7 +100,7 @@ export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promi
    if(currency!==quote.data.currency)fail('CURRENCY_MISMATCH',400);
    if(accountId){const account=await get(tx,a,'accounts',accountId);if((account.data.customerUserId??account.data.userId)!==quote.owner_id)fail('QUOTE_ACCOUNT_MISMATCH',400);}
    const product=await validateLine(tx,a,line,false),variant=line.variantId?await get(tx,a,'variants',line.variantId):null;
-   const context:PriceContext={productId:line.productId,variantId:line.variantId??null,productRevision:product.revision,variantRevision:variant?.revision??null,quantity:line.quantity,accountId,currency,territory,channel};
+   const context:PriceContext={productId:line.productId,variantId:line.variantId??null,productRevision:product.revision,variantRevision:variant?.revision??null,quantity:line.quantity,accountId,currency,territory,channel,publicationCurrent:currentPublishedDefinition(product,variant)};
    const result=await assessEvidenceInScope(tx,a,observationId,context);
    const request={...context,lineIndex,configurationHash:hash(line)};
    const assessment=(await tx.query(`insert into app.price_assessments(tenant_id,workspace_id,created_by,quote_id,observation_id,quote_revision,assessment_version,request,result)
@@ -97,6 +114,7 @@ export async function handleSales(tx:Tx,a:Actor,action:string,input:Input):Promi
    let lines=input.lines,ownerId=a.userId,request:Row|undefined;
    if(input.requestId){
     request=await get(tx,a,'requests',input.requestId,true);
+    if(request.data.kind==='PROJECT_INQUIRY'&&!(request.data.lines as unknown[])?.length)fail('INQUIRY_NEEDS_PRODUCT_SCOPE');
     if(request.status==='CLOSED')fail('REQUEST_CLOSED');
     const prior=await tx.query('select * from app.quotes where tenant_id=$1 and workspace_id=$2 and request_id=$3 order by created_at desc limit 1',[a.tenantId,a.workspaceId,request.id]);
     if(prior.rows[0])return prior.rows[0];

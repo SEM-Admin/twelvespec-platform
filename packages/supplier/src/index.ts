@@ -5,6 +5,8 @@ import { parseImport,validateMapping,type ParsedRow,type NormalizedProduct } fro
 import {shopifyDomain,shopifyDemoSources,SHOPIFY_API_VERSION,SHOPIFY_ACTIVATION_REQUIREMENTS} from '../../providers/src/shopify';
 import {stageCatalogSources} from '../../catalog/src/sources';
 import {registerEvidenceSource,recordPriceObservation,restrictEvidenceSource} from '../../intelligence/src';
+import {processProfileLibrary} from '../../production/src/profiles';
+import {evidenceLibrary,evidenceOptions} from '../../intelligence/src/library';
 export * from './imports';
 const object=(v:unknown):Input=>v&&typeof v==='object'&&!Array.isArray(v)?v as Input:{};
 const vault=new LocalEncryptedVault();
@@ -19,6 +21,9 @@ async function batchRows(tx:Tx,a:Actor,id:string):Promise<Row[]>{return(await tx
 async function profiles(tx:Tx,a:Actor,input:Input){if(input.mappingProfileId){const p=await get(tx,a,'mapping_profiles',input.mappingProfileId);return {mapping:p.data.mapping,mappingVersion:p.data.mappingVersion??p.revision,profileId:p.id,pricePolicy:p.data.pricePolicy};}return {mapping:input.mapping,mappingVersion:1,profileId:null,pricePolicy:validatePricePolicy(input.pricePolicy)};}
 export async function handleSupplier(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'supplier',action);
+ if(action==='evidence_library')return evidenceLibrary(tx,a,input);
+ if(action==='price_process_profiles')return processProfileLibrary(tx,a,input);
+ if(action==='evidence_options')return evidenceOptions(tx,a,input);
  if(action==='register_evidence_source')return registerEvidenceSource(tx,a,input);
  if(action==='record_price_observation')return recordPriceObservation(tx,a,input);
  if(action==='restrict_evidence_source')return restrictEvidenceSource(tx,a,input);

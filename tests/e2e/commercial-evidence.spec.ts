@@ -1,9 +1,9 @@
 import {test,expect} from '@playwright/test';
+import {loginOwner} from './owner-session';
 const OS='http://localhost:3001',SHOP='http://localhost:3000';
 
 test('authenticated evidence commands preserve a draft quote and keep source facts out of storefront responses',async({page,browser})=>{
- await page.goto(OS);await page.getByLabel('Email address',{exact:true}).fill('owner@demo.twelvespec.test');await page.getByLabel('Password',{exact:true}).fill('TwelveSpec-Demo-2026!');await page.getByRole('button',{name:'Sign in to workspace',exact:true}).click();
- await expect(page.getByRole('heading',{name:'A clear view of what’s next.',exact:true})).toBeVisible();
+ await loginOwner(page);await expect(page.getByRole('heading',{name:'A clear view of what’s next.',exact:true})).toBeVisible();
  const command=async(module:string,action:string,input:Record<string,unknown>)=>{
   const response=await page.request.post(`${OS}/api/platform`,{headers:{Origin:OS},data:{module,action,input}});
   expect(response.ok(),`${module}.${action}: ${await response.text()}`).toBe(true);return (await response.json()).result;

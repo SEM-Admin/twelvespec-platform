@@ -7,7 +7,7 @@ export async function generateMetadata({params}:Props){const {path=[]}=await par
 export default async function Page({params,searchParams}:Props) {
  const {path=[]}=await params,scope=websitePath(path),website=await publishedWebsite(scope.path,scope.storeId);
  if(website?.redirectTo)redirect(scope.storeId?`/stores/${scope.storeId}${website.redirectTo}`:website.redirectTo);
- if(path[0]&&!['products','create','cart','account','bundles','stores','coming-soon','catalog','collections'].includes(path[0])&&!website?.page)notFound();
+ if(path[0]&&!['products','create','cart','account','bundles','stores','coming-soon','catalog','collections','inquiry'].includes(path[0])&&!website?.page)notFound();
  const query=Object.fromEntries(Object.entries(await searchParams).flatMap(([key,value])=>typeof value==='string'?[[key,value]]:[]));
  return <Storefront path={path} initialWebsite={website} catalogQuery={query}/>;
 }

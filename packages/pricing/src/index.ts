@@ -1,8 +1,8 @@
 import Decimal from 'decimal.js';
 import { fail } from '../../kernel/src/index';
 export type Money=string;
-export const COST_COMPONENTS=['material_cost','decoration_run_cost','setup','prepress','outsourced_labor','packaging','allocated_freight','other_direct_cost'] as const;
-export type CostComponent=typeof COST_COMPONENTS[number];
+import {COST_COMPONENTS,type CostComponent} from '../../contracts/src/intelligence';
+export {COST_COMPONENTS,type CostComponent} from '../../contracts/src/intelligence';
 export type Components=Record<CostComponent,Money|null>;
 // 14 integer + 8 source decimal digits, extended by up to 1,000,000 units.
 // Keep a local context: changing Decimal's global precision would affect other domains.

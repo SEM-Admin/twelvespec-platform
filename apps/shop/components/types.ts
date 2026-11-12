@@ -7,6 +7,7 @@ export type Session={actor:{userId:string;role:string;workspaceId:string;email?:
 export type AccountData={tables:Record<string,Row[]>};
 export type CartLine={productId:string;variantId:string;quantity:number;method:string;location:string;designVersionId?:string;storeId?:string;brandKitId?:string;catalogRevision?:number;notes?:string;specifications?:Data};
 export type Command=(module:string,action:string,input:Data)=>Promise<unknown>;
+export const designSelectionKey=(v:{productId:unknown;variantId:unknown;method:unknown;location:unknown})=>JSON.stringify([v.productId,v.variantId,v.method,v.location]);
 export function stringValue(value:unknown,fallback=''){return typeof value==='string'?value:typeof value==='number'?String(value):fallback;}
 export function numberValue(value:unknown,fallback=0){const n=Number(value);return Number.isFinite(n)?n:fallback;}
 export function record(value:unknown):Data{return value&&typeof value==='object'&&!Array.isArray(value)?value as Data:{};}

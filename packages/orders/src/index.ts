@@ -1,5 +1,6 @@
 import {type Actor,type Tx,type Input,type Row,authorize,create,get,list,update,event,idempotent,fail,text,number,hash,transition} from '../../kernel/src/index';
 import {related} from '../../production/src/records';
+import {recordProcessProfile,processProfileContext,processProfileLibrary} from '../../production/src/profiles';
 export const JOB_GRAPH:Record<string,string[]>={PLANNED:['READY','BLOCKED'],READY:['IN_PROGRESS','BLOCKED'],IN_PROGRESS:['QC_PENDING','BLOCKED'],QC_PENDING:['COMPLETE','REWORK','BLOCKED'],REWORK:['IN_PROGRESS','BLOCKED'],BLOCKED:['PLANNED','READY'],COMPLETE:[]};
 export async function ensureDispatchReady(tx:Tx,a:Actor,order:Row){
  if(order.revision_id){const agreement=await get(tx,a,'quote_revisions',order.revision_id);if(hash(agreement.data)!==order.data.agreementHash||hash(agreement.data.lines)!==hash(order.data.lines)||hash(agreement.data.seller)!==hash(order.data.seller)||agreement.data.total!==order.data.total||agreement.data.currency!==order.data.currency)fail('ORDER_AGREEMENT_CHANGED');}
@@ -13,6 +14,9 @@ export async function ensureDispatchReady(tx:Tx,a:Actor,order:Row){
 }
 export async function handleOrders(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'orders',action);
+ if(action==='record_process_profile')return recordProcessProfile(tx,a,input);
+ if(action==='process_profile_library')return processProfileLibrary(tx,a,input);
+ if(action==='process_profile_context')return processProfileContext(tx,a,input);
  if(action==='allocate_jobs')return idempotent(tx,a,'order.allocate',input.key,{id:input.id},async()=>{
   const order=await get(tx,a,'orders',input.id,true);if(!['AWAITING_PAYMENT','CONFIRMED'].includes(order.status))fail('INVALID_TRANSITION');const lines=await related(tx,a,'order_lines','order_id',order.id);if(!lines.length)fail('ORDER_LINES_REQUIRED');
   const jobs=[];const routeRevision=hash({order:order.id,lines:lines.map(l=>({id:l.id,data:l.data}))});

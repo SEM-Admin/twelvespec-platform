@@ -1,0 +1,21 @@
+import {test,expect} from '@playwright/test';
+const SHOP='http://localhost:3000';
+test('saved cap designs stay attached to exact variants after color changes and quote-cart selection',async({page})=>{
+ test.setTimeout(90000);
+ await page.goto(SHOP);await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'Sign in',exact:true}).click();await expect(page.getByRole('dialog')).toBeHidden();
+ const {products}=await (await page.request.get(`${SHOP}/api/shop`)).json();const product=products.find((p:{title:string})=>p.title==='Classic Camp Cap');
+ const [a,b]=product.variants;const marker=`SYNTHETIC VARIANT ${crypto.randomUUID()}`;
+ await page.goto(`${SHOP}/create/${product.id}`);await page.getByRole('combobox',{name:'Product color',exact:true}).selectOption(a.id);await page.getByRole('combobox',{name:'Method',exact:true}).selectOption('embroidery');await page.getByLabel('Your message',{exact:true}).fill(marker);
+ await page.getByRole('button',{name:'Save & request proof',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'Proof requested for this exact design version'})).toBeVisible();
+ await page.getByRole('combobox',{name:'Product color',exact:true}).selectOption(b.id);await expect(page.locator('.designer-bottom')).toContainText('Unsaved design');
+ const proofSaved=page.waitForResponse(r=>r.url().endsWith('/api/platform')&&r.request().postDataJSON()?.action==='request_proof');
+ await page.getByRole('button',{name:'Save & request proof',exact:true}).click();expect((await proofSaved).ok()).toBe(true);await expect(page.getByRole('status').filter({hasText:'Proof requested for this exact design version'})).toBeVisible();
+ const {tables}=await (await page.request.get(`${SHOP}/api/shop/account`)).json();
+ const versions=tables.design_versions.filter((v:{data:{layers:{text:string}[]}})=>v.data.layers?.some(l=>l.text===marker));
+ expect(versions).toHaveLength(2);expect(new Set(versions.map((v:{variant_id:string})=>v.variant_id))).toEqual(new Set([a.id,b.id]));expect(new Set(versions.map((v:{project_id:string})=>v.project_id)).size).toBe(2);
+ const matching=versions.find((v:{variant_id:string})=>v.variant_id===b.id);expect(tables.proofs.some((p:{version_id:string;data:{productionReadiness:string}})=>p.version_id===matching.id&&p.data.productionReadiness==='BLOCKED')).toBe(true);
+ await page.getByRole('link',{name:'Back to product',exact:true}).click();
+ await page.getByRole('button',{name:`Select ${b.color}`,exact:true}).click();await page.getByRole('combobox',{name:'Decoration method',exact:true}).selectOption('embroidery');await expect(page.getByText('Saved design version linked to this product.',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Add to quote cart',exact:false}).click();await expect(page.getByRole('status').filter({hasText:'added to your saved quote cart'})).toBeVisible();
+ const account=await (await page.request.get(`${SHOP}/api/shop/account`)).json();expect(account.tables.carts.some((c:{data:{lines:{variantId:string;designVersionId:string}[]}})=>c.data.lines?.some(l=>l.variantId===b.id&&l.designVersionId===matching.id))).toBe(true);
+});

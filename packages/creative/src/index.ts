@@ -121,33 +121,39 @@ export async function handleCreative(tx:Tx,a:Actor,action:string,input:Input):Pr
  if(action==='save_design_version'){
   const project=await get(tx,a,'design_projects',input.id,true);owned(a,project);const document=validateDesign(input);
   for(const layer of document.layers)if(layer.type==='image'){const asset=await get(tx,a,'assets',layer.assetId);owned(a,asset);if(!asset.data.previewObjectKey)fail('SAFE_PREVIEW_NOT_AVAILABLE');}
-  if(project.data.productId){
-   const product=await get(tx,a,'products',project.data.productId);const methods=product.data.methods??product.data.decorationMethods;if(Array.isArray(methods)&&!methods.includes(document.method))fail('INCOMPATIBLE_METHOD');
+  const productId=project.product_id??project.data.productId,variantId=project.variant_id??project.data.variantId;
+  let productRevision:number|null=null,variantRevision:number|null=null;
+  if(productId){
+   const product=await get(tx,a,'products',productId);productRevision=product.revision;const methods=product.data.methods??product.data.decorationMethods;if(Array.isArray(methods)&&!methods.includes(document.method))fail('INCOMPATIBLE_METHOD');
    const locations=product.data.locations;if(Array.isArray(locations)&&!locations.includes(document.placement.location))fail('INCOMPATIBLE_LOCATION');
+   if(variantId){const variant=await get(tx,a,'variants',variantId);if(variant.product_id!==product.id)fail('VARIANT_PRODUCT_MISMATCH');variantRevision=variant.revision;}
   }
-  const specification={productId:project.data.productId,variantId:project.data.variantId,method:document.method,placement:document.placement,physicalWidthMm:document.physicalWidthMm,physicalHeightMm:document.physicalHeightMm};
+  const specification={productId:productId??null,variantId:variantId??null,productRevision,variantRevision,method:document.method,placement:document.placement,physicalWidthMm:document.physicalWidthMm,physicalHeightMm:document.physicalHeightMm};
   const versionHash=hash(document),specificationHash=hash(specification),versionNumber=Number(project.data.versionNumber??0)+1;
-  const version=await create(tx,a,'design_versions',{owner_id:project.owner_id,title:`${project.title} · version ${versionNumber}`,project_id:project.id,status:'IMMUTABLE',data:{...document,projectId:project.id,versionNumber,versionHash,specificationHash,previousVersionId:project.data.currentVersionId??null,createdBy:a.userId}});
-  const proofs=await list(tx,a,'proofs',1000);
-  for(const proof of proofs)if(proof.data.projectId===project.id&&['APPROVED','PROOF_PENDING'].includes(proof.status))await update(tx,a,'proofs',proof.id,{status:'SUPERSEDED',data:{...proof.data,invalidatedByVersionId:version.id,invalidatedByVersionHash:versionHash}});
+  const version=await create(tx,a,'design_versions',{owner_id:project.owner_id,title:`${project.title} · version ${versionNumber}`,project_id:project.id,...(productId?{product_id:productId}:{}),...(variantId?{variant_id:variantId}:{}),status:'IMMUTABLE',data:{...document,...specification,projectId:project.id,versionNumber,versionHash,specificationHash,previousVersionId:project.data.currentVersionId??null,createdBy:a.userId}});
+  await tx.query(`update app.proofs set status='SUPERSEDED',revision=revision+1,updated_at=now(),data=data||$4::jsonb
+   where tenant_id=$1 and workspace_id=$2 and project_id=$3 and status in ('APPROVED','PROOF_PENDING')`,[a.tenantId,a.workspaceId,project.id,JSON.stringify({invalidatedByVersionId:version.id,invalidatedByVersionHash:versionHash})]);
   await update(tx,a,'design_projects',project.id,{status:'EDITABLE',data:{...project.data,currentVersionId:version.id,versionHash,specificationHash,versionNumber,productionReadiness:'BLOCKED',approvedProofId:null}});
   await event(tx,a,'creative.design_version_saved',project.id,{versionId:version.id,versionHash,specificationHash});return version;
  }
  if(action==='request_proof'){
   const project=await get(tx,a,'design_projects',input.id,true),version=await currentVersion(tx,a,project);
-  const existing=(await list(tx,a,'proofs',1000)).find(p=>p.data.projectId===project.id&&p.data.versionHash===version.data.versionHash&&p.status==='PROOF_PENDING');if(existing)return existing;
+  const existing=(await tx.query("select * from app.proofs where tenant_id=$1 and workspace_id=$2 and project_id=$3 and version_id=$4 and status='PROOF_PENDING' order by created_at,id limit 1",[a.tenantId,a.workspaceId,project.id,version.id])).rows[0];if(existing)return existing;
   const proof=await create(tx,a,'proofs',{owner_id:project.owner_id,title:`${project.title} · proof`,project_id:project.id,version_id:version.id,status:'PROOF_PENDING',data:{projectId:project.id,versionId:version.id,versionHash:version.data.versionHash,specificationHash:version.data.specificationHash,previewOnly:true,productionReadiness:'BLOCKED',disclaimer:'Visual proof only. Production release requires independent method-specific validation.'}});
   await update(tx,a,'design_projects',project.id,{status:'PROOF_PENDING'});await event(tx,a,'creative.proof_requested',proof.id,{projectId:project.id,versionHash:version.data.versionHash});return proof;
  }
  if(action==='approve_proof'){
+  const initial=await get(tx,a,'proofs',input.id);owned(a,initial);
+  const project=await get(tx,a,'design_projects',initial.project_id??initial.data.projectId,true);
   const proof=await get(tx,a,'proofs',input.id,true);owned(a,proof);if(proof.status!=='PROOF_PENDING')fail('INVALID_TRANSITION');
-  const project=await get(tx,a,'design_projects',proof.data.projectId,true),version=await currentVersion(tx,a,project);
+  const version=await currentVersion(tx,a,project);
   if(input.versionHash!==proof.data.versionHash||input.specificationHash!==proof.data.specificationHash||version.data.versionHash!==proof.data.versionHash||project.data.currentVersionId!==proof.data.versionId)fail('PROOF_VERSION_MISMATCH');
   const approval=await create(tx,a,'approvals',{owner_id:project.owner_id,title:`Visual proof approval · ${project.title}`,project_id:project.id,version_id:version.id,status:'APPROVED',data:{kind:'VISUAL_PROOF',proofId:proof.id,projectId:project.id,versionHash:proof.data.versionHash,specificationHash:proof.data.specificationHash,approvedBy:a.userId,approvedAt:new Date().toISOString(),productionRelease:false}});
   const saved=await update(tx,a,'proofs',proof.id,{status:'APPROVED',data:{...proof.data,approvalId:approval.id,approvedBy:a.userId}});
   await update(tx,a,'design_projects',project.id,{status:'APPROVED',data:{...project.data,approvedProofId:proof.id,productionReadiness:'BLOCKED'}});await event(tx,a,'creative.proof_approved',proof.id,{versionHash:proof.data.versionHash,approvalId:approval.id});return saved;
  }
  if(action==='request_changes'){
+  const initial=await get(tx,a,'proofs',input.id);owned(a,initial);await get(tx,a,'design_projects',initial.project_id??initial.data.projectId,true);
   const proof=await get(tx,a,'proofs',input.id,true);owned(a,proof);if(proof.status!=='PROOF_PENDING')fail('INVALID_TRANSITION');const reason=text(input.reason,2000);
   const saved=await update(tx,a,'proofs',proof.id,{status:'CHANGES_REQUESTED',data:{...proof.data,changeReason:reason}});await update(tx,a,'design_projects',proof.data.projectId,{status:'CHANGES_REQUESTED'});await event(tx,a,'creative.proof_changes_requested',proof.id,{reason});return saved;
  }
