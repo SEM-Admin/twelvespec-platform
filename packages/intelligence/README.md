@@ -1,0 +1,44 @@
+# Private commercial evidence foundation
+
+This shared server package joins existing Supplier provenance, exact Catalog identities, Pricing arithmetic and Sales draft-line assessment. It is not a new module/application/catalog, a supplier client or a manufacturing engine. No credential, external HTTP request, LLM, public serializer or state-changing quote command is defined here.
+
+Use the existing authenticated JSON `POST /api/platform` on Commerce OS, with its same-origin/CSRF checks and verified actor. Commands run in the existing scoped PostgreSQL transaction. Never call these functions with a browser-supplied Actor or privileged database credentials.
+
+| Module / action | Role | Result |
+| --- | --- | --- |
+| `supplier.register_evidence_source` | Owner / integration admin | Immutable attributable source manifest. Same source key + same normalized contents returns the prior record; changed contents require a new key/version. |
+| `supplier.record_price_observation` | Owner / integration admin | Immutable source-linked exact product/variant observation. Same source/key deduplicates; conflicting facts reject. No canonical promotion or publication. |
+| `supplier.restrict_evidence_source` | Owner / integration admin | Append-only source restriction with reason. New observations and fresh financial use blocked; history retained. No in-place regrant. |
+| `sales.assess_quote_price` | Owner / sales / manager | Immutable assessment of one selected Draft quote line's **material component only**. Never modifies the quote, issues terms, creates orders or approves production. |
+
+`apps/os/components` has no evidence-specific entry form or assessment viewer yet. These are authenticated backend foundations; the next slice adds them to existing workflows. [The browser test](../../tests/e2e/commercial-evidence.spec.ts) signs in through the real UI and exercises the commands over HTTP; it does not claim a new UI exists.
+
+## Data contract
+
+Source manifest fields: `sourceKey`, `title`, `publisher`, `edition`, `contentHash` (SHA-256), optional `sourceUri` and existing `sourceRecordId`, `origin`, `rightsReference`, `allowedUses`, `rightsValidFrom`, `rightsValidUntil`, `retentionUntil`, `parserVersion`. Source URI is a reference only and is never fetched; embedded credentials, query strings and fragments are refused. Record page/row/quotation locator in the review reference when applicable; dedicated structured locator/transform fields are a later extension.
+
+Permitted uses are `INTERNAL_RESEARCH` and/or `QUOTE_COST`. This first ledger has no public redistribution permission or public endpoint. Use permissions have their own validity window; retention is a separate deadline. Unknown rights cannot become a quote-cost permission. Stewards must supply a real rights reference for real data; the system records an assertion, not a legal/license certification.
+
+Observation fields: `sourceId`, `observationKey`, `productId`, `variantId`, `expectedProductRevision`, `expectedVariantRevision`, optional CRM `accountId`, `priceClass`, `originalValue`, `currency`, `unitBasis`, `unitsPerPrice`, `minimumQuantity`, optional `maximumQuantity`, `orderMultiple`, `territory`, `channel`, `observedAt`, `effectiveFrom`, `effectiveUntil`, `freshnessHours`, `evidenceState`, and `reviewReference` for operator-reviewed values. All quantity boundaries are in individual items; `unitsPerPrice` is the number of items covered by the source price. No implicit pack rounding or overbuying is performed.
+
+- `originalValue` is a plain nonnegative decimal string, up to 14 integer and 8 fractional digits, preserved verbatim with source scale. PostgreSQL stores the corresponding precise numeric value; extension uses a local 40-significant-digit Decimal context, then HALF_UP to cents.
+- `EACH` requires one unit per source price. `PACK` requires a positive item count; requested quantity must satisfy pack, order increment, MOQ and quantity tier. For a 12-item pack priced at 3.0000, 48 items extend to 12.00; 50 items are excluded. A missing maximum quantity is retained as unknown and excluded from cost eligibility; the first assessment slice requires an explicitly reviewed finite quantity range rather than assuming an unlimited tier.
+- `PUBLISHED_LIST`, `MSRP`, `MAP`, `MARKET_OBSERVATION`, `ESTIMATED_LANDED`, `TWELVESPEC_SELL` and `ACTUAL_COST` are retained as distinct evidence, never automatically reclassified as current net. Potential quote-cost classes are `DISTRIBUTOR_NET`, `ACCOUNT_NET` and `NEGOTIATED`; the latter two require an exact CRM account.
+- A source with `origin: SYNTHETIC` requires `evidenceState: SYNTHETIC` and can never become eligible commercial cost. `OPERATOR_DOCUMENT` with `OPERATOR_REVIEWED` records a human document review; it **does not mean SANDBOX_VERIFIED or LIVE_VERIFIED**, and never authenticates an integration. `UNVERIFIED` remains excluded.
+- Observation and current product/variant revisions must agree. Currency, account (if scoped), territory and channel must match the requested context. Only USD is currently approved for cost assessment, consistent with Sales; foreign-currency source facts remain evidence without calculations. No FX conversion, alternate currency-rounding policy, identity similarity, alternative source selection or inherited grant is inferred.
+
+Assessment fields: `quoteId`, `lineIndex` (explicit integer 0–99), `observationId`, `currency`, `territory`, `channel`, optional `accountId`, and `idempotencyKey`. Sales loads the authoritative draft line itself; quantities/identities/revisions are not trusted from the command. An explicit account must belong to the quote's customer. It stores line configuration hash, requested context, quote revision, evidence fingerprints, actor, timestamp, assessment version and all exclusion reasons.
+
+An eligible result contains `materialCost` only. `landedCost` and `customerPrice` remain null; `productionReadiness` is always `BLOCKED`. Unknown, synthetic or incompatible costs return null, never zero. An explicit reviewed zero is retained as zero. Existing Sales issue/accept/margin and Creative/Orders readiness controls remain the authority.
+
+An assessment is historical. Repeating its idempotency key returns that same as-of result, not a fresh authorization. Rechecking requires a new key. `recheckRequiredBeforeCommit` is always true. Future consumers must re-evaluate current rights, product/configuration and complete cost evidence at the actual committing transition; they cannot trust a stored eligible flag. M1 has no consumer that commits an assessment.
+
+## Security, rollout and limitations
+
+Migration 011 adds four private tables and a variant identity constraint, without classifying or rewriting any existing offer, quote, order or artwork. Existing `app.scope_ok`, memberships, forced RLS, scoped FKs and immutable triggers apply. Runtime gets SELECT/INSERT only; source stewards and Sales append different records. No kernel generic table registration or public projection expansion is made. Events contain record IDs and eligibility only, never source document contents, rates or credentials.
+
+Legacy `supplier_offers` selection is unchanged apart from the precision repair; its incomplete eligibility/rights logic must not be called the CIA pipeline. The reviewed manual cost worksheet still remains the operator costing path. Historical published facts cannot automatically become sellable or buyable products. No licensed feed is activated or backfilled by this code.
+
+Retention expiry blocks new financial use; automated deletion/redaction/legal-retention handling is **not implemented**. Before restricted-source activation, implement and review that lifecycle rather than treating append-only storage as unlimited retention permission. Rights review, durable hosted database/assets/secrets, production suppliers, financial integrations and deployment remain separate gates.
+
+Use only synthetic fixtures for this development milestone. [The golden data](../../tests/fixtures/cia-price-golden.json), [database/security tests](../../tests/integration/commercial-evidence.test.ts) and [rule/precision tests](../../tests/modules/commercial-evidence.test.ts) contain no real supplier rates or account claims. [The audit](../../docs/cia/CODEBASE_COMPATIBILITY_AUDIT.md) and [next product-thread proposal](../../docs/cia/PRODUCT_THREAD_PROPOSAL.md) track remaining work.

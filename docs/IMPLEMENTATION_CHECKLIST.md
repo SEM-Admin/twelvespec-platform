@@ -1,5 +1,7 @@
 # Visible implementation checklist
 
+Latest CIA review branch: [compatibility audit](cia/CODEBASE_COMPATIBILITY_AUDIT.md), [customer-trust audit](cia/CUSTOMER_TRUST_AUDIT.md), [M1 checklist/traceability](cia/FOUNDATION_DESIGN.md) and [measured verification](cia/VERIFICATION.md). Backend foundation implemented with 292 passing tests; 19 local browser journeys and the final focused HTTP recheck pass. Full-head remote CI is tracked on the implementation PR. Operator UI, full 48-cap qualification, claim gates and manufacturing engines remain open; no hosted/production activation is implied.
+
 Current integration: 251 backend tests and the complete 18-journey local browser suite pass. The five CMS journeys also pass after the final refresh-control review. Both builds and TypeScript pass. Original launch acceptance remains open. See [November 10 branch inventory, traceability and verification checklist](integration/2026-11-10.md).
 
 Latest supplier extension: [metered SAGE/SinaLite implementation and activation gates](supplier-api/README.md). 250 backend tests and 13 local browser journeys pass; authenticated account integrations and hosted rollout are not implied.

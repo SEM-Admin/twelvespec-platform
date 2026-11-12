@@ -4,10 +4,23 @@ export type Money=string;
 export const COST_COMPONENTS=['material_cost','decoration_run_cost','setup','prepress','outsourced_labor','packaging','allocated_freight','other_direct_cost'] as const;
 export type CostComponent=typeof COST_COMPONENTS[number];
 export type Components=Record<CostComponent,Money|null>;
+// 14 integer + 8 source decimal digits, extended by up to 1,000,000 units.
+// Keep a local context: changing Decimal's global precision would affect other domains.
+const UnitDecimal=Decimal.clone({precision:40,rounding:Decimal.ROUND_HALF_UP});
 export function money(value:unknown):Decimal{
  if(typeof value!=='string'&&typeof value!=='number')return fail('MISSING_COST');
  let d:Decimal;try{d=new Decimal(value);}catch{return fail('INVALID_MONEY',400);}
  if(!d.isFinite()||d.isNegative()||d.decimalPlaces()>4||d.greaterThan('99999999999999'))return fail('INVALID_MONEY',400);return d;
+}
+/** Source unit precision is distinct from rounded currency totals. */
+export function unitCost(value:unknown):Decimal{
+ if(typeof value!=='string'&&typeof value!=='number')return fail('MISSING_COST');
+ let d:Decimal;try{d=new UnitDecimal(value);}catch{return fail('INVALID_MONEY',400);}
+ if(!d.isFinite()||d.isNegative()||d.decimalPlaces()>8||d.greaterThan('99999999999999'))return fail('INVALID_MONEY',400);return d;
+}
+export function extendUnitCost(value:unknown,quantity:number):Money{
+ if(!Number.isSafeInteger(quantity)||quantity<1||quantity>1000000)return fail('INVALID_QUANTITY',400);
+ return amount(unitCost(value).mul(quantity));
 }
 export const amount=(value:Decimal.Value)=>new Decimal(value).toFixed(2,Decimal.ROUND_HALF_UP);
 export function priceForTargetMargin(cost:unknown,margin:unknown='0.40'):Money{
@@ -23,8 +36,8 @@ export function tierCost(breaks:Array<{minimum:number;cost:string}>,quantity:num
  if(!Number.isSafeInteger(quantity)||quantity<1)return fail('INVALID_QUANTITY',400);
  if(!breaks.length)return fail('MISSING_PRICE_BREAKS');
  const sorted=[...breaks].sort((a,b)=>a.minimum-b.minimum);let previous=0;
- for(const b of sorted){if(!Number.isSafeInteger(b.minimum)||b.minimum<=previous)return fail('INVALID_PRICE_BREAKS');money(b.cost);previous=b.minimum;}
- const applicable=sorted.filter(x=>x.minimum<=quantity).at(-1);if(!applicable)return fail('MOQ_NOT_MET');return amount(applicable.cost);
+ for(const b of sorted){if(!Number.isSafeInteger(b.minimum)||b.minimum<=previous)return fail('INVALID_PRICE_BREAKS');unitCost(b.cost);previous=b.minimum;}
+ const applicable=sorted.filter(x=>x.minimum<=quantity).at(-1);if(!applicable)return fail('MOQ_NOT_MET');const unit=unitCost(applicable.cost);return unit.toFixed(Math.max(2,unit.decimalPlaces()));
 }
 export function termsForOrder(orderCount:number,approvedCredit:boolean):'PREPAID'|'NET_15'{return orderCount>=2&&approvedCredit?'NET_15':'PREPAID';}
 export function profitability(revenue:string,estimatedCost:string,actualCost:string,ownerHours:string){

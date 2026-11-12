@@ -1,0 +1,14 @@
+{
+  "notice": "SYNTHETIC TEST VALUES ONLY. No supplier rates, licensed catalog content or authenticated account evidence.",
+  "editions": [
+    {"edition":"2025","priceClass":"PUBLISHED_LIST","originalValue":"0.0400"},
+    {"edition":"2026","priceClass":"PUBLISHED_LIST","originalValue":"0.0500"}
+  ],
+  "extensionCases": [
+    {"unit":"0.0250","quantity":1000,"total":"25.00"},
+    {"unit":"0.00002500","quantity":1000,"total":"0.03"},
+    {"unit":"12.34567890","quantity":48,"total":"592.59"},
+    {"unit":"0.0000","quantity":48,"total":"0.00"},
+    {"unit":"99999999999998.12345678","quantity":1000000,"total":"99999999999998123456.78"}
+  ]
+}
