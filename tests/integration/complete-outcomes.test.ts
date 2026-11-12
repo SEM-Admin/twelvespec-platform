@@ -39,10 +39,11 @@ describe('complete-data operating totals without fabricated profit or time',()=>
   const report=await transaction(a,tx=>handleAnalytics(tx,a,'run_report',{type:'OWNER_HOURS'})) as {summary:Input};expect(report.summary.hours).toBeNull();
   await expect(transaction(customer,tx=>dashboard(tx,customer))).rejects.toThrow('PERMISSION_DENIED');
  });
- it('does not manufacture a measured zero when closing out an order without owner time',async()=>{
+ it.each([undefined,null,'0'])('distinguishes missing time from an explicit measured zero at closeout (hours=%s)',async ownerHours=>{
   const a=await workspace();const order=await transaction(a,tx=>create(tx,a,'orders',{title:'SYNTHETIC closeout',status:'FULFILLED',data:{total:'100.00',landedCost:'50.00'}}));
   await transaction(a,tx=>handleFinance(tx,a,'record_actual',{orderId:order.id,amount:'55.00',source:'SYNTHETIC actual fixture'}));
-  const snapshot=await transaction(a,tx=>handleFinance(tx,a,'closeout',{orderId:order.id})) as Row;expect(snapshot.data).toMatchObject({ownerHours:null,ownerHoursState:'UNKNOWN',profitPerOwnerHour:null});
+  const known=ownerHours==='0',snapshot=await transaction(a,tx=>handleFinance(tx,a,'closeout',{orderId:order.id,ownerHours})) as Row;expect(snapshot.data).toMatchObject({ownerHours:known?'0.00':null,ownerHoursState:known?'RECORDED':'UNKNOWN',profitPerOwnerHour:null});
   const result=await transaction(a,tx=>dashboard(tx,a));expect(result.metrics.grossProfit).toBe('45.00');expect(result.metrics.grossProfitPerOwnerHour).toBeNull();
+  expect(result.metrics.measurements.closeoutTime.unknownCount).toBe(known?0:1);
  });
 });

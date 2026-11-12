@@ -42,7 +42,8 @@ export async function handleFinance(tx:Tx,a:Actor,action:string,input:Input):Pro
   const order=await get(tx,a,'orders',input.orderId,true);if(order.status==='CLOSED')fail('ORDER_ALREADY_CLOSED');if(order.status!=='FULFILLED')fail('FULFILLMENT_REQUIRED');
   const actuals=await related(tx,a,'actual_costs','order_id',order.id);if(!actuals.length)fail('ACTUAL_COSTS_REQUIRED');
   const actual=actuals.reduce((s,l)=>s.plus(money(l.data.amount)),new Decimal(0));const result=profitability(String(order.data.total),String(order.data.landedCost),amount(actual),String(input.ownerHours??'0'));
-  const row=await create(tx,a,'profit_snapshots',{title:'Closeout · '+order.title,status:'CLOSED',order_id:order.id,data:{...result,ownerHours:input.ownerHours===undefined?null:result.ownerHours,ownerHoursState:input.ownerHours===undefined?'UNKNOWN':'RECORDED',currency:'USD',actualCostIds:actuals.map(x=>x.id),closedBy:a.userId,closedAt:new Date().toISOString()}});await update(tx,a,'orders',order.id,{status:'CLOSED'});await event(tx,a,'order.profit_closed',order.id,{snapshotId:row.id});return row;
+  const ownerHoursKnown=input.ownerHours!==undefined&&input.ownerHours!==null;
+  const row=await create(tx,a,'profit_snapshots',{title:'Closeout · '+order.title,status:'CLOSED',order_id:order.id,data:{...result,ownerHours:ownerHoursKnown?result.ownerHours:null,ownerHoursState:ownerHoursKnown?'RECORDED':'UNKNOWN',currency:'USD',actualCostIds:actuals.map(x=>x.id),closedBy:a.userId,closedAt:new Date().toISOString()}});await update(tx,a,'orders',order.id,{status:'CLOSED'});await event(tx,a,'order.profit_closed',order.id,{snapshotId:row.id});return row;
  }
  if(action==='read')return {payments:await list(tx,a,'payment_references'),actuals:await list(tx,a,'actual_costs'),profits:await list(tx,a,'profit_snapshots')};
  if(action==='live_payment'||action==='live_refund')return fail('LIVE_FINANCIAL_ACTION_BLOCKED',403);
