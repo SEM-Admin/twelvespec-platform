@@ -1,9 +1,10 @@
 import {test,expect} from '@playwright/test';
+import {loginOwner} from './owner-session';
 const OS='http://localhost:3001',SHOP='http://localhost:3000';
 test.use({timezoneId:'America/Chicago'});
 test('administrator records private document and exact price through forms and reviews an actual customer quote',async({page,browser})=>{
  test.setTimeout(150000);const title=`SYNTHETIC UI evidence ${crypto.randomUUID().slice(0,8)}`,projectName=`Evidence cap request ${crypto.randomUUID().slice(0,8)}`;
- await page.goto(OS);await page.getByLabel('Email address',{exact:true}).fill('owner@demo.twelvespec.test');await page.getByLabel('Password',{exact:true}).fill('TwelveSpec-Demo-2026!');await page.getByRole('button',{name:'Sign in to workspace',exact:true}).click();await expect(page.getByRole('heading',{name:'A clear view of what’s next.',exact:true})).toBeVisible();await page.goto(`${OS}/supplier`);
+ await loginOwner(page);await expect(page.getByRole('heading',{name:'A clear view of what’s next.',exact:true})).toBeVisible();await page.goto(`${OS}/supplier`);
  const section=page.getByRole('region',{name:'Private price evidence',exact:true});await section.getByText('Record a source document',{exact:true}).click();
  await section.getByLabel('Source name',{exact:true}).fill(title);await section.getByLabel('Publisher or supplier',{exact:true}).fill('Synthetic test publisher');await section.getByLabel('Edition or version',{exact:true}).fill('2026');
  await section.getByLabel('Reference document (fingerprint only)',{exact:true}).setInputFiles({name:'synthetic-source.txt',mimeType:'text/plain',buffer:Buffer.from('SYNTHETIC TEST ONLY\nCap unit price 0.0250; quantity 24 to 1000. No real supplier data.')});

@@ -17,10 +17,11 @@ beforeAll(async()=>{
  operations={...owner,userId:id,role:'operations'};
 });afterAll(async()=>{await pool().end();});
 const future=()=>new Date(Date.now()+86400000).toISOString();
-async function fixture(synthetic=true){
+async function fixture(synthetic=true,published=false){
  const origin=synthetic?'SYNTHETIC':'OPERATOR_DOCUMENT';
- const product=await transaction(owner,tx=>create(tx,owner,'products',{title:'SYNTHETIC 48-cap pilot',data:{minimumQuantity:1,methods:['embroidery','none'],locations:['front'],synthetic:true}}));
+ const product=await transaction(owner,tx=>create(tx,owner,'products',{title:'SYNTHETIC 48-cap pilot',status:published?'PUBLISHED':'DRAFT',data:{minimumQuantity:1,methods:['embroidery','none'],locations:['front'],synthetic:true}}));
  const variant=await transaction(owner,tx=>create(tx,owner,'variants',{title:'SYNTHETIC navy',product_id:product.id,status:'ACTIVE',data:{color:'Navy',size:'One size'}}));
+ if(published)await transaction(owner,tx=>tx.query('update app.products set data=data||$1::jsonb where id=$2',[{publicSnapshot:{title:product.title,revision:product.revision,product:product.data,variants:[variant]}},product.id]));
  const source=await transaction(owner,tx=>registerEvidenceSource(tx,owner,{sourceKey:randomUUID(),title:'SYNTHETIC fixture permissions, never a real supplier',publisher:'Test fixtures',edition:'2026',contentHash:hash('SYNTHETIC TEST ONLY'),origin,rightsReference:'SYNTHETIC fixture test only',allowedUses:['INTERNAL_RESEARCH','QUOTE_COST'],rightsValidFrom:new Date(Date.now()-3600000).toISOString(),rightsValidUntil:future(),retentionUntil:new Date(Date.now()+172800000).toISOString(),parserVersion:'fixture/1'}));
  const profileInput={profileKey:randomUUID(),title:'SYNTHETIC cap embroidery planning',productId:product.id,variantId:variant.id,expectedProductRevision:product.revision,expectedVariantRevision:variant.revision,sourceId:source.id,producerReference:'SYNTHETIC decorator',facilityReference:'SYNTHETIC test facility',substrateReference:'SYNTHETIC cotton cap',method:'embroidery',location:'front',zoneWidthMm:100,zoneHeightMm:60,outputContractReference:'SYNTHETIC method contract; no machine output enabled',documentationReviewed:!synthetic,reviewReference:synthetic?null:'SYNTHETIC test reviewer'};
  const profile=await transaction(owner,tx=>handleOrders(tx,owner,'record_process_profile',profileInput)) as ProcessProfile;
@@ -46,6 +47,7 @@ describe('connected producer planning and 48-cap evidence qualification',()=>{
   await expect(transaction(owner,tx=>handleSales(tx,owner,'issue_quote',{id:f.quote.id,key:randomUUID()}))).rejects.toThrow('QUOTE_NOT_READY');
   expect(JSON.stringify(publicQuote({...f.quote,data:{...f.quote.data,qualification:result}}))).not.toMatch(/landedCost|profileFingerprint|qualification|SYNTHETIC fixture permissions/);
  });
+ it('qualifies canonical published revision-bearing definitions without relaxing the identity gate',async()=>{const f=await fixture(true,true),result=await f.qualify();expect(result.result).toMatchObject({status:'SYNTHETIC_PREVIEW',scenarioComplete:true,eligibleForQuoteCost:false,landedCost:'368.00',reasons:[]});});
  it('uses the same price policy for documentary proposals and material-only assessments; explicit zeros remain evidence',async()=>{
   const f=await fixture(false),result=await f.qualify();expect(result.result).toMatchObject({status:'COST_PROPOSAL_FOR_REVIEW',eligibleForQuoteCost:true,landedCost:'368.00',commitPermission:false});
   const material=await transaction(owner,tx=>handleSales(tx,owner,'assess_quote_price',{quoteId:f.quote.id,lineIndex:0,observationId:f.prices[0].id,currency:'USD',territory:'US',channel:'DIRECT',idempotencyKey:randomUUID()})) as {result:Input};

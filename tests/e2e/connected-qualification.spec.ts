@@ -1,10 +1,11 @@
 import {test,expect} from '@playwright/test';
+import {loginOwner} from './owner-session';
 const OS='http://localhost:3001',SHOP='http://localhost:3000';
 test.use({timezoneId:'America/Chicago'});
 test('owner plans an exact cap producer, records each charge in forms and qualifies a customer 48-cap request',async({page,browser})=>{
  test.setTimeout(240000);
  const suffix=crypto.randomUUID().slice(0,8),profileName='SYNTHETIC cap planning '+suffix,projectName='48-cap pilot '+suffix;
- await page.goto(OS);await page.getByLabel('Email address',{exact:true}).fill('owner@demo.twelvespec.test');await page.getByLabel('Password',{exact:true}).fill('TwelveSpec-Demo-2026!');await page.getByRole('button',{name:'Sign in to workspace',exact:true}).click();await expect(page.getByRole('heading',{name:'A clear view of what’s next.',exact:true})).toBeVisible();
+ await loginOwner(page);await expect(page.getByRole('heading',{name:'A clear view of what’s next.',exact:true})).toBeVisible();
  async function command(module:string,action:string,input:object){const response=await page.request.post(`${OS}/api/platform`,{headers:{Origin:OS},data:{module,action,input}});expect(response.ok(),await response.text()).toBe(true);return (await response.json()).result;}
  const {products}=await (await page.request.get(`${SHOP}/api/shop`)).json(),product=products.find((p:{title:string})=>p.title==='Classic Camp Cap'),variant=product.variants.find((v:{color:string})=>v.color==='Clay');
  const source=await command('supplier','register_evidence_source',{sourceKey:crypto.randomUUID(),title:'SYNTHETIC cap route '+suffix,publisher:'Synthetic fixture',edition:'2026',contentHash:'a'.repeat(64),origin:'SYNTHETIC',rightsReference:'SYNTHETIC test permission, no live supplier',allowedUses:['INTERNAL_RESEARCH','QUOTE_COST'],rightsValidFrom:new Date(Date.now()-3600000).toISOString(),rightsValidUntil:new Date(Date.now()+86400000).toISOString(),retentionUntil:new Date(Date.now()+172800000).toISOString(),parserVersion:'fixture/1'});

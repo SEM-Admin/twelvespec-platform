@@ -13,7 +13,6 @@ async function main(){
  const owner={userId:users.owner,tenantId:DEMO.tenant,workspaceId:DEMO.workspace,role:'owner' as const};
  const count=await transaction(owner,tx=>tx.query('select count(*)::int as n from app.products where tenant_id=$1',[DEMO.tenant]));
  if(count.rows[0].n>=40){const {seedWebsite}=await import('../packages/marketing/src/website');await seedWebsite(owner);console.log('Synthetic seed already present; editable website initialized without overwriting saved content.');await pool().end();return;}
- const {publicProduct}=await import('../packages/catalog/src');
  const assets=resolve(process.env.TWELVESPEC_ROOT!,'apps/shop/public/products');mkdirSync(assets,{recursive:true});
  await transaction(owner,async tx=>{
  const seller=await create(tx,owner,'legal_entities',{title:'TwelveSpec Demo Seller',status:'ACTIVE',data:{legalName:'TwelveSpec Demonstration LLC',address:'100 Example Avenue, Demo City, IL 60000',terms:'Synthetic commercial terms. No real transaction.',synthetic:true}});
@@ -28,7 +27,9 @@ async function main(){
  const v=await create(tx,owner,'variants',{title:`${name} · ${color}`,status:'ACTIVE',product_id:product.id,data:{color,hex,size:category==='APPAREL'?'M':'Standard',image,partId:`${sku}-${c}`,stock:1000,availability:'DEMO_AVAILABLE'}});variants.push(v);
  await create(tx,owner,'supplier_offers',{title:`Private source ${sku}-${c}`,status:'ACTIVE',product_id:product.id,variant_id:v.id,connection_id:connections[i%3].id,data:{unitCost:String(5+i%9)+'.0000',currency:'USD',minimumQuantity,moq:minimumQuantity,priceBreaks:[{quantity:minimumQuantity,unitCost:String(5+i%9)+'.0000'},{quantity:100,unitCost:String(4+i%9)+'.5000'}],decorationCost:'1.50',setupCost:'25.00',freight:'15.00',observedAt:new Date().toISOString(),verifiedAt:new Date().toISOString(),validUntil:new Date(Date.now()+86400000).toISOString(),verification:'MOCKED',supplierName:connections[i%3].title,sourceSku:'PRIVATE-'+sku}});
  }
- products.push(product);const snapshot=publicProduct(product,variants);await tx.query('update app.products set data=data||$1::jsonb where id=$2',[JSON.stringify({publicSnapshot:snapshot}),product.id]);
+ // Seed the same canonical revision-bearing snapshot used by Catalog.publish.
+ // Public DTOs intentionally omit variant revisions and cannot prove identity.
+ products.push(product);const snapshot={title:product.title,revision:product.revision,product:product.data,variants};await tx.query('update app.products set data=data||$1::jsonb where id=$2',[JSON.stringify({publicSnapshot:snapshot}),product.id]);
  }}
  const names=['Maya Patel','Noah Brooks','Avery Bennett','Elena Torres','Owen Kim','Riley James','Sofia Reed','Logan Davis','Amara Wilson','Eli Carter'];
  for(let i=0;i<names.length;i++){const c=await create(tx,owner,'contacts',{title:names[i],status:'ACTIVE',data:{email:`contact${i+1}@example.test`,company:['Maple Studio','Cedar School','Orbit Events'][i%3],consent:{marketing:i%3===0,recordedAt:new Date().toISOString(),source:'Synthetic opt-in fixture'},marketingConsent:i%3===0,synthetic:true}});await create(tx,owner,'accounts',{title:['Maple Studio','Cedar School','Orbit Events'][i%3]+` ${i+1}`,status:'ACTIVE',data:{contactId:c.id,completedOrders:0,creditApproved:false}});if(i<4)await create(tx,owner,'opportunities',{title:`${['Team apparel','Fall launch kit','Community event','New brand print'][i]}`,status:['NEW','QUALIFIED','OPPORTUNITY','WON'][i],data:{contactId:c.id,value:String(1200+i*750),expectedClose:'2026-12-01',source:'Synthetic seed'}});}
