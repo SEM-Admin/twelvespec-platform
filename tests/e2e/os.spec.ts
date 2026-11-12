@@ -35,6 +35,10 @@ test('owner dashboard and canonical catalog use scoped records and protect the p
  const session=await (await page.request.get(`${OS}/api/session`)).json() as Session;
  expect(session.actor.role).toBe('owner');
  await expect(page.locator('.demo-ribbon')).toContainText('Synthetic data');
+ const today=await (await page.request.get(`${OS}/api/platform?module=today`)).json();const totals=today.summary.today.metrics;
+ await expect(page.locator('.metric-card').filter({hasText:'Orders in motion'}).locator('strong')).toHaveText(String(totals.ordersInMotion));
+ await expect(page.locator('.metric-card').filter({hasText:'Recorded gross profit'}).locator('strong')).toHaveText(totals.grossProfit===null?'Unknown':new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(totals.grossProfit)));
+ await expect(page.locator('.today-topline')).toContainText('Complete workspace totals');
  const catalog=await moduleData(page,'catalog');
  expect(catalog.tables.products.length).toBeGreaterThanOrEqual(40);
  expect(catalog.tables.variants.length).toBeGreaterThanOrEqual(120);

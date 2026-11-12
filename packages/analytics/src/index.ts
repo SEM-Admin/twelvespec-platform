@@ -1,16 +1,22 @@
 import Decimal from 'decimal.js';
 import {authorize,create,get,list,update,event,fail,text,type Actor,type Tx,type Input,type Row,type Table} from '../../kernel/src/index';
+import {scopedMeasurements} from './aggregates';
 export const REPORT_TYPES=['ORDERS','PROFITABILITY','PIPELINE','SUPPLIER_HEALTH','OWNER_HOURS','AUDIT'] as const;
 export function escapeCsv(value:unknown):string {let s=value===null||value===undefined?'':typeof value==='object'?JSON.stringify(value):String(value);if(/^[\s]*[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
 export function freshnessState(observedAt:unknown,windowMinutes:number,now=new Date()):'UNKNOWN'|'FRESH'|'STALE'{if(typeof observedAt!=='string'||!Number.isFinite(Date.parse(observedAt)))return 'UNKNOWN';return now.getTime()-Date.parse(observedAt)>windowMinutes*60000?'STALE':'FRESH';}
 function plain(row:Row){return {id:row.id,title:row.title,status:row.status,createdAt:row.created_at,...row.data};}
 export async function runReport(tx:Tx,a:Actor,type:string){
+ authorize(a,'analytics','run_report');
  const mapping:Record<string,Table>={ORDERS:'orders',PROFITABILITY:'profit_snapshots',PIPELINE:'opportunities',SUPPLIER_HEALTH:'sync_runs',OWNER_HOURS:'time_entries',AUDIT:'audit_events'};const table=mapping[type];if(!table)fail('UNKNOWN_REPORT_TYPE',400);const rows=await list(tx,a,table,1000),count=(await tx.query(`select count(*)::int as count from app.${table} where tenant_id=$1 and workspace_id=$2`,[a.tenantId,a.workspaceId])).rows[0].count as number;
  const summary:Input={rowCount:count,displayedCount:rows.length,limit:1000,truncated:count>1000,evidence:'SYNTHETIC_LOCAL'};
- if(type==='PROFITABILITY'){summary.grossProfit=rows.reduce((sum,r)=>sum.plus(String(r.data.grossProfit??r.data.profit??0)),new Decimal(0)).toFixed(2);summary.currency='USD';}
- if(type==='OWNER_HOURS')summary.hours=rows.reduce((sum,r)=>sum.plus(String(r.data.hours??0)),new Decimal(0)).toFixed(2);
- if(type==='PIPELINE')summary.openOpportunities=rows.filter(r=>!['WON','LOST'].includes(r.status)).length;
- if(type==='SUPPLIER_HEALTH')summary.failures=rows.filter(r=>['FAILED','ERROR','BLOCKED'].includes(r.status)).length;
+ summary.totalsScope='COMPLETE_WORKSPACE';
+ if(type==='PROFITABILITY'||type==='OWNER_HOURS'){
+  const measure=await scopedMeasurements(tx,a,type);summary.measurement=measure;
+  summary[type==='PROFITABILITY'?'grossProfit':'hours']=measure.total===null?null:new Decimal(measure.total).toFixed(2);
+  if(type==='PROFITABILITY')summary.currency='USD';
+ }
+ if(type==='PIPELINE')summary.openOpportunities=Number((await tx.query("select count(*) n from app.opportunities where tenant_id=$1 and workspace_id=$2 and status not in ('WON','LOST')",[a.tenantId,a.workspaceId])).rows[0].n);
+ if(type==='SUPPLIER_HEALTH')summary.failures=Number((await tx.query("select count(*) n from app.sync_runs where tenant_id=$1 and workspace_id=$2 and status in ('FAILED','ERROR','BLOCKED')",[a.tenantId,a.workspaceId])).rows[0].n);
  return {type,generatedAt:new Date().toISOString(),summary,rows:rows.map(plain)};
 }
 export async function handleAnalytics(tx:Tx,a:Actor,action:string,i:Input):Promise<unknown>{
