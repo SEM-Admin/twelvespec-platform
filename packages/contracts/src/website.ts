@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {capabilityClaimSchema} from './claims';
 
 /** Shared authoring contracts. Never import database/auth code into this module. */
 export const WEBSITE_SCHEMA_VERSION=1;
@@ -42,7 +43,7 @@ export const plainRichText=(value:string):RichNode[]=>value?[{type:'paragraph',c
 export const richTextPlain=(nodes:RichNode[]):string=>nodes.map(n=>n.text??richTextPlain(n.children??[])).join('\n');
 const short=z.string().max(120),body=z.string().max(2000),ids=z.array(z.uuid()).max(24),keys=z.array(z.string().max(100)).max(24);
 const media={imageAssetId:z.uuid().optional(),builtInImage:z.string().regex(/^\/products\/TS-\d{4}-[0-2]\.svg$/).optional(),imageAlt:z.string().max(300).default(''),focalX:z.number().min(0).max(1).default(.5),focalY:z.number().min(0).max(1).default(.5)};
-type FieldKind='text'|'textarea'|'image'|'link'|'collection'|'collections'|'products'|'taxonomy'|'richtext'|'faq'|'gallery'|'testimonials'|'pages'|'stores'|'brandKit'|'store'|'boolean'|'number'|'select';
+type FieldKind='text'|'textarea'|'image'|'link'|'collection'|'collections'|'products'|'taxonomy'|'richtext'|'faq'|'gallery'|'testimonials'|'claims'|'pages'|'stores'|'brandKit'|'store'|'boolean'|'number'|'select';
 export type WebsiteField={key:string;label:string;kind:FieldKind;options?:string[];help?:string};
 export type ComponentDefinition={type:string;label:string;category:string;variants:string[];enabled:boolean;reason?:string;organizationOnly?:boolean;fields:WebsiteField[]};
 const field=(key:string,label:string,kind:FieldKind='text',options?:string[]):WebsiteField=>({key,label,kind,...(options?{options}:{})});
@@ -55,6 +56,7 @@ export const WEBSITE_COMPONENTS:ComponentDefinition[]=[
  {type:'brand_showcase',label:'Brand showcase',category:'Catalog',variants:['logos','text'],enabled:true,fields:[field('heading','Heading'),field('brandIds','Approved catalog brands','taxonomy')]},
  {type:'image_gallery',label:'Image gallery',category:'Media',variants:['grid','editorial'],enabled:true,fields:[field('heading','Heading'),field('items','Approved images and descriptions','gallery'),field('captions','Show captions','boolean')]},
  {type:'testimonials',label:'Testimonials',category:'Editorial',variants:['cards','quote'],enabled:true,fields:[field('heading','Heading'),field('entries','Approved statements and consent evidence','testimonials')]},
+ {type:'capability_claims',label:'Evidence-backed capabilities',category:'Editorial',variants:['cards','list'],enabled:true,fields:[field('heading','Heading'),field('entries','Capability assertions and evidence','claims')]},
  {type:'video',label:'Video',category:'Media',variants:['inline','wide'],enabled:false,reason:'Video processing, captions and file safety verification are not activated.',fields:[]},
  {type:'solution_cards',label:'Solution cards',category:'Editorial',variants:['cards','feature-grid'],enabled:true,fields:[field('heading','Heading'),field('solutionPageIds','Published solution pages','pages')]},
  {type:'cta',label:'Call to action',category:'Editorial',variants:['split','centered','compact'],enabled:true,fields:[field('heading','Heading'),field('body','Supporting copy','textarea'),field('primaryLink','Primary action','link'),field('secondaryLink','Secondary action','link'),field('tone','Tone','select',['neutral','accent'])]},
@@ -76,6 +78,7 @@ const schemas={
  brand_showcase:z.object({heading:short,brandIds:keys}).strict(),
  image_gallery:z.object({heading:short,items:z.array(z.object({assetId:z.uuid(),alt:z.string().max(300),caption:z.string().max(360).default('')}).strict()).max(12),captions:z.boolean().default(true)}).strict(),
  testimonials:z.object({heading:short,entries:z.array(z.object({quote:z.string().max(1200),publicAttribution:short,consentEvidenceId:z.uuid()}).strict()).max(8)}).strict(),
+ capability_claims:z.object({heading:short,entries:z.array(capabilityClaimSchema).max(12)}).strict(),
  video:z.object({title:short,videoAssetId:z.uuid(),posterAssetId:z.uuid(),transcript:z.string().max(40000),captionsAssetId:z.uuid()}).strict(),
  solution_cards:z.object({heading:short,solutionPageIds:ids}).strict(),
  cta:z.object({heading:short,body:body.default(''),primaryLink:websiteLinkSchema,secondaryLink:websiteLinkSchema.optional(),tone:z.enum(['neutral','accent']).default('neutral')}).strict(),
@@ -122,6 +125,8 @@ export function parseWebsiteDocument(value:unknown):WebsiteDocument{
  if(doc.documentType==='WEBSITE_PAGE'){
   doc.path=normalizeWebsitePath(doc.path);
   if(new Set(doc.sections.map(s=>s.id)).size!==doc.sections.length)throw new Error('WEBSITE_SECTION_IDS_DUPLICATED');
+  const claimIds=doc.sections.filter(s=>s.type==='capability_claims').flatMap(s=>(s.content.entries as {id:string}[]).map(c=>c.id));
+  if(new Set(claimIds).size!==claimIds.length)throw new Error('WEBSITE_CLAIM_IDS_DUPLICATED');
  }
  if(doc.documentType==='WEBSITE_NAVIGATION'){
   const ids=new Set<string>();let count=0;
@@ -137,7 +142,7 @@ export function newWebsiteSection(type:SectionType):WebsiteSection{
   hero:{heading:'Make your next big idea tangible.',eyebrow:'GOOD THINGS. MADE YOURS.',body:'Custom print, merchandise and coordinated projects. Start with an idea. We’ll help shape the rest.',builtInImage:'/products/TS-0008-0.svg',imageAlt:'Synthetic apparel illustration',primaryLink:{label:'Find your next great thing',kind:'WORKFLOW',href:'#catalog-grid'}},
   promotion_banner:{message:'Bring your next project to life.',tone:'neutral'},product_carousel:{heading:'Find your next canvas.',limit:8,showSwatches:true},featured_collections:{heading:'Thoughtfully curated.',collectionIds:[]},category_grid:{heading:'Make something great.',categoryIds:[]},brand_showcase:{heading:'Brands with character.',brandIds:[]},image_gallery:{heading:'A little inspiration.',items:[],captions:true},testimonials:{heading:'Made for real people.',entries:[]},solution_cards:{heading:'Shop the outcome.',solutionPageIds:[]},cta:{heading:'Let’s put it together.',body:'Products, artwork and quantities in one connected project.',primaryLink:defaultLink,tone:'neutral'},faq:{heading:'A little guidance.',entries:[]},rich_text_image:{heading:'Your next project.',body:plainRichText('Start with a product or share your idea.')},project_inquiry:{heading:'Tell us what you’re making.',intro:'Gather products, quantities and artwork in a private quote request.',formPreset:'AUTHENTICATED_RFQ',ctaLabel:'Start a quote project'},store_grid:{heading:'Made for your people.',storeIds:[]},organization_hero:{heading:'Made for our team.',body:'An approved collection for your program.'},campaign_window_notice:{beforeText:'Ordering opens soon.',openText:'Your order window is open.',closedText:'This ordering window has closed.'},
  };
- return {id:crypto.randomUUID(),type,visible:true,variant:definition.variants[0],content:defaults[type]??{}};
+ return {id:crypto.randomUUID(),type,visible:true,variant:definition.variants[0],content:type==='capability_claims'?{heading:'How we can help.',entries:[]}:defaults[type]??{}};
 }
 export type PublicWebsiteProduct={id:string;title:string;description:string;category:string;brand:string;minimumQuantity:number;image:string|null;variants:{id:string;color:string;hex:string;size:string;image:string|null}[]};
 export type PublicWebsiteCollection={id:string;title:string;description:string;slug:string;products:PublicWebsiteProduct[]};

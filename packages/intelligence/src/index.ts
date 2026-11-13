@@ -13,7 +13,7 @@ const sourceSchema=z.object({
  sourceKey:label(200),title:label(),publisher:label(),edition:label(100),
  sourceUri:z.string().max(2000).optional(),contentHash:z.string().regex(/^[a-f0-9]{64}$/),
  sourceRecordId:uuid.optional(),origin:z.enum(['SYNTHETIC','OPERATOR_DOCUMENT']),
- rightsReference:label(1000),allowedUses:z.array(z.enum(['INTERNAL_RESEARCH','QUOTE_COST'])).min(1).max(2),
+ rightsReference:label(1000),allowedUses:z.array(z.enum(['INTERNAL_RESEARCH','QUOTE_COST','PUBLIC_CLAIM'])).min(1).max(3),
  rightsValidFrom:instant,rightsValidUntil:instant,retentionUntil:instant,parserVersion:label(100)
 }).strict();
 const observationSchema=z.object({

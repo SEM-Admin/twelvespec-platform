@@ -9,6 +9,7 @@ import {handleWebsiteMedia,websiteMediaSummary} from './media';
 import {hasDurableWebsiteStorage,revisionRecord,websiteRecord,websiteSchedulerActive,websiteSite,type WebsiteRecord,type WebsiteRevision,type WebsiteSite} from './model';
 import {handleWebsiteReleases,publishWebsiteChanges} from './releases';
 import {publicCatalogPage,resolveWebsite} from './repository';
+import {claimSourceChoices} from './claims';
 
 export async function initializeWebsite(tx:Tx,a:Actor,storeId?:string){
  if(a.role!=='owner')fail('WEBSITE_OWNER_REQUIRED',403);
@@ -40,7 +41,7 @@ export async function websiteWorkspace(tx:Tx,a:Actor,input:Input={}){
  if(a.role==='customer'||a.role==='staff')fail('WEBSITE_PERMISSION_REQUIRED',403);
  const sites=(await tx.query('select id,title,status,store_id,active_release_id,generation,data,revision from app.websites where tenant_id=$1 and workspace_id=$2 order by store_id nulls first,title,id',[a.tenantId,a.workspaceId])).rows;
  const chosen=input.siteId??sites[0]?.id;
- if(!chosen)return {sites:[],site:null,documents:[],components:WEBSITE_COMPONENTS,globalComponents:WEBSITE_GLOBAL_COMPONENTS,canInitialize:a.role==='owner',durable:hasDurableWebsiteStorage(),schedulerActive:websiteSchedulerActive()};
+ if(!chosen)return {sites:[],site:null,documents:[],components:WEBSITE_COMPONENTS,globalComponents:WEBSITE_GLOBAL_COMPONENTS,canAuthorClaims:a.role!=='store_admin',canInitialize:a.role==='owner',durable:hasDurableWebsiteStorage(),schedulerActive:websiteSchedulerActive()};
  const site=await get(tx,a,'websites',chosen) as WebsiteSite;
  const caps=(await tx.query("select app.website_can($1,$2,$3,$4,'EDIT') edit,app.website_can($1,$2,$3,$4,'PUBLISH') publish,app.website_can($1,$2,$3,$4,'MEDIA') media,app.website_can($1,$2,$3,$4,'MERCHANDISE') merchandise",[a.tenantId,a.workspaceId,site.id,site.store_id])).rows[0];
  const page=Math.max(1,Math.floor(Number(input.page)||1)),size=25;
@@ -57,7 +58,7 @@ export async function websiteWorkspace(tx:Tx,a:Actor,input:Input={}){
  const stores=(await tx.query("select id,title,status,data->>'brandKitId' as brand_kit_id from app.stores where tenant_id=$1 and workspace_id=$2 and status='ACTIVE' order by title,id",[a.tenantId,a.workspaceId])).rows;
  const releases=caps.edit?(await tx.query('select * from app.website_releases where tenant_id=$1 and workspace_id=$2 and site_id=$3 order by created_at desc,id desc limit 25',[a.tenantId,a.workspaceId,site.id])).rows:[];
  const jobs=caps.edit?(await tx.query('select * from app.website_publish_jobs where tenant_id=$1 and workspace_id=$2 and site_id=$3 order by created_at desc,id desc limit 25',[a.tenantId,a.workspaceId,site.id])).rows:[];
- return {sites,site,capabilities:caps,documents,pageChoices,page,pageSize:size,total,media,collections,stores,releases,jobs,memberships,grants,components:WEBSITE_COMPONENTS,globalComponents:WEBSITE_GLOBAL_COMPONENTS,durable:hasDurableWebsiteStorage(),schedulerActive:websiteSchedulerActive(),canInitialize:a.role==='owner'};
+ return {sites,site,capabilities:caps,documents,pageChoices,page,pageSize:size,total,media,collections,stores,releases,jobs,memberships,grants,components:WEBSITE_COMPONENTS,globalComponents:WEBSITE_GLOBAL_COMPONENTS,canAuthorClaims:a.role!=='store_admin',durable:hasDurableWebsiteStorage(),schedulerActive:websiteSchedulerActive(),canInitialize:a.role==='owner'};
 }
 export async function draftWebsitePreview(tx:Tx,a:Actor,siteId:string,revisionId:string){
  const site=await websiteSite(tx,a,siteId);const revision=await revisionRecord(tx,a,revisionId,site.id);const row=await get(tx,a,'content_assets',revision.content_id);
@@ -81,6 +82,7 @@ export async function handleWebsite(tx:Tx,a:Actor,action:string,i:Input):Promise
  if(a.role==='customer'||a.role==='staff')fail('WEBSITE_PERMISSION_REQUIRED',403);
  if(action==='initialize')return initializeWebsite(tx,a,typeof i.storeId==='string'?i.storeId:undefined);
  if(action==='workspace')return websiteWorkspace(tx,a,i);
+ if(action==='claim_sources')return claimSourceChoices(tx,a,i);
  if(action==='grant_capability')return grantWebsiteCapability(tx,a,i);
  if(action==='save_collection')return saveWebsiteCollection(tx,a,i);
  if(action==='get_collection'){

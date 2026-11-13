@@ -1,6 +1,6 @@
 # Visible implementation checklist
 
-Latest CIA implementation: [connected workflow checklist](cia/CONNECTED_QUALIFICATION_PLAN.md), [measured verification and remaining gates](cia/CONNECTED_VERIFICATION.md), [compatibility audit](cia/CODEBASE_COMPATIBILITY_AUDIT.md), and [customer-trust audit](cia/CUSTOMER_TRUST_AUDIT.md). **The final fresh-data run passes all 323 backend tests / 44 files and all 23 browser journeys.** Final-head CI repeats the complete suite. TypeScript, both builds, integrity and legacy migration checks pass. Exact artwork/proof binding, operator evidence forms, producer planning profiles, complete 48-cap scenario, product-free inquiry/CRM/scoping and complete-data outcome totals now work locally. PR #4's foundation is merged into main; final continuation CI/merge is recorded on its implementation PR. Claim publication gates, manufacturing engines and the original full V1/CMS inventory remain open; no hosted/production activation is implied.
+Latest CIA continuation: [service-claim requirements/code/test matrix](cia/CLAIM_PUBLICATION_PLAN.md), [verification, operating instructions and remaining gates](cia/CLAIM_PUBLICATION_VERIFICATION.md), plus the [connected workflow](cia/CONNECTED_QUALIFICATION_PLAN.md), [compatibility audit](cia/CODEBASE_COMPATIBILITY_AUDIT.md) and [customer-trust audit](cia/CUSTOMER_TRUST_AUDIT.md). **The final fresh-data local run passes all 346 backend tests / 45 files and all 24 browser journeys.** TypeScript, both builds, integrity and legacy migration checks pass. Structured service claims now reuse CMS approvals and current source rights; the complete local database restore includes CIA and supplier-metering state. PRs #4 and #5 are merged; this continuation requires final-head GitHub CI before integration. No hosted/production activation is implied. Free-text/product-specific claims, manufacturing engines and the original full V1/80 CMS acceptance remain open.
 
 The following dated entries retain their historical measurement scope; they do not supersede the latest CIA evidence above.
 
@@ -11,6 +11,9 @@ Latest supplier extension: [metered SAGE/SinaLite implementation and activation 
 Latest measured status: [November 9 launch readiness](LAUNCH_READINESS_2026-11-09.md) and [content-studio implementation](website-content-studio/IMPLEMENTATION.md). Backend/contract checks do not close the original 95 scenarios.
 
 The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GAP_AUDIT.md) and [complete coverage matrix](planning/COVERAGE_MATRIX.md) govern the remaining active V1 work. Research/planning completion does not mean implementation completion.
+
+- [x] Add evidence-backed service/workflow assertions to the existing Website Studio, with separate public-use rights, exact revision approval, current source checks, Coming Soon controls, private projections and read-time withholding. Full customer-trust coverage is still partial.
+- [x] Repair the local synthetic restore drill to include all 114 application tables and eight identity tables, including supplier budget/cache/ciphertext and CIA citations. Verify database-native contents, exact price/time values, binary fields, scope and foreign keys. Managed backups, original files and usable vault-key recovery are not verified.
 
 - [x] Research 30 primary sources and audit all 20 module contracts.
 - [x] Map 205 inventory entries and all 95 A/T/E acceptance scenarios; reproduce pricing, program-context and approval-role defects.

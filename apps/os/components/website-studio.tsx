@@ -43,6 +43,7 @@ export type WebsiteWorkspace = {
   pageSize: number;
   total: number;
   canInitialize: boolean;
+  canAuthorClaims: boolean;
   durable: boolean;
   schedulerActive: boolean;
 };
@@ -167,6 +168,7 @@ export function WebsiteStudio({ actor }: { actor: Actor }) {
     JSON.stringify(document) !== JSON.stringify(loaded?.revision.data.document);
   const currentSite = workspace?.site;
   const choices: WebsiteChoices = {
+    siteId: currentSite?.id ?? '',
     documents: workspace?.pageChoices ?? [],
     collections: workspace?.collections ?? [],
     stores: workspace?.stores ?? [],
@@ -739,7 +741,7 @@ export function WebsiteStudio({ actor }: { actor: Actor }) {
                                       <option
                                         key={c.type}
                                         value={c.type}
-                                        disabled={!c.enabled}
+                                        disabled={!c.enabled||(c.type==='capability_claims'&&workspace?.canAuthorClaims===false)}
                                       >
                                         {c.label}
                                         {!c.enabled ? " · Coming Soon" : ""}
@@ -768,6 +770,7 @@ export function WebsiteStudio({ actor }: { actor: Actor }) {
                                   down buttons. Video and downloadable resources
                                   remain Coming Soon.
                                 </p>
+                                {workspace?.canAuthorClaims===false&&<p className="web-edit-help">Evidence-backed capability sections contain internal review information. An internal marketing editor manages pages containing those sections.</p>}
                               </div>
                               <div>
                                 {document.sections.find(

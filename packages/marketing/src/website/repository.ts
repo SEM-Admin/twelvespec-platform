@@ -4,6 +4,7 @@ import {type FooterDocument,type NavigationDocument,type PageDocument,type Publi
 import {defaultWebsiteDocuments} from './defaults';
 import {activeMedia,type ReleaseManifest,type WebsiteRevision,type WebsiteSite} from './model';
 import {documentReferences} from './references';
+import {publicClaimEntries} from './claims';
 
 export type WebsiteIdentity={tenantId:string;workspaceId:string;userId?:string};
 /** Only server-validated session identity may populate userId. Anonymous stays empty. */
@@ -11,6 +12,7 @@ export async function withWebsiteReader<T>(identity:WebsiteIdentity,read:(tx:Tx)
  const tx=await pool().connect();try{
   await tx.query('BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY');await tx.query('SET LOCAL ROLE ts_website_reader');
   await tx.query("select set_config('ts.web_tenant',$1,true),set_config('ts.web_workspace',$2,true),set_config('ts.web_user',$3,true)",[identity.tenantId,identity.workspaceId,identity.userId??'']);
+  await tx.query("select set_config('ts.website_claim_reader','1',true)");
   const result=await read(tx);await tx.query('COMMIT');return result;
  }catch(e){await tx.query('ROLLBACK');throw e;}finally{tx.release();}
 }
@@ -77,12 +79,16 @@ export async function resolveWebsite(tx:Tx,site:WebsiteSite,revisions:WebsiteRev
  if(page){
   delete page.campaignId;page.sections=page.sections.filter(s=>s.visible);
   for(const section of page.sections){
+   if(section.type==='capability_claims'){
+    section.content.entries=await publicClaimEntries(tx,site,pageDoc!.record.id,section.content.entries as unknown[],preview);
+   }
    if(section.type==='testimonials'){
     const entries=section.content.entries as {quote:string;publicAttribution:string;consentEvidenceId:string}[];
     const valid=(await tx.query("select id from app.assets where tenant_id=$1 and workspace_id=$2 and id=any($3::uuid[]) and data->>'kind'='WEBSITE_CONSENT' and status='VERIFIED'",[site.tenant_id,site.workspace_id,entries.map(e=>e.consentEvidenceId)])).rows.map(r=>r.id);
     section.content.entries=entries.filter(e=>valid.includes(e.consentEvidenceId)).map(e=>({quote:e.quote,publicAttribution:e.publicAttribution}));
    }
   }
+  page.sections=page.sections.filter(s=>s.type!=='capability_claims'||(s.content.entries as unknown[]).length>0);
  }
  const links:Record<string,string>={};
  const walk=(value:unknown)=>{if(Array.isArray(value)){value.forEach(walk);return;}if(!value||typeof value!=='object')return;const obj=value as Input;
