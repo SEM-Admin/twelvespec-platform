@@ -3,8 +3,10 @@ import {resolve} from 'node:path';
 import {create,fail,get,type Actor,type Input,type Row,type Tx} from '../../../kernel/src';
 import {WEBSITE_COMPONENTS,type MenuItem,type RichNode,type WebsiteDocument,type WebsiteLink} from '../../../contracts/src/website';
 import {activeMedia,type WebsiteSite} from './model';
+import type {CapabilityClaim} from '../../../contracts/src/claims';
+import {claimSourceChoice,lockClaimEvidence,validateClaimAssertions,visibleClaims,type ClaimSourceChoice} from './claims';
 
-export type ContentReference={column:'asset_id'|'collection_id'|'content_id'|'store_id'|'brand_kit_id';id:string;placement:string;purpose?:'CONSENT'};
+export type ContentReference={column:'asset_id'|'collection_id'|'content_id'|'store_id'|'brand_kit_id'|'evidence_source_id';id:string;placement:string;purpose?:'CONSENT'|'CLAIM_SUPPORT';claimId?:string};
 export function documentReferences(doc:WebsiteDocument):ContentReference[]{
  const refs:ContentReference[]=[];
  const add=(column:ContentReference['column'],id:unknown,placement:string,purpose?:'CONSENT')=>{if(typeof id==='string')refs.push({column,id,placement,...(purpose?{purpose}:{})});};
@@ -23,11 +25,14 @@ export function documentReferences(doc:WebsiteDocument):ContentReference[]{
   if(section.type==='faq')for(const [n,item]of (c.entries as {answer:RichNode[]}[]).entries())rich(item.answer,`${p}.entries.${n}`);
   if(section.type==='image_gallery')for(const [n,item]of (c.items as {assetId:string}[]).entries())add('asset_id',item.assetId,`${p}.items.${n}`);
   if(section.type==='testimonials')for(const [n,item]of (c.entries as {consentEvidenceId:string}[]).entries())add('asset_id',item.consentEvidenceId,`${p}.entries.${n}.consentEvidenceId`,'CONSENT');
+  if(section.type==='capability_claims')for(const claim of c.entries as CapabilityClaim[])for(const id of claim.sourceIds)refs.push({column:'evidence_source_id',id,placement:`${p}.claims.${claim.id}`,purpose:'CLAIM_SUPPORT',claimId:claim.id});
  }
  return refs;
 }
 export async function validateDocumentReferences(tx:Tx,a:Actor,site:WebsiteSite,doc:WebsiteDocument,publishing=false){
  if(doc.siteId!==site.id)fail('WEBSITE_SITE_MISMATCH',400);
+ if(a.role==='store_admin'&&doc.documentType==='WEBSITE_PAGE'&&doc.sections.some(s=>s.type==='capability_claims'))fail('WEBSITE_CLAIM_INTERNAL_REVIEW_REQUIRED',403);
+ if(publishing){validateClaimAssertions(doc);await lockClaimEvidence(tx,site,doc);}
  if(doc.documentType==='WEBSITE_PAGE'){
   if(doc.campaignId)await get(tx,a,'campaigns',doc.campaignId);
   for(const section of doc.sections){
@@ -39,9 +44,17 @@ export async function validateDocumentReferences(tx:Tx,a:Actor,site:WebsiteSite,
   }
  }
  const refs=documentReferences(doc);
+ const evidenceSources=new Map<string,ClaimSourceChoice|null>();
+ const publishedClaimIds=new Set(publishing?visibleClaims(doc).map(c=>c.id):[]);
  for(const reference of refs){
   let target:Row;
-  if(reference.column==='asset_id'){
+  if(reference.column==='evidence_source_id'){
+   if(!evidenceSources.has(reference.id))evidenceSources.set(reference.id,await claimSourceChoice(tx,site,reference.id));
+   const source=evidenceSources.get(reference.id);
+   if(!source)fail('WEBSITE_CLAIM_PUBLIC_SOURCE_REQUIRED',409);
+   if(publishedClaimIds.has(reference.claimId??'')&&!source.eligible)fail('WEBSITE_CLAIM_EVIDENCE_UNAVAILABLE',409);
+   continue;
+  }else if(reference.column==='asset_id'){
    target=await get(tx,a,'assets',reference.id);
    if(reference.purpose==='CONSENT'){
     if(target.site_id!==site.id||target.data.kind!=='WEBSITE_CONSENT'||target.status!=='VERIFIED')fail('WEBSITE_CONSENT_EVIDENCE_REQUIRED',400);
@@ -77,7 +90,7 @@ export function publicationIssues(doc:WebsiteDocument):string[]{
    if(section.type==='hero'&&!c.imageAssetId&&!c.builtInImage)issues.push('Hero image is required');
    if(c.imageAssetId||c.builtInImage)required(c.imageAlt,label+' image description');
    if(section.type==='product_carousel'&&!c.collectionId)issues.push('Choose a published canonical collection');
-   const arrayKey=section.type==='featured_collections'?'collectionIds':section.type==='category_grid'?'categoryIds':section.type==='brand_showcase'?'brandIds':section.type==='image_gallery'?'items':section.type==='testimonials'||section.type==='faq'?'entries':section.type==='solution_cards'?'solutionPageIds':section.type==='store_grid'?'storeIds':null;
+   const arrayKey=section.type==='featured_collections'?'collectionIds':section.type==='category_grid'?'categoryIds':section.type==='brand_showcase'?'brandIds':section.type==='image_gallery'?'items':section.type==='testimonials'||section.type==='faq'||section.type==='capability_claims'?'entries':section.type==='solution_cards'?'solutionPageIds':section.type==='store_grid'?'storeIds':null;
    if(arrayKey&&!(c[arrayKey] as unknown[])?.length)issues.push(label+' needs at least one entry');
    if(section.type==='image_gallery')for(const item of c.items as {alt:string}[])required(item.alt,'Gallery image description');
    if(section.type==='testimonials')for(const item of c.entries as {quote:string;publicAttribution:string}[]){required(item.quote,'Testimonial');required(item.publicAttribution,'Public attribution');}
@@ -91,6 +104,6 @@ export function publicationIssues(doc:WebsiteDocument):string[]{
  return issues;
 }
 export async function recordDocumentReferences(tx:Tx,a:Actor,siteId:string,revisionId:string,references:ContentReference[]){
- for(const reference of references)await create(tx,a,'content_references',{site_id:siteId,source_revision_id:revisionId,[reference.column]:reference.id,title:reference.placement,status:'ACTIVE',data:{purpose:reference.purpose??'PRESENTATION',placement:reference.placement}});
+ for(const reference of references)await create(tx,a,'content_references',{site_id:siteId,source_revision_id:revisionId,[reference.column]:reference.id,title:reference.placement,status:'ACTIVE',data:{purpose:reference.purpose??'PRESENTATION',placement:reference.placement,...(reference.claimId?{claimId:reference.claimId}:{})}});
 }
 export function referencedPageIds(doc:WebsiteDocument){return documentReferences(doc).filter(r=>r.column==='content_id').map(r=>r.id);}

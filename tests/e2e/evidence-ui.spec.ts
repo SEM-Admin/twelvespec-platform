@@ -1,3 +1,4 @@
+import {loginCustomer} from './customer-session';
 import {test,expect} from '@playwright/test';
 import {loginOwner} from './owner-session';
 const OS='http://localhost:3001',SHOP='http://localhost:3000';
@@ -17,7 +18,7 @@ test('administrator records private document and exact price through forms and r
  await section.getByRole('combobox',{name:'Price classification',exact:true}).selectOption('DISTRIBUTOR_NET');await section.getByLabel('Original source price',{exact:true}).fill('0.0250');await section.getByLabel('Source minimum quantity',{exact:true}).fill('24');await section.getByLabel('Source maximum quantity (unknown stays blocked)',{exact:true}).fill('1000');
  const recorded=page.waitForResponse(r=>r.url().endsWith('/api/platform')&&r.request().postDataJSON()?.action==='record_price_observation');await section.getByRole('button',{name:'Record product price',exact:true}).click();const price=await (await recorded).json();expect(price.result.original_value).toBe('0.0250');await expect(section.getByRole('status')).toContainText('Exact product price recorded');
  const context=await browser.newContext();try{
-  const customer=await context.newPage();await customer.goto(SHOP,{waitUntil:'networkidle'});await customer.getByRole('button',{name:'Sign in',exact:true}).click();await customer.getByRole('dialog').getByRole('button',{name:'Sign in',exact:true}).click();await expect(customer.getByRole('dialog')).toBeHidden();
+  const customer=await context.newPage();await loginCustomer(customer);
   await customer.goto(`${SHOP}/products/${product.id}`,{waitUntil:'networkidle'});await customer.getByRole('button',{name:'Select Clay',exact:true}).click();await customer.getByRole('combobox',{name:'Decoration method',exact:true}).selectOption('embroidery');await customer.locator('.quantity-input input').fill('48');await customer.getByRole('button',{name:/Add to quote cart/}).click();await expect(customer.getByRole('status').filter({hasText:'added to your saved quote cart'})).toBeVisible();
   await customer.goto(`${SHOP}/cart`);await customer.getByLabel('Project name',{exact:true}).fill(projectName);await customer.getByLabel('Delivery ZIP or postal code',{exact:true}).fill('60601');await customer.getByRole('combobox',{name:'Artwork preparation',exact:true}).selectOption('LATER');await customer.getByRole('button',{name:'Submit quote request',exact:true}).click();await expect(customer).toHaveURL(`${SHOP}/account`);
   await page.goto(`${OS}/sales`);await page.getByRole('combobox',{name:'Customer request',exact:true}).selectOption({label:projectName+' · NEW'});await page.getByRole('button',{name:'Prepare quote from request',exact:true}).click();

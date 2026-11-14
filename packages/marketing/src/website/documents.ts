@@ -45,7 +45,7 @@ export async function handleWebsiteDocuments(tx:Tx,a:Actor,action:string,i:Input
  if(action==='duplicate_page'){
   const {row}=await websiteRecord(tx,a,i.id);const source=await revisionRecord(tx,a,row.head_revision_id,row.site_id);
   if(source.data.document.documentType!=='WEBSITE_PAGE')fail('WEBSITE_ONLY_PAGES_CAN_DUPLICATE',400);
-  const document=structuredClone(source.data.document);document.title=`${document.title} copy`.slice(0,160);document.path=typeof i.path==='string'?i.path:`${document.path==='/'?'/home':document.path}-copy-${uid().slice(0,6)}`;document.seo.noIndex=true;document.sections=document.sections.map(section=>({...section,id:uid()}));
+  const document=structuredClone(source.data.document);document.title=`${document.title} copy`.slice(0,160);document.path=typeof i.path==='string'?i.path:`${document.path==='/'?'/home':document.path}-copy-${uid().slice(0,6)}`;document.seo.noIndex=true;document.sections=document.sections.map(section=>({...section,id:uid(),content:section.type==='capability_claims'?{...section.content,entries:(section.content.entries as {id:string}[]).map(claim=>({...claim,id:uid()}))}:section.content}));
   return saveWebsiteDocument(tx,a,{document,reason:'Duplicated as an isolated draft'});
  }
  if(action==='archive_document'){

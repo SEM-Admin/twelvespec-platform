@@ -1,5 +1,7 @@
 # Current verification status
 
+> November 13 CIA continuation: [current verification and activation requirements](cia/CLAIM_PUBLICATION_VERIFICATION.md) and [visible checklist](IMPLEMENTATION_CHECKLIST.md). The local backend suite passes 346 tests / 45 files; types and both builds pass. The full 24-journey browser regression and final-head GitHub CI are tracked there. The dated observations below retain their historical scope and do not establish current hosted deployment or production readiness.
+
 > Current readiness update (November 9, 2026): see [the launch report](LAUNCH_READINESS_2026-11-09.md) for fresh tests, unfinished content-studio work and current hosted-persistence readback. The observations below are historical and must not be treated as a production-launch approval.
 
 Working development previews are available at:

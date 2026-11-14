@@ -484,6 +484,24 @@ function Section({
           </div>
         </>
       );
+    case "capability_claims":
+      return (
+        <>
+          {heading}
+          <div className="web-cards">
+            {(c.entries as import('../../contracts/src/claims').PublicCapabilityClaim[]).map((entry, index) => (
+              <article key={index}>
+                <p className="web-eyebrow">{entry.availability}</p>
+                <h3>{entry.statement}</h3>
+                <p>{entry.context}</p>
+                <p>{entry.delivery}</p>
+                <p>{entry.limitations}</p>
+                <small>{entry.scope.service.replaceAll('_', ' ')} · {entry.scope.territory}</small>
+              </article>
+            ))}
+          </div>
+        </>
+      );
     case "solution_cards":
       return (
         <>

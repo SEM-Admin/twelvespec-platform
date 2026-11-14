@@ -11,8 +11,11 @@ import {
   type WebsiteSection,
 } from "../../../packages/contracts/src/website";
 import type { Row } from "./types";
+import {ClaimFields} from './website-claims';
+import type {CapabilityClaim} from '../../../packages/contracts/src/claims';
 
 export type WebsiteChoices = {
+  siteId: string;
   documents: Row[];
   collections: Row[];
   stores: Row[];
@@ -228,6 +231,7 @@ export function SectionFields({
       {definition.fields.map((field) => {
         const value = section.content[field.key],
           key = field.key;
+        if(field.kind==='claims')return <ClaimFields key={key} siteId={choices.siteId} entries={(value as CapabilityClaim[])??[]} onChange={entries=>set(key,entries)}/>;
         if (field.kind === "link")
           return (
             <LinkField

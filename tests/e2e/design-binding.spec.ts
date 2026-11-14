@@ -1,8 +1,9 @@
+import {loginCustomer} from './customer-session';
 import {test,expect} from '@playwright/test';
 const SHOP='http://localhost:3000';
 test('saved cap designs stay attached to exact variants after color changes and quote-cart selection',async({page})=>{
  test.setTimeout(90000);
- await page.goto(SHOP);await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'Sign in',exact:true}).click();await expect(page.getByRole('dialog')).toBeHidden();
+ await loginCustomer(page);
  const {products}=await (await page.request.get(`${SHOP}/api/shop`)).json();const product=products.find((p:{title:string})=>p.title==='Classic Camp Cap');
  const [a,b]=product.variants;const marker=`SYNTHETIC VARIANT ${crypto.randomUUID()}`;
  await page.goto(`${SHOP}/create/${product.id}`);await page.getByRole('combobox',{name:'Product color',exact:true}).selectOption(a.id);await page.getByRole('combobox',{name:'Method',exact:true}).selectOption('embroidery');await page.getByLabel('Your message',{exact:true}).fill(marker);
