@@ -50,6 +50,8 @@ Earlier local runs encountered a development reload/connection reset and an inco
 
 The persistent embedded development database was aligned with the final additive role policies/function without rewriting data; all 114 application-table row counts were preserved. This localhost check is not a hosted Supabase migration or deployment.
 
+The first GitHub run passed all 346 backend tests, types and both builds, but two customer sign-ins returned HTTP 429 under Better Auth's three-per-ten-second special rule. Repetitive browser fixtures now share a genuine UI-authenticated customer session scoped to the disposable database, verify its customer identity on the server and keep cookies in an ignored mode-0600 file. Explicit anonymous inquiry/program sign-in and sign-out journeys remain. No application limiter, authentication or authorization setting changed; final-head CI must verify the correction before merge.
+
 ## Still open
 
 - Editorial verification of existing narrative, SEO and arbitrary rich text; product/variant stock, firm pricing, delivery and manufacturing assertions; non-website channels; complete CIA-TRUST and original 80 CMS cases. The typed section is **not a semantic fact checker** for arbitrary wording.

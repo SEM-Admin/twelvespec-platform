@@ -1,3 +1,4 @@
+import {loginCustomer} from './customer-session';
 import { test, expect, type Page } from "@playwright/test";
 import axe from "axe-core";
 import { loginOwner } from "./owner-session";
@@ -112,15 +113,7 @@ test("owner authors a permitted service claim, customer sees its qualifications,
   });
   try {
     const customer = await customerContext.newPage();
-    await customer.goto(SHOP, { waitUntil: "networkidle" });
-    await customer
-      .getByRole("button", { name: "Sign in", exact: true })
-      .click();
-    await customer
-      .getByRole("dialog")
-      .getByRole("button", { name: "Sign in", exact: true })
-      .click();
-    await expect(customer.getByRole("dialog")).toBeHidden();
+    await loginCustomer(customer);
     const customerSession = await (
       await customer.request.get(SHOP + "/api/session")
     ).json();

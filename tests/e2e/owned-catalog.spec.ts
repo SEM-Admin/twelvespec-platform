@@ -1,3 +1,4 @@
+import {loginCustomer} from './customer-session';
 import {mkdirSync} from 'node:fs';
 import sharp from 'sharp';
 import {test,expect,type Page} from '@playwright/test';
@@ -38,7 +39,7 @@ test('owned source → reviewed catalog → customer brief → private costs →
 
  const customerContext=await browser.newContext();
  try{
-  const customer=await customerContext.newPage();await customer.goto(SHOP,{waitUntil:'networkidle'});await customer.getByRole('button',{name:'Sign in',exact:true}).click();await customer.getByRole('dialog').getByRole('button',{name:'Sign in',exact:true}).click();await expect(customer.getByRole('dialog')).toBeHidden();
+  const customer=await customerContext.newPage();await loginCustomer(customer);
   await customer.goto(`${SHOP}/products/${product.id}`,{waitUntil:'networkidle'});await customer.getByText('Additional quote specifications',{exact:true}).click();await customer.getByLabel('Requested imprint colors',{exact:true}).fill('2');await customer.getByLabel('Item notes',{exact:true}).fill('Use the two approved event colors.');await customer.getByRole('button',{name:/Add to quote cart/}).click();await expect(customer.getByRole('status').filter({hasText:/added to your saved quote cart/})).toBeVisible();
   await customer.goto(`${SHOP}/cart`,{waitUntil:'networkidle'});await customer.getByLabel('Project name',{exact:true}).fill(projectName);await customer.getByLabel('Company or organization',{exact:true}).fill('Synthetic Launch Team');await customer.getByLabel('Delivery ZIP or postal code',{exact:true}).fill('60601');await customer.getByRole('combobox',{name:'Artwork preparation',exact:true}).selectOption('NEED_HELP');await customer.getByLabel('Project notes',{exact:true}).fill('Pack in sets of two.');await customer.screenshot({path:'.local/owned-catalog/screenshots/customer-project-brief.png',fullPage:true});
   await customer.getByRole('button',{name:'Submit quote request',exact:true}).click();await expect(customer).toHaveURL(`${SHOP}/account`);const account=await (await customer.request.get(`${SHOP}/api/shop/account`)).json(),request=account.tables.requests.find((r:{title:string})=>r.title===projectName);expect(request).toBeTruthy();expect(request.data.lineSnapshots[0].title).toBe(publicTitle);expect(request.data.brief.deliveryPostalCode).toBe('60601');

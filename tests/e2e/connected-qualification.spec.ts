@@ -1,3 +1,4 @@
+import {loginCustomer} from './customer-session';
 import {test,expect} from '@playwright/test';
 import {loginOwner} from './owner-session';
 const OS='http://localhost:3001',SHOP='http://localhost:3000';
@@ -23,7 +24,7 @@ test('owner plans an exact cap producer, records each charge in forms and qualif
   await expect(library.getByRole('button',{name:'Record product price',exact:true})).toBeEnabled();
  }
  const context=await browser.newContext();try{
-  const customer=await context.newPage();await customer.goto(SHOP,{waitUntil:'networkidle'});await customer.getByRole('button',{name:'Sign in',exact:true}).click();await customer.getByRole('dialog').getByRole('button',{name:'Sign in',exact:true}).click();await expect(customer.getByRole('dialog')).toBeHidden();
+  const customer=await context.newPage();await loginCustomer(customer);
   await customer.goto(`${SHOP}/products/${product.id}`,{waitUntil:'networkidle'});await customer.getByRole('button',{name:'Select Clay',exact:true}).click();await customer.getByRole('combobox',{name:'Decoration method',exact:true}).selectOption('embroidery');await customer.locator('.quantity-input input').fill('48');await customer.getByRole('button',{name:/Add to quote cart/}).click();await expect(customer.getByRole('status').filter({hasText:'added to your saved quote cart'})).toBeVisible();await customer.goto(`${SHOP}/cart`);await customer.getByLabel('Project name',{exact:true}).fill(projectName);await customer.getByLabel('Delivery ZIP or postal code',{exact:true}).fill('60601');await customer.getByRole('combobox',{name:'Artwork preparation',exact:true}).selectOption('LATER');await customer.getByRole('button',{name:'Submit quote request',exact:true}).click();await expect(customer).toHaveURL(`${SHOP}/account`);
   await page.goto(`${OS}/sales`);await page.getByRole('combobox',{name:'Customer request',exact:true}).selectOption({label:projectName+' · NEW'});await page.getByRole('button',{name:'Prepare quote from request',exact:true}).click();const qualification=page.getByRole('region',{name:'Connected quote qualification',exact:true});const profilePicker=qualification.getByRole('combobox',{name:'Qualification planning profile',exact:true});await expect(profilePicker.locator(`option[value="${profile.id}"]`)).toHaveCount(1);await profilePicker.selectOption(profile.id);
   for(const [component,id] of Object.entries(priceIds)){

@@ -1,7 +1,8 @@
+import {loginCustomer} from './customer-session';
 import axe from 'axe-core';
 import {test,expect,type Page} from '@playwright/test';
 const SHOP='http://localhost:3000';
-async function login(page:Page){await page.goto(SHOP,{waitUntil:'networkidle'});await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'Sign in',exact:true}).click();await expect(page.getByRole('dialog')).toBeHidden();}
+async function login(page:Page){await loginCustomer(page);}
 
 test('shop uses published products, actual color images, persistent cart and RFQ',async({page})=>{
  await login(page);const response=await page.request.get(`${SHOP}/api/shop`);expect(response.ok()).toBeTruthy();const {products}=await response.json();expect(products.length).toBeGreaterThanOrEqual(40);const product=products.find((p:{title:string})=>p.title==='Everyday Cotton Tee')??products.find((p:{variants:{color:string}[]})=>p.variants.some(v=>v.color==='Clay'))??products[0];
