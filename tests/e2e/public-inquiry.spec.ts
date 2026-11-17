@@ -3,7 +3,7 @@ import axe from 'axe-core';
 import {loginOwner} from './owner-session';
 const SHOP='http://localhost:3000',OS='http://localhost:3001';
 
-test('guest quote request survives a lost response and reload, and is reviewed in the private CRM',async({page,browser})=>{
+test('guest quote request survives a lost response and reload, and is reviewed in the single Sales workspace',async({page,browser})=>{
  test.setTimeout(180000);const title='SYNTHETIC guest launch inquiry '+crypto.randomUUID().slice(0,8);let loseResponse=true;
  await page.route('**/api/inquiry',async route=>{
   if(route.request().method()==='POST'&&loseResponse){loseResponse=false;const upstream=await route.fetch();expect(upstream.status()).toBe(201);await route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({code:'SYNTHETIC_LOST_RESPONSE'})});}
@@ -15,12 +15,19 @@ test('guest quote request survives a lost response and reload, and is reviewed i
   const responsePromise=page.waitForResponse(r=>r.url()===SHOP+'/api/inquiry'&&r.request().method()==='POST'&&r.status()===201);await form.getByRole('button',{name:'Request a quote',exact:true}).click();const response=await responsePromise,body=await response.json();expect(Object.keys(body)).toEqual(['receipt']);expect(body.receipt.status).toBe('RECEIVED');await expect(page.getByRole('heading',{name:'Your quote request is saved.',exact:true})).toBeVisible();await expect(page.getByRole('status',{name:'Quote request receipt',exact:true})).toContainText(body.receipt.reference);
  expect((await page.request.get(SHOP+'/api/shop/account')).status()).toBe(401);expect((await page.request.get(SHOP+'/api/platform?module=crm')).status()).toBe(401);await page.reload({waitUntil:'networkidle'});await expect(page.getByRole('form',{name:'Guest quote request',exact:true})).toBeVisible();
  const context=await browser.newContext();try{
-  const owner=await context.newPage();await loginOwner(owner,'/crm');const inbox=owner.getByRole('region',{name:'Website quote request inbox',exact:true});await expect(inbox).toBeVisible();await inbox.getByRole('button',{name:title,exact:true}).click();const review=inbox.getByRole('region',{name:'Review website quote request',exact:true});await expect(review).toContainText(body.receipt.reference);await expect(review).toContainText('(unverified)');await expect(review).toContainText('This inbox does not send email.');
+  const owner=await context.newPage();await loginOwner(owner,'/sales');const inbox=owner.getByRole('region',{name:'Website quote request inbox',exact:true});await expect(inbox).toBeVisible();await inbox.getByRole('button',{name:title,exact:true}).click();const review=inbox.getByRole('region',{name:'Review website quote request',exact:true});await expect(review).toContainText(body.receipt.reference);await expect(review).toContainText('(unverified)');await expect(review).toContainText('This inbox does not send email.');
   const rows=await (await owner.request.post(OS+'/api/platform',{headers:{Origin:OS},data:{module:'crm',action:'public_inquiry_inbox',input:{status:'ALL'}}})).json();expect(rows.result.rows.filter((r:{title:string})=>r.title===title)).toHaveLength(1);
   const reviewForm=review.getByRole('form',{name:'Website inquiry review',exact:true});await reviewForm.getByLabel('Review status',{exact:true}).selectOption('IN_REVIEW');await reviewForm.getByLabel('Review note',{exact:true}).fill('SYNTHETIC staff review. Confirm product facts and quote scope before replying.');await reviewForm.getByRole('button',{name:'Save request review',exact:true}).click();await expect(inbox.getByRole('status').filter({hasText:'Review saved. No email was sent by this action.'})).toHaveText('Review saved. No email was sent by this action.');
   await owner.reload({waitUntil:'networkidle'});await inbox.getByRole('combobox',{name:'Website request status',exact:true}).selectOption('IN_REVIEW');await inbox.getByRole('button',{name:title,exact:true}).click();await expect(inbox.getByRole('form',{name:'Website inquiry review',exact:true}).getByLabel('Review note',{exact:true})).toHaveValue('SYNTHETIC staff review. Confirm product facts and quote scope before replying.');
   await owner.screenshot({path:'.local/quote-first-crm.png',fullPage:true});
+  await owner.goto(OS+'/crm',{waitUntil:'networkidle'});await expect(owner.getByRole('heading',{name:'Customers & CRM',exact:true})).toBeVisible();await expect(owner.getByRole('region',{name:'Website quote request inbox',exact:true})).toBeHidden();
  }finally{await context.close();}
+ const customerContext=await browser.newContext();try{
+  const customer=await customerContext.newPage();await customer.goto(OS+'/sales',{waitUntil:'networkidle'});await customer.getByLabel('Email address',{exact:true}).fill('customer@demo.twelvespec.test');await customer.getByLabel('Password',{exact:true}).fill('TwelveSpec-Demo-2026!');
+  const signedIn=customer.waitForResponse(r=>r.url().endsWith('/api/auth/sign-in/email')&&r.request().method()==='POST');await customer.getByRole('button',{name:'Sign in to workspace',exact:true}).click();expect((await signedIn).status()).toBe(200);
+  await expect(customer.getByRole('heading',{name:'Quotes & requests',exact:true})).toBeVisible();await expect(customer.getByRole('region',{name:'Website quote request inbox',exact:true})).toBeHidden();
+  const denied=await customer.request.post(OS+'/api/platform',{headers:{Origin:OS},data:{module:'crm',action:'public_inquiry_inbox',input:{status:'ALL'}}});expect(denied.status()).toBe(403);expect(await denied.text()).not.toContain(title);
+ }finally{await customerContext.close();}
 });
 
 test('unavailable public intake shows a retry instead of a broken form or false receipt',async({page})=>{

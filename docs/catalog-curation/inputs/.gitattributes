@@ -1,0 +1,6 @@
+# Original research inputs are hash-verified; preserve their uploaded bytes.
+TwelveSpec_Decoration_Library.json -text
+TwelveSpec_Website_Decoration_Copy.md -text
+TwelveSpec_Product_Method_Matrix.csv -text whitespace=cr-at-eol
+TwelveSpec_Decoration_Sales_Reference.pdf binary
+TwelveSpec_Decoration_Master.xlsx binary

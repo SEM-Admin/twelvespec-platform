@@ -1,5 +1,6 @@
 import { authorize,create,event,fail,get,hash,idempotent,list,number,text,update,type Actor,type Tx,type Input,type Row } from '../../kernel/src/index';
 import {saveCatalogImage} from './media';
+import {readDecorationGuidance} from './decoration-guidance';
 import { catalogSourceLibrary,createSourceDraft,stageCatalogSources,stageCatalogSourceFile } from './sources';
 import { exportCSV } from '../../supplier/src/imports';
 const object=(v:unknown):Input=>v&&typeof v==='object'&&!Array.isArray(v)?v as Input:{};
@@ -38,6 +39,7 @@ export function resolveProductIdentity(source:Input,candidates:Row[]):Row|null{
 }
 export async function handleCatalog(tx:Tx,a:Actor,action:string,input:Input):Promise<unknown>{
  authorize(a,'catalog',action);
+ if(action==='decoration_guidance')return readDecorationGuidance(input);
  if(action==='save_catalog_image')return saveCatalogImage(tx,a,input);
  if(action==='stage_source_file')return stageCatalogSourceFile(tx,a,input);
  if(action==='stage_sources')return stageCatalogSources(tx,a,input);
