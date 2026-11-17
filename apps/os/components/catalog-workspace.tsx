@@ -2,6 +2,7 @@
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {ArrowRight,CheckCircle2,ChevronLeft,ChevronRight,FileUp,Search,ShieldCheck} from 'lucide-react';
 import {asString,command,key,pretty,request,type Data,type Row} from './types';
+import {DecorationGuidance} from './decoration-guidance';
 
 type Run=(action:string,input:Data)=>Promise<unknown>;
 type Library={items:Row[];total:number;page:number;pageSize:number;sourceCounts:{supplier:string;count:number}[]};
@@ -31,7 +32,7 @@ export function CatalogWorkspace({tables,run}:{tables:Record<string,Row[]>;run:R
  async function runEditor(action:string,input:Data){setBusy('editor');try{const result=await run(action,input);if(editorId){const fresh=await command('catalog','read_product',{id:editorId});setOpened(fresh.result as {product:Row;variants:Row[]});}return result;}finally{setBusy('');}}
  const products=tables.products??[],listed=products.find(p=>p.id===editorId),selected=listed??(opened?.product.id===editorId?opened.product:undefined);
  const variantMap=new Map<string,Row>();for(const v of [...(opened?.product.id===editorId?opened.variants:[]),...(tables.variants??[]).filter(v=>v.product_id===editorId)])if(!variantMap.has(v.id)||(variantMap.get(v.id)?.revision??0)<=v.revision)variantMap.set(v.id,v);const selectedVariants=[...variantMap.values()];
- return <section className="owned-catalog" aria-label="Owned catalog workspace">
+ return <section className="owned-catalog" aria-label="Owned catalog workspace"><DecorationGuidance/>
   <div className="workbench-heading"><div><span className="eyebrow">YOUR CATALOG, YOUR CUSTOMER EXPERIENCE</span><h2>Build from verified facts.</h2><p>Keep source evidence private. Review your own product copy, exact options and media before it appears on the website.</p></div><span className="badge neutral"><ShieldCheck size={14}/> Review before publication</span></div>
   {error&&<p className="alert error" role="alert">{error}</p>}{notice&&<p className="alert" role="status">{notice}</p>}
   <div className="source-metrics">{library.sourceCounts.map(s=><div key={s.supplier}><span>{s.supplier}</span><strong>{s.count.toLocaleString()}</strong><small>private source records</small></div>)}{!library.sourceCounts.length&&!loading&&<p>No source records yet. Upload supplier-authorized source data to start.</p>}</div>

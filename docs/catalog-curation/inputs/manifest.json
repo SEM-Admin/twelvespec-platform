@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "researchDate": "2026-11-17",
+  "familyCount": 106,
+  "methodCount": 54,
+  "sourceCount": 24,
+  "csvEqualsJson": true,
+  "workbookProductMapEqualsJson": true,
+  "workbookGlossaryEqualsJson": true,
+  "workbookSourcesEqualJson": true,
+  "categories": {
+    "Apparel & uniforms": 19,
+    "Headwear": 9,
+    "Bags & accessories": 10,
+    "Drinkware & kitchen": 11,
+    "Promotional & corporate gifts": 14,
+    "Events & displays": 13,
+    "Signs, decals & vehicles": 11,
+    "Print & packaging": 14,
+    "Specialty branding & personalization": 5
+  },
+  "skuVerified": false,
+  "websiteState": "PRIVATE_REFERENCE_ONLY",
+  "workbookSheetCounts": {
+    "START HERE": 14,
+    "PRODUCT MAP": 107,
+    "METHOD GLOSSARY": 55,
+    "SOURCES": 25,
+    "CUSTOMER COPY": 31,
+    "QUOTE CHECKLIST": 13,
+    "CATALOG RULES": 11
+  },
+  "pdfPages": 13,
+  "formulas": 0,
+  "inputInstructionsExecuted": false,
+  "automaticCatalogWrites": 0,
+  "automaticPublications": 0,
+  "files": [
+    {
+      "name": "TwelveSpec_Decoration_Library.json",
+      "bytes": 97751,
+      "sha256": "7eb2d66a25b7643da871c4f1a033f52645aa3d6f4b12ae00b5f817b8eb4f54b6",
+      "authority": "OWNER_SUPPLIED_RESEARCH_NOT_SKU_CAPABILITY_OR_PUBLICATION_APPROVAL"
+    },
+    {
+      "name": "TwelveSpec_Website_Decoration_Copy.md",
+      "bytes": 6202,
+      "sha256": "acee9182f9c75faa046c893b6a98eb9b96eba382aa8be18ec78b4012226b5503",
+      "authority": "OWNER_SUPPLIED_RESEARCH_NOT_SKU_CAPABILITY_OR_PUBLICATION_APPROVAL"
+    },
+    {
+      "name": "TwelveSpec_Decoration_Sales_Reference.pdf",
+      "bytes": 56528,
+      "sha256": "1dddf18965ace1e8f1454b0e0a3e5ec81a287632162d7934f2ba6ea5458e62d3",
+      "authority": "OWNER_SUPPLIED_RESEARCH_NOT_SKU_CAPABILITY_OR_PUBLICATION_APPROVAL"
+    },
+    {
+      "name": "TwelveSpec_Product_Method_Matrix.csv",
+      "bytes": 42156,
+      "sha256": "b48e79decb0b8babb07d88cbb7f31603f747fc0f83548feea00740ede76ff0f8",
+      "authority": "OWNER_SUPPLIED_RESEARCH_NOT_SKU_CAPABILITY_OR_PUBLICATION_APPROVAL"
+    },
+    {
+      "name": "TwelveSpec_Decoration_Master.xlsx",
+      "bytes": 40589,
+      "sha256": "bfbbadea2d54415741d530a0532cf78a700e68eafe8fab5eb81b031e2d37c917",
+      "authority": "OWNER_SUPPLIED_RESEARCH_NOT_SKU_CAPABILITY_OR_PUBLICATION_APPROVAL"
+    }
+  ]
+}

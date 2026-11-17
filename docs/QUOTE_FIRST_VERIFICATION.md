@@ -1,5 +1,7 @@
 # Quote-first intake verification — November 17, 2026
 
+Location update: the [curated catalog / one quote workflow continuation](catalog-curation/ONE_QUOTE_WORKFLOW.md) moves account-free review into Sales → Quotes & requests. The CRM follow-up data and Today tasks are reused, with no second CRM review panel. The PR #7 measurements below retain their original scope; the latest implementation checklist records subsequent verification.
+
 Story: a visitor describes a project without choosing a SKU or opening an account; the request receives a committed receipt, enters the existing private CRM and Today queue, and a staff member reviews it. Formal prices, delivery commitments and customer quote acceptance retain the existing reviewed workflow.
 
 ## Implemented in source

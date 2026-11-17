@@ -23,6 +23,7 @@ jobs:
       - run: npm run check:plan
       - run: npm run check:research
       - run: npm run check:industry
+      - run: npm run check:decoration
       - run: npm run setup
       - run: npm run typecheck
       - run: npm test
@@ -40,5 +41,6 @@ jobs:
             .local/test-results.json
             .local/quote-first-guest.png
             .local/quote-first-crm.png
+            .local/decoration-guidance.png
             playwright-report/
             test-results/
