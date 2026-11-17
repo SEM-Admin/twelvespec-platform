@@ -27,6 +27,8 @@ The integration suite also checks forged scope, privacy across roles/workspaces,
 
 Earlier focused runs found and corrected a stale Next development cache reload loop and exact accessibility labels for receipt/review controls. The final complete runs above supersede those failures. Authentication was not weakened. Both builds retain the six previously recorded Creative filesystem-tracing warnings (three per app); these remain a packaging/durable-asset concern, not a passed production gate.
 
+The first PR #7 CI run passed backend/build checks and 25 of 26 browser journeys, then found an ambiguous test selector while a saved confirmation and loading status appeared together. The selector now identifies the specific saved confirmation; no product authorization or assertion was weakened. The final-head CI receipt on the PR determines integration readiness.
+
 ## Simulated functionality
 
 All test business data is synthetic and every test database is local and disposable. The local form uses a visibly labelled synthetic challenge. Server tests simulate Siteverify success, invalid hostname/action/age, provider/network errors and duplicate-token rejection. **No real Turnstile widget/token flow, notification delivery, live supplier call, payment or customer production order was activated or verified by this work.**
