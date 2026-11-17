@@ -35,5 +35,7 @@ jobs:
           name: local-acceptance-evidence
           path: |
             .local/test-results.json
+            .local/quote-first-guest.png
+            .local/quote-first-crm.png
             playwright-report/
             test-results/

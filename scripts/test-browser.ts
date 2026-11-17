@@ -35,7 +35,7 @@ async function main() {
     await admin.query(`create database ${database}`);
     created = true;
     url.pathname = "/" + database;
-    const env = {
+    const env: NodeJS.ProcessEnv = {
       ...process.env,
       DATABASE_URL: url.toString(),
       TWELVESPEC_ROOT: root,
@@ -45,6 +45,23 @@ async function main() {
       ASSET_SIGNING_KEY: randomBytes(32).toString("hex"),
       WEBHOOK_SIGNING_KEY: randomBytes(32).toString("hex"),
     };
+    // Provision only this disposable database. The public-form fixture never
+    // enables an intake endpoint against saved preview or remote business data.
+    for (const script of ['scripts/migrate.ts', 'scripts/seed.ts']) {
+      const code = await new Promise<number>((resolve, reject) => {
+        const child = spawn(process.execPath, ['--import', 'tsx', script], {cwd: root, env, stdio: 'inherit'});
+        child.once('error', reject);
+        child.once('exit', code => resolve(code ?? 1));
+      });
+      if (code !== 0) throw new Error('Disposable browser fixture setup failed.');
+    }
+    const fixture = new Client({connectionString: url.toString()});
+    try {
+      await fixture.connect();
+      const member = (await fixture.query("select user_id,tenant_id,workspace_id from memberships where role='owner' and workspace_id='22222222-2222-4222-8222-222222222222'")).rows[0];
+      if (!member) throw new Error('Synthetic inquiry assignee missing.');
+      Object.assign(env, {PUBLIC_INQUIRY_MODE: 'synthetic-local', PUBLIC_INQUIRY_TENANT_ID: member.tenant_id, PUBLIC_INQUIRY_WORKSPACE_ID: member.workspace_id, PUBLIC_INQUIRY_ASSIGNEE_ID: member.user_id});
+    } finally {await fixture.end();}
     console.log(
       "Browser suite uses a fresh disposable local database; saved preview data is unchanged.",
     );
