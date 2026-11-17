@@ -22,6 +22,12 @@ test('guest quote request survives a lost response and reload, and is reviewed i
   await owner.screenshot({path:'.local/quote-first-crm.png',fullPage:true});
   await owner.goto(OS+'/crm',{waitUntil:'networkidle'});await expect(owner.getByRole('heading',{name:'Customers & CRM',exact:true})).toBeVisible();await expect(owner.getByRole('region',{name:'Website quote request inbox',exact:true})).toBeHidden();
  }finally{await context.close();}
+ const customerContext=await browser.newContext();try{
+  const customer=await customerContext.newPage();await customer.goto(OS+'/sales',{waitUntil:'networkidle'});await customer.getByLabel('Email address',{exact:true}).fill('customer@demo.twelvespec.test');await customer.getByLabel('Password',{exact:true}).fill('TwelveSpec-Demo-2026!');
+  const signedIn=customer.waitForResponse(r=>r.url().endsWith('/api/auth/sign-in/email')&&r.request().method()==='POST');await customer.getByRole('button',{name:'Sign in to workspace',exact:true}).click();expect((await signedIn).status()).toBe(200);
+  await expect(customer.getByRole('heading',{name:'Quotes & requests',exact:true})).toBeVisible();await expect(customer.getByRole('region',{name:'Website quote request inbox',exact:true})).toBeHidden();
+  const denied=await customer.request.post(OS+'/api/platform',{headers:{Origin:OS},data:{module:'crm',action:'public_inquiry_inbox',input:{status:'ALL'}}});expect(denied.status()).toBe(403);expect(await denied.text()).not.toContain(title);
+ }finally{await customerContext.close();}
 });
 
 test('unavailable public intake shows a retry instead of a broken form or false receipt',async({page})=>{

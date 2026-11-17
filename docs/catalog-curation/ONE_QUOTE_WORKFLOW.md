@@ -50,7 +50,7 @@ Before a curated item becomes customer-selectable, independently verify its supp
 | Requirement | Reuse/change | Verification |
 | --- | --- | --- |
 | One new-site customer quote destination | Existing internal catalog/cart/inquiry; no external ASI quote redirect | Existing owned-catalog → issued quote browser journey; Sales guest-intake regression |
-| One operator quote workspace | Review account-free inquiries in Sales → Quotes & requests | Browser verifies actual receipt, private review and reload in Sales; CRM has no second review panel |
+| One operator quote workspace | Authorized staff review account-free inquiries in Sales → Quotes & requests | Browser verifies actual receipt, private review and reload in Sales; CRM has no second review panel; customers see no staff inbox and its API returns 403 |
 | Curated API-fed products | Existing native import/source staging, draft curation and exact publication controls | Existing supplier metering, private import, owned-catalog, image and quote suites |
 | Preserve all uploaded intelligence | Original five files plus hashed manifest and complete cross-format audit | File/count/hash checks; JSON/CSV/workbook correspondence; all method/source references resolve |
 | Useful decoration guidance without invented capabilities | Protected, paged Catalog reference reader and UI | Search/pagination, permission denials, original 106 families/54 methods retained; no catalog writes or public source leakage |

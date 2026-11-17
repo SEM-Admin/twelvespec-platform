@@ -4,7 +4,7 @@ November 17, 2026. This is a source implementation using disposable local Postgr
 
 ## Implemented and reused
 
-- Customer quote intake remains in TwelveSpec. Commerce OS → Sales → Quotes & requests now includes the existing account-free review panel alongside customer requests and quotes. The same private CRM follow-ups and Today tasks are retained; CRM has no duplicate review panel.
+- Customer quote intake remains in TwelveSpec. Commerce OS → Sales → Quotes & requests now includes the existing account-free review panel alongside customer requests and quotes. Only owner, manager and sales roles see this staff panel; server-side CRM permissions remain authoritative. The same private CRM follow-ups and Today tasks are retained; CRM has no duplicate review panel.
 - Commerce OS → Catalog → Decoration guidance opens a protected, lazy-loaded reference. Search, category/method filters, pagination, production cautions, source links and the full method glossary retain all 106 product families and 54 research methods/finishes.
 - All five original uploads are stored verbatim with SHA-256 hashes. The provenance checker verifies the JSON/CSV/workbook correspondence, nine categories, seven workbook sheets, 24 references and 13 PDF pages. Document instructions are research material; none is executed as authorization.
 - Existing source staging, selected supplier imports, exact product/variant editing, licensed media and reviewed publication remain the catalog path. No new catalog database or supplier transport is introduced. The current eight executable method codes are unchanged.
@@ -24,6 +24,8 @@ November 17, 2026. This is a source implementation using disposable local Postgr
 The new backend checks read every family through pagination, resolve all method/source references, reject invalid filters and scope/publication/credential fields, deny customer access, and verify that reference reads create no products, variants or process profiles. Raw research IDs cannot become executable SKU methods. The uploaded research JSON/CSV cannot be staged as supplier SKU feeds; public product projections do not expose research fields.
 
 The new browser journey opens the actual private Catalog, finds nylon rainwear and its waterproofing cautions, and verifies that the public catalog is unchanged. The guest-inquiry journey retries a lost response after commit, confirms one saved private request in Sales, saves/reloads its review and verifies that CRM has no second review panel. Existing catalog → request → private costing → issued quote, supplier caps/cache/credit modes and licensed publication regressions all pass.
+
+The complete local run above preceded the final staff-only presentation guard. After that correction, TypeScript and both inquiry browser journeys were repeated successfully, including a real customer sign-in, no visible staff inbox and a 403 from its private API. A focused run initially encountered repeated Next development refreshes before owner sign-in; clearing only generated development caches resolved it. No authentication, assertions or server permission checks were weakened. Final-head GitHub CI must repeat the entire suite before integration.
 
 One initial full browser execution lost its local servers and produced no complete report. The completed build/browser rerun above supersedes that interruption; it is not counted as a pass. Both builds retain the six existing Creative filesystem-tracing warnings, three per app. Packaging and durable asset handling remain outstanding production concerns.
 
