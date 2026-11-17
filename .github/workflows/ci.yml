@@ -33,7 +33,12 @@ jobs:
         if: always()
         with:
           name: local-acceptance-evidence
+          # Only the explicitly listed synthetic files below are included from
+          # .local; never upload the whole folder, sessions, database or vault.
+          include-hidden-files: true
           path: |
             .local/test-results.json
+            .local/quote-first-guest.png
+            .local/quote-first-crm.png
             playwright-report/
             test-results/

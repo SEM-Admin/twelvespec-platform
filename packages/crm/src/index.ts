@@ -1,10 +1,13 @@
 import { authorize,create,get,list,update,event,fail,text,idempotent,transition,type Actor,type Tx,type Input,type Row } from '../../kernel/src/index';
+import {publicInquiryInbox,reviewPublicInquiry} from './public-inquiries';
 export function validEmail(value:unknown):string {const email=text(value,254).toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))fail('INVALID_EMAIL',400);return email;}
 export const leadTransitions:Record<string,string[]>={NEW:['QUALIFIED','LOST'],QUALIFIED:['OPPORTUNITY','LOST'],OPPORTUNITY:['WON','LOST'],WON:[],LOST:[]};
 function consent(input:unknown){const c=input&&typeof input==='object'?input as Input:{};return {marketing:c.marketing===true,recordedAt:new Date().toISOString(),source:typeof c.source==='string'?text(c.source,200):'operator_recorded'};}
 async function changed(tx:Tx,a:Actor,table:'contacts'|'accounts'|'opportunities'|'activities'|'follow_ups',r:Row,action:string){await event(tx,a,`crm.${action}`,r.id,{table,status:r.status});return r;}
 export async function handleCrm(tx:Tx,a:Actor,action:string,i:Input):Promise<unknown>{
  authorize(a,'crm',action);
+ if(action==='public_inquiry_inbox')return publicInquiryInbox(tx,a,i);
+ if(action==='review_public_inquiry')return reviewPublicInquiry(tx,a,i);
  if(action==='create'||action==='create_contact'){
   const email=validEmail(i.email);await tx.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[`${a.tenantId}/${a.workspaceId}/crm-email/${email}`]);
   const duplicates=await tx.query("select id from app.contacts where tenant_id=$1 and workspace_id=$2 and lower(data->>'email')=$3 and status<>'ARCHIVED' limit 1",[a.tenantId,a.workspaceId,email]);if(duplicates.rowCount)fail('CONTACT_ALREADY_EXISTS');

@@ -550,12 +550,12 @@ function Section({
         <div className="web-cta">
           {heading}
           <p>{text("intro")}</p>
-          <a className="web-button" href="/cart">
+          <a className="web-button" href="/inquiry">
             {text("ctaLabel")} →
           </a>
           <p className="web-hint">
-            Choose products and quantities, then sign in to save your private
-            quote request.
+            Describe your project, even if you have not chosen a product.
+            Pricing and delivery require a reviewed quote.
           </p>
         </div>
       );

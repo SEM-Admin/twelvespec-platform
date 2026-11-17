@@ -1,5 +1,7 @@
 # Selling readiness of the new TwelveSpec build
 
+November 17 quote-first continuation: [intake implementation, domain findings, configuration and cutover gates](QUOTE_FIRST_LAUNCH.md). Account-free requests now reuse the private CRM and Today task queue in the new source. Public activation remains disabled. The deployed Cloudflare preview's persistent-database flag is still off; neither the current preview nor this local implementation is approved for real customer intake. Production database bootstrap, real spam-protection verification, seller/privacy content and a verified hosted request/readback remain launch dependencies.
+
 Current review: [November 9 launch readiness and ordered release gates](LAUNCH_READINESS_2026-11-09.md). The public database root is now available and client trust is prepared; runtime connectivity and hosted persistence are still unverified.
 
 **Decision: NO-GO for paid production orders.** The isolated preview supports synthetic testing and the reviewed quote-request workflow. This assessment applies to the new build; the existing production website, application, customer database and domains have not been audited or changed.
