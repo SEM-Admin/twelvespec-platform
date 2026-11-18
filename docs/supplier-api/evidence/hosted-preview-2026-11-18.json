@@ -1,0 +1,127 @@
+{
+  "verifiedAt": "2026-11-18T05:37:54.966Z",
+  "scope": "OWNER_PROTECTED_SYNTHETIC_DEVELOPMENT_ONLY",
+  "application": {
+    "source": "be9f41764f64c43b97379cf52555fd1c39b02943",
+    "ciRun": "https://github.com/SEM-Admin/twelvespec-platform/actions/runs/44237576247",
+    "backendTests": 364,
+    "backendFiles": 49,
+    "browserTests": 27,
+    "isolatedProductionContainer": "PASSED",
+    "imageDigest": "sha256:7faa7ccf5978fe1422d7489680e42f0eef015a27a37c0786811b0ec3f2b254fc",
+    "configurationDigest": "sha256:c170f067edbbbb034f00ffba8484a821f09500c5732f87315163adce82ebe30a",
+    "cloudflareImagePreparation": "READY",
+    "runtimeVersion": "71f0a3b3-4b37-458f-9a07-77e3b6e7b744",
+    "storefront": "https://twelvespec-preview-shop.samantha-4ec.workers.dev/",
+    "commerceOs": "https://twelvespec-preview-os.samantha-4ec.workers.dev/",
+    "shopHealth": 200,
+    "osHealth": 200
+  },
+  "database": {
+    "project": "mtihnarlkprmyahbxlrl",
+    "applicationTables": 114,
+    "publicTables": 9,
+    "migrations": 15,
+    "syntheticUsers": 4,
+    "syntheticProducts": 40,
+    "syntheticVariants": 120,
+    "applicationWritesVerified": true,
+    "securityAdvisorFindings": 0,
+    "certificateVerificationDisabled": false
+  },
+  "quotes": {
+    "verification": "PROTECTED_HTTPS_SYNTHETIC_BROWSER_PASSED",
+    "customerSignIn": true,
+    "ownerSignIn": true,
+    "requestId": "abd3aad7-fe65-477a-aedc-45524437ca24",
+    "quoteId": "f4ea6b98-08ba-4e47-bf66-4b2a65192f59",
+    "issuedTotal": "200.00",
+    "currency": "USD",
+    "privateCostsExcludedFromCustomer": true
+  },
+  "sage": {
+    "verification": "MOCKED_OVER_PROTECTED_HTTPS",
+    "connectionId": "73a0b20e-a10b-4d84-be32-92d844aa977a",
+    "simulatedReadsReserved": 4,
+    "syntheticCreditUnits": 3,
+    "cacheHitsBeforeRestart": 40,
+    "cacheHitsAfterRestart": 41,
+    "paidFeesReserved": "0.000000",
+    "hardCap": "API_MONTHLY_CALL_CAP",
+    "pause": "API_PAUSED",
+    "privateSourcesStaged": 1,
+    "productsPublished": 0,
+    "actualSupplierRequests": 0,
+    "realSageConnectionVerified": false,
+    "customerBrowsingAddedSupplierCalls": 0,
+    "customerSupplierAccessDenied": true,
+    "connectionPaused": true,
+    "cachedReadMs": {
+      "median": 903,
+      "p95": 969
+    },
+    "timingLimit": "40 synthetic cached reads over workspace-proxied HTTPS; not a supplier tariff, supplier latency or hosted load-capacity measurement."
+  },
+  "persistence": {
+    "verification": "HOSTED_RESTART_PERSISTENCE_PASSED",
+    "ownerSessionSurvived": true,
+    "issuedQuoteSurvived": true,
+    "productIdsPreserved": true,
+    "cacheReadAfterRestart": true,
+    "credentialConfiguredAfterRestart": true
+  },
+  "recovery": {
+    "verification": "RECOVERY_OF_HOSTED_SYNTHETIC_CIPHERTEXT_WITH_EXISTING_SOURCE_RESOLVER",
+    "existingStableKeyRecovered": true,
+    "wrongScopeRejected": true,
+    "wrongKeyRejected": true,
+    "managedBackupRestoreVerified": false,
+    "originalUploadRecoveryVerified": false
+  },
+  "access": {
+    "temporaryCredentialHours": 1,
+    "temporaryServiceTokenRemoved": true,
+    "temporaryPolicyRemoved": true,
+    "originalOwnerPolicyPreserved": true,
+    "revokedCredentialStatus": [
+      {
+        "app": "shop",
+        "status": 401
+      },
+      {
+        "app": "os",
+        "status": 401
+      }
+    ],
+    "anonymousStatus": [
+      {
+        "app": "shop",
+        "status": 302
+      },
+      {
+        "app": "os",
+        "status": 302
+      }
+    ],
+    "plaintextCredentialsInEvidence": false
+  },
+  "remaining": {
+    "hostedGuestInquiry": "DISABLED_BY_EXISTING_ACTIVATION_GATE",
+    "attemptedHostedGuestJourney": "COULD_NOT_RUN_FORM_DISABLED",
+    "realSageCredentialsAndCurrentCreditSettingsRequired": true,
+    "liveSupplierMediaAndTemplatesVerified": false,
+    "manufacturingOutputsVerified": false,
+    "managedRestoreVerified": false,
+    "originalFullV1AcceptanceClosed": false,
+    "dnsCutoverAuthorized": false,
+    "publicLaunchApproved": false
+  },
+  "noProductionChanges": {
+    "dns": true,
+    "asiEspSite": true,
+    "suppliers": true,
+    "payments": true,
+    "customerData": true,
+    "supplierOrders": true
+  }
+}
