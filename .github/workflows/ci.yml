@@ -2,6 +2,11 @@ name: Greenfield verification
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      export_preview_image:
+        description: 'Export the tested runtime image only after preview deployment approval'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -42,5 +47,58 @@ jobs:
             .local/quote-first-guest.png
             .local/quote-first-crm.png
             .local/decoration-guidance.png
+            .local/sage-pilot-report.json
             playwright-report/
             test-results/
+  verify-container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      SOURCE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Build production runtime image
+        run: docker build --label "org.opencontainers.image.revision=$SOURCE_COMMIT" -f infra/cloudflare/Dockerfile -t twelvespec-container-check .
+      - name: Prepare private synthetic environment
+        run: node scripts/verify-preview-container.mjs fixture "$RUNNER_TEMP/twelvespec-container.env"
+      - name: Start isolated runtime with no network
+        run: docker run --detach --network none --name twelvespec-container-check --env-file "$RUNNER_TEMP/twelvespec-container.env" twelvespec-container-check
+      - name: Verify production applications and SAGE controls
+        run: |
+          mkdir -p .local
+          docker exec twelvespec-container-check node scripts/verify-preview-container.mjs check > .local/container-smoke.json
+          docker image inspect twelvespec-container-check --format '{"id":{{json .Id}},"bytes":{{.Size}},"user":{{json .Config.User}},"source":{{json (index .Config.Labels "org.opencontainers.image.revision")}}}' > .local/container-image.json
+          docker inspect twelvespec-container-check --format '{{.HostConfig.NetworkMode}}' > .local/container-network.txt
+          cat .local/container-smoke.json .local/container-image.json .local/container-network.txt
+      - name: Export approved preview image
+        if: github.event_name == 'workflow_dispatch' && inputs.export_preview_image
+        run: docker save twelvespec-container-check | gzip > .local/approved-preview-image.tar.gz
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' && inputs.export_preview_image
+        with:
+          name: approved-preview-image
+          retention-days: 1
+          include-hidden-files: true
+          path: .local/approved-preview-image.tar.gz
+      - name: Show bounded synthetic runtime logs on failure
+        if: failure()
+        run: docker logs --tail 120 twelvespec-container-check 2>&1 || true
+      - name: Remove disposable runtime and private fixture
+        if: always()
+        run: |
+          docker rm --force twelvespec-container-check 2>/dev/null || true
+          rm -f "$RUNNER_TEMP/twelvespec-container.env"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-container-evidence
+          include-hidden-files: true
+          path: |
+            .local/container-smoke.json
+            .local/container-image.json
+            .local/container-network.txt

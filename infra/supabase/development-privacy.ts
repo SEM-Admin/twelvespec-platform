@@ -22,3 +22,16 @@ alter default privileges in schema app revoke all on tables from public,anon,aut
 insert into public._migrations(name) values ('001_initial.sql'),('002_auth_rate_limit.sql'),('003_domain_references.sql'),('004_opportunity_contact.sql');
 `;
 }
+
+/** Provider hardening after application migration 010; does not grant runtime access. */
+export function supplierReceiptPrivacy(){
+ return `
+alter function app.protect_supplier_api_call() set search_path=pg_catalog,app;
+revoke all on function app.protect_supplier_api_call() from public;
+do $$ declare r text; begin
+ for r in select rolname from pg_roles where rolname in ('anon','authenticated') loop
+  execute format('revoke all on function app.protect_supplier_api_call() from %I',r);
+ end loop;
+end $$;
+`;
+}
