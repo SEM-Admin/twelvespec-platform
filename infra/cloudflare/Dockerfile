@@ -11,9 +11,11 @@ RUN --mount=type=secret,id=proxy_ca,uid=1000,gid=1000,mode=0400 \
     && npm ci --strict-ssl=true --cache=/tmp/twelvespec-npm-cache \
     && rm -rf /tmp/twelvespec-npm-cache \
     && npm run build \
+    && npm pkg delete devDependencies \
     && npm prune --omit=dev --omit=peer --ignore-scripts --no-audit --no-fund \
     && rm -rf /home/node/.npm .local apps/os/.next/cache apps/shop/.next/cache
 
+# Removing build-only roots also removes optional test peers of Next/Better Auth.
 # Keep compiler/test tooling and intermediate build layers out of the runtime.
 FROM node:24-bookworm-slim AS runtime
 COPY --from=build --chown=node:node /app /app
