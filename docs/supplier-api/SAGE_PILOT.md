@@ -2,6 +2,12 @@
 
 Scope, November 18, 2026 (UTC): reuse the existing SAGE connector, metering, encrypted credentials, private source staging, owned catalog and reviewed quote workflow. Do not move DNS, change the ASI production site, purchase overage, submit supplier orders or create a competing catalog.
 
+## Hosted execution completed
+
+The owner subsequently approved the preview deployment and a one-hour automated-test Access credential/policy restricted to the two preview applications. [Hosted verification](HOSTED_VERIFICATION_2026-11-18.md) records the actual protected HTTPS quote journey, Supabase writes, bounded mock SAGE reads/cache/caps, restart persistence, scoped vault recovery, customer authorization denial and completed Access cleanup. The deployed source is `be9f417`; all 364 backend tests, 27 browser tests and the isolated production-container acceptance pass at that source. Products and account data in this preview are synthetic. No authenticated SAGE query has been verified.
+
+Current remaining gates are secure real-account configuration, current entitlement/credit/tariff/provider-stop evidence, selected real product/media review and a real source-to-quote acceptance. Hosted guest inquiry remains disabled by its existing activation gate; the authenticated quote cart/Commerce OS workflow passes. The sections below preserve the starting-state and migration chronology so they do not imply the current preview is still empty or awaiting initial deployment.
+
 ## Requirements → existing code → pilot evidence
 
 | Requirement | Existing implementation | Verification |
