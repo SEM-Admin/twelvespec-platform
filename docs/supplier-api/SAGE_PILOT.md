@@ -12,6 +12,7 @@ Scope, November 18, 2026 (UTC): reuse the existing SAGE connector, metering, enc
 | Curate selected sources privately | Existing stage-result and create-from-source commands | Pilot stages one selected detail, creates a private draft, verifies unchanged published catalog |
 | Preserve credentials, financial controls and account scope | Existing runtime guards, vault, RLS and authorization | Pilot denies missing real-account credentials, ephemeral secret storage and customer/cross-workspace access |
 | Distinguish a rehearsal from a real connection | Existing MOCKED / LIVE_VERIFIED evidence | Report explicitly records synthetic responses and zero external requests; live acceptance remains separate |
+| Verify the production runtime separately from development servers | Multi-stage container and pinned runtime dependencies | `scripts/verify-preview-container.mjs` and CI run both apps, owner sign-in, encrypted synthetic credentials, native cache/cap and private staging with Docker networking disabled |
 
 No application feature or supplier transport is replaced. The new test is an operational rehearsal of existing capabilities, not a live SAGE verification.
 
@@ -32,6 +33,8 @@ Supabase recorded managed execution `20261118021506 / twelvespec_v1_catalog_inte
 Readback verifies **114 `app` tables + 9 `public` tables**, all 15 application migrations, all five native API tables with forced RLS, no anonymous/authenticated-role access to those tables, a fixed private trigger search path, and **zero security-advisor findings**. There are still zero users, products, credentials and supplier call records. This verifies database preparation through Supabase's management connection; it does not verify the application's PostgreSQL path or attach a preview.
 
 The runtime packaging also separates build and runtime stages and omits development dependencies from the final image. `tsx` and `embedded-postgres` remain pinned runtime dependencies because preview startup needs both. Container startup/image verification and final-head CI must pass before requesting deployment. Keep the current protected preview unchanged until authorization.
+
+The local image build hit `ENOSPC` during dependency installation on the managed workspace's 8 GB filesystem/VFS Docker driver. The failed build cache was removed; no app, source or database data was deleted. Container verification therefore runs in an independent existing GitHub CI job with the canonical Dockerfile. Its runtime has `--network none`, a disposable local database and synthetic credentials. Only bounded JSON evidence is uploaded by default; environment files are removed and never uploaded. Image export is off by default and available through a manual workflow input only after preview deployment approval. This is not hosted HTTPS or real SAGE evidence.
 
 ## Rehearsal
 
