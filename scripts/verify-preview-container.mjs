@@ -23,7 +23,7 @@ async function verify(){
  check(typeof process.getuid==='function'&&process.getuid()!==0,'NONROOT_RUNTIME_REQUIRED');
  const require=createRequire(import.meta.url);
  for(const name of ['tsx','embedded-postgres'])check(Boolean(require.resolve(name)),'MISSING_RUNTIME_DEPENDENCY');
- for(const name of ['vitest','@playwright/test']){let found=false;try{require.resolve(name);found=true;}catch{}check(!found,'DEVELOPMENT_TOOL_IN_RUNTIME');}
+ for(const name of ['vitest','@playwright/test']){let found=false;try{require.resolve(name);found=true;}catch{}check(!found,'DEVELOPMENT_TOOL_IN_RUNTIME_'+name);}
  const password=process.env.TWELVESPEC_DEMO_PASSWORD;check(Boolean(password)&&password.length>=24,'SYNTHETIC_PASSWORD_REQUIRED');
  const roots={shop:'http://127.0.0.1:3000',os:'http://127.0.0.1:3001'};
  let cookie='',workspace='';

@@ -74,6 +74,7 @@ jobs:
           docker exec twelvespec-container-check node scripts/verify-preview-container.mjs check > .local/container-smoke.json
           docker image inspect twelvespec-container-check --format '{"id":{{json .Id}},"bytes":{{.Size}},"user":{{json .Config.User}},"source":{{json (index .Config.Labels "org.opencontainers.image.revision")}}}' > .local/container-image.json
           docker inspect twelvespec-container-check --format '{{.HostConfig.NetworkMode}}' > .local/container-network.txt
+          cat .local/container-smoke.json .local/container-image.json .local/container-network.txt
       - name: Export approved preview image
         if: github.event_name == 'workflow_dispatch' && inputs.export_preview_image
         run: docker save twelvespec-container-check | gzip > .local/approved-preview-image.tar.gz

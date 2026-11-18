@@ -11,7 +11,7 @@ RUN --mount=type=secret,id=proxy_ca,uid=1000,gid=1000,mode=0400 \
     && npm ci --strict-ssl=true --cache=/tmp/twelvespec-npm-cache \
     && rm -rf /tmp/twelvespec-npm-cache \
     && npm run build \
-    && npm prune --omit=dev --ignore-scripts --no-audit --no-fund \
+    && npm prune --omit=dev --omit=peer --ignore-scripts --no-audit --no-fund \
     && rm -rf /home/node/.npm .local apps/os/.next/cache apps/shop/.next/cache
 
 # Keep compiler/test tooling and intermediate build layers out of the runtime.
