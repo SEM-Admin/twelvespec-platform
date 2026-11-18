@@ -14,10 +14,19 @@ test('administrator configures native API caps, stages print evidence, uses cach
  await card.getByRole('button',{name:'Pause API',exact:true}).click();await expect(card.getByRole('button',{name:'Run bounded read',exact:true})).toBeDisabled();
 });
 
-test('SAGE research and selected product queries retain distinct credit modes and private source review',async({page})=>{
+test('SAGE research and selected product queries retain distinct credit modes and private source review',async({page,browser})=>{
  test.setTimeout(90000);await login(page);const section=page.getByRole('region',{name:'Metered supplier APIs'}),name=`SAGE API browser ${crypto.randomUUID().slice(0,8)}`;
  await section.getByLabel('Supplier API',{exact:true}).selectOption('SAGE_CONNECT');await section.getByLabel('API environment',{exact:true}).selectOption('mock');await section.getByLabel('API connection name',{exact:true}).fill(name);await section.getByLabel('SAGE account number',{exact:true}).fill(String(Math.floor(10000000+Math.random()*90000000)));await section.getByLabel('SAGE login ID',{exact:true}).fill('System');await section.getByRole('button',{name:'Save metered API connection',exact:true}).click();const card=section.getByRole('article',{name,exact:true});await expect(card.getByText(/System\/Public: a one-time credit grant/)).toBeVisible();
  await card.getByText('Call limits, credits and spending',{exact:true}).click();await card.getByLabel('Allow bounded API reads',{exact:true}).check();await card.getByRole('button',{name:'Save API limits',exact:true}).click();await expect(card.getByRole('status').filter({hasText:'Limits saved and audited'})).toBeVisible();await card.getByRole('button',{name:'Run bounded read',exact:true}).click();await expect(card.getByText('Synthetic promotional products',{exact:true})).toBeVisible();await expect(card.getByRole('button',{name:/Stage selected/})).toHaveCount(0);
  await card.getByLabel('Read operation',{exact:true}).selectOption('search');await card.getByRole('button',{name:'Run bounded read',exact:true}).click();await expect(card.getByText('Synthetic promotional tumbler',{exact:true})).toBeVisible();await card.getByLabel('Synthetic promotional tumbler',{exact:false}).check();await card.getByRole('button',{name:'Stage selected source records (1)',exact:true}).click();await expect(card.getByRole('status').filter({hasText:'Nothing published'})).toBeVisible();await card.getByLabel('Read operation',{exact:true}).selectOption('full_detail');await card.getByLabel('Exact supplier product ID',{exact:true}).fill('123456');await card.getByRole('button',{name:'Run bounded read',exact:true}).click();await expect(card.getByText('Synthetic promotional tumbler',{exact:true})).toBeVisible();
  await card.screenshot({path:'.local/supplier-api/screenshots/sage-selected-detail.png'});
+ await card.getByRole('button',{name:'Run bounded read',exact:true}).click();await expect(card.getByText(/Cached or repeated command/)).toBeVisible();
+ const connections=await (await page.request.get(OS+'/api/platform?module=supplier')).json();const connection=connections.tables.connections.find((r:{title:string})=>r.title===name);expect(connection).toBeTruthy();
+ const usage=async()=>{const response=await page.request.post(OS+'/api/platform',{headers:{Origin:OS},data:{module:'supplier',action:'api_dashboard',input:{id:connection.id}}});expect(response.status()).toBe(200);const d=(await response.json()).result;return {calls:d.usage.monthCalls,units:d.usage.units,cost:d.usage.cost,cacheHits:d.cacheHits};};
+ const before=await usage();expect(before.cacheHits).toBeGreaterThanOrEqual(1);
+ const guest=await browser.newContext();try{
+  const visitor=await guest.newPage();const catalog=await (await guest.request.get(SHOP+'/api/shop')).json();expect(catalog.products.length).toBeGreaterThan(0);
+  for(const path of ['/catalog','/catalog?search=tee','/products/'+catalog.products[0].id,'/cart']){const response=await visitor.goto(SHOP+path,{waitUntil:'networkidle'});expect(response?.status()).toBe(200);await expect(visitor.getByRole('main')).toBeVisible();}
+ }finally{await guest.close();}
+ expect(await usage()).toEqual(before);
 });

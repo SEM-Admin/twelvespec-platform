@@ -1,5 +1,7 @@
 # SAGE and SinaLite metered supplier catalogs
 
+November 18 continuation: [SAGE-first pre-DNS pilot, traceability and activation sequence](SAGE_PILOT.md). The approved development database now has all 15 application migrations, 114 private application tables plus 9 public-schema tables, protected native API storage and zero security-advisor findings. Users, products, supplier credentials and calls are still absent; application connectivity and real SAGE verification remain open. The bounded rehearsal passes 59 focused checks and three browser journeys without contacting a supplier. The current protected preview remains on its older approved image until a verified update is authorized.
+
 Status: implemented and tested locally on 2026-11-09. The owner-approved source `916160b` preview image is deployed; authenticated hosted verification and real-account activation remain separate gates. This extension does not establish launch readiness or close the original active V1 acceptance suite.
 
 ## Implemented functionality
@@ -53,6 +55,7 @@ The full 13-browser-journey run also covers owned catalog publication, customer 
 npm run setup
 npm run dev
 npm run typecheck
+npm run test:sage
 npm test
 npm run test:e2e
 node --import tsx scripts/verify-supplier-sandbox.ts
