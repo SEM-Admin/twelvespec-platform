@@ -1,6 +1,6 @@
 # TwelveSpec Platform
 
-**Development status — November 10, 2026:** the source now includes the owner Website & Content Studio and shared published storefront renderer. Paid production orders remain blocked by durable hosting, commercial/provider activation and full V1 acceptance gates. See the [branch integration checklist](docs/integration/2026-11-10.md), [launch readiness](docs/LAUNCH_READINESS_2026-11-09.md) and [content implementation](docs/website-content-studio/IMPLEMENTATION.md).
+**Development status — November 22, 2026:** the protected development previews use the approved isolated Supabase database, as verified in the [November 18 hosted evidence](docs/supplier-api/HOSTED_VERIFICATION_2026-11-18.md). The current source adds [durable private artwork and catalog media](docs/DURABLE_ASSETS.md); that migration and source update are not deployed yet. The storefront, Commerce OS, Website Studio and connected CIA foundations reuse one architecture. Full active V1 acceptance and paid production release remain open; see the [implementation checklist](docs/IMPLEMENTATION_CHECKLIST.md) and [selling readiness](docs/SELLING_READINESS.md).
 
 A greenfield Next.js, TypeScript and PostgreSQL implementation with separate customer storefront and Commerce OS applications. Development uses synthetic data and simulated providers. No existing TwelveSpec production service is used.
 

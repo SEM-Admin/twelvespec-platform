@@ -1,5 +1,7 @@
 # Current verification status
 
+> November 22 source continuation: [durable assets, requirements/code/test mapping and activation limits](DURABLE_ASSETS.md). Fresh local checks pass **374 backend tests / 50 files and all 28 browser journeys**, TypeScript, both builds and specification/research integrity. Exact-head CI, including production-container verification, is required before merge. The new migration/source is not deployed. [November 18 hosted evidence](supplier-api/HOSTED_VERIFICATION_2026-11-18.md) verifies the isolated Supabase development database, synthetic quote workflow, SAGE mock controls and restart persistence. Guest inquiry and paid production sales remain disabled. The older dated observations below retain their historical scope and do not supersede these receipts.
+
 > November 13 CIA continuation: [current verification and activation requirements](cia/CLAIM_PUBLICATION_VERIFICATION.md) and [visible checklist](IMPLEMENTATION_CHECKLIST.md). The local backend suite passes 346 tests / 45 files; types and both builds pass. The full 24-journey browser regression and final-head GitHub CI are tracked there. The dated observations below retain their historical scope and do not establish current hosted deployment or production readiness.
 
 > Current readiness update (November 9, 2026): see [the launch report](LAUNCH_READINESS_2026-11-09.md) for fresh tests, unfinished content-studio work and current hosted-persistence readback. The observations below are historical and must not be treated as a production-launch approval.

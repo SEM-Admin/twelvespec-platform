@@ -1,5 +1,6 @@
 import sharp from 'sharp';
 import {create,event,fail,get,text,update,type Actor,type Input,type Row,type Tx} from '../../../kernel/src';
+import {readStoredAssetBytes} from '../../../kernel/src/asset-bytes';
 import {activeMedia,bytesHash,websiteSite} from './model';
 
 export function websiteMediaSummary(row:Row){return {id:row.id,title:row.title,status:row.status,revision:row.revision,created_at:row.created_at,site_id:row.site_id,data:{kind:row.data.kind,alt:row.data.alt??'',caption:row.data.caption??'',tags:row.data.tags??[],mimeType:row.data.mimeType,width:row.data.width,height:row.data.height,bytes:row.data.bytes,contentHash:row.data.contentHash,rightsConfirmed:row.data.rightsConfirmed===true,rightsExpiresAt:row.data.rightsExpiresAt??null,version:row.data.version??1,priorAssetId:row.data.priorAssetId??null,private:row.data.kind!=='WEBSITE_DERIVATIVE',previewUrl:row.data.kind==='WEBSITE_DERIVATIVE'?`/api/website/media/${row.id}?preview=1&workspaceId=${row.workspace_id}`:null}};}
@@ -48,7 +49,7 @@ export async function handleWebsiteMedia(tx:Tx,a:Actor,action:string,i:Input):Pr
   const row=await mediaRow(tx,a,i.id);if(row.data.kind!=='WEBSITE_DERIVATIVE'&&!(action==='revoke_media'&&row.data.kind==='WEBSITE_CONSENT'))fail('WEBSITE_DERIVATIVE_REQUIRED',400);
   if(action==='revise_media'){
    const metadata=mediaMetadata(i);if(!activeMedia(row,String(row.site_id)))fail('WEBSITE_MEDIA_NOT_APPROVED');
-   const asset=await create(tx,a,'assets',{site_id:row.site_id,original_asset_id:row.original_asset_id,title:typeof i.title==='string'?text(i.title,200):row.title,status:'APPROVED',web_bytes:row.web_bytes,data:{...row.data,...metadata,priorAssetId:row.id,version:Number(row.data.version??1)+1}});
+   const asset=await create(tx,a,'assets',{site_id:row.site_id,original_asset_id:row.original_asset_id,title:typeof i.title==='string'?text(i.title,200):row.title,status:'APPROVED',web_bytes:await readStoredAssetBytes(tx,a,row.id),data:{...row.data,...metadata,priorAssetId:row.id,version:Number(row.data.version??1)+1}});
    await event(tx,a,'website.media_revision_created',asset.id,{previousAssetId:row.id,publicUsesUnchanged:true});return websiteMediaSummary(asset);
   }
   if(action==='archive_media'){
@@ -63,6 +64,6 @@ export async function handleWebsiteMedia(tx:Tx,a:Actor,action:string,i:Input):Pr
 
 export async function readWebsitePreviewMedia(tx:Tx,a:Actor,id:unknown){
  const asset=await get(tx,a,'assets',id);if(!asset.site_id)fail('WEBSITE_MEDIA_NOT_FOUND',404);await websiteSite(tx,a,asset.site_id,'EDIT');
- if(asset.data.kind!=='WEBSITE_DERIVATIVE'||!asset.web_bytes||!activeMedia(asset,String(asset.site_id)))fail('WEBSITE_MEDIA_NOT_FOUND',404);
- return {bytes:asset.web_bytes as Buffer,mimeType:'image/webp'};
+ if(asset.data.kind!=='WEBSITE_DERIVATIVE'||!activeMedia(asset,String(asset.site_id)))fail('WEBSITE_MEDIA_NOT_FOUND',404);
+ return {bytes:await readStoredAssetBytes(tx,a,asset.id),mimeType:'image/webp'};
 }

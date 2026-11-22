@@ -1,5 +1,13 @@
 # Visible implementation checklist
 
+November 22 source continuation: [durable originals/derivatives, requirements-to-code-to-test mapping and remaining gates](DURABLE_ASSETS.md). New Creative uploads, safe previews, mockups and owned-catalog photos use the existing canonical PostgreSQL asset registry. Generic metadata responses omit file bytes. The new migration is local/source only pending review and approved hosted rollout; independent malware scanning, legacy-file migration and production file release remain open.
+
+- [x] Preserve exact private originals and separate safe derivatives in the domain transaction.
+- [x] Verify new-process recovery, failed-transaction rollback, buyer/workspace isolation, immutable identities, checksum failures and legacy filesystem reads with synthetic data.
+- [x] Pass the full local regression: 374 backend tests / 50 files, all 28 browser journeys, TypeScript, both builds and specification/research integrity. Exact-head GitHub CI is required before merge; its receipt belongs on the pull request.
+- [ ] Deploy migration 016 and verify hosted file persistence after authorization.
+- [ ] Activate independent malware scanning, retention/quotas and managed file recovery before production release.
+
 November 18 hosted continuation: [actual deployment, browser verification and remaining gates](supplier-api/HOSTED_VERIFICATION_2026-11-18.md), [machine-readable evidence](supplier-api/evidence/hosted-preview-2026-11-18.json), and [pilot traceability](supplier-api/SAGE_PILOT.md). The owner-approved protected previews now use the isolated Supabase development database: 15 migrations, 114 application + 9 public-schema tables, 40 synthetic products, 120 variants and four demo users. Actual HTTPS customer/operator sign-in, a reviewed $200 synthetic quote, hosted SAGE mock metering/cache/caps, session/data persistence through restart and scoped encrypted-credential recovery pass. Temporary test Access credentials/policy were removed and revocation verified. Application source CI passes 364 backend tests and 27 browser tests plus the isolated production-container acceptance. Real SAGE credentials, current credit/tariff/provider-stop confirmation, supplier media rights and live data remain unverified. Hosted guest inquiry remains disabled by its existing activation gate. No DNS, ASI production site, supplier orders or payments changed; the original full V1 and production-release gates remain open.
 
 - [x] Attach only the approved isolated Supabase development project and verify real application writes and restart persistence.
@@ -72,9 +80,9 @@ The [gap closure plan](GAP_CLOSURE_PLAN.md), [40-work-package audit](planning/GA
 - [x] 139 automated unit, security and PostgreSQL integration tests; type checking and production builds.
 - [x] Publish the final contrast correction and verify both restored HTTPS interfaces in a real browser.
 - [x] Correct Classic Camp Cap artwork for all three synthetic colors; local browser save/proof approval regression passes.
-- [ ] Bind color changes after an existing design save to a new variant-specific project/revision before production artwork activation.
-- [ ] Activate the configured Supabase Session pooler after receiving its trusted CA certificate; verify persistent state. Current previews use temporary synthetic PostgreSQL.
-- [ ] Replace temporary artwork and credential storage before claiming durable storage or accepting live credentials.
+- [x] Bind color changes after a design save to a new variant-specific project/revision; verified before the November 18 hosted rollout. Production artwork activation remains independently blocked.
+- [x] Activate the approved Supabase development Session pooler with trusted TLS and verify persistent state; November 18 hosted receipt above supersedes the former temporary-database limitation.
+- [ ] Deploy and verify the new durable artwork source milestone. Scoped PostgreSQL credential ciphertext/key recovery is verified for synthetic credentials; real accounts still require secure setup and provider/financial checks.
 - [ ] Gate B: catalog/configuration/creative/commerce.
 - [ ] Gate C: CRM, estimates/quotes, orders, jobs, POs, fulfillment.
 - [ ] Gate D: finance, stores, BYOB, marketing, automation, analytics.

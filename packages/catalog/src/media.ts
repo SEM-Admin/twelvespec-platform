@@ -1,7 +1,8 @@
-import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import sharp from 'sharp';
-import {create,event,fail,get,hash,text,type Actor,type Input,type Row,type Tx} from '../../kernel/src';
+import {event,fail,get,hash,text,type Actor,type Input,type Row,type Tx} from '../../kernel/src';
+import {ASSET_STORAGE,createStoredAsset,readStoredAssetBytes} from '../../kernel/src/asset-bytes';
 
 const folder=(a:Actor)=>resolve(process.env.TWELVESPEC_ROOT??process.cwd(),'.local','catalog-media',a.tenantId,a.workspaceId);
 export async function saveCatalogImage(tx:Tx,a:Actor,input:Input){
@@ -14,12 +15,12 @@ export async function saveCatalogImage(tx:Tx,a:Actor,input:Input){
  let derivative:Buffer;
  try{
   const image=sharp(bytes,{limitInputPixels:40000000,animated:false}),metadata=await image.metadata();
-  if(!['png','jpeg','webp'].includes(String(metadata.format))||(metadata.pages??1)>1)fail('CATALOG_IMAGE_FORMAT_UNSUPPORTED',400);
+  if(!['png','jpeg','webp'].includes(String(metadata.format))||(metadata.pages??1)>1||input.content.slice(5,input.content.indexOf(';'))!==`image/${metadata.format}`)fail('CATALOG_IMAGE_FORMAT_UNSUPPORTED',400);
   derivative=await image.rotate().resize({width:1600,height:1600,fit:'inside',withoutEnlargement:true}).webp({quality:90}).toBuffer();
  }catch{return fail('CATALOG_IMAGE_INVALID',400);}
- const digest=hash(derivative.toString('base64'));
- mkdirSync(folder(a),{recursive:true,mode:0o700});writeFileSync(resolve(folder(a),digest+'.webp'),derivative,{mode:0o600});
- const asset=await create(tx,a,'assets',{title:text(input.fileName??'Reviewed catalog photo',200),status:'PRIVATE_DRAFT',product_id:product.id,data:{kind:'CATALOG_DERIVATIVE',contentHash:digest,mimeType:'image/webp',bytes:derivative.length,rightsConfirmedBy:a.userId,rightsConfirmedAt:new Date().toISOString(),originalMetadataRemoved:true,synthetic:product.data.synthetic===true}});
+ const title=text(input.fileName??'Reviewed catalog photo',200),rights={rightsConfirmedBy:a.userId,rightsConfirmedAt:new Date().toISOString(),synthetic:product.data.synthetic===true};
+ const original=await createStoredAsset(tx,a,{title,status:'PRIVATE_ORIGINAL',product_id:product.id,data:{kind:'CATALOG_ORIGINAL',mimeType:input.content.slice(5,input.content.indexOf(';')),private:true,...rights}},bytes);
+ const asset=await createStoredAsset(tx,a,{title,status:'PRIVATE_DRAFT',product_id:product.id,original_asset_id:original.id,data:{kind:'CATALOG_DERIVATIVE',mimeType:'image/webp',originalMetadataRemoved:true,...rights}},derivative);
  await event(tx,a,'catalog.image_staged',asset.id,{productId:product.id,publicationStatus:'PRIVATE_DRAFT'});
  return {id:asset.id,imagePath:`/api/catalog/images/${asset.id}`,publicationStatus:'PRIVATE_DRAFT'};
 }
@@ -33,6 +34,9 @@ export async function readCatalogImage(tx:Tx,a:Actor,id:string){
  const wrapped=snapshot?.product&&typeof snapshot.product==='object'?snapshot.product as Input:snapshot??{};
  const variants=Array.isArray(snapshot?.variants)?snapshot.variants as Row[]:[];
  if(wrapped.image!==path&&!variants.some(v=>((v.data&&typeof v.data==='object'?v.data:v) as Input).image===path))fail('NOT_FOUND',404);
+ if(asset.data.storage===ASSET_STORAGE)return {bytes:await readStoredAssetBytes(tx,a,asset.id),mimeType:'image/webp'};
  const digest=String(asset.data.contentHash);if(!/^[a-f0-9]{64}$/.test(digest))fail('NOT_FOUND',404);
- try{return {bytes:readFileSync(resolve(folder(a),digest+'.webp')),mimeType:'image/webp'};}catch{return fail('CATALOG_IMAGE_STORAGE_UNAVAILABLE',503);}
+ let bytes:Buffer;try{bytes=readFileSync(resolve(folder(a),digest+'.webp'));}catch{return fail('CATALOG_IMAGE_STORAGE_UNAVAILABLE',503);}
+ if(hash(bytes.toString('base64'))!==digest)fail('ASSET_INTEGRITY_FAILED',503);
+ return {bytes,mimeType:'image/webp'};
 }

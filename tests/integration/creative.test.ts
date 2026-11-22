@@ -61,7 +61,7 @@ describe('A12–A17 persisted customer configuration and Creative Studio',()=>{
  it('A14 persists private original metadata and denies another buyer and tenant by guessed UUID',async()=>{
   const asset=await upload();expect(asset.id).toBeTruthy();expect(JSON.stringify(asset)).not.toContain('objectKey');
   const internal=await transaction(owner,tx=>get(tx,owner,'assets',asset.id));
-  expect(internal.owner_id).toBe(customer.userId);expect(internal.data.objectKey).toBeTruthy();expect(internal.data.scanStatus).toBe('NOT_CONFIGURED');
+  expect(internal.owner_id).toBe(customer.userId);expect(internal.data.storage).toBe('POSTGRES_BYTEA_V1');expect(internal.data.previewAssetId).toBeTruthy();expect(internal.data.scanStatus).toBe('NOT_CONFIGURED');
   const preview=await transaction(customer,tx=>readPrivateAsset(tx,customer,asset.id));
   expect(preview.mimeType).toBe('image/png');expect((await sharp(preview.bytes).metadata()).width).toBe(2);
   await expect(transaction(secondCustomer,tx=>readPrivateAsset(tx,secondCustomer,asset.id))).rejects.toMatchObject({code:'NOT_FOUND'});

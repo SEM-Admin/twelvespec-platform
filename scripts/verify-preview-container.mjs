@@ -1,5 +1,5 @@
 /** Synthetic, network-isolated production-container acceptance. Never takes supplier keys. */
-import {randomBytes,randomInt,randomUUID} from 'node:crypto';
+import {createHash,randomBytes,randomInt,randomUUID} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
@@ -38,6 +38,24 @@ async function verify(){
  const signIn=await request('os','/api/auth/sign-in/email',{method:'POST',headers:{Origin:osOrigin,'Content-Type':'application/json'},body:JSON.stringify({email:'owner@demo.twelvespec.test',password})});
  check(signIn.status===200,'OWNER_SIGN_IN_FAILED');cookie=signIn.headers.getSetCookie().map(v=>v.split(';')[0]).join('; ');check(cookie.length>0,'OWNER_COOKIE_MISSING');
  const session=await request('os','/api/session');check(session.status===200,'OWNER_SESSION_FAILED');const identity=await session.json();check(identity.actor?.role==='owner','OWNER_ROLE_MISSING');workspace=identity.actor.workspaceId;
+ // Exercise the compiled production asset routes, not only TypeScript domain tests.
+ const sharp=require('sharp'),{Client}=require('pg');
+ const original=await sharp({create:{width:32,height:16,channels:4,background:'#123456'}}).withMetadata({density:300}).png().toBuffer();
+ const upload=await request('os','/api/platform',{method:'POST',headers:{Origin:osOrigin,'Content-Type':'application/json'},body:JSON.stringify({module:'creative',action:'upload_asset',input:{fileName:'SYNTHETIC container artwork.png',mimeType:'image/png',base64:original.toString('base64'),rightsConfirmed:true}})});
+ check(upload.status===200,'ARTWORK_UPLOAD_FAILED');const uploaded=await upload.json();check(Boolean(uploaded.result?.id),'ARTWORK_ID_MISSING');
+ check(!/web_bytes|previewAssetId|objectKey|POSTGRES_BYTEA/.test(JSON.stringify(uploaded)),'PRIVATE_FILE_FIELDS_EXPOSED');
+ const preview=await request('os','/api/assets/'+uploaded.result.id);check(preview.status===200&&preview.headers.get('cache-control')==='private, no-store','PRIVATE_PREVIEW_FAILED');
+ const previewBytes=Buffer.from(await preview.arrayBuffer());check(!previewBytes.equals(original)&&(await sharp(previewBytes).metadata()).width===32,'SAFE_DERIVATIVE_FAILED');
+ check((await request('shop','/api/assets/'+uploaded.result.id)).status===401,'ANONYMOUS_ARTWORK_READ_ALLOWED');
+ const database=new Client({connectionString:process.env.DATABASE_URL});
+ try{
+  await database.connect();
+  const asset=(await database.query('select id,data,web_bytes from app.assets where id=$1',[uploaded.result.id])).rows[0];
+  check(asset?.data.storage==='POSTGRES_BYTEA_V1'&&asset.data.productionReadiness==='BLOCKED'&&asset.data.scanStatus==='NOT_CONFIGURED','ARTWORK_STORAGE_OR_RELEASE_GUARD_FAILED');
+  check(asset.web_bytes.equals(original)&&asset.data.contentHash===createHash('sha256').update(original).digest('hex'),'PRIVATE_ORIGINAL_CHANGED');
+  const derivative=(await database.query('select original_asset_id,data,web_bytes from app.assets where id=$1',[asset.data.previewAssetId])).rows[0];
+  check(derivative?.original_asset_id===asset.id&&derivative.web_bytes.equals(previewBytes),'PREVIEW_BINDING_OR_BYTES_FAILED');
+ }finally{await database.end();}
  const fakeKey='synthetic-container-only-'+randomUUID();
  const assertPrivate=value=>{const text=JSON.stringify(value);check(!text.includes(fakeKey)&&!text.includes(password),'CREDENTIAL_EXPOSED_IN_RESPONSE');};
  const command=async(action,input,expected=200)=>{
@@ -57,7 +75,7 @@ async function verify(){
  const staged=(await command('api_stage_result',{id,callId:first.callId,selectedIds:[item.id]})).result;check(staged.created===1&&staged.autoPublished===0,'PRIVATE_STAGING_FAILED');
  const final=(await command('api_dashboard',{id})).result;check(final.usage.monthCalls===1&&final.cacheHits===1&&Number(final.usage.cost)===0&&Number(final.accountReservedCost)===0,'METER_TOTALS_INCORRECT');
  const publicAfterResponse=await request('shop','/api/shop');check(publicAfterResponse.status===200,'PUBLIC_CATALOG_RECHECK_FAILED');const publicAfter=await publicAfterResponse.json();assertPrivate(publicAfter);check(JSON.stringify(publicAfter.products.map(p=>p.id).sort())===JSON.stringify(publicBefore.products.map(p=>p.id).sort()),'STAGING_CHANGED_PUBLIC_CATALOG');
- console.log(JSON.stringify({verifiedAt:new Date().toISOString(),verification:'ISOLATED_PRODUCTION_CONTAINER_PASSED',nonroot:true,productionRuntimeDependencies:true,developmentTestToolsAbsent:true,shopHttp:200,osHttp:200,syntheticProducts:40,ownerSession:true,encryptedCredentialConfigured:true,credentialReturned:false,sageVerification:'MOCKED',simulatedReadsReserved:1,cacheHits:1,hardCap:'API_MONTHLY_CALL_CAP',privateSourcesStaged:1,productsPublished:0,paidFees:'0.000000',externalSupplierReadsEnabled:false,hostedPreviewVerified:false},null,2));
+ console.log(JSON.stringify({verifiedAt:new Date().toISOString(),verification:'ISOLATED_PRODUCTION_CONTAINER_PASSED',nonroot:true,productionRuntimeDependencies:true,developmentTestToolsAbsent:true,shopHttp:200,osHttp:200,syntheticProducts:40,ownerSession:true,durableArtworkSource:true,privateOriginalHashVerified:true,safePreviewBindingVerified:true,productionReadiness:'BLOCKED',encryptedCredentialConfigured:true,credentialReturned:false,sageVerification:'MOCKED',simulatedReadsReserved:1,cacheHits:1,hardCap:'API_MONTHLY_CALL_CAP',privateSourcesStaged:1,productsPublished:0,paidFees:'0.000000',externalSupplierReadsEnabled:false,hostedPreviewVerified:false},null,2));
 }
 
 try{if(process.argv[2]==='fixture')fixture(process.argv[3]);else if(process.argv[2]==='check')await verify();else throw new Error('USE_FIXTURE_OR_CHECK');}
