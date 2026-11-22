@@ -1,5 +1,6 @@
 import {beforeAll,afterAll,describe,it,expect} from 'vitest';
 import sharp from 'sharp';
+import {readStoredAssetBytes} from '../../packages/kernel/src/asset-bytes';
 import {actors} from '../helpers';
 import {pool,transaction,create,get,type Actor,type Row} from '../../packages/kernel/src';
 import {handleWebsite,initializeWebsite,websiteWorkspace} from '../../packages/marketing/src/website';
@@ -97,7 +98,7 @@ describe('Real editorial persistence and published-only access',()=>{
   const saved=await transaction(owner,tx=>saveWebsiteDocument(tx,owner,{id:first.record.id,expectedRevision:first.record.revision,document}));await publish(saved.record,saved.revision);
   const publicPage=await readPublishedWebsite(identity(),document.path);expect(publicPage?.media[media.id].url).toContain(media.id);
   const originalRows=await withWebsiteReader(identity(),async tx=>(await tx.query('select id from app.assets where id=$1',[original.original_asset_id])).rows);expect(originalRows).toEqual([]);
-  const image=await transaction(owner,tx=>get(tx,owner,'assets',media.id));expect((await sharp(image.web_bytes as Buffer).metadata()).exif).toBeUndefined();
+  const image=await transaction(owner,tx=>readStoredAssetBytes(tx,owner,media.id));expect((await sharp(image).metadata()).exif).toBeUndefined();
   await transaction(owner,tx=>handleWebsite(tx,owner,'revoke_media',{id:media.id,reason:'Permission withdrawn'}));expect((await readPublishedWebsite(identity(),document.path))?.media[media.id]).toBeUndefined();
   await expect(publish(saved.record,saved.revision)).rejects.toThrow('WEBSITE_MEDIA_NOT_APPROVED');
  });

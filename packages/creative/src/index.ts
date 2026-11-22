@@ -1,8 +1,8 @@
-import { mkdir, writeFile, readFile } from 'node:fs/promises';
-import { resolve, dirname } from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import sharp, { type OverlayOptions } from 'sharp';
 import { type Actor,type Tx,type Input,type Row,authorize,create,get,list,update,event,idempotent,fail,text,number,hash } from '../../kernel/src/index';
+import {ASSET_STORAGE,createStoredAsset,readStoredAssetBytes} from '../../kernel/src/asset-bytes';
 
 const object = (v:unknown):v is Input=>typeof v==='object'&&v!==null&&!Array.isArray(v);
 const ASSET_ROOT=()=>resolve(process.env.TWELVESPEC_ASSET_DIR??'.local/assets');
@@ -44,17 +44,29 @@ export function sniffAsset(bytes:Buffer,claimed:string):{mimeType:string;extensi
  return {mimeType:actual!,extension};
 }
 function owned(a:Actor,row:Row){if(a.role==='customer'&&row.owner_id!==a.userId)fail('NOT_FOUND',404);}
-function assetPath(objectKey:unknown){
- const key=text(objectKey,500);if(!/^[a-f0-9-]+\/[a-f0-9-]+\/[a-f0-9-]+\.(original|preview\.png)$/i.test(key))fail('INVALID_OBJECT_REFERENCE',400);
+function assetPath(a:Actor,objectKey:unknown){
+ const key=text(objectKey,500);if(!key.startsWith(`${a.tenantId}/${a.workspaceId}/`)||!/^[a-f0-9-]+\/[a-f0-9-]+\/[a-f0-9-]+\.(original|preview\.png)$/i.test(key))fail('INVALID_OBJECT_REFERENCE',400);
  const p=resolve(ASSET_ROOT(),key);if(!p.startsWith(ASSET_ROOT()+'/'))fail('INVALID_OBJECT_REFERENCE',400);return p;
 }
 export function publicAsset(row:Row){return {id:row.id,title:row.title,status:row.status,data:{mimeType:row.data.mimeType,widthPx:row.data.widthPx??null,heightPx:row.data.heightPx??null,rightsConfirmed:row.data.rightsConfirmed,scanStatus:row.data.scanStatus,contentHash:row.data.contentHash,private:true}};}
+export function isCreativeAsset(row:Row){return ['CREATIVE_ORIGINAL','MOCKUP'].includes(String(row.data.kind))||(!row.data.kind&&Boolean(row.data.objectKey));}
 export async function readPrivateAsset(tx:Tx,a:Actor,id:unknown,original=false):Promise<{bytes:Buffer;mimeType:string;fileName:string}> {
  authorize(a,'creative','read');const row=await get(tx,a,'assets',id);owned(a,row);
+ if(!isCreativeAsset(row))fail('NOT_FOUND',404);
  if(original&&a.role==='customer')fail('ORIGINAL_DOWNLOAD_REQUIRES_STAFF_REVIEW',403);
+ if(row.data.storage===ASSET_STORAGE){
+  let target=row;
+  if(!original&&row.data.kind!=='MOCKUP'){
+   if(!row.data.previewAssetId)fail('SAFE_PREVIEW_NOT_AVAILABLE',409);
+   target=await get(tx,a,'assets',row.data.previewAssetId);
+   if(target.data.kind!=='CREATIVE_PREVIEW'||target.data.storage!==ASSET_STORAGE||target.original_asset_id!==row.id||target.owner_id!==row.owner_id||target.project_id!==row.project_id||target.data.mimeType!=='image/png')fail('SAFE_PREVIEW_NOT_AVAILABLE',409);
+  }
+  return {bytes:await readStoredAssetBytes(tx,a,target.id),mimeType:String(target.data.mimeType),fileName:row.title};
+ }
  const previewKey=row.data.previewObjectKey;
  if(!previewKey&&!original)fail('SAFE_PREVIEW_NOT_AVAILABLE',409);
- const bytes=await readFile(assetPath(original?row.data.objectKey:previewKey));
+ let bytes:Buffer;try{bytes=await readFile(assetPath(a,original?row.data.objectKey:previewKey));}catch{return fail('ASSET_STORAGE_UNAVAILABLE',503);}
+ if(original&&hash(bytes.toString('base64'))!==row.data.contentHash)fail('ASSET_INTEGRITY_FAILED',503);
  return {bytes,mimeType:original?String(row.data.mimeType):'image/png',fileName:row.title};
 }
 
@@ -110,17 +122,22 @@ export async function handleCreative(tx:Tx,a:Actor,action:string,input:Input):Pr
   const fileName=text(input.fileName,200);if(/[\\/\u0000]/.test(fileName))fail('INVALID_FILE_NAME',400);
   if(typeof input.base64!=='string'||input.base64.length>MAX_ASSET_BYTES*1.4||!/^[A-Za-z0-9+/]*={0,2}$/.test(input.base64))fail('INVALID_ASSET_ENCODING',400);
   const bytes=Buffer.from(input.base64 as string,'base64');const sniffed=sniffAsset(bytes,text(input.mimeType,100));
-  const assetId=randomUUID(),prefix=`${a.tenantId}/${a.workspaceId}/${assetId}`,key=`${prefix}.original`;
-  const path=assetPath(key);await mkdir(dirname(path),{recursive:true,mode:0o700});await writeFile(path,bytes,{flag:'wx',mode:0o600});
-  const data:Input={objectKey:key,mimeType:sniffed.mimeType,bytes:bytes.length,contentHash:hash(bytes.toString('base64')),rightsConfirmed:true,scanStatus:'NOT_CONFIGURED',private:true,productionReadiness:'BLOCKED'};
+  const data:Input={kind:'CREATIVE_ORIGINAL',mimeType:sniffed.mimeType,rightsConfirmed:true,scanStatus:'NOT_CONFIGURED',private:true,productionReadiness:'BLOCKED',uploadedBy:a.userId};
+  let preview:Buffer|undefined;
   if(sniffed.mimeType.startsWith('image/')){
-   try {const image=sharp(bytes,{limitInputPixels:40000000,animated:false}),metadata=await image.metadata();data.widthPx=metadata.width??null;data.heightPx=metadata.height??null;data.sourceColorSpace=metadata.space??'UNKNOWN';data.hasEmbeddedProfile=Boolean(metadata.hasProfile);data.hasAlpha=Boolean(metadata.hasAlpha);const preview=await image.rotate().resize({width:1600,height:1600,fit:'inside',withoutEnlargement:true}).png().toBuffer();const previewKey=`${prefix}.preview.png`;await writeFile(assetPath(previewKey),preview,{flag:'wx',mode:0o600});data.previewObjectKey=previewKey;}catch{fail('INVALID_OR_OVERSIZED_IMAGE',400);}
+   try {const image=sharp(bytes,{limitInputPixels:40000000,animated:false}),metadata=await image.metadata();if((metadata.pages??1)>1)fail('INVALID_OR_OVERSIZED_IMAGE',400);data.widthPx=metadata.width??null;data.heightPx=metadata.height??null;data.sourceColorSpace=metadata.space??'UNKNOWN';data.hasEmbeddedProfile=Boolean(metadata.hasProfile);data.hasAlpha=Boolean(metadata.hasAlpha);preview=await image.rotate().resize({width:1600,height:1600,fit:'inside',withoutEnlargement:true}).png().toBuffer();}catch{fail('INVALID_OR_OVERSIZED_IMAGE',400);}
   }
-  const row=await create(tx,a,'assets',{title:fileName,status:'QUARANTINED',...(project?{owner_id:project.owner_id,project_id:project.id}:{}),data:{...data,uploadedBy:a.userId}});await event(tx,a,'creative.asset_uploaded',row.id,{mimeType:sniffed.mimeType,bytes:bytes.length,contentHash:data.contentHash});return publicAsset(row);
+  const scope=project?{owner_id:project.owner_id,project_id:project.id}:{};
+  let row=await createStoredAsset(tx,a,{title:fileName,status:'QUARANTINED',...scope,data},bytes);
+  if(preview){
+   const derivative=await createStoredAsset(tx,a,{title:`${fileName} · safe preview`,status:'PREVIEW',...scope,original_asset_id:row.id,data:{kind:'CREATIVE_PREVIEW',mimeType:'image/png',private:true,metadataRemoved:true,previewOnly:true,productionReadiness:'BLOCKED'}},preview);
+   row=await update(tx,a,'assets',row.id,{data:{...row.data,previewAssetId:derivative.id}});
+  }
+  await event(tx,a,'creative.asset_uploaded',row.id,{mimeType:sniffed.mimeType,bytes:bytes.length,contentHash:row.data.contentHash,storage:ASSET_STORAGE});return publicAsset(row);
  }
  if(action==='save_design_version'){
   const project=await get(tx,a,'design_projects',input.id,true);owned(a,project);const document=validateDesign(input);
-  for(const layer of document.layers)if(layer.type==='image'){const asset=await get(tx,a,'assets',layer.assetId);owned(a,asset);if(!asset.data.previewObjectKey)fail('SAFE_PREVIEW_NOT_AVAILABLE');}
+  for(const layer of document.layers)if(layer.type==='image')await readPrivateAsset(tx,a,layer.assetId);
   const productId=project.product_id??project.data.productId,variantId=project.variant_id??project.data.variantId;
   let productRevision:number|null=null,variantRevision:number|null=null;
   if(productId){
@@ -186,7 +203,7 @@ export async function handleCreative(tx:Tx,a:Actor,action:string,input:Input):Pr
   const row=await create(tx,a,'brand_kits',{title:text(input.title),data:{colors:input.colors,assetIds,colorDisclaimer:'Hex preview colors are not validated Pantone or print matches.'}});await event(tx,a,'creative.brand_kit_created',row.id);return row;
  }
  if(action==='release_production_asset')return fail('PRODUCTION_VALIDATION_NOT_CONFIGURED',403);
- if(action==='read')return {projects:await list(tx,a,'design_projects'),proofs:await list(tx,a,'proofs'),assets:(await list(tx,a,'assets')).map(publicAsset)};
+ if(action==='read')return {projects:await list(tx,a,'design_projects'),proofs:await list(tx,a,'proofs'),assets:(await list(tx,a,'assets')).filter(isCreativeAsset).map(publicAsset)};
  return fail('UNSUPPORTED_ACTION',400);
 }
 
@@ -208,16 +225,14 @@ export async function processMockupJob(tx:Tx,a:Actor,id:string):Promise<Row> {
   const width=Math.max(1,Math.round(layer.width/1000*zoneWidth)),height=Math.max(1,Math.round(layer.height/1000*zoneHeight));
   const left=250+Math.round(document.placement.xMm/document.physicalWidthMm*500+layer.x/1000*zoneWidth),top=250+Math.round(document.placement.yMm/document.physicalHeightMm*500+layer.y/1000*zoneHeight);
   if(layer.type==='image'){
-   const asset=await get(tx,a,'assets',layer.assetId);if(!asset.data.previewObjectKey)fail('SAFE_PREVIEW_NOT_AVAILABLE');
-   const bytes=await readFile(assetPath(asset.data.previewObjectKey));const raster=await sharp(bytes).resize(width,height,{fit:'contain',background:{r:0,g:0,b:0,alpha:0}}).rotate(layer.rotation,{background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();overlays.push({input:raster,left,top});
+   const asset=await get(tx,a,'assets',layer.assetId);if(asset.owner_id!==job.owner_id)fail('RENDER_ASSET_OWNER_MISMATCH');
+   const {bytes}=await readPrivateAsset(tx,a,asset.id);const raster=await sharp(bytes).resize(width,height,{fit:'contain',background:{r:0,g:0,b:0,alpha:0}}).rotate(layer.rotation,{background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();overlays.push({input:raster,left,top});
   } else {
    const fill=layer.fill??'#1e293b';const svg=layer.type==='shape'?`<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="${fill}"/></svg>`:`<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="${Math.min(72,Math.max(12,height*0.65))}" fill="${fill}">${xmlEscape(layer.text??'')}</text></svg>`;
    const raster=await sharp(Buffer.from(svg)).rotate(layer.rotation,{background:{r:0,g:0,b:0,alpha:0}}).png().toBuffer();overlays.push({input:raster,left,top});
   }
  }
  const bytes=await sharp(Buffer.from(background)).composite(overlays).png().toBuffer();
- const prefix=`${a.tenantId}/${a.workspaceId}/${randomUUID()}`,previewKey=`${prefix}.preview.png`,originalKey=`${prefix}.original`;
- await mkdir(dirname(assetPath(previewKey)),{recursive:true,mode:0o700});await writeFile(assetPath(previewKey),bytes,{flag:'wx',mode:0o600});await writeFile(assetPath(originalKey),bytes,{flag:'wx',mode:0o600});
- const asset=await create(tx,a,'assets',{title:`${product.title} · ${String(variant.data.color??variant.title)} · mockup`,product_id:product.id,variant_id:variant.id,project_id:job.data.projectId,version_id:version.id,owner_id:job.owner_id,status:'PREVIEW',data:{objectKey:originalKey,previewObjectKey:previewKey,mimeType:'image/png',widthPx:1000,heightPx:1000,contentHash:hash(bytes.toString('base64')),scanStatus:'GENERATED_SAFE_RASTER',rightsConfirmed:true,kind:'MOCKUP',verification:'MOCKED',private:true,productId:product.id,variantId:variant.id,versionId:version.id,versionHash:version.data.versionHash,previewOnly:true,productionReadiness:'BLOCKED'}});
+ const asset=await createStoredAsset(tx,a,{title:`${product.title} · ${String(variant.data.color??variant.title)} · mockup`,product_id:product.id,variant_id:variant.id,project_id:job.data.projectId,version_id:version.id,owner_id:job.owner_id,status:'PREVIEW',data:{mimeType:'image/png',widthPx:1000,heightPx:1000,scanStatus:'GENERATED_SAFE_RASTER',rightsConfirmed:true,kind:'MOCKUP',verification:'MOCKED',private:true,productId:product.id,variantId:variant.id,versionId:version.id,versionHash:version.data.versionHash,previewOnly:true,productionReadiness:'BLOCKED'}},bytes);
  const completed=await update(tx,a,'render_jobs',job.id,{status:'COMPLETE',data:{...job.data,assetId:asset.id,completedAt:new Date().toISOString(),verification:'MOCKED'}});await event(tx,a,'creative.mockup_rendered',job.id,{assetId:asset.id,variantId:variant.id,versionHash:version.data.versionHash});return completed;
 }

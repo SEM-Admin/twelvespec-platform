@@ -185,6 +185,8 @@ it("upgrades an M1 database through component and claim guards without rewriting
         status: "ACTIVE",
         data: { timezone: "UTC" },
       });
+      await create(tx,actor,'assets',{title:'SYNTHETIC existing website bytes',site_id:site.id,status:'PRIVATE_ORIGINAL',web_bytes:Buffer.from([0,1,2,127,255]),data:{kind:'WEBSITE_ORIGINAL',mimeType:'image/png'}});
+      await create(tx,actor,'assets',{title:'SYNTHETIC existing filesystem original',status:'QUARANTINED',data:{objectKey:`${tenant}/${workspace}/11111111-1111-4111-8111-111111111111.original`,contentHash:hash('existing original metadata'),scanStatus:'NOT_CONFIGURED'}});
       const page = await saveWebsiteDocument(tx, actor, {
         document: {
           schemaVersion: 1,
@@ -223,6 +225,7 @@ it("upgrades an M1 database through component and claim guards without rewriting
       });
     });
     const cmsTables = [
+      "assets",
       "websites",
       "content_assets",
       "content_revisions",
@@ -252,6 +255,7 @@ it("upgrades an M1 database through component and claim guards without rewriting
         "utf8",
       ),
     );
+    await db.query(readFileSync(resolve(migrations,'016_durable_asset_bytes.sql'),'utf8'));
     expect(
       (await db.query("select * from app.intelligence_sources")).rows,
     ).toEqual(before.source);

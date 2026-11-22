@@ -1,6 +1,9 @@
 import { afterAll, it, expect } from "vitest";
 import { loadEnv } from "../../scripts/env";
 import { localRestoreDrill } from "../../packages/kernel/src/backup";
+import sharp from 'sharp';
+import {handleCreative,readPrivateAsset} from '../../packages/creative/src';
+import {assetBytesHash} from '../../packages/kernel/src/asset-bytes';
 import { actors } from "../helpers";
 import {
   create,
@@ -28,7 +31,14 @@ afterAll(async () => {
 });
 it("A39 restores complete scoped data, CIA citations and typed binary fields into a fresh local PostgreSQL database", async () => {
   const root = loadEnv(),
-    { owner } = await actors();
+    { owner,customer } = await actors();
+  // Actual domain-created original and derivative bytes belong in the same
+  // native PostgreSQL hash verification as orders, quotes and supplier ledgers.
+  const artwork=await sharp({create:{width:12,height:8,channels:3,background:'#123456'}}).withMetadata().png().toBuffer();
+  const saved=await transaction(customer,tx=>handleCreative(tx,customer,'upload_asset',{fileName:'SYNTHETIC restore original.png',mimeType:'image/png',base64:artwork.toString('base64'),rightsConfirmed:true})) as Row;
+  const original=await transaction(owner,tx=>readPrivateAsset(tx,owner,saved.id,true));
+  expect(assetBytesHash(original.bytes)).toBe(assetBytesHash(artwork));
+  expect((await transaction(owner,tx=>get(tx,owner,'assets',saved.id))).data.previewAssetId).toBeTruthy();
   await transaction(owner, async (tx) => {
     const site = (await websiteWorkspace(tx, owner)).site!,
       source = await registerEvidenceSource(tx, owner, {

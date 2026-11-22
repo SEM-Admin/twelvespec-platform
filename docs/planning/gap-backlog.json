@@ -529,11 +529,14 @@
       "evidenceKind": "SOURCE_REVIEW",
       "code": [
         "packages/creative/src/index.ts",
-        "packages/server/src/index.ts"
+        "packages/server/src/index.ts",
+        "packages/kernel/src/asset-bytes.ts",
+        "packages/catalog/src/media.ts",
+        "database/migrations/016_durable_asset_bytes.sql"
       ],
-      "observed": "Originals and raster previews are local files; no independent malware scanner is configured, and file writes can outlive failed database transactions.",
+      "observed": "November 22 source continuation reuses canonical PostgreSQL byte storage for private Creative originals/previews, generated mockups and owned-catalog originals/photos. New writes share the domain transaction and immutable hashes; legacy files remain readable. Independent malware scanning, legacy-file migration, hosted rollout and managed backup recovery remain open.",
       "implementation": [
-        "Add an object-store interface with a dedicated private development bucket",
+        "Reuse bounded private PostgreSQL bytes for this reversible milestone; evaluate a dedicated private object-store adapter with the same canonical asset IDs after capacity/retention requirements and infrastructure approval",
         "Track upload, quarantine, scan, derivative and retention states",
         "Garbage-collect orphan uploads and bind object hashes to scoped metadata"
       ],
@@ -555,6 +558,15 @@
       ],
       "plannedTests": [
         "tests/integration/asset-storage.test.ts"
+      ],
+      "observedAtBaseline": "Originals and raster previews are local files; no independent malware scanner is configured, and file writes can outlive failed database transactions.",
+      "updates": [
+        {
+          "date": "2026-11-22",
+          "change": "Transactional private original/derivative byte storage, metadata-only generic reads, checksum verification and immutable identity. Preserve scope, publication and production-release gates.",
+          "evidence": "docs/DURABLE_ASSETS.md",
+          "remaining": "Independent malware scanning; existing local-file inventory/migration; hosted migration/deployment and restart drill; managed backup/restore, retention, quotas and storage capacity validation."
+        }
       ]
     },
     {

@@ -1,5 +1,6 @@
 import {DomainError,DEMO,fail,transaction,type Input} from '../../kernel/src';
 import {currentActor} from './auth';
+import {verifiedAssetBytes} from '../../kernel/src/asset-bytes';
 import {errorResponse,originCheck} from './index';
 import {draftWebsitePreview,handleWebsite,websiteWorkspace} from '../../marketing/src/website';
 import {readWebsitePreviewMedia} from '../../marketing/src/website/media';
@@ -44,7 +45,7 @@ export async function websiteMediaGET(req:Request,id:string){
    const {actor}=await currentActor(requestHeaders);bytes=(await transaction(actor,tx=>readWebsitePreviewMedia(tx,actor,id))).bytes;
   }else{
    const identity=await websiteIdentity(req.headers);bytes=await withWebsiteReader(identity,async tx=>{
-    const row=(await tx.query("select id,web_bytes from app.assets where id=$1 and data->>'kind'='WEBSITE_DERIVATIVE' and status='APPROVED'",[id])).rows[0];if(!row?.web_bytes)fail('WEBSITE_MEDIA_NOT_FOUND',404);return row.web_bytes as Buffer;
+    const row=(await tx.query("select id,web_bytes,data from app.assets where id=$1 and data->>'kind'='WEBSITE_DERIVATIVE' and status='APPROVED'",[id])).rows[0];if(!row?.web_bytes)fail('WEBSITE_MEDIA_NOT_FOUND',404);return verifiedAssetBytes(row);
    });
   }
   return new Response(new Uint8Array(bytes),{headers:{...privateWebsiteHeaders,'Content-Type':'image/webp','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'none'; sandbox"}});
