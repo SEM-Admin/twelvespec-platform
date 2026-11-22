@@ -1480,7 +1480,10 @@
       "code": [
         "packages/orders/src/index.ts",
         "packages/production/src/records.ts",
-        "apps/os/components/actions.tsx"
+        "apps/os/components/actions.tsx",
+        "packages/orders/src/quality.ts",
+        "database/migrations/017_immutable_quality_inspections.sql",
+        "packages/fulfillment/src/index.ts"
       ],
       "observed": "Current allocation creates one job per order line and a fixed operation list. Operations, resources, production events and QC are not a complete component/decorator route.",
       "implementation": [
@@ -1506,7 +1509,17 @@
       "activationGates": [],
       "plannedTests": [
         "tests/integration/mis-routing.test.ts",
-        "tests/e2e/job-operations.spec.ts"
+        "tests/e2e/job-operations.spec.ts",
+        "tests/integration/quality-inspection.test.ts",
+        "tests/e2e/quality-inspection.spec.ts"
+      ],
+      "updates": [
+        {
+          "date": "2026-11-22",
+          "change": "Require explicit immutable, revision-checked operator QC; bind inspections to routed job context; validate at completion and fulfillment; permit audited reinspection only before shipment.",
+          "evidence": "docs/QUALITY_INSPECTION.md",
+          "remaining": "Versioned component/decorator routes, operation dependencies/resources/time/waste, exact producer quality profiles and full manufacturing acceptance remain open."
+        }
       ]
     },
     {

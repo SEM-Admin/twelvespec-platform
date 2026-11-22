@@ -7,7 +7,7 @@ export type Tx = PoolClient;
 export type Input = Record<string, unknown>;
 export type Row<T extends Input=Input> = { id:string; tenant_id:string; workspace_id:string; owner_id:string; title:string; status:string; data:T; revision:number; created_at:string; updated_at:string; [key:string]:unknown };
 export class DomainError extends Error { constructor(public code:string, public status=409, message?:string){super(message??code);} }
-export function fail(code:string,status=409):never {throw new DomainError(code,status)}
+export function fail(code:string,status=409,message?:string):never {throw new DomainError(code,status,message)}
 export const text=(v:unknown,max=500):string=>{if(typeof v!=='string'||!v.trim()||v.length>max) return fail('INVALID_TEXT',400);return v.trim()};
 export const number=(v:unknown,min=0,max=1e9):number=>{const n=Number(v);if(!Number.isFinite(n)||n<min||n>max) return fail('INVALID_NUMBER',400);return n};
 export const uid=()=>randomUUID();

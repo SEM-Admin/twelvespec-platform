@@ -11,7 +11,7 @@ import {
 import { saveWebsiteDocument } from "../../packages/marketing/src/website/documents";
 import { newWebsiteSection } from "../../packages/contracts/src/website";
 
-it("upgrades an M1 database through component and claim guards without rewriting original facts, quotes or CMS history, and accepts the original retry", async () => {
+it("upgrades an M1 database through component, claim and inspection guards without rewriting original facts, quotes or CMS history, and accepts the original retry", async () => {
   const url = new URL(process.env.DATABASE_URL!);
   if (!["localhost", "127.0.0.1"].includes(url.hostname))
     throw new Error(
@@ -186,6 +186,7 @@ it("upgrades an M1 database through component and claim guards without rewriting
         data: { timezone: "UTC" },
       });
       await create(tx,actor,'assets',{title:'SYNTHETIC existing website bytes',site_id:site.id,status:'PRIVATE_ORIGINAL',web_bytes:Buffer.from([0,1,2,127,255]),data:{kind:'WEBSITE_ORIGINAL',mimeType:'image/png'}});
+      await create(tx,actor,'qc_checks',{title:'SYNTHETIC legacy inspection',status:'PASSED',data:{passed:true,checks:{quantity:true,color:true,placement:true,damage:true}}});
       await create(tx,actor,'assets',{title:'SYNTHETIC existing filesystem original',status:'QUARANTINED',data:{objectKey:`${tenant}/${workspace}/11111111-1111-4111-8111-111111111111.original`,contentHash:hash('existing original metadata'),scanStatus:'NOT_CONFIGURED'}});
       const page = await saveWebsiteDocument(tx, actor, {
         document: {
@@ -225,6 +226,7 @@ it("upgrades an M1 database through component and claim guards without rewriting
       });
     });
     const cmsTables = [
+      "qc_checks",
       "assets",
       "websites",
       "content_assets",
@@ -256,6 +258,7 @@ it("upgrades an M1 database through component and claim guards without rewriting
       ),
     );
     await db.query(readFileSync(resolve(migrations,'016_durable_asset_bytes.sql'),'utf8'));
+    await db.query(readFileSync(resolve(migrations,'017_immutable_quality_inspections.sql'),'utf8'));
     expect(
       (await db.query("select * from app.intelligence_sources")).rows,
     ).toEqual(before.source);

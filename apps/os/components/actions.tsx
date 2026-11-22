@@ -40,7 +40,14 @@ case 'quotes':return row.status==='DRAFT'||row.status==='COSTED'?[simple('cost_q
 case 'requests':return [{module:'sales',action:'create',label:'Prepare quote',defaults:{requestId:row.id},fields:[f('title','Quote title','text',{value:row.title})]}];
 case 'estimates':return [simple('review','Request review'),simple('approve','Approve estimate'),simple('archive','Archive estimate')];
 case 'orders':return module==='commerce'?[simple('reorder','Create reorder cart',[],{key:key()})]:[{module:'orders',action:'allocate_jobs',label:'Allocate jobs',defaults:{id:row.id,key:key()}}];
-case 'jobs':return ['PLANNED','READY','REWORK'].includes(row.status)?[simple('start_job','Start production')]:row.status==='IN_PROGRESS'||row.status==='QC_PENDING'?[simple('record_qc','Record quality check',[f('passed','Inspection passed','checkbox'),f('notes','Inspection notes','textarea')]),...(row.status==='QC_PENDING'?[simple('close_job','Complete job')]:[])]:[];
+case 'jobs':return ['PLANNED','READY','REWORK'].includes(row.status)?[simple('start_job','Start production')]:row.status==='IN_PROGRESS'||row.status==='QC_PENDING'?[
+ {...simple('record_qc','Record quality check',[
+  f('overallResult','Overall inspection result','select',{options:['PASS','FAIL']}),
+  ...['quantity','color','placement','damage'].map(check=>f(check+'Result',pretty(check)+' inspection','select',{options:['PASS','FAIL']})),
+  f('notes','Inspection notes','textarea',{help:'Record what was inspected and any defects. A failed check cannot be overridden by an overall pass.'})
+ ],{expectedRevision:row.revision}),transform:i=>({id:i.id,expectedRevision:i.expectedRevision,passed:i.overallResult==='PASS',checks:Object.fromEntries(['quantity','color','placement','damage'].map(check=>[check,i[check+'Result']==='PASS'])),notes:i.notes})},
+ ...(row.status==='QC_PENDING'&&row.data.qcPassed===true&&row.data.qcInspectionSchema==='EXPLICIT_QC_V1'?[simple('close_job','Complete job')]:[])
+ ]:row.status==='COMPLETE'?[simple('reopen_qc','Reinspect unshipped job',[f('reason','Reason for reinspection','textarea')],{expectedRevision:row.revision})]:[];
 case 'purchase_orders':return row.status==='DRAFT'||row.status==='APPROVAL_PENDING'?[simple('approve_po','Authorize PO draft',[reason])]:row.status==='AUTHORIZED'?[simple('submit_po','Simulate submission',[f('simulateTimeout','Simulate an uncertain timeout','checkbox',{required:false})],{key:key()})]:row.status==='UNKNOWN_OUTCOME'?[simple('reconcile_outcome','Reconcile outcome',[f('outcome','Verified mock result','select',{options:['ACKNOWLEDGED','REJECTED','UNKNOWN_OUTCOME']}),f('reference','Reconciliation reference')])]:[];
 case 'payment_references':return [simple('reconcile_mock_payment','Simulate reconciliation',[],{eventId:`demo-${key()}`,key:key()})];
 case 'carts':return [simple('submit_request','Submit quote request',[],{key:key()})];

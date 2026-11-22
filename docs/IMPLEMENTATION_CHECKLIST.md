@@ -1,6 +1,14 @@
 # Visible implementation checklist
 
-November 22 source continuation: [durable originals/derivatives, requirements-to-code-to-test mapping and remaining gates](DURABLE_ASSETS.md). New Creative uploads, safe previews, mockups and owned-catalog photos use the existing canonical PostgreSQL asset registry. Generic metadata responses omit file bytes. The new migration is local/source only pending review and approved hosted rollout; independent malware scanning, legacy-file migration and production file release remain open.
+November 22 QC continuation: [explicit inspection controls, traceability and remaining manufacturing requirements](QUALITY_INSPECTION.md). Missing inspections can no longer default to a pass. Results are immutable and bound to the job, operator and revision; completion and shipment validate them again. Full production routing and independent validation remain open.
+
+- [x] Require explicit checks, preserve failed/rework evidence and reject stale/concurrent inspection submissions.
+- [x] Gate job completion and fulfillment on current inspection evidence and existing financial/artwork release requirements.
+- [x] Add audited reinspection for unshipped jobs; preserve shipped/closed history.
+- [x] Pass local backend regression (391 tests / 51 files), focused operator browser workflow, both builds, TypeScript and integrity checks. Require exact-head CI to repeat the complete 29-browser suite and isolated production-container check before integration.
+- [ ] Deploy migrations 016–017 and verify hosted workflows only after deployment authorization.
+
+November 22 source continuation: [durable originals/derivatives, requirements-to-code-to-test mapping and remaining gates](DURABLE_ASSETS.md). New Creative uploads, safe previews, mockups and owned-catalog photos use the existing canonical PostgreSQL asset registry. Generic metadata responses omit file bytes. The storage milestone is merged in [PR #12](https://github.com/SEM-Admin/twelvespec-platform/pull/12) after [both CI jobs passed](https://github.com/SEM-Admin/twelvespec-platform/actions/runs/44999431578); its migration is source/local only pending approved hosted rollout; independent malware scanning, legacy-file migration and production file release remain open.
 
 - [x] Preserve exact private originals and separate safe derivatives in the domain transaction.
 - [x] Verify new-process recovery, failed-transaction rollback, buyer/workspace isolation, immutable identities, checksum failures and legacy filesystem reads with synthetic data.
