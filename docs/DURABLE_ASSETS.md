@@ -33,6 +33,8 @@ Original uploads retain their existing 8 MiB Creative / 5 MiB catalog limits. Th
 
 ## Verification receipt
 
+Merged in [PR #12](https://github.com/SEM-Admin/twelvespec-platform/pull/12) at `1b5741c79dc7782f3985eae4063d739dc1bbb951`. [Exact-head CI 44999431578](https://github.com/SEM-Admin/twelvespec-platform/actions/runs/44999431578) passed both regression and network-isolated production-container jobs on source `d14326fdaa33a7a3728e0f9a8f41e9c52f0f532b`. The compiled upload/preview routes, exact original hash, safe derivative binding and anonymous denial passed in the nonroot container with external network disabled. No hosted rollout occurred.
+
 Fresh local verification on November 22 passes **374 backend tests across 50 files**, including upgrade and complete-database restore, and **all 28 browser journeys** against a disposable synthetic database. TypeScript, both optimized Next.js builds, specification/plan/research/industry/decoration checks and the container-verifier syntax check pass. The builds retain the legacy dynamic-filesystem tracing warnings; no check failed. Exact-head GitHub CI, including the expanded network-isolated production-container verification, is required before merge and is recorded on the pull request. No hosted acceptance is implied by these local results.
 
 ## Remaining activation requirements

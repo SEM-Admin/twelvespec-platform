@@ -1,6 +1,6 @@
 # Current implementation and activation status
 
-Current source continuation: November 22, 2026. [Durable file implementation, verification and remaining requirements](DURABLE_ASSETS.md). The protected preview runtime still uses application source `be9f41764f64c43b97379cf52555fd1c39b02943`, verified [November 18](supplier-api/HOSTED_VERIFICATION_2026-11-18.md); the new file-storage migration is not deployed. The sections below preserve the November 7 checkpoint and do not supersede these current evidence receipts. The original 20-module inventory, 205 inventory entries and 95 acceptance scenarios remain tracked; active V1 completion is still open. Paid production sales are not approved.
+Current source continuation: November 22, 2026. [Durable file implementation, verification and remaining requirements](DURABLE_ASSETS.md), plus [explicit QC and guarded dispatch](QUALITY_INSPECTION.md). The protected preview runtime still uses application source `be9f41764f64c43b97379cf52555fd1c39b02943`, verified [November 18](supplier-api/HOSTED_VERIFICATION_2026-11-18.md); the new file-storage migration is not deployed. The sections below preserve the November 7 checkpoint and do not supersede these current evidence receipts. The original 20-module inventory, 205 inventory entries and 95 acceptance scenarios remain tracked; active V1 completion is still open. Paid production sales are not approved.
 
 ## Implemented functionality
 
